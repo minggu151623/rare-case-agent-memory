@@ -14,8 +14,8 @@ hypotheses:
 experiments:
   - id: E000
     path: experiments/E000-oracle-smoke
-    status: protocol_locked
+    status: completed
   - id: E001
     path: experiments/E001-memory-coverage
     status: draft_protocol
-next: "Validate the exact planning oracle and freeze the live pilot configuration."
+next: "Implement the task generator and paired pilot runner, then freeze the live pilot configuration."

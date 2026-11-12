@@ -9,3 +9,8 @@
   retained examples, and performance on unseen instances.
 - The autoresearch workflow separates the protocol, implementation and results.
   Repository state provides a handoff for subsequent sessions.
+
+## 2026-11-12 · E000 completed
+
+The protocol was committed before implementation and execution. All nine
+local oracle checks passed. The live pilot design remains a draft.
