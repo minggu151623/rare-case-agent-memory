@@ -16,6 +16,12 @@ CELLS = ("original", "memory_only", "query_only", "independent_both", "shared_ma
 FRESH = ("memory_only", "query_only", "shared_map")
 
 
+class PhiBackend(Backend):
+    model = "phi3.5:3.8b"
+    digest = "61819fb370a3c1a9be6694869331e5f85f867a079e9271d66cb223acb81d04ba"
+    thinking_options = {}
+
+
 def shared_labels(seed):
     rng = Random(seed + 410000)
     while True:
@@ -114,5 +120,7 @@ if __name__ == "__main__":
     parser.add_argument("source", type=Path)
     parser.add_argument("--output", required=True, type=Path)
     parser.add_argument("--ollama-port", type=int)
+    parser.add_argument("--phi", action="store_true", help="Run all five E006 cells on Phi.")
     args = parser.parse_args()
-    run(args.source, args.output, args.ollama_port)
+    run(args.source, args.output, args.ollama_port,
+        backend_type=PhiBackend if args.phi else Backend, cells=CELLS if args.phi else FRESH)

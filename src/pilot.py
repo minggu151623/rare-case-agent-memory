@@ -35,15 +35,19 @@ def counts(cases):
 
 
 class Backend:
+    model = MODEL
+    digest = DIGEST
+    thinking_options = {"think": False}
+
     def __init__(self, port, trace):
         self.trace = trace
         self.base = f"http://127.0.0.1:{port}" if port is not None else None
         self.opener = build_opener(ProxyHandler({}))
         if self.base:
             matches = [model for model in self.request("/api/tags")["models"]
-                       if model["name"] == MODEL and model["digest"] == DIGEST]
+                       if model["name"] == self.model and model["digest"] == self.digest]
             if not matches:
-                raise ValueError(f"Expected installed {MODEL} digest {DIGEST}")
+                raise ValueError(f"Expected installed {self.model} digest {self.digest}")
             self.version = self.request("/api/version")["version"]
         else:
             self.version = "fixture"
@@ -92,7 +96,8 @@ class Backend:
         start = perf_counter()
         if self.base:
             response = self.request("/api/chat", {
-                "model": MODEL, "stream": False, "format": output_format, "think": False,
+                "model": self.model, "stream": False, "format": output_format,
+                **self.thinking_options,
                 "options": {"seed": sampling_seed + round_, "temperature": 0, "num_ctx": 4096,
                             "num_predict": 384},
                 "messages": [{"role": "system", "content": f"{RULES} {instruction}"},
