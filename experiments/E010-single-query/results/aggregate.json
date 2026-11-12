@@ -1,0 +1,260 @@
+{
+  "calls": 36,
+  "format_failures": 0,
+  "reasoning_present_calls": 0,
+  "scores": {
+    "random_model": {
+      "original": {
+        "correct": 1,
+        "answered": 6,
+        "total": 6
+      },
+      "independent_both": {
+        "correct": 1,
+        "answered": 6,
+        "total": 6
+      },
+      "shared_map": {
+        "correct": 1,
+        "answered": 6,
+        "total": 6
+      }
+    },
+    "targeted_model": {
+      "original": {
+        "correct": 4,
+        "answered": 6,
+        "total": 6
+      },
+      "independent_both": {
+        "correct": 0,
+        "answered": 6,
+        "total": 6
+      },
+      "shared_map": {
+        "correct": 3,
+        "answered": 6,
+        "total": 6
+      }
+    }
+  },
+  "per_seed": {
+    "6201": {
+      "random_model": {
+        "original": {
+          "id": "h03",
+          "correct": false,
+          "answered": true
+        },
+        "independent_both": {
+          "id": "h03",
+          "correct": false,
+          "answered": true
+        },
+        "shared_map": {
+          "id": "h03",
+          "correct": false,
+          "answered": true
+        }
+      },
+      "targeted_model": {
+        "original": {
+          "id": "h03",
+          "correct": true,
+          "answered": true
+        },
+        "independent_both": {
+          "id": "h03",
+          "correct": false,
+          "answered": true
+        },
+        "shared_map": {
+          "id": "h03",
+          "correct": true,
+          "answered": true
+        }
+      }
+    },
+    "6202": {
+      "random_model": {
+        "original": {
+          "id": "h00",
+          "correct": false,
+          "answered": true
+        },
+        "independent_both": {
+          "id": "h00",
+          "correct": false,
+          "answered": true
+        },
+        "shared_map": {
+          "id": "h00",
+          "correct": false,
+          "answered": true
+        }
+      },
+      "targeted_model": {
+        "original": {
+          "id": "h00",
+          "correct": false,
+          "answered": true
+        },
+        "independent_both": {
+          "id": "h00",
+          "correct": false,
+          "answered": true
+        },
+        "shared_map": {
+          "id": "h00",
+          "correct": false,
+          "answered": true
+        }
+      }
+    },
+    "6203": {
+      "random_model": {
+        "original": {
+          "id": "h02",
+          "correct": false,
+          "answered": true
+        },
+        "independent_both": {
+          "id": "h02",
+          "correct": false,
+          "answered": true
+        },
+        "shared_map": {
+          "id": "h02",
+          "correct": false,
+          "answered": true
+        }
+      },
+      "targeted_model": {
+        "original": {
+          "id": "h02",
+          "correct": true,
+          "answered": true
+        },
+        "independent_both": {
+          "id": "h02",
+          "correct": false,
+          "answered": true
+        },
+        "shared_map": {
+          "id": "h02",
+          "correct": false,
+          "answered": true
+        }
+      }
+    },
+    "6204": {
+      "random_model": {
+        "original": {
+          "id": "h02",
+          "correct": false,
+          "answered": true
+        },
+        "independent_both": {
+          "id": "h02",
+          "correct": false,
+          "answered": true
+        },
+        "shared_map": {
+          "id": "h02",
+          "correct": false,
+          "answered": true
+        }
+      },
+      "targeted_model": {
+        "original": {
+          "id": "h02",
+          "correct": false,
+          "answered": true
+        },
+        "independent_both": {
+          "id": "h02",
+          "correct": false,
+          "answered": true
+        },
+        "shared_map": {
+          "id": "h02",
+          "correct": false,
+          "answered": true
+        }
+      }
+    },
+    "6205": {
+      "random_model": {
+        "original": {
+          "id": "h03",
+          "correct": false,
+          "answered": true
+        },
+        "independent_both": {
+          "id": "h03",
+          "correct": true,
+          "answered": true
+        },
+        "shared_map": {
+          "id": "h03",
+          "correct": true,
+          "answered": true
+        }
+      },
+      "targeted_model": {
+        "original": {
+          "id": "h03",
+          "correct": true,
+          "answered": true
+        },
+        "independent_both": {
+          "id": "h03",
+          "correct": false,
+          "answered": true
+        },
+        "shared_map": {
+          "id": "h03",
+          "correct": true,
+          "answered": true
+        }
+      }
+    },
+    "6206": {
+      "random_model": {
+        "original": {
+          "id": "h00",
+          "correct": true,
+          "answered": true
+        },
+        "independent_both": {
+          "id": "h00",
+          "correct": false,
+          "answered": true
+        },
+        "shared_map": {
+          "id": "h00",
+          "correct": false,
+          "answered": true
+        }
+      },
+      "targeted_model": {
+        "original": {
+          "id": "h00",
+          "correct": true,
+          "answered": true
+        },
+        "independent_both": {
+          "id": "h00",
+          "correct": false,
+          "answered": true
+        },
+        "shared_map": {
+          "id": "h00",
+          "correct": true,
+          "answered": true
+        }
+      }
+    }
+  },
+  "request_seconds": 104.426
+}

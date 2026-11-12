@@ -67,3 +67,10 @@ Qwen memories. The author's Zenodo submission remains separate.
 E008 completed and replayed all 36 calls. Independent labels
 throughout acquisition did not restore the E002 advantage. The
 manuscript now includes the setup and the negative result.
+
+E009 completed the matched-exposure control. The Phi download
+failed for lack of disk space. We removed only its incomplete
+download files and switched to the cached Gemma model under a
+recorded protocol amendment. E006 completed 60 calls with severe
+answer omissions. E010 completed 36 single-query calls with
+complete answers and directional, subset-specific agreement.

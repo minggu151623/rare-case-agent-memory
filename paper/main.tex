@@ -28,8 +28,12 @@ after independent vertex renaming. Changing memory labels alone or
 query labels alone removed most of the policy gap, while a shared
 permutation recovered the gap to $10/18$. The advantage was also
 absent when independent labels were used throughout acquisition.
-These results motivate family-level admission counts and held-out
-tests that preserve task semantics while varying representation.
+A control matching each graph's rendered forms found a $19.4$-point
+larger policy gap under shared than mixed label assignments, with
+reversals in two of six seeds. A second model showed the same
+direction on a small single-query diagnostic with frozen Qwen
+memories. These results motivate auditing both admission and the
+robustness of held-out accuracy to equivalent representations.
 \end{abstract}
 
 
@@ -445,6 +449,17 @@ floor and give no basis for comparing permutation sensitivity.
 Even with valid structured output, answer completeness can dominate
 the score of a multi-task prompt.
 
+When Gemma received one key-detour task per call in E010, all
+36 responses included the requested ID. With random memory it
+answered $1/6$ correctly in each of the three label conditions.
+With targeted memory it scored $4/6$ with original labels, $0/6$
+with independently renamed examples and queries, and $3/6$ with
+the shared derangement. The resulting gaps of $+3/6$, $-1/6$ and
+$+2/6$ agree in direction with the corresponding Qwen contrasts.
+This evidence is limited to six selected tasks, three
+representations and frozen Qwen memories. It neither resolves the
+batch floor nor establishes the effect for acquisition by Gemma.
+
 \subsection{Which failures replaced correct paths?}
 
 Of the 17 targeted key-detour paths that became incorrect after
@@ -489,8 +504,8 @@ opportunities, failed admissions, eviction, and failed readout.
 
 \section{Limitations}
 
-The paired study used six trajectories for a single model, two update
-rounds, and a small synthetic graph domain. The graphs share path
+The paired acquisition study used six trajectories for one model, two
+update rounds, and a small synthetic graph domain. The graphs share path
 templates and node roles despite being structurally disjoint. Exact
 answer verification makes the admission mechanism observable, while
 other environments may have imperfect verifiers or no exact answer
@@ -502,10 +517,12 @@ They cannot reveal how the model uses vertex labels internally.
 The matched-label comparison used two permutations per seed and
 an alternating mixture, leaving other label mixtures untested. The new-motif condition also changes
 the holdout draw, and its key-required tasks avoid revisiting a node.
-The findings concern fixed weights, controlled task construction,
-and short memory trajectories. Free-form generation, longer
-trajectories, and replication with other model families remain
-open.
+The Gemma experiment changes the model, quantization, serving backend,
+and response grammar. Its single-query evidence measures only readout
+from Qwen-generated memories on a fixed subset. The findings concern
+fixed weights, controlled task construction, and short trajectories.
+Free-form generation, longer trajectories, and replication of the
+acquisition policies with a second model remain open.
 
 \section*{Reproducibility and AI use}
 

@@ -1,0 +1,48 @@
+{
+  "random_model": {
+    "original": [
+      {
+        "id": "h00",
+        "family": "key_detour",
+        "correct": false
+      }
+    ],
+    "independent_both": [
+      {
+        "id": "h00",
+        "family": "key_detour",
+        "correct": false
+      }
+    ],
+    "shared_map": [
+      {
+        "id": "h00",
+        "family": "key_detour",
+        "correct": false
+      }
+    ]
+  },
+  "targeted_model": {
+    "original": [
+      {
+        "id": "h00",
+        "family": "key_detour",
+        "correct": false
+      }
+    ],
+    "independent_both": [
+      {
+        "id": "h00",
+        "family": "key_detour",
+        "correct": false
+      }
+    ],
+    "shared_map": [
+      {
+        "id": "h00",
+        "family": "key_detour",
+        "correct": false
+      }
+    ]
+  }
+}

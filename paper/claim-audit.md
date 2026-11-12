@@ -36,3 +36,21 @@ identity, exact stored solutions, and memory contents held fixed.
   answers per call and tracks the actual returned IDs. E010
   probes the first key-detour item from each seed separately.
   These readouts change model, backend, and output grammar together.
+
+## Final cross-model judgment
+
+E006 is a failed batch comparison for key detours. Gemma answered
+only the first query in every call, and no cell scored a key-detour
+success. E010 restores answer completeness with one query per call.
+Its targeted-memory counts (4/6, 0/6, 3/6) agree in direction with
+the Qwen original, independent, and shared comparisons. That result
+has six paired queries, different serving and grammar settings, and
+Qwen-generated memories. Claims of replicated acquisition or
+general label invariance would exceed the evidence.
+
+The strongest contribution is the controlled policy comparison with
+matched graph exposures. The result is an average from six paired
+seeds, with two reversals and a specific two-map mixture. The FIFO
+proposition is a transparent reference calculation based on
+binomial thinning. Its algebra alone is insufficient as a claim of
+substantial theoretical novelty.

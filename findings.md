@@ -44,3 +44,12 @@ acquisition and evaluation. Key-detour accuracy was 3/18 random and
 2/18 targeted. Starting acquisition with independently labeled
 graphs did not restore the targeted advantage observed under E002's
 original labels.
+
+[E009](experiments/E009-matched-labels/analysis.md) matched each graph's
+exact rendered forms across conditions. Shared labeling increased the
+targeted-minus-random gap by 19.4 points on average, with reversals
+in two of six seeds. [E006](experiments/E006-cross-model/analysis.md)
+showed that Gemma answered only the first query in all 60 batch calls.
+In [E010](experiments/E010-single-query/analysis.md) it answered all
+single queries and reproduced the direction of three Qwen readout
+contrasts on six key-detour cases with frozen Qwen memories.
