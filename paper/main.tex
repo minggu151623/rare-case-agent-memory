@@ -1,6 +1,6 @@
 \documentclass[11pt]{article}
 \usepackage[margin=1in]{geometry}
-\usepackage{amsmath,amsthm,booktabs,flafter}
+\usepackage{amsmath,amsthm,booktabs,float}
 \usepackage[hidelinks]{hyperref}
 \newtheorem{proposition}{Proposition}
 \title{Auditing Rare-Case Coverage in LLM Agents with Iterative Example Memory}
@@ -114,6 +114,8 @@ memory, if a family receives no new admissions, its last old example is
 evicted once enough later examples have been admitted to reach that
 example's initial position. This can occur while the combined count of
 rare examples increases, because other rare families can replace it.
+
+Figure~\ref{fig:detour} illustrates the key detour and an equivalent change of vertex names.
 
 \input{detour-example}
 

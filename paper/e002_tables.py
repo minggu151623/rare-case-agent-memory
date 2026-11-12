@@ -40,7 +40,7 @@ def memory_rows(report):
 
 def render(report):
     return "\n".join([
-        r"\begin{table}[tbp]",
+        r"\begin{table}[H]",
         r"\centering",
         r"\caption{Held-out exact accuracy by task family across six paired seeds.}",
         r"\label{tab:e002-accuracy}",
@@ -53,7 +53,7 @@ def render(report):
         r"\end{tabular}",
         r"\end{table}",
         "",
-        r"\begin{table}[tbp]",
+        r"\begin{table}[H]",
         r"\centering",
         r"\caption{Unreachable-task attempts and admissions in E002. Final memory is the mean number of unreachable examples per seed.}",
         r"\label{tab:e002-coverage}",
