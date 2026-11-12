@@ -81,7 +81,7 @@ instructions.
 
 [E004 label attribution](experiments/E004-representation/analysis.md) ·
 [E005 FIFO reference model](experiments/E005-fifo-null/analysis.md) ·
-[E006 cross-model protocol](experiments/E006-cross-model/protocol.md) ·
+[E006 cross-model results](experiments/E006-cross-model/analysis.md) ·
 [E007 path-error audit](experiments/E007-error-audit/analysis.md) ·
 [E008 acquisition results](experiments/E008-end-to-end/analysis.md)
 
@@ -98,3 +98,7 @@ Replay E008 with the archived model responses.
 ```sh
 python3 -m src.end_to_end experiments/E008-end-to-end/results/qwen3-8b --audit
 ```
+
+[E009 matched graph exposures](experiments/E009-matched-labels/analysis.md) · [E010 single-query diagnostic](experiments/E010-single-query/analysis.md)
+
+See [the manuscript README](paper/README.md) for all offline verification commands.
