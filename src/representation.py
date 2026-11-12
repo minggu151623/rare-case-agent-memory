@@ -133,7 +133,7 @@ def read_seed(source, seed):
     return read_calls(source / str(seed))
 
 
-def run(source, output, port, *, backend_type=Backend, cells=FRESH):
+def run(source, output, port, *, backend_type=Backend, cells=FRESH, single_key_detour=False):
     output.mkdir(parents=True)
     with (output / "calls.jsonl").open("w") as trace:
         backend = backend_type(port, trace)
@@ -144,6 +144,8 @@ def run(source, output, port, *, backend_type=Backend, cells=FRESH):
                 records[arm] = {}
                 for cell in cells:
                     cases, memory = cells_by_arm[arm][cell]
+                    if single_key_detour:
+                        cases = [next(case for case in cases if case.family == 'key_detour')]
                     answers = backend.call(
                         "evaluation", f"{seed}/{arm}/{cell}", 2, cases, memory, sampling_seed=seed,
                     )
@@ -176,9 +178,14 @@ if __name__ == "__main__":
     parser.add_argument("--ollama-port", type=int)
     parser.add_argument("--gemma-model-dir", type=Path, help="Run all five E006 cells on Gemma.")
     parser.add_argument("--lmstudio-port", type=int, default=1234)
+    parser.add_argument("--single-key-detour", action="store_true", help="Run Gemma E010.")
     args = parser.parse_args()
+    if args.single_key_detour and not args.gemma_model_dir:
+        parser.error("--single-key-detour requires --gemma-model-dir")
     if args.gemma_model_dir:
         verify_gemma_files(args.gemma_model_dir)
-        run(args.source, args.output, args.lmstudio_port, backend_type=GemmaBackend, cells=CELLS)
+        cells = ('original', 'independent_both', 'shared_map') if args.single_key_detour else CELLS
+        run(args.source, args.output, args.lmstudio_port, backend_type=GemmaBackend,
+            cells=cells, single_key_detour=args.single_key_detour)
     else:
         run(args.source, args.output, args.ollama_port)
