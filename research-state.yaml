@@ -1,0 +1,21 @@
+project:
+  title: "Auditing Rare-Case Coverage in LLM Agents with Iterative Example Memory"
+  question: "Where is rare-case coverage lost, and does targeted supplementation improve held-out accuracy over random supplementation at a matched budget?"
+  domain: "cs.AI, LLM agents and planning"
+  started: "2026-11-12"
+  status: active
+hypotheses:
+  - id: H1
+    statement: "Rare-case representation decreases over memory updates under self-generated examples."
+    status: pending
+  - id: H2
+    statement: "Targeted supplementation yields higher final held-out rare-case accuracy than random supplementation."
+    status: pending
+experiments:
+  - id: E000
+    path: experiments/E000-oracle-smoke
+    status: protocol_locked
+  - id: E001
+    path: experiments/E001-memory-coverage
+    status: draft_protocol
+next: "Validate the exact planning oracle and freeze the live pilot configuration."
