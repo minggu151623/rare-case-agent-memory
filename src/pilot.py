@@ -58,11 +58,23 @@ class Backend:
             return json.load(response)
 
     def call(self, phase, arm, round_, cases, memory):
+        output_format = "json"
         if phase == "proposal":
+            allowed = [case.id for case in cases]
             instruction = (
-                'Select 3 distinct task IDs in order to add useful solved examples to '
-                'the memory for future tasks. Return {"ids":["id1","id2","id3"]}.'
+                "Choose exactly three distinct IDs from the new tasks list, most useful first. "
+                "The memory contains already solved examples for reference. Never select a "
+                "memory ID. Allowed task IDs are " + ", ".join(allowed) + "."
             )
+            output_format = {
+                "type": "object",
+                "properties": {"ids": {
+                    "type": "array", "minItems": 3, "maxItems": 3,
+                    "items": {"type": "string", "enum": allowed},
+                }},
+                "required": ["ids"],
+                "additionalProperties": False,
+            }
         else:
             instruction = (
                 'Solve every task. Return {"answers":{"id":{"path":["start","...","goal"]}}}. '
@@ -77,7 +89,7 @@ class Backend:
         start = perf_counter()
         if self.base:
             response = self.request("/api/chat", {
-                "model": MODEL, "stream": False, "format": "json", "think": False,
+                "model": MODEL, "stream": False, "format": output_format, "think": False,
                 "options": {"seed": SEED + round_, "temperature": 0, "num_ctx": 4096,
                             "num_predict": 384},
                 "messages": [{"role": "system", "content": f"{RULES} {instruction}"},
