@@ -433,6 +433,18 @@ forms narrows the explanation to properties of the prompt-level
 combination. The alternating assignment changes several such
 properties and does not identify one internal feature.
 
+\subsection{Cross-model readout and the limits of batched prompts}
+
+Gemma returned valid outer JSON in all 60 batch calls. Each
+response included only the first query ID, for 60 of the 540
+requested answers. The remaining 480 were scored incorrect.
+Key-detour and unreachable scores were $0/18$ in every label
+condition and both policies. Ungated scores ranged from $0/18$
+to $3/18$. The zero key-detour contrasts arise at the accuracy
+floor and give no basis for comparing permutation sensitivity.
+Even with valid structured output, answer completeness can dominate
+the score of a multi-task prompt.
+
 \subsection{Which failures replaced correct paths?}
 
 Of the 17 targeted key-detour paths that became incorrect after
@@ -502,7 +514,7 @@ inference settings, protocols, compressed per-call traces, scoring
 code, and manuscript source. The reported scores can be recomputed
 from the traces without running an LLM. Codex assisted with research
 design, implementation, analysis, and manuscript drafting. The
-experimental response traces came from the pinned Qwen3 8B snapshot.
+experimental traces came from the pinned Qwen3 8B and Gemma 4 E4B snapshots.
 
 \appendix
 \section{Paired results by seed}

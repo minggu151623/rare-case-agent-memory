@@ -37,8 +37,8 @@ experiments:
     path: experiments/E005-fifo-null/analysis.md
     status: completed_and_audited
   - id: E006
-    path: experiments/E006-cross-model/protocol.md
-    status: running_cached_gemma
+    path: experiments/E006-cross-model/analysis.md
+    status: completed_and_audited
   - id: E007
     path: experiments/E007-error-audit/analysis.md
     status: completed_and_audited
@@ -48,6 +48,9 @@ experiments:
   - id: E009
     path: experiments/E009-matched-labels/analysis.md
     status: completed_and_audited
+  - id: E010
+    path: experiments/E010-single-query/protocol.md
+    status: running_cached_gemma
 manuscript:
   source: paper/main.tex
   status: extended_revision_in_progress
