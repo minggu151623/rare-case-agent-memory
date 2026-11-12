@@ -29,14 +29,14 @@ an opportunity to attempt the task.
 
 \section{Related work}
 
-Memory studies have evaluated selective addition and deletion and how
-agents reuse experience on similar tasks
-\cite{experience-following}. EvoMemBench compares memory strategies
-across knowledge and execution tasks \cite{evomembench}. We focus on a
-narrow setting with exact answer verification and track family-level
-counts at each memory update. Our intervention changes access to a
-verified answer for one task while holding the task slots and model-call
-budget fixed.
+Xiong et al. study selective addition and deletion, including an
+error-free comparison that replaces the model's stored execution with
+ground truth \cite{experience-following}. We use the same idea of a
+ground-truth comparison, applied to a single supplement and crossed
+with its allocation rule. This lets us measure a narrower mechanism:
+how correctness-conditioned admission affects the coverage of each
+task family under a fixed FIFO memory budget. EvoMemBench compares
+memory strategies across knowledge and execution tasks \cite{evomembench}.
 
 Studies of recursive synthetic training show that low-frequency events can
 vanish across model generations \cite{shumailov2024}. Formal verification

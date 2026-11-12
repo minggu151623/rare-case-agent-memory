@@ -38,3 +38,16 @@ remains to be assessed against the closest experimental protocols.
   Agents](https://arxiv.org/abs/2610.27406). Studies the effect of persisting
   derived rules versus observed trajectories. E001 stores verified task-answer
   records and asks how their family coverage changes under repeated updates.
+
+## Closest overlap for E002
+
+In [Xiong et al. v2](https://arxiv.org/html/2505.16067v2), §3.1 uses a
+fixed-memory baseline and strict correctness-conditioned addition. §3.4
+and Fig. 4 compare model executions with ground-truth executions in
+memory, and §5.2 studies a fixed memory capacity. A ground-truth memory
+comparison is established prior work. E002 varies answer source for the
+one supplement, crosses it with family allocation, and uses known task
+families and exact checks to count attempts, passes, admissions, and
+evictions. The defensible contribution is the family-specific
+mechanism and the relationship between coverage and held-out accuracy
+under these interventions.
