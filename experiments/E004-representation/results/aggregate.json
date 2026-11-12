@@ -1,0 +1,592 @@
+{
+  "calls": 36,
+  "format_failures": 0,
+  "prompt_tokens": 68493,
+  "output_tokens": 5081,
+  "request_seconds": 555.135,
+  "scores": {
+    "random_model": {
+      "original": {
+        "ungated": {
+          "total": 18,
+          "correct": 18
+        },
+        "key_detour": {
+          "total": 18,
+          "correct": 7
+        },
+        "unreachable": {
+          "total": 18,
+          "correct": 3
+        }
+      },
+      "memory_only": {
+        "ungated": {
+          "total": 18,
+          "correct": 3
+        },
+        "key_detour": {
+          "total": 18,
+          "correct": 3
+        },
+        "unreachable": {
+          "total": 18,
+          "correct": 0
+        }
+      },
+      "query_only": {
+        "ungated": {
+          "total": 18,
+          "correct": 9
+        },
+        "key_detour": {
+          "total": 18,
+          "correct": 1
+        },
+        "unreachable": {
+          "total": 18,
+          "correct": 0
+        }
+      },
+      "independent_both": {
+        "ungated": {
+          "total": 18,
+          "correct": 9
+        },
+        "key_detour": {
+          "total": 18,
+          "correct": 2
+        },
+        "unreachable": {
+          "total": 18,
+          "correct": 0
+        }
+      },
+      "shared_map": {
+        "ungated": {
+          "total": 18,
+          "correct": 18
+        },
+        "key_detour": {
+          "total": 18,
+          "correct": 2
+        },
+        "unreachable": {
+          "total": 18,
+          "correct": 1
+        }
+      }
+    },
+    "targeted_model": {
+      "original": {
+        "ungated": {
+          "total": 18,
+          "correct": 18
+        },
+        "key_detour": {
+          "total": 18,
+          "correct": 18
+        },
+        "unreachable": {
+          "total": 18,
+          "correct": 0
+        }
+      },
+      "memory_only": {
+        "ungated": {
+          "total": 18,
+          "correct": 8
+        },
+        "key_detour": {
+          "total": 18,
+          "correct": 3
+        },
+        "unreachable": {
+          "total": 18,
+          "correct": 0
+        }
+      },
+      "query_only": {
+        "ungated": {
+          "total": 18,
+          "correct": 7
+        },
+        "key_detour": {
+          "total": 18,
+          "correct": 2
+        },
+        "unreachable": {
+          "total": 18,
+          "correct": 0
+        }
+      },
+      "independent_both": {
+        "ungated": {
+          "total": 18,
+          "correct": 11
+        },
+        "key_detour": {
+          "total": 18,
+          "correct": 1
+        },
+        "unreachable": {
+          "total": 18,
+          "correct": 0
+        }
+      },
+      "shared_map": {
+        "ungated": {
+          "total": 18,
+          "correct": 16
+        },
+        "key_detour": {
+          "total": 18,
+          "correct": 12
+        },
+        "unreachable": {
+          "total": 18,
+          "correct": 0
+        }
+      }
+    }
+  },
+  "key_detour_targeted_minus_random_correct_count": {
+    "original": 11,
+    "memory_only": 0,
+    "query_only": 1,
+    "independent_both": -1,
+    "shared_map": 10
+  },
+  "key_detour_factorial_effects": {
+    "random_model": {
+      "memory_main": {
+        "mean": -0.08333333333333333,
+        "per_seed": [
+          0.0,
+          -0.3333333333333333,
+          -0.16666666666666666,
+          0.16666666666666666,
+          0.0,
+          -0.16666666666666666
+        ]
+      },
+      "query_main": {
+        "mean": -0.19444444444444445,
+        "per_seed": [
+          0.0,
+          -0.6666666666666666,
+          -0.5,
+          0.16666666666666666,
+          0.0,
+          -0.16666666666666666
+        ]
+      },
+      "interaction": {
+        "mean": 0.2777777777777778,
+        "per_seed": [
+          0.0,
+          0.6666666666666666,
+          0.3333333333333333,
+          0.3333333333333333,
+          0.0,
+          0.3333333333333333
+        ]
+      },
+      "shared_minus_original": {
+        "mean": -0.2777777777777778,
+        "per_seed": [
+          0.0,
+          -0.3333333333333333,
+          -1.0,
+          0.0,
+          0.0,
+          -0.3333333333333333
+        ]
+      }
+    },
+    "targeted_model": {
+      "memory_main": {
+        "mean": -0.4444444444444444,
+        "per_seed": [
+          -0.5,
+          0.16666666666666666,
+          -0.8333333333333334,
+          -0.5,
+          -0.5,
+          -0.5
+        ]
+      },
+      "query_main": {
+        "mean": -0.5,
+        "per_seed": [
+          -0.5,
+          -0.8333333333333334,
+          -0.16666666666666666,
+          -0.5,
+          -0.5,
+          -0.5
+        ]
+      },
+      "interaction": {
+        "mean": 0.7777777777777778,
+        "per_seed": [
+          1.0,
+          0.3333333333333333,
+          0.3333333333333333,
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "shared_minus_original": {
+        "mean": -0.3333333333333333,
+        "per_seed": [
+          -1.0,
+          0.0,
+          0.0,
+          -1.0,
+          0.0,
+          0.0
+        ]
+      }
+    }
+  },
+  "per_seed_correct": {
+    "6201": {
+      "random_model": {
+        "original": {
+          "ungated": 3,
+          "unreachable": 0,
+          "key_detour": 0
+        },
+        "memory_only": {
+          "ungated": 0,
+          "unreachable": 0,
+          "key_detour": 0
+        },
+        "query_only": {
+          "ungated": 1,
+          "unreachable": 0,
+          "key_detour": 0
+        },
+        "independent_both": {
+          "ungated": 2,
+          "unreachable": 0,
+          "key_detour": 0
+        },
+        "shared_map": {
+          "ungated": 3,
+          "unreachable": 0,
+          "key_detour": 0
+        }
+      },
+      "targeted_model": {
+        "original": {
+          "ungated": 3,
+          "unreachable": 0,
+          "key_detour": 3
+        },
+        "memory_only": {
+          "ungated": 1,
+          "unreachable": 0,
+          "key_detour": 0
+        },
+        "query_only": {
+          "ungated": 2,
+          "unreachable": 0,
+          "key_detour": 0
+        },
+        "independent_both": {
+          "ungated": 2,
+          "unreachable": 0,
+          "key_detour": 0
+        },
+        "shared_map": {
+          "ungated": 2,
+          "unreachable": 0,
+          "key_detour": 0
+        }
+      }
+    },
+    "6202": {
+      "random_model": {
+        "original": {
+          "key_detour": 3,
+          "unreachable": 0,
+          "ungated": 3
+        },
+        "memory_only": {
+          "key_detour": 1,
+          "unreachable": 0,
+          "ungated": 0
+        },
+        "query_only": {
+          "key_detour": 0,
+          "unreachable": 0,
+          "ungated": 2
+        },
+        "independent_both": {
+          "key_detour": 0,
+          "unreachable": 0,
+          "ungated": 2
+        },
+        "shared_map": {
+          "key_detour": 2,
+          "unreachable": 0,
+          "ungated": 3
+        }
+      },
+      "targeted_model": {
+        "original": {
+          "key_detour": 3,
+          "unreachable": 0,
+          "ungated": 3
+        },
+        "memory_only": {
+          "key_detour": 3,
+          "unreachable": 0,
+          "ungated": 2
+        },
+        "query_only": {
+          "key_detour": 0,
+          "unreachable": 0,
+          "ungated": 0
+        },
+        "independent_both": {
+          "key_detour": 1,
+          "unreachable": 0,
+          "ungated": 3
+        },
+        "shared_map": {
+          "key_detour": 3,
+          "unreachable": 0,
+          "ungated": 3
+        }
+      }
+    },
+    "6203": {
+      "random_model": {
+        "original": {
+          "ungated": 3,
+          "unreachable": 0,
+          "key_detour": 3
+        },
+        "memory_only": {
+          "ungated": 1,
+          "unreachable": 0,
+          "key_detour": 2
+        },
+        "query_only": {
+          "ungated": 2,
+          "unreachable": 0,
+          "key_detour": 1
+        },
+        "independent_both": {
+          "ungated": 2,
+          "unreachable": 0,
+          "key_detour": 1
+        },
+        "shared_map": {
+          "ungated": 3,
+          "unreachable": 0,
+          "key_detour": 0
+        }
+      },
+      "targeted_model": {
+        "original": {
+          "ungated": 3,
+          "unreachable": 0,
+          "key_detour": 3
+        },
+        "memory_only": {
+          "ungated": 1,
+          "unreachable": 0,
+          "key_detour": 0
+        },
+        "query_only": {
+          "ungated": 2,
+          "unreachable": 0,
+          "key_detour": 2
+        },
+        "independent_both": {
+          "ungated": 2,
+          "unreachable": 0,
+          "key_detour": 0
+        },
+        "shared_map": {
+          "ungated": 3,
+          "unreachable": 0,
+          "key_detour": 3
+        }
+      }
+    },
+    "6204": {
+      "random_model": {
+        "original": {
+          "ungated": 3,
+          "unreachable": 3,
+          "key_detour": 0
+        },
+        "memory_only": {
+          "ungated": 2,
+          "unreachable": 0,
+          "key_detour": 0
+        },
+        "query_only": {
+          "ungated": 2,
+          "unreachable": 0,
+          "key_detour": 0
+        },
+        "independent_both": {
+          "ungated": 1,
+          "unreachable": 0,
+          "key_detour": 1
+        },
+        "shared_map": {
+          "ungated": 3,
+          "unreachable": 1,
+          "key_detour": 0
+        }
+      },
+      "targeted_model": {
+        "original": {
+          "ungated": 3,
+          "unreachable": 0,
+          "key_detour": 3
+        },
+        "memory_only": {
+          "ungated": 2,
+          "unreachable": 0,
+          "key_detour": 0
+        },
+        "query_only": {
+          "ungated": 1,
+          "unreachable": 0,
+          "key_detour": 0
+        },
+        "independent_both": {
+          "ungated": 2,
+          "unreachable": 0,
+          "key_detour": 0
+        },
+        "shared_map": {
+          "ungated": 2,
+          "unreachable": 0,
+          "key_detour": 0
+        }
+      }
+    },
+    "6205": {
+      "random_model": {
+        "original": {
+          "unreachable": 0,
+          "ungated": 3,
+          "key_detour": 0
+        },
+        "memory_only": {
+          "unreachable": 0,
+          "ungated": 0,
+          "key_detour": 0
+        },
+        "query_only": {
+          "unreachable": 0,
+          "ungated": 0,
+          "key_detour": 0
+        },
+        "independent_both": {
+          "unreachable": 0,
+          "ungated": 0,
+          "key_detour": 0
+        },
+        "shared_map": {
+          "unreachable": 0,
+          "ungated": 3,
+          "key_detour": 0
+        }
+      },
+      "targeted_model": {
+        "original": {
+          "unreachable": 0,
+          "ungated": 3,
+          "key_detour": 3
+        },
+        "memory_only": {
+          "unreachable": 0,
+          "ungated": 2,
+          "key_detour": 0
+        },
+        "query_only": {
+          "unreachable": 0,
+          "ungated": 0,
+          "key_detour": 0
+        },
+        "independent_both": {
+          "unreachable": 0,
+          "ungated": 0,
+          "key_detour": 0
+        },
+        "shared_map": {
+          "unreachable": 0,
+          "ungated": 3,
+          "key_detour": 3
+        }
+      }
+    },
+    "6206": {
+      "random_model": {
+        "original": {
+          "key_detour": 1,
+          "ungated": 3,
+          "unreachable": 0
+        },
+        "memory_only": {
+          "key_detour": 0,
+          "ungated": 0,
+          "unreachable": 0
+        },
+        "query_only": {
+          "key_detour": 0,
+          "ungated": 2,
+          "unreachable": 0
+        },
+        "independent_both": {
+          "key_detour": 0,
+          "ungated": 2,
+          "unreachable": 0
+        },
+        "shared_map": {
+          "key_detour": 0,
+          "ungated": 3,
+          "unreachable": 0
+        }
+      },
+      "targeted_model": {
+        "original": {
+          "key_detour": 3,
+          "ungated": 3,
+          "unreachable": 0
+        },
+        "memory_only": {
+          "key_detour": 0,
+          "ungated": 0,
+          "unreachable": 0
+        },
+        "query_only": {
+          "key_detour": 0,
+          "ungated": 2,
+          "unreachable": 0
+        },
+        "independent_both": {
+          "key_detour": 0,
+          "ungated": 2,
+          "unreachable": 0
+        },
+        "shared_map": {
+          "key_detour": 3,
+          "ungated": 3,
+          "unreachable": 0
+        }
+      }
+    }
+  }
+}

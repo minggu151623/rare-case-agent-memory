@@ -1,0 +1,288 @@
+{
+  "random_model": {
+    "memory_only": [
+      {
+        "id": "h00",
+        "family": "key_detour",
+        "correct": true
+      },
+      {
+        "id": "h01",
+        "family": "unreachable",
+        "correct": false
+      },
+      {
+        "id": "h02",
+        "family": "key_detour",
+        "correct": false
+      },
+      {
+        "id": "h03",
+        "family": "unreachable",
+        "correct": false
+      },
+      {
+        "id": "h04",
+        "family": "ungated",
+        "correct": false
+      },
+      {
+        "id": "h05",
+        "family": "unreachable",
+        "correct": false
+      },
+      {
+        "id": "h06",
+        "family": "ungated",
+        "correct": false
+      },
+      {
+        "id": "h07",
+        "family": "ungated",
+        "correct": false
+      },
+      {
+        "id": "h08",
+        "family": "key_detour",
+        "correct": false
+      }
+    ],
+    "query_only": [
+      {
+        "id": "h00",
+        "family": "key_detour",
+        "correct": false
+      },
+      {
+        "id": "h01",
+        "family": "unreachable",
+        "correct": false
+      },
+      {
+        "id": "h02",
+        "family": "key_detour",
+        "correct": false
+      },
+      {
+        "id": "h03",
+        "family": "unreachable",
+        "correct": false
+      },
+      {
+        "id": "h04",
+        "family": "ungated",
+        "correct": false
+      },
+      {
+        "id": "h05",
+        "family": "unreachable",
+        "correct": false
+      },
+      {
+        "id": "h06",
+        "family": "ungated",
+        "correct": true
+      },
+      {
+        "id": "h07",
+        "family": "ungated",
+        "correct": true
+      },
+      {
+        "id": "h08",
+        "family": "key_detour",
+        "correct": false
+      }
+    ],
+    "shared_map": [
+      {
+        "id": "h00",
+        "family": "key_detour",
+        "correct": true
+      },
+      {
+        "id": "h01",
+        "family": "unreachable",
+        "correct": false
+      },
+      {
+        "id": "h02",
+        "family": "key_detour",
+        "correct": false
+      },
+      {
+        "id": "h03",
+        "family": "unreachable",
+        "correct": false
+      },
+      {
+        "id": "h04",
+        "family": "ungated",
+        "correct": true
+      },
+      {
+        "id": "h05",
+        "family": "unreachable",
+        "correct": false
+      },
+      {
+        "id": "h06",
+        "family": "ungated",
+        "correct": true
+      },
+      {
+        "id": "h07",
+        "family": "ungated",
+        "correct": true
+      },
+      {
+        "id": "h08",
+        "family": "key_detour",
+        "correct": true
+      }
+    ]
+  },
+  "targeted_model": {
+    "memory_only": [
+      {
+        "id": "h00",
+        "family": "key_detour",
+        "correct": true
+      },
+      {
+        "id": "h01",
+        "family": "unreachable",
+        "correct": false
+      },
+      {
+        "id": "h02",
+        "family": "key_detour",
+        "correct": true
+      },
+      {
+        "id": "h03",
+        "family": "unreachable",
+        "correct": false
+      },
+      {
+        "id": "h04",
+        "family": "ungated",
+        "correct": false
+      },
+      {
+        "id": "h05",
+        "family": "unreachable",
+        "correct": false
+      },
+      {
+        "id": "h06",
+        "family": "ungated",
+        "correct": true
+      },
+      {
+        "id": "h07",
+        "family": "ungated",
+        "correct": true
+      },
+      {
+        "id": "h08",
+        "family": "key_detour",
+        "correct": true
+      }
+    ],
+    "query_only": [
+      {
+        "id": "h00",
+        "family": "key_detour",
+        "correct": false
+      },
+      {
+        "id": "h01",
+        "family": "unreachable",
+        "correct": false
+      },
+      {
+        "id": "h02",
+        "family": "key_detour",
+        "correct": false
+      },
+      {
+        "id": "h03",
+        "family": "unreachable",
+        "correct": false
+      },
+      {
+        "id": "h04",
+        "family": "ungated",
+        "correct": false
+      },
+      {
+        "id": "h05",
+        "family": "unreachable",
+        "correct": false
+      },
+      {
+        "id": "h06",
+        "family": "ungated",
+        "correct": false
+      },
+      {
+        "id": "h07",
+        "family": "ungated",
+        "correct": false
+      },
+      {
+        "id": "h08",
+        "family": "key_detour",
+        "correct": false
+      }
+    ],
+    "shared_map": [
+      {
+        "id": "h00",
+        "family": "key_detour",
+        "correct": true
+      },
+      {
+        "id": "h01",
+        "family": "unreachable",
+        "correct": false
+      },
+      {
+        "id": "h02",
+        "family": "key_detour",
+        "correct": true
+      },
+      {
+        "id": "h03",
+        "family": "unreachable",
+        "correct": false
+      },
+      {
+        "id": "h04",
+        "family": "ungated",
+        "correct": true
+      },
+      {
+        "id": "h05",
+        "family": "unreachable",
+        "correct": false
+      },
+      {
+        "id": "h06",
+        "family": "ungated",
+        "correct": true
+      },
+      {
+        "id": "h07",
+        "family": "ungated",
+        "correct": true
+      },
+      {
+        "id": "h08",
+        "family": "key_detour",
+        "correct": true
+      }
+    ]
+  }
+}

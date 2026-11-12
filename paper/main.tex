@@ -318,6 +318,43 @@ $0/18$ on unreachable tasks in both transfer conditions.
 
 \input{e003-table}
 
+\subsection{Changing demonstration and query labels separately}
+
+Either one-sided transformation reduced the targeted condition's
+key-detour accuracy from $18/18$ to nearly zero. Changing the
+memory alone yielded $3/18$ and changing queries alone yielded
+$2/18$. The targeted-minus-random gap dropped from $11/18$ to
+$0/18$ and $1/18$, respectively. When a single derangement
+preserved label correspondence across the examples and queries,
+the targeted condition recovered to $12/18$ and the gap recovered
+to $10/18$ (Table~\ref{tab:e004-labels}). All five conditions keep
+the same memory contents and the same test problems. A shared
+mapping changes the names of all vertices, so the recovery cannot
+be attributed to restoring the original literal names.
+
+\input{e004-table}
+
+In the targeted condition, the average factorial effects of
+independent memory and query renaming were $-44.4$ and $-50.0$
+percentage points. The interaction was $+77.8$ points on the
+accuracy scale. Each one-sided change leaves little room for a
+further drop, so the interaction should be read with the cell
+counts. The random condition starts from a lower original score
+and yields smaller effects, $-8.3$, $-19.4$, and $+27.8$ points,
+respectively. Appendix~\ref{app:seed-scores} gives paired counts.
+
+\subsection{Which failures replaced correct paths?}
+
+Of the 17 targeted key-detour paths that became incorrect after
+independent renaming, eight first failed at a locked edge before
+key acquisition, seven used a nonexistent edge, and two had the
+wrong endpoints. None exactly reproduced its correct original
+literal path. The random condition had six corresponding losses
+and also no exact literal reuse. This exploratory error audit
+supports sensitivity to the representation, and provides
+counterevidence to a specific explanation based on copying the
+entire original answer. Partial use of label cues remains possible.
+
 \section{Discussion}
 
 The experiments expose two points at which an apparent improvement
@@ -366,6 +403,11 @@ code, and manuscript source. The reported scores can be recomputed
 from the traces without running an LLM. Codex assisted with research
 design, implementation, analysis, and manuscript drafting. The
 experimental response traces came from the pinned Qwen3 8B snapshot.
+
+\appendix
+\section{Seed-level label counts}
+\label{app:seed-scores}
+\input{e004-seeds}
 
 \bibliographystyle{unsrt}
 \bibliography{references}
