@@ -40,3 +40,9 @@ setup. The new-motif contrast combines an independent test draw and a
 topology change, and should be described as transfer rather than a
 causal effect of topology alone. Treat all results as a diagnostic for
 this model and the archived memories.
+
+Offline feasibility adjustment before inference. The first ungated
+backbone exhausted structurally unique draws after three seeds. The
+ungated generator now samples one of three equivalent-length branch
+positions before adding a distractor. This preserves graph size,
+two shortest routes, and the locked transfer estimands.

@@ -19,7 +19,12 @@ NODES = "ABCDEF"
 
 def novel(family, rng):
     if family == "ungated":
-        base = [Edge(a, b) for a, b in ("AC", "CD", "AF", "FD", "DE", "EB")]
+        backbones = (
+            ("AC", "CD", "AF", "FD", "DE", "EB"),
+            ("AC", "CD", "DE", "EB", "DF", "FB"),
+            ("AC", "CD", "DE", "EB", "CF", "FE"),
+        )
+        base = [Edge(a, b) for a, b in rng.choice(backbones)]
         key = None
     elif family == "key_detour":
         base = [Edge(a, b, a == "E") for a, b in ("AD", "DC", "CE", "EB")]
