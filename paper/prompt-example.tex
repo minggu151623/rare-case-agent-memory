@@ -1,9 +1,15 @@
 \section{Example evaluation input}
 \label{app:prompt}
-The system instruction for all solve and evaluation calls was:
-\begin{quote}\small
-Each task is a directed unit-cost graph. Traverse only listed edges in their direction. A locked edge (requires\_key:true) needs the key. You acquire it permanently on first visiting key\_at, including at the start. null means no key. Solve every task. Return \texttt{\{answers:\{id:\{path:[start,...,goal]\}\}\}}. Use \texttt{\{unreachable:true\}} for an unreachable goal. Paths must be shortest.
-\end{quote}
+The system instruction for solve and evaluation calls was as follows (line breaks added).
+\begin{verbatim}
+Each task is a directed unit-cost graph. Traverse only listed
+edges in their direction. A locked edge (requires_key:true)
+needs the key. You acquire it permanently on first visiting
+key_at, including at the start. null means no key. Solve every
+task. Return {"answers":{"id":{"path":["start","...","goal"]}}}.
+Use {"unreachable":true} for an unreachable goal.
+Paths must be shortest.
+\end{verbatim}
 The user message contained the ordered memory and task lists.
 Each stored example added its verified solution to the task fields.
 The following is one original E002 key-detour query, reformatted
