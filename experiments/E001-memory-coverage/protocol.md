@@ -50,3 +50,21 @@ family tie-breaking and a fixed memory eviction rule.
 Use the CPU-only check to validate mechanics before calling a model. The
 experiment concerns agent behavior with fixed weights and iterative example
 memory. Training-based model collapse is a separate empirical question.
+
+## Checks before freezing the full study
+
+E001a and E001b are feasibility pilots with a controlled menu and one seed.
+Their outputs may inform the protocol and may not enter confirmatory scoring.
+For the full study, use fresh graph seeds and identify the task family from
+graph structure. Assign opaque IDs after shuffling so an ID does not encode
+its generator stratum. Record invalid proposals separately from valid proposals
+with the wrong family mix. For a controlled-menu arm, log the per-family menu
+availability so selection can be compared against its opportunity set.
+
+Include frozen initial memory and empty memory controls on held-out tasks.
+The frozen control checks whether the observed score changes are attributable
+to updating the memory. The empty control checks whether the benchmark has
+room to measure the benefit of examples. Keep call caps fixed and compare
+realized tokens separately. Treat each independently seeded trajectory as
+the paired unit of analysis. Repeated evaluation of the same task within a
+trajectory does not increase the number of independent runs.

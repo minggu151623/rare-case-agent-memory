@@ -20,7 +20,7 @@ python3 -m unittest discover -s experiments/E000-oracle-smoke -v
 
 The LLM pilot remains planned. The CPU check validates benchmark mechanics.
 
-## E001a feasibility pilot
+## E001 feasibility pilots
 
 Run the fixed offline fixture and its regression checks from the repo root.
 
@@ -31,7 +31,8 @@ python3 -m src.pilot --output local-runs/fixture
 
 For local model inference, point the same runner at a loopback Ollama server
 with the pinned qwen3:8b digest specified in the
-[locked pilot protocol](experiments/E001-memory-coverage/pilot.md).
+[E001a protocol](experiments/E001-memory-coverage/pilot.md). The current runner uses
+the proposal schema from [E001b](experiments/E001-memory-coverage/pilot-b.md).
 
 ```sh
 python3 -m src.pilot --ollama-port 11434 --output local-runs/qwen3-8b
@@ -39,4 +40,5 @@ python3 -m src.pilot --ollama-port 11434 --output local-runs/qwen3-8b
 
 Each run needs a fresh output directory. The runner writes a per-call JSONL
 trace and a summary with per-family counts. Keep the trace and holdout cases
-away from future agent memory. E001a uses a controlled proposal menu.
+away from future agent memory. Both pilots use a controlled proposal menu.
+See [feasibility results](experiments/E001-memory-coverage/analysis.md).
