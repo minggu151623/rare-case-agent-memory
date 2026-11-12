@@ -57,7 +57,10 @@ class Backend:
         with self.opener.open(request, timeout=120) as response:
             return json.load(response)
 
-    def call(self, phase, arm, round_, cases, memory):
+    def fixture_answer(self, case):
+        return oracle_answer(case)
+
+    def call(self, phase, arm, round_, cases, memory, *, sampling_seed=SEED):
         output_format = "json"
         if phase == "proposal":
             allowed = [case.id for case in cases]
@@ -90,7 +93,7 @@ class Backend:
         if self.base:
             response = self.request("/api/chat", {
                 "model": MODEL, "stream": False, "format": output_format, "think": False,
-                "options": {"seed": SEED + round_, "temperature": 0, "num_ctx": 4096,
+                "options": {"seed": sampling_seed + round_, "temperature": 0, "num_ctx": 4096,
                             "num_predict": 384},
                 "messages": [{"role": "system", "content": f"{RULES} {instruction}"},
                              {"role": "user", "content": prompt}],
@@ -101,7 +104,7 @@ class Backend:
             raw = json.dumps({"ids": [case.id for case in preferred[:3]]})
             response = {}
         else:
-            raw = json.dumps({"answers": {case.id: oracle_answer(case) for case in cases}})
+            raw = json.dumps({"answers": {case.id: self.fixture_answer(case) for case in cases}})
             response = {}
         try:
             parsed = json.loads(raw)
