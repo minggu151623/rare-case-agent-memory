@@ -19,20 +19,20 @@ class Task:
     key_at: str | None = None
 
 
-def shortest_distance(task: Task) -> int | None:
-    """Return the minimum number of moves, or None if the goal is unreachable."""
+def shortest_path(task: Task) -> tuple[str, ...] | None:
+    """Return an optimal path, or None if the goal is unreachable."""
     outgoing: dict[str, list[Edge]] = {}
     for edge in task.edges:
         outgoing.setdefault(edge.source, []).append(edge)
 
     initial = (task.start, task.start == task.key_at)
-    queue = deque([(initial, 0)])
+    queue = deque([(initial, (task.start,))])
     visited = {initial}
 
     while queue:
-        (location, has_key), distance = queue.popleft()
+        (location, has_key), path = queue.popleft()
         if location == task.goal:
-            return distance
+            return path
 
         for edge in outgoing.get(location, ()):
             if edge.requires_key and not has_key:
@@ -40,8 +40,14 @@ def shortest_distance(task: Task) -> int | None:
             state = (edge.destination, has_key or edge.destination == task.key_at)
             if state not in visited:
                 visited.add(state)
-                queue.append((state, distance + 1))
+                queue.append((state, (*path, edge.destination)))
     return None
+
+
+def shortest_distance(task: Task) -> int | None:
+    """Return the minimum number of moves, or None if the goal is unreachable."""
+    path = shortest_path(task)
+    return None if path is None else len(path) - 1
 
 
 def is_correct(task: Task, answer: object) -> bool:
