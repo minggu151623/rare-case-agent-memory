@@ -300,10 +300,9 @@ forms across conditions. E009 uses the same frozen Qwen memories,
 query order, and model settings as E004, with 48 new calls.
 
 \paragraph{Cross-model readout and answer completeness.}
-E006 repeats the five label conditions of E004 with Gemma 4 E4B
-as the reader. It uses the same Qwen-generated memory, queries,
+E006 repeats the five label conditions of E004 with Gemma 4 E4B \cite{gemma4} as the reader. It uses the same Qwen-generated memory, queries,
 system instructions, and per-call limits. Gemma uses a cached MLX
-4-bit snapshot in LM Studio, with a grammar that requires the
+4-bit snapshot in LM Studio 0.4.25+1, with a grammar that requires the
 outer \texttt{answers} object. The grammar does not require every
 case ID. Each batch contains nine tasks. We score missing answers
 as incorrect and count returned IDs by query position. E010

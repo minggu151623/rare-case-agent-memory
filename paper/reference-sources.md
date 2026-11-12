@@ -11,3 +11,4 @@
 | memoryagentbench | [Hu et al., MemoryAgentBench](https://arxiv.org/abs/2507.05257v4) |
 | lostserialization | [Herbst et al., Lost in Serialization](https://arxiv.org/abs/2511.10234v3) |
 | prioritizedreplay | [Schaul et al., Prioritized Experience Replay](https://arxiv.org/abs/1511.05952) |
+| gemma4 | [Gemma 4 Technical Report](https://arxiv.org/abs/2607.02770) |
