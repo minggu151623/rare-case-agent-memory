@@ -9,3 +9,5 @@
 | qwen3 | [Yang et al., Qwen3 Technical Report](https://arxiv.org/abs/2505.09388) |
 | feng2024 | [Feng et al., Beyond Model Collapse](https://arxiv.org/abs/2406.07515v2) |
 | memoryagentbench | [Hu et al., MemoryAgentBench](https://arxiv.org/abs/2507.05257v4) |
+| lostserialization | [Herbst et al., Lost in Serialization](https://arxiv.org/abs/2511.10234v3) |
+| prioritizedreplay | [Schaul et al., Prioritized Experience Replay](https://arxiv.org/abs/1511.05952) |

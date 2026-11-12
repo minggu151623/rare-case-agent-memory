@@ -1,7 +1,8 @@
 \documentclass[11pt]{article}
 \usepackage[margin=1in]{geometry}
-\usepackage{amsmath,booktabs,flafter}
+\usepackage{amsmath,amsthm,booktabs,flafter}
 \usepackage[hidelinks]{hyperref}
+\newtheorem{proposition}{Proposition}
 \title{Auditing Rare-Case Coverage in LLM Agents with Iterative Example Memory}
 \author{Tran Vu Bao Minh\\Independent Researcher}
 \date{November 12, 2026}
@@ -69,6 +70,18 @@ and diverse task proposals are important in some self-play settings
 \cite{psv}. Here the model parameters are fixed and the state carried
 across rounds is a list of solved examples. The question is which examples
 survive and whether the surviving examples affect held-out answers.
+Prioritized experience replay in reinforcement learning changes how
+frequently stored transitions are sampled \cite{prioritizedreplay}.
+Our analysis concerns the earlier decision of which attempted tasks
+produce an admissible example.
+
+Herbst et al.\ document sensitivity to node labels, edge ordering, and
+syntax in graph reasoning \cite{lostserialization}. Their work motivates
+testing equivalent graph representations. Here we vary the representation
+of the demonstrations and the queries separately, with the graph, stored
+solutions, and memory policy fixed. We also compare independent relabeling
+with a single shared permutation. The comparison asks whether a model can
+use the same examples when arbitrary labels remain aligned across graphs.
 
 \section{Planning tasks and memory}
 
@@ -98,6 +111,74 @@ memory, if a family receives no new admissions, its last old example is
 evicted once enough later examples have been admitted to reach that
 example's initial position. This can occur while the combined count of
 rare examples increases, because other rare families can replace it.
+
+\input{detour-example}
+
+\section{An exact FIFO coverage reference model}
+
+Consider a full memory with capacity $K$. Index the initial entries
+from oldest to newest, and let $r$ be the index of the last initial
+entry of a focal family $f$, with $r=0$ if it starts absent. Each
+accepted attempt appends one entry and evicts the oldest. Without new
+admissions from $f$, the family disappears exactly when $r$ admissions
+have occurred, counting the already absent case as $r=0$. Thus the
+admission count, rather than elapsed attempts, determines when an
+unreplenished family disappears.
+
+\begin{proposition}
+Suppose attempts are independent and identically distributed.
+Each yields an admission from $f$ with probability $u$, an admission
+from another family with probability $v$, or a rejection. Write
+$a=u+v$ and $q=u/a$ for $a>0$. After $T$ attempts, the probability
+that $f$ is absent from memory is
+\[
+ \sum_{n=r}^{T}
+ \binom{T}{n} a^n(1-a)^{T-n}(1-q)^{\min(n,K)}.
+\]
+The sum is zero when $T<r$. When $a=0$ the absence probability is
+$\mathbf{1}\{r=0\}$. For $a>0$ the limit as $T$ grows is $(1-q)^K$.
+\end{proposition}
+
+\begin{proof}
+The number $N$ of admissions is binomial with parameters $T,a$.
+Conditional on $N=n$, the ordered admission labels are independent,
+each with focal probability $q$. This follows by conditioning first
+on the indices of the accepted attempts. The surviving initial
+entries occupy the suffix after the first $n$ initial entries are
+discarded, or none when $n\ge K$. No focal initial entry survives
+exactly when $n\ge r$. The remaining $\min(n,K)$ slots contain the
+most recent admissions, which are all nonfocal with probability
+$(1-q)^{\min(n,K)}$. Averaging over $N$ gives the expression.
+For positive $a$, the probability that $N<K$ tends to zero, yielding
+the limit.
+\end{proof}
+
+Let $p$ be the proposal share for $f$, $\alpha$ its conditional pass
+rate, and $\beta$ the pass rate for other proposals. Then
+$q=p\alpha/[p\alpha+(1-p)\beta]$ whenever admissions occur.
+With both pass rates positive, a long-run absence probability at most
+$\delta$ requires an admitted share $q_\star=1-\delta^{1/K}$ or higher.
+Equivalently, the proposal share must satisfy
+\[
+ p \ge
+ \frac{q_\star\beta}
+      {\alpha(1-q_\star)+q_\star\beta}.
+\]
+For example, with six slots and ten percent focal proposals, equal
+pass rates give about a $53\%$ long-run absence probability. If the
+focal pass rate is $0.2$ and the other pass rate is $0.8$, the admitted
+share is about $2.7\%$ and absence rises to about $85\%$. These are
+reference calculations with hypothetical parameters. When $\alpha=0$
+and other admissions continue, any initial focal example will
+eventually leave the FIFO buffer.
+
+We checked the finite expression against exact rational state
+enumeration on 3,150 cases, varying the initial memory, capacity,
+number of attempts, and admission probabilities. E002's task
+selection and answer quality can depend on memory, so the expression
+does not predict its empirical effect sizes. It formalizes how
+proposal frequency and admission can produce different coverage
+even before considering whether stored examples help on new tasks.
 
 \section{Experimental design}
 

@@ -1,0 +1,26 @@
+\newcommand{\detourpanel}[4]{%
+\begin{picture}(156,86)
+  \put(14,26){\circle{19}}\put(14,26){\makebox(0,0){#1}}
+  \put(74,26){\circle{19}}\put(74,26){\makebox(0,0){#2}}
+  \put(134,26){\circle{19}}\put(134,26){\makebox(0,0){#4}}
+  \put(74,66){\circle{19}}\put(74,66){\makebox(0,0){#3}}
+  \put(24,26){\vector(1,0){40}}\put(84,26){\vector(1,0){40}}
+  \put(70,35){\vector(0,1){22}}\put(78,57){\vector(0,-1){22}}
+  \put(104,36){\makebox(0,0){\scriptsize locked}}
+  \put(74,82){\makebox(0,0){\scriptsize key}}
+  \put(14,7){\makebox(0,0){\scriptsize start}}
+  \put(134,7){\makebox(0,0){\scriptsize goal}}
+\end{picture}}
+\begin{figure}[tbp]
+\centering
+\setlength{\unitlength}{1pt}
+\begin{tabular}{cc}
+\detourpanel{A}{D}{C}{B} & \detourpanel{F}{C}{E}{A} \\
+Original labels & Equivalent labels \\
+$A\to D\to C\to D\to B$ & $F\to C\to E\to C\to A$
+\end{tabular}
+\caption{Schematic key detour and an equivalent relabeling. The two
+paths describe the same move sequence after mapping the vertex names.
+Extra graph vertices and distractor edges are omitted from the schematic.}
+\label{fig:detour}
+\end{figure}
