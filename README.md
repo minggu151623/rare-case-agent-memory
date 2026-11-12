@@ -42,3 +42,24 @@ Each run needs a fresh output directory. The runner writes a per-call JSONL
 trace and a summary with per-family counts. Keep the trace and holdout cases
 away from future agent memory. Both pilots use a controlled proposal menu.
 See [feasibility results](experiments/E001-memory-coverage/analysis.md).
+
+## E002 paired admission study
+
+[Protocol](experiments/E002-admission/protocol.md) ·
+[Manuscript source](paper/main.tex)
+
+Run the six-seed fixture without a model, or run the same study using the
+pinned Qwen3 8B digest on loopback. The fixture intentionally fails
+unreachable tasks to check the admission intervention.
+
+```sh
+python3 -m unittest discover -s experiments/E002-admission -v
+python3 -m src.admission --output local-runs/e002-fixture
+python3 -m src.admission --ollama-port 11434 --output local-runs/e002-qwen3
+python3 -m src.admission_report local-runs/e002-qwen3
+```
+
+Each completed seed has a per-call trace and summary. If an infrastructure
+error interrupts one seed, use the same locked seed with --seed and a new
+output directory, then assemble the six completed seed directories for the
+report.

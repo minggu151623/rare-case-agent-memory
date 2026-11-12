@@ -24,4 +24,10 @@ experiments:
   - id: E001b
     path: experiments/E001-memory-coverage/analysis.md
     status: completed_feasibility
-next: "Use fresh graph seeds and opaque IDs, add frozen and empty memory controls, and freeze the full paired study."
+  - id: E002
+    path: experiments/E002-admission/protocol.md
+    status: running_local_model
+manuscript:
+  source: paper/main.tex
+  status: methods_draft
+next: "Complete the 84-call E002 run, audit the traces, and integrate the locked contrasts into the manuscript."

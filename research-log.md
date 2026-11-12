@@ -29,3 +29,13 @@ menu. All six model proposals contained three distinct allowed IDs. The
 unreachable family disappeared from all three memories through solve failure
 and FIFO eviction, even while aggregate rare-family counts rose. Final
 rare-holdout accuracy tied across arms. The main study remains a draft.
+
+## 2026-11-12 · E002 locked and started
+
+E002 crosses random versus targeted task selection with model versus exact
+supplement answers. It uses six fresh paired seeds, disjoint graph splits,
+opaque task IDs, and frozen- and empty-memory controls. The locked protocol
+precedes implementation and inference. The offline fixture reproduced
+byte-for-byte. The manuscript introduction and methods were drafted using
+Orchestra Research's ml-paper-writing skill and compiled with a verified
+bibliography.
