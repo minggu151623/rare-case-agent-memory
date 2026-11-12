@@ -1,10 +1,10 @@
 \documentclass[11pt]{article}
 \usepackage[margin=1in]{geometry}
-\usepackage{amsmath,booktabs}
+\usepackage{amsmath,booktabs,flafter}
 \usepackage[hidelinks]{hyperref}
 \title{Auditing Rare-Case Coverage in LLM Agents with Iterative Example Memory}
 \author{Tran Vu Bao Minh\\Independent Researcher}
-\date{Working draft}
+\date{November 12, 2026}
 
 \begin{document}
 \maketitle
@@ -55,9 +55,14 @@ with its allocation rule. This lets us measure a narrower mechanism:
 how correctness-conditioned admission affects the coverage of each
 task family under a fixed FIFO memory budget. EvoMemBench compares
 memory strategies across knowledge and execution tasks \cite{evomembench}.
+MemoryAgentBench evaluates selective forgetting and test-time learning
+as separate competencies \cite{memoryagentbench}. Our setup uses
+an exact solver and a small synthetic task domain to make the memory
+update decisions fully auditable.
 
 Studies of recursive synthetic training show that low-frequency events can
-vanish across model generations \cite{shumailov2024}. Formal verification
+vanish across model generations \cite{shumailov2024}. Verification can
+limit degradation in some synthetic-training settings \cite{feng2024}. Formal verification
 and diverse task proposals are important in some self-play settings
 \cite{psv}. Here the model parameters are fixed and the state carried
 across rounds is a list of solved examples. The question is which examples
@@ -119,6 +124,15 @@ preserving node roles and directed edge locks when computing graph
 equivalence. Initial-memory and empty-memory controls use the same
 holdout within the seed. Held-out answers are not used to update memory.
 
+All live experiments used the same Qwen3 8B model \cite{qwen3},
+running locally in Ollama 0.40.12 with thinking disabled, temperature
+zero, a 4096-token context, and up to 384 output tokens per call.
+The protocols record the exact model digest and seeds. Each E002 arm
+had two solve calls and one final evaluation call per seed. The
+empty and frozen baselines added two calls per seed. All nine
+held-out tasks in an evaluation were answered in one call. A missing
+or incorrect answer received zero credit.
+
 The primary mechanism contrast is the paired difference in the final
 number of unreachable examples between targeted oracle and targeted
 model. The primary performance contrast is the paired difference in
@@ -126,6 +140,20 @@ final rare-family macro accuracy between targeted model and random
 model. We report seed-level differences and their mean. An exact
 two-sided sign-flip calculation is reported under sign exchangeability
 as a sensitivity analysis for the small paired sample.
+
+\paragraph{Transfer checks.} We recovered three final memories per
+seed from the E002 evaluation prompts. In the renamed condition, we
+permuted the six vertex labels independently in each memory example
+and held-out graph, transforming any stored solution path by the
+same permutation as its graph. Test graphs and their vertex mappings
+were shared across arms. In the new-motif condition, we held the
+renamed memory fixed and evaluated fresh six-vertex, seven-edge
+graphs. The new ungated graphs contained two shortest routes. The new
+key-required graphs had a simple optimal path, whereas the original
+backbone revisited a vertex after key acquisition. The new unreachable
+backbone placed the key behind a lock. Exact checking and structural
+deduplication applied to all graphs. E003 held the model weights and
+final memory composition fixed.
 
 \section{Results}
 
@@ -180,6 +208,15 @@ results therefore do not isolate frequency from every difference in
 task difficulty. The study did not evaluate free-form generation,
 long-horizon agents, or weight updates.
 
-\bibliographystyle{plain}
+\section*{Reproducibility and AI use}
+
+The accompanying archive includes the graph generator, exact verifier,
+inference settings, protocols, compressed per-call traces, scoring
+code, and manuscript source. The reported scores can be recomputed
+from the traces without running an LLM. Codex assisted with research
+design, implementation, analysis, and manuscript drafting. The
+experimental response traces came from the pinned Qwen3 8B snapshot.
+
+\bibliographystyle{unsrt}
 \bibliography{references}
 \end{document}

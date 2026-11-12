@@ -6,3 +6,6 @@
 | evomembench | [Wang et al., EvoMemBench](https://arxiv.org/abs/2605.18421v3) |
 | shumailov2024 | [Shumailov et al., AI models collapse when trained on recursively generated data](https://doi.org/10.1038/s41586-024-07566-y) |
 | psv | [Propose, Solve, Verify](https://arxiv.org/abs/2512.18160) |
+| qwen3 | [Yang et al., Qwen3 Technical Report](https://arxiv.org/abs/2505.09388) |
+| feng2024 | [Feng et al., Beyond Model Collapse](https://arxiv.org/abs/2406.07515v2) |
+| memoryagentbench | [Hu et al., MemoryAgentBench](https://arxiv.org/abs/2507.05257v4) |
