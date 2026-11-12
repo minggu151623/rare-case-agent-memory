@@ -1,0 +1,35 @@
+\begin{table}[H]
+\centering
+\small
+\caption{E002 paired counts. Cells give correct rare answers out of six, followed by the final number of unreachable examples.}
+\begin{tabular}{lrrrr}
+\toprule
+Seed & Random / model & Targeted / model & Random / oracle & Targeted / oracle \\
+\midrule
+6201 & 0; 0 & 3; 0 & 0; 0 & 3; 1 \\
+6202 & 3; 0 & 3; 0 & 3; 0 & 3; 1 \\
+6203 & 3; 0 & 3; 0 & 3; 1 & 2; 1 \\
+6204 & 3; 1 & 3; 0 & 1; 1 & 3; 0 \\
+6205 & 0; 0 & 3; 1 & 0; 0 & 3; 2 \\
+6206 & 1; 0 & 3; 0 & 1; 0 & 3; 0 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\small
+\caption{E009 paired key-detour counts out of six. The final column subtracts the mixed policy gap from the shared policy gap.}
+\begin{tabular}{lrrrrr}
+\toprule
+Seed & Shared random & Shared targeted & Mixed random & Mixed targeted & $\Delta$ \\
+\midrule
+6201 & 0 & 3 & 1 & 1 & +3 \\
+6202 & 6 & 6 & 6 & 0 & +6 \\
+6203 & 4 & 4 & 0 & 4 & -4 \\
+6204 & 0 & 3 & 0 & 1 & +2 \\
+6205 & 0 & 3 & 0 & 4 & -1 \\
+6206 & 0 & 1 & 0 & 0 & +1 \\
+\bottomrule
+\end{tabular}
+\end{table}

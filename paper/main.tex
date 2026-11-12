@@ -506,9 +506,28 @@ design, implementation, analysis, and manuscript drafting. The
 experimental response traces came from the pinned Qwen3 8B snapshot.
 
 \appendix
-\section{Seed-level label counts}
+\section{Paired results by seed}
 \label{app:seed-scores}
+\input{paired-results}
 \input{e004-seeds}
+
+\section{Interpreting the evaluation}
+The verifier treats a route as correct only when its endpoints match,
+each step uses an allowed directed edge, and the path length equals
+the exact optimum. An unreachable response must contain the boolean
+flag requested in the prompt. The solver determines whether the goal
+is reachable by tracking the key as part of the search state. A
+node-only visited set would incorrectly prune a return to a junction
+after collecting the key.
+
+The same holdout graphs occur under each policy within a seed, and
+many reappear in the relabeling experiments. We use paired counts
+rather than interpreting these responses as independent samples.
+The E002 sign-flip values are sensitivity calculations on six seed
+differences. The follow-ups were motivated by earlier results and
+reuse the same seeds. Their added cells test specific alternatives
+under controlled changes, without adding independent replications
+of the original intervention.
 
 \bibliographystyle{unsrt}
 \bibliography{references}
