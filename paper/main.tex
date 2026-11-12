@@ -238,6 +238,32 @@ backbone placed the key behind a lock. Exact checking and structural
 deduplication applied to all graphs. E003 held the model weights and
 final memory composition fixed.
 
+\paragraph{Separating query and demonstration labels.}
+E004 isolates the two transformations that E003 applied jointly.
+For each of the two model-answer policies, we fix the six final
+memories and the nine test problems per seed. A $2\times2$ design
+crosses original versus independently relabeled memory examples with
+original versus independently relabeled queries. The original/original
+and independent/independent responses come from E002 and E003.
+Two additional conditions change only the memory or only the queries.
+A fifth condition applies a single shared permutation to all graphs in
+a seed, including the stored solution paths. This changes every vertex
+label while keeping the correspondence of labels across graphs.
+The six seeds and two policies require 36 new evaluations. We report
+the policy gap within each condition and the within-policy factorial
+effects, averaging over the six paired seeds.
+
+\paragraph{Inspecting wrong answers.}
+For the original and independently relabeled conditions, E007 assigns
+each wrong answer its first detectable failure: malformed or missing
+response, false unreachable claim, wrong endpoint, nonexistent edge,
+locked edge traversed before acquiring the key, or a valid but
+suboptimal path. For errors on relabeled problems previously solved
+correctly, we also test whether the literal path string matches
+the prior answer. This exploratory analysis distinguishes a specific
+kind of repetition from other causes of representation sensitivity.
+
+
 \section{Results}
 
 In the constrained-menu feasibility run, the model returned three distinct
