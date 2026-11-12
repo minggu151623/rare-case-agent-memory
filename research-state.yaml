@@ -43,8 +43,8 @@ experiments:
     path: experiments/E007-error-audit/analysis.md
     status: completed_and_audited
   - id: E008
-    path: experiments/E008-end-to-end/protocol.md
-    status: running_local_model
+    path: experiments/E008-end-to-end/analysis.md
+    status: completed_and_audited
 manuscript:
   source: paper/main.tex
   status: extended_revision_in_progress

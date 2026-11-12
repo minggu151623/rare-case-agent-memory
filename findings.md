@@ -38,3 +38,9 @@ under a shared derangement (12/18 targeted, 2/18 random).
 absence probability under stationary independent attempts.
 [E007](experiments/E007-error-audit/analysis.md) finds zero exact
 literal path repeats among the 17 lost targeted key-detour answers.
+
+[E008](experiments/E008-end-to-end/analysis.md) varied labels throughout
+acquisition and evaluation. Key-detour accuracy was 3/18 random and
+2/18 targeted. Starting acquisition with independently labeled
+graphs did not restore the targeted advantage observed under E002's
+original labels.

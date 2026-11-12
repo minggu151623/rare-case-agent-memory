@@ -1,0 +1,187 @@
+{
+  "seed": 6204,
+  "backend": "qwen3:8b",
+  "digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+  "runtime_version": "0.40.12",
+  "initial_memory": {
+    "ungated": 4,
+    "key_detour": 1,
+    "unreachable": 1
+  },
+  "controls": {},
+  "arms": {
+    "random_model": {
+      "rounds": [
+        {
+          "round": 1,
+          "attempted": {
+            "ungated": 3,
+            "key_detour": 0,
+            "unreachable": 0
+          },
+          "model_passes": {
+            "ungated": 2,
+            "key_detour": 0,
+            "unreachable": 0
+          },
+          "admitted": {
+            "ungated": 2,
+            "key_detour": 0,
+            "unreachable": 0
+          },
+          "evicted": {
+            "ungated": 1,
+            "key_detour": 1,
+            "unreachable": 0
+          },
+          "retained": {
+            "ungated": 5,
+            "key_detour": 0,
+            "unreachable": 1
+          },
+          "supplement": {
+            "id": "s002",
+            "family": "ungated",
+            "model_pass": true,
+            "admitted": true
+          }
+        },
+        {
+          "round": 2,
+          "attempted": {
+            "ungated": 1,
+            "key_detour": 1,
+            "unreachable": 1
+          },
+          "model_passes": {
+            "ungated": 1,
+            "key_detour": 0,
+            "unreachable": 0
+          },
+          "admitted": {
+            "ungated": 1,
+            "key_detour": 0,
+            "unreachable": 0
+          },
+          "evicted": {
+            "ungated": 1,
+            "key_detour": 0,
+            "unreachable": 0
+          },
+          "retained": {
+            "ungated": 5,
+            "key_detour": 0,
+            "unreachable": 1
+          },
+          "supplement": {
+            "id": "s102",
+            "family": "key_detour",
+            "model_pass": false,
+            "admitted": false
+          }
+        }
+      ],
+      "final": {
+        "correct": {
+          "ungated": 2,
+          "key_detour": 1,
+          "unreachable": 0
+        },
+        "total": {
+          "ungated": 3,
+          "key_detour": 3,
+          "unreachable": 3
+        }
+      }
+    },
+    "targeted_model": {
+      "rounds": [
+        {
+          "round": 1,
+          "attempted": {
+            "ungated": 2,
+            "key_detour": 1,
+            "unreachable": 0
+          },
+          "model_passes": {
+            "ungated": 1,
+            "key_detour": 1,
+            "unreachable": 0
+          },
+          "admitted": {
+            "ungated": 1,
+            "key_detour": 1,
+            "unreachable": 0
+          },
+          "evicted": {
+            "ungated": 1,
+            "key_detour": 1,
+            "unreachable": 0
+          },
+          "retained": {
+            "ungated": 4,
+            "key_detour": 1,
+            "unreachable": 1
+          },
+          "supplement": {
+            "id": "s001",
+            "family": "key_detour",
+            "model_pass": true,
+            "admitted": true
+          }
+        },
+        {
+          "round": 2,
+          "attempted": {
+            "ungated": 1,
+            "key_detour": 1,
+            "unreachable": 1
+          },
+          "model_passes": {
+            "ungated": 1,
+            "key_detour": 0,
+            "unreachable": 0
+          },
+          "admitted": {
+            "ungated": 1,
+            "key_detour": 0,
+            "unreachable": 0
+          },
+          "evicted": {
+            "ungated": 1,
+            "key_detour": 0,
+            "unreachable": 0
+          },
+          "retained": {
+            "ungated": 4,
+            "key_detour": 1,
+            "unreachable": 1
+          },
+          "supplement": {
+            "id": "s102",
+            "family": "key_detour",
+            "model_pass": false,
+            "admitted": false
+          }
+        }
+      ],
+      "final": {
+        "correct": {
+          "ungated": 2,
+          "key_detour": 0,
+          "unreachable": 0
+        },
+        "total": {
+          "ungated": 3,
+          "key_detour": 3,
+          "unreachable": 3
+        }
+      }
+    }
+  },
+  "calls": 6,
+  "format_failures": 0,
+  "prompt_tokens": 8662,
+  "output_tokens": 524,
+  "seconds": 51.38
+}

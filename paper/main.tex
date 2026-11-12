@@ -24,9 +24,12 @@ higher than random model-answer supplementation on rare-family macro
 accuracy, driven by key-detour performance and accompanied by lower
 unreachable accuracy. In a transfer check with frozen final memories,
 the targeted model's key-detour score dropped from $18/18$ to $1/18$
-after vertex renaming. The targeted advantage also disappeared on
-new graph motifs. These results show why this setting requires
-family-level admission counts and tests of held-out transfer.
+after independent vertex renaming. Changing memory labels alone or
+query labels alone removed most of the policy gap, while a shared
+permutation recovered the gap to $10/18$. The advantage was also
+absent when independent labels were used throughout acquisition.
+These results motivate family-level admission counts and held-out
+tests that preserve task semantics while varying representation.
 \end{abstract}
 
 
@@ -259,6 +262,17 @@ $\tfrac12[(a_{01}-a_{00})+(a_{11}-a_{10})]$, and their interaction
 is $a_{11}-a_{10}-a_{01}+a_{00}$. The shared permutation is a
 separate condition outside the factorial design.
 
+\paragraph{Changing labels throughout acquisition.}
+E008 repeats the two model-answer policies with the same six seeds
+and two rounds. It applies the independent per-graph maps before the
+model sees any inputs, including the initial examples, attempted
+tasks, and final queries. Both arms start from correct solutions
+to renamed examples. Thereafter the model solves the renamed tasks
+and only verified answers enter memory. The 36 calls isolate a
+pipeline-level representation change. Admission and adaptive
+targeting can change along the way, so the final memories need
+not contain the same examples as in E002.
+
 \paragraph{Inspecting wrong answers.}
 For the original and independently relabeled conditions, E007 assigns
 each wrong answer its first detectable failure: malformed or missing
@@ -348,6 +362,23 @@ further drop, so the interaction should be read with the cell
 counts. The random condition starts from a lower original score
 and yields smaller effects, $-8.3$, $-19.4$, and $+27.8$ points,
 respectively. Appendix~\ref{app:seed-scores} gives paired counts.
+
+\subsection{Independent labels throughout acquisition}
+
+Relabeling only after acquisition might have produced a distribution
+shift between what the model saw while building its memory and what
+it saw at evaluation. E008 removed that timing difference. With
+independent labels from the start, the random and targeted arms
+scored $3/18$ and $2/18$ on key detours, $8/18$ each on ungated
+tasks, and $0/18$ each on unreachable tasks. Targeted admitted
+two of twelve key-detour attempts under independent labeling,
+compared with nine of ten under the original labels. The policy
+gap under end-to-end relabeling was $-1/18$ on key detours, the
+same numerical gap as when the frozen memories were independently
+relabeled. The identity of admitted examples differs across
+the two studies. These counts show that applying independent
+labels during acquisition did not recover the original advantage
+in this setup.
 
 \subsection{Which failures replaced correct paths?}
 

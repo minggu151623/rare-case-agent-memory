@@ -63,3 +63,7 @@ cases. E007 audited 216 scored records and found no literal path
 reuse among lost key-detour answers. E008 tests relabeling throughout
 acquisition. E006 is a pre-specified Phi evaluation of the frozen
 Qwen memories. The author's Zenodo submission remains separate.
+
+E008 completed and replayed all 36 calls. Independent labels
+throughout acquisition did not restore the E002 advantage. The
+manuscript now includes the setup and the negative result.

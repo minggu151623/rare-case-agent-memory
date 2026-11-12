@@ -83,7 +83,7 @@ instructions.
 [E005 FIFO reference model](experiments/E005-fifo-null/analysis.md) ·
 [E006 cross-model protocol](experiments/E006-cross-model/protocol.md) ·
 [E007 path-error audit](experiments/E007-error-audit/analysis.md) ·
-[E008 acquisition protocol](experiments/E008-end-to-end/protocol.md)
+[E008 acquisition results](experiments/E008-end-to-end/analysis.md)
 
 The checks below require only the standard library and the archived traces.
 
@@ -91,4 +91,10 @@ The checks below require only the standard library and the archived traces.
 python3 experiments/E005-fifo-null/verify.py
 python3 -m src.representation_report experiments/E002-admission/results/qwen3-8b experiments/E003-transfer/results/qwen3-8b experiments/E004-representation/results/qwen3-8b
 python3 -m src.path_errors experiments/E002-admission/results/qwen3-8b experiments/E003-transfer/results/qwen3-8b
+```
+
+Replay E008 with the archived model responses.
+
+```sh
+python3 -m src.end_to_end experiments/E008-end-to-end/results/qwen3-8b --audit
 ```
