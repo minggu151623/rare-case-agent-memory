@@ -56,7 +56,12 @@ class GemmaBackend(Backend):
             "max_tokens": options["num_predict"],
             "response_format": {
                 "type": "json_schema",
-                "json_schema": {"name": "json_object", "schema": {"type": "object"}},
+                "json_schema": {"name": "evaluation_answers", "schema": {
+                    "type": "object",
+                    "properties": {"answers": {"type": "object", "additionalProperties": True}},
+                    "required": ["answers"],
+                    "additionalProperties": False,
+                }},
             },
         })
         choice = result["choices"][0]
