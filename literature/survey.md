@@ -21,3 +21,20 @@
 
 This is a targeted positioning scan. The novelty of the proposed contribution
 remains to be assessed against the closest experimental protocols.
+
+## Agent memory studies to compare against E001
+
+- Xiong et al. (2025), [How Memory Management Impacts LLM
+  Agents](https://arxiv.org/abs/2505.16067). Tests selective addition and deletion
+  under memory constraints and distribution shift. Its evidence on experience
+  following makes it a close comparison. Inspect whether its experimental
+  contrasts can distinguish task availability, choice, solve success, and
+  eviction, which the E001 log measures separately.
+- Wang et al. (2026), [EvoMemBench](https://arxiv.org/abs/2605.18421). Compares
+  evolving agent-memory systems across knowledge and execution tasks.
+  Motivates a frozen-memory control for E001 and reporting whether the
+  held-out tasks actually depend on examples for successful transfer.
+- Wang, Panaganti, and Zhou (2026), [More Memory, Worse
+  Agents](https://arxiv.org/abs/2610.27406). Studies the effect of persisting
+  derived rules versus observed trajectories. E001 stores verified task-answer
+  records and asks how their family coverage changes under repeated updates.
