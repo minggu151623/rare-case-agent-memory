@@ -1,0 +1,292 @@
+{
+  "backend": "qwen3:8b",
+  "runtime_version": "0.40.12",
+  "seed": 4101,
+  "initial_memory": {
+    "ungated": 4,
+    "key_detour": 1,
+    "unreachable": 1
+  },
+  "initial_evaluation": {
+    "correct": {
+      "ungated": 2,
+      "key_detour": 1,
+      "unreachable": 0
+    },
+    "total": {
+      "ungated": 2,
+      "key_detour": 2,
+      "unreachable": 2
+    }
+  },
+  "arms": {
+    "self_selected": [
+      {
+        "round": 1,
+        "self_slots": 3,
+        "invalid_self_slots": 0,
+        "selected": {
+          "ungated": 0,
+          "key_detour": 2,
+          "unreachable": 1
+        },
+        "supplement": null,
+        "attempted": {
+          "ungated": 0,
+          "key_detour": 2,
+          "unreachable": 1
+        },
+        "verified_and_admitted": {
+          "ungated": 0,
+          "key_detour": 2,
+          "unreachable": 0
+        },
+        "evicted": {
+          "ungated": 1,
+          "key_detour": 0,
+          "unreachable": 1
+        },
+        "retained": {
+          "ungated": 3,
+          "key_detour": 3,
+          "unreachable": 0
+        },
+        "evaluation": {
+          "correct": {
+            "ungated": 2,
+            "key_detour": 2,
+            "unreachable": 0
+          },
+          "total": {
+            "ungated": 2,
+            "key_detour": 2,
+            "unreachable": 2
+          }
+        }
+      },
+      {
+        "round": 2,
+        "self_slots": 3,
+        "invalid_self_slots": 0,
+        "selected": {
+          "ungated": 1,
+          "key_detour": 1,
+          "unreachable": 1
+        },
+        "supplement": null,
+        "attempted": {
+          "ungated": 1,
+          "key_detour": 1,
+          "unreachable": 1
+        },
+        "verified_and_admitted": {
+          "ungated": 1,
+          "key_detour": 1,
+          "unreachable": 0
+        },
+        "evicted": {
+          "ungated": 2,
+          "key_detour": 0,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 2,
+          "key_detour": 4,
+          "unreachable": 0
+        },
+        "evaluation": {
+          "correct": {
+            "ungated": 2,
+            "key_detour": 2,
+            "unreachable": 0
+          },
+          "total": {
+            "ungated": 2,
+            "key_detour": 2,
+            "unreachable": 2
+          }
+        }
+      }
+    ],
+    "random": [
+      {
+        "round": 1,
+        "self_slots": 2,
+        "invalid_self_slots": 0,
+        "selected": {
+          "ungated": 0,
+          "key_detour": 1,
+          "unreachable": 1
+        },
+        "supplement": "ungated",
+        "attempted": {
+          "ungated": 1,
+          "key_detour": 1,
+          "unreachable": 1
+        },
+        "verified_and_admitted": {
+          "ungated": 1,
+          "key_detour": 1,
+          "unreachable": 0
+        },
+        "evicted": {
+          "ungated": 1,
+          "key_detour": 0,
+          "unreachable": 1
+        },
+        "retained": {
+          "ungated": 4,
+          "key_detour": 2,
+          "unreachable": 0
+        },
+        "evaluation": {
+          "correct": {
+            "ungated": 2,
+            "key_detour": 1,
+            "unreachable": 0
+          },
+          "total": {
+            "ungated": 2,
+            "key_detour": 2,
+            "unreachable": 2
+          }
+        }
+      },
+      {
+        "round": 2,
+        "self_slots": 2,
+        "invalid_self_slots": 0,
+        "selected": {
+          "ungated": 0,
+          "key_detour": 1,
+          "unreachable": 1
+        },
+        "supplement": "ungated",
+        "attempted": {
+          "ungated": 1,
+          "key_detour": 1,
+          "unreachable": 1
+        },
+        "verified_and_admitted": {
+          "ungated": 1,
+          "key_detour": 1,
+          "unreachable": 0
+        },
+        "evicted": {
+          "ungated": 2,
+          "key_detour": 0,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 3,
+          "key_detour": 3,
+          "unreachable": 0
+        },
+        "evaluation": {
+          "correct": {
+            "ungated": 2,
+            "key_detour": 2,
+            "unreachable": 0
+          },
+          "total": {
+            "ungated": 2,
+            "key_detour": 2,
+            "unreachable": 2
+          }
+        }
+      }
+    ],
+    "targeted": [
+      {
+        "round": 1,
+        "self_slots": 2,
+        "invalid_self_slots": 0,
+        "selected": {
+          "ungated": 0,
+          "key_detour": 1,
+          "unreachable": 1
+        },
+        "supplement": "key_detour",
+        "attempted": {
+          "ungated": 0,
+          "key_detour": 2,
+          "unreachable": 1
+        },
+        "verified_and_admitted": {
+          "ungated": 0,
+          "key_detour": 2,
+          "unreachable": 0
+        },
+        "evicted": {
+          "ungated": 1,
+          "key_detour": 0,
+          "unreachable": 1
+        },
+        "retained": {
+          "ungated": 3,
+          "key_detour": 3,
+          "unreachable": 0
+        },
+        "evaluation": {
+          "correct": {
+            "ungated": 2,
+            "key_detour": 2,
+            "unreachable": 0
+          },
+          "total": {
+            "ungated": 2,
+            "key_detour": 2,
+            "unreachable": 2
+          }
+        }
+      },
+      {
+        "round": 2,
+        "self_slots": 2,
+        "invalid_self_slots": 0,
+        "selected": {
+          "ungated": 0,
+          "key_detour": 1,
+          "unreachable": 1
+        },
+        "supplement": "unreachable",
+        "attempted": {
+          "ungated": 0,
+          "key_detour": 1,
+          "unreachable": 2
+        },
+        "verified_and_admitted": {
+          "ungated": 0,
+          "key_detour": 1,
+          "unreachable": 0
+        },
+        "evicted": {
+          "ungated": 1,
+          "key_detour": 0,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 2,
+          "key_detour": 4,
+          "unreachable": 0
+        },
+        "evaluation": {
+          "correct": {
+            "ungated": 2,
+            "key_detour": 2,
+            "unreachable": 0
+          },
+          "total": {
+            "ungated": 2,
+            "key_detour": 2,
+            "unreachable": 2
+          }
+        }
+      }
+    ]
+  },
+  "calls": 19,
+  "format_failures": 0,
+  "prompt_tokens": 29817,
+  "output_tokens": 1156
+}

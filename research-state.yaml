@@ -18,4 +18,10 @@ experiments:
   - id: E001
     path: experiments/E001-memory-coverage
     status: draft_protocol
-next: "Implement the task generator and paired pilot runner, then freeze the live pilot configuration."
+  - id: E001a
+    path: experiments/E001-memory-coverage/analysis.md
+    status: completed_feasibility_interface_failed
+  - id: E001b
+    path: experiments/E001-memory-coverage/analysis.md
+    status: completed_feasibility
+next: "Use fresh graph seeds and opaque IDs, add frozen and empty memory controls, and freeze the full paired study."

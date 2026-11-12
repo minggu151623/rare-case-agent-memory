@@ -21,3 +21,11 @@ Locked the protocol before implementation. The offline fixture reproduced
 byte-for-byte and the Qwen3 pilot ran all 19 calls locally. Model-selected
 slots were all invalid because the model picked IDs from example memory.
 The observation motivates a menu-constrained proposal interface for E001b.
+
+## 2026-11-12 · E001b local feasibility
+
+Locked the follow-up protocol and constrained proposal outputs to the current
+menu. All six model proposals contained three distinct allowed IDs. The
+unreachable family disappeared from all three memories through solve failure
+and FIFO eviction, even while aggregate rare-family counts rose. Final
+rare-holdout accuracy tied across arms. The main study remains a draft.
