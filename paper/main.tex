@@ -9,6 +9,24 @@
 \begin{document}
 \maketitle
 
+\begin{abstract}
+Iterative example memory can lose a task family when candidate answers
+must pass verification before being stored. We audit this mechanism
+using exactly verifiable graph planning and a fixed-weight Qwen3 8B
+model. A six-seed factorial study crosses random or coverage-targeted
+supplementation with model or oracle answers for the supplement. In the
+targeted condition, access to oracle answers increased final
+unreachable-example coverage by 0.67 examples on average, while both
+targeted conditions scored zero on 18 held-out unreachable tasks.
+Targeted model-answer supplementation scored 22.2 percentage points
+higher than random model-answer supplementation on rare-family macro
+accuracy, driven by key-detour performance and accompanied by lower
+unreachable accuracy. These results are specific to the tested model
+and task generator. They illustrate why auditing example memory requires
+both family-level admission counts and held-out outcomes.
+\end{abstract}
+
+
 \section{Introduction}
 
 An agent can improve its working context by storing examples that it
@@ -121,7 +139,46 @@ two to three or four examples. The final rare holdout score was $2/4$
 in all arms. This single trajectory per arm identifies a possible
 admission mechanism and motivated the paired experiment.
 
-Follow-up results are pending.
+\subsection{Paired admission study}
+
+The locked study completed all 84 inference calls. Replaying the
+stored responses reproduced verification decisions, memory updates,
+and held-out scores. No model answer passed verification on an
+unreachable task among the 17 recorded attempts across conditions
+and rounds. The attempt count includes tasks shared between arms.
+
+The targeted oracle condition admitted four unreachable supplements.
+Compared with targeted model, the paired differences in final
+unreachable-example count were $(1,1,1,0,1,0)$, for a mean of $0.67$.
+The exact two-sided sign-flip sensitivity value was $0.125$. Both
+targeted arms scored $0/18$ on held-out unreachable cases
+(Tables~\ref{tab:e002-accuracy} and~\ref{tab:e002-coverage}).
+The verified examples improved coverage in this condition, with
+no corresponding observed gain on that family.
+
+Targeted model yielded a mean rare-macro accuracy difference of
+$+22.2$ percentage points relative to random model. Its seed
+differences were $(1/2,0,0,0,1/2,1/3)$ and the sign-flip sensitivity
+value was $0.250$. Key-detour performance rose from $7/18$ to
+$18/18$, while unreachable performance fell from $3/18$ to $0/18$.
+This pooled contrast conceals opposite family-level changes. The
+frozen control scored $16/18$ on key detours and $0/18$ on
+unreachable cases.
+
+\input{e002-tables}
+
+\section{Limitations}
+
+The paired study used six trajectories for a single model, two update
+rounds, and a small synthetic graph domain. The graphs share path
+templates and node roles despite being structurally disjoint. Exact
+answer verification makes the admission mechanism observable, while
+other environments may have imperfect verifiers or no exact answer
+source. Unreachable tasks differ from the solvable families in both
+reasoning requirements and response format. The family-specific
+results therefore do not isolate frequency from every difference in
+task difficulty. The study did not evaluate free-form generation,
+long-horizon agents, or weight updates.
 
 \bibliographystyle{plain}
 \bibliography{references}

@@ -1,0 +1,355 @@
+{
+  "backend": "qwen3:8b",
+  "seeds": [
+    6201,
+    6202,
+    6203,
+    6204,
+    6205,
+    6206
+  ],
+  "calls": 84,
+  "format_failures": 0,
+  "prompt_tokens": 122297,
+  "output_tokens": 8193,
+  "primary_unreachable_memory_targeted_oracle_minus_model": {
+    "per_seed": [
+      1.0,
+      1.0,
+      1.0,
+      0.0,
+      1.0,
+      0.0
+    ],
+    "mean": 0.6666666666666666,
+    "exact_sign_flip_p_two_sided": 0.125
+  },
+  "primary_rare_accuracy_targeted_model_minus_random_model": {
+    "per_seed": [
+      0.5,
+      0.0,
+      0.0,
+      0.0,
+      0.5,
+      0.3333333333333333
+    ],
+    "mean": 0.2222222222222222,
+    "exact_sign_flip_p_two_sided": 0.25
+  },
+  "secondary_rare_accuracy_allocation_answer_source_interaction": {
+    "per_seed": [
+      0.0,
+      0.0,
+      -0.16666666666666666,
+      0.3333333333333333,
+      0.0,
+      0.0
+    ],
+    "mean": 0.027777777777777776,
+    "exact_sign_flip_p_two_sided": 1.0
+  },
+  "arms": {
+    "random_model": {
+      "final_correct": {
+        "ungated": 18,
+        "key_detour": 7,
+        "unreachable": 3
+      },
+      "final_total": {
+        "ungated": 18,
+        "key_detour": 18,
+        "unreachable": 18
+      },
+      "weighted_accuracy": 0.8555555555555555,
+      "rare_macro_accuracy": 0.2777777777777778,
+      "final_memory_by_seed": [
+        {
+          "ungated": 6,
+          "key_detour": 0,
+          "unreachable": 0
+        },
+        {
+          "ungated": 5,
+          "key_detour": 1,
+          "unreachable": 0
+        },
+        {
+          "ungated": 5,
+          "key_detour": 1,
+          "unreachable": 0
+        },
+        {
+          "ungated": 5,
+          "key_detour": 0,
+          "unreachable": 1
+        },
+        {
+          "ungated": 6,
+          "key_detour": 0,
+          "unreachable": 0
+        },
+        {
+          "ungated": 6,
+          "key_detour": 0,
+          "unreachable": 0
+        }
+      ],
+      "stage_totals": {
+        "attempted": {
+          "ungated": 30,
+          "key_detour": 3,
+          "unreachable": 3
+        },
+        "model_passes": {
+          "ungated": 28,
+          "key_detour": 2,
+          "unreachable": 0
+        },
+        "admitted": {
+          "ungated": 28,
+          "key_detour": 2,
+          "unreachable": 0
+        },
+        "evicted": {
+          "ungated": 19,
+          "key_detour": 6,
+          "unreachable": 5
+        }
+      }
+    },
+    "random_oracle": {
+      "final_correct": {
+        "ungated": 18,
+        "key_detour": 8,
+        "unreachable": 0
+      },
+      "final_total": {
+        "ungated": 18,
+        "key_detour": 18,
+        "unreachable": 18
+      },
+      "weighted_accuracy": 0.8444444444444444,
+      "rare_macro_accuracy": 0.2222222222222222,
+      "final_memory_by_seed": [
+        {
+          "ungated": 6,
+          "key_detour": 0,
+          "unreachable": 0
+        },
+        {
+          "ungated": 5,
+          "key_detour": 1,
+          "unreachable": 0
+        },
+        {
+          "ungated": 4,
+          "key_detour": 1,
+          "unreachable": 1
+        },
+        {
+          "ungated": 4,
+          "key_detour": 1,
+          "unreachable": 1
+        },
+        {
+          "ungated": 6,
+          "key_detour": 0,
+          "unreachable": 0
+        },
+        {
+          "ungated": 6,
+          "key_detour": 0,
+          "unreachable": 0
+        }
+      ],
+      "stage_totals": {
+        "attempted": {
+          "ungated": 30,
+          "key_detour": 3,
+          "unreachable": 3
+        },
+        "model_passes": {
+          "ungated": 28,
+          "key_detour": 2,
+          "unreachable": 0
+        },
+        "admitted": {
+          "ungated": 28,
+          "key_detour": 3,
+          "unreachable": 1
+        },
+        "evicted": {
+          "ungated": 21,
+          "key_detour": 6,
+          "unreachable": 5
+        }
+      }
+    },
+    "targeted_model": {
+      "final_correct": {
+        "ungated": 18,
+        "key_detour": 18,
+        "unreachable": 0
+      },
+      "final_total": {
+        "ungated": 18,
+        "key_detour": 18,
+        "unreachable": 18
+      },
+      "weighted_accuracy": 0.9,
+      "rare_macro_accuracy": 0.5,
+      "final_memory_by_seed": [
+        {
+          "ungated": 5,
+          "key_detour": 1,
+          "unreachable": 0
+        },
+        {
+          "ungated": 5,
+          "key_detour": 1,
+          "unreachable": 0
+        },
+        {
+          "ungated": 4,
+          "key_detour": 2,
+          "unreachable": 0
+        },
+        {
+          "ungated": 4,
+          "key_detour": 2,
+          "unreachable": 0
+        },
+        {
+          "ungated": 3,
+          "key_detour": 2,
+          "unreachable": 1
+        },
+        {
+          "ungated": 4,
+          "key_detour": 2,
+          "unreachable": 0
+        }
+      ],
+      "stage_totals": {
+        "attempted": {
+          "ungated": 21,
+          "key_detour": 10,
+          "unreachable": 5
+        },
+        "model_passes": {
+          "ungated": 18,
+          "key_detour": 9,
+          "unreachable": 0
+        },
+        "admitted": {
+          "ungated": 18,
+          "key_detour": 9,
+          "unreachable": 0
+        },
+        "evicted": {
+          "ungated": 17,
+          "key_detour": 5,
+          "unreachable": 5
+        }
+      }
+    },
+    "targeted_oracle": {
+      "final_correct": {
+        "ungated": 17,
+        "key_detour": 17,
+        "unreachable": 0
+      },
+      "final_total": {
+        "ungated": 18,
+        "key_detour": 18,
+        "unreachable": 18
+      },
+      "weighted_accuracy": 0.85,
+      "rare_macro_accuracy": 0.4722222222222222,
+      "final_memory_by_seed": [
+        {
+          "ungated": 4,
+          "key_detour": 1,
+          "unreachable": 1
+        },
+        {
+          "ungated": 4,
+          "key_detour": 1,
+          "unreachable": 1
+        },
+        {
+          "ungated": 3,
+          "key_detour": 2,
+          "unreachable": 1
+        },
+        {
+          "ungated": 4,
+          "key_detour": 2,
+          "unreachable": 0
+        },
+        {
+          "ungated": 3,
+          "key_detour": 1,
+          "unreachable": 2
+        },
+        {
+          "ungated": 4,
+          "key_detour": 2,
+          "unreachable": 0
+        }
+      ],
+      "stage_totals": {
+        "attempted": {
+          "ungated": 21,
+          "key_detour": 9,
+          "unreachable": 6
+        },
+        "model_passes": {
+          "ungated": 19,
+          "key_detour": 8,
+          "unreachable": 0
+        },
+        "admitted": {
+          "ungated": 19,
+          "key_detour": 9,
+          "unreachable": 4
+        },
+        "evicted": {
+          "ungated": 21,
+          "key_detour": 6,
+          "unreachable": 5
+        }
+      }
+    }
+  },
+  "controls": {
+    "empty": {
+      "final_correct": {
+        "ungated": 15,
+        "key_detour": 7,
+        "unreachable": 0
+      },
+      "final_total": {
+        "ungated": 18,
+        "key_detour": 18,
+        "unreachable": 18
+      },
+      "weighted_accuracy": 0.7055555555555556,
+      "rare_macro_accuracy": 0.19444444444444445
+    },
+    "frozen": {
+      "final_correct": {
+        "ungated": 18,
+        "key_detour": 16,
+        "unreachable": 0
+      },
+      "final_total": {
+        "ungated": 18,
+        "key_detour": 18,
+        "unreachable": 18
+      },
+      "weighted_accuracy": 0.8888888888888888,
+      "rare_macro_accuracy": 0.4444444444444444
+    }
+  }
+}

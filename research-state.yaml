@@ -26,8 +26,8 @@ experiments:
     status: completed_feasibility
   - id: E002
     path: experiments/E002-admission/protocol.md
-    status: running_local_model
+    status: completed_and_audited
 manuscript:
   source: paper/main.tex
-  status: methods_draft
-next: "Complete the 84-call E002 run, audit the traces, and integrate the locked contrasts into the manuscript."
+  status: results_draft
+next: "Lock a fresh robustness check with independently relabeled graphs, then finalize the manuscript and Zenodo package."

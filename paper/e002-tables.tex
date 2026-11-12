@@ -1,0 +1,33 @@
+\begin{table}[tbp]
+\centering
+\caption{Held-out exact accuracy by task family across six paired seeds.}
+\label{tab:e002-accuracy}
+\begin{tabular}{lrrrr}
+\toprule
+Condition & Ungated & Key detour & Unreachable & Rare macro \\
+\midrule
+Random / model & 18/18 & 7/18 & 3/18 & 27.8\% \\
+Targeted / model & 18/18 & 18/18 & 0/18 & 50.0\% \\
+Random / oracle & 18/18 & 8/18 & 0/18 & 22.2\% \\
+Targeted / oracle & 17/18 & 17/18 & 0/18 & 47.2\% \\
+Empty memory & 15/18 & 7/18 & 0/18 & 19.4\% \\
+Frozen memory & 18/18 & 16/18 & 0/18 & 44.4\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[tbp]
+\centering
+\caption{Unreachable-task attempts and admissions in E002. Final memory is the mean number of unreachable examples per seed.}
+\label{tab:e002-coverage}
+\begin{tabular}{lrrrr}
+\toprule
+Condition & Attempts & Model passes & Admissions & Final memory \\
+\midrule
+Random / model & 3 & 0 & 0 & 0.17 \\
+Random / oracle & 3 & 0 & 1 & 0.33 \\
+Targeted / model & 5 & 0 & 0 & 0.17 \\
+Targeted / oracle & 6 & 0 & 4 & 0.83 \\
+\bottomrule
+\end{tabular}
+\end{table}

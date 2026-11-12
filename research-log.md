@@ -39,3 +39,10 @@ precedes implementation and inference. The offline fixture reproduced
 byte-for-byte. The manuscript introduction and methods were drafted using
 Orchestra Research's ml-paper-writing skill and compiled with a verified
 bibliography.
+
+## 2026-11-12 · E002 completed
+
+Archived and replayed 84 responses from the six locked seeds. Recorded
+both primary contrasts, controls, and family-level results. Integrated
+them into the preprint draft. The main follow-up is to test sensitivity
+to fixed node labels and graph templates on fresh graphs.

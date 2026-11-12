@@ -13,3 +13,13 @@ key-detour examples. All three arms ended at 2/4 on the rare holdout.
 
 The runs establish feasibility and motivate per-family auditing.
 H1 (coverage drift) and H2 (targeted supplementation) remain pending.
+
+[E002](experiments/E002-admission/analysis.md) completed and replayed all
+84 model calls over six paired seeds. Supplying an exact supplement
+answer increased targeted final unreachable coverage by 0.67 examples
+on average. Both targeted arms scored 0/18 on held-out unreachable
+tasks. Targeted model exceeded random model by 22.2 percentage points
+in rare macro accuracy through key-detour gains, alongside an
+unreachable accuracy decrease. The inference is restricted to the
+tested model and graph templates. The report preserves both locked
+contrasts and all seed-level evidence.
