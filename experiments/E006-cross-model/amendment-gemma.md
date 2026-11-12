@@ -21,3 +21,10 @@ and preserve raw answer strings. Keep LM Studio's chat-template
 behavior fixed across cells. Model, quantization, and inference backend
 differ from Qwen, so the comparison tests portability across these
 two configured systems. Treat baseline floor effects as inconclusive.
+
+One interrupted diagnostic call returned an unrelated object under
+the object-only grammar. Before restarting all 60 cells, require the
+top-level `answers` object in the grammar. Leave answer keys and
+values inside that object unconstrained. The diagnostic is excluded
+from the rerun and archived separately. This change reduces a response
+interface failure and adds a further backend difference to disclose.
