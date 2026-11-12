@@ -27,9 +27,11 @@ GEMMA_HASHES = {
 
 def verify_gemma_files(directory):
     for name, expected in GEMMA_HASHES.items():
+        digest = hashlib.sha256()
         with (directory / name).open("rb") as source:
-            digest = hashlib.file_digest(source, "sha256").hexdigest()
-        if digest != expected:
+            for block in iter(lambda: source.read(1024 * 1024), b""):
+                digest.update(block)
+        if digest.hexdigest() != expected:
             raise ValueError(f"Unexpected Gemma file hash: {name}")
 
 

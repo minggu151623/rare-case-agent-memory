@@ -82,7 +82,8 @@ def report(source, e003, run, cross_model):
     return {
         "calls": len(calls),
         "format_failures": sum(not row["valid_format"] for row in calls),
-        "reasoning_present_calls": sum(bool(row.get("reasoning_present")) for row in calls),
+        **({"reasoning_present_calls": sum(bool(row.get("reasoning_present")) for row in calls)}
+           if cross_model else {}),
         "prompt_tokens": sum(row["prompt_tokens"] or 0 for row in calls),
         "output_tokens": sum(row["output_tokens"] or 0 for row in calls),
         "request_seconds": round(sum(row.get("seconds", 0) for row in calls), 3),
