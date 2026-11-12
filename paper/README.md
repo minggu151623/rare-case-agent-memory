@@ -3,8 +3,8 @@
 [main.tex](main.tex) is a working draft for the Zenodo preprint. The
 introduction, task definition, and methods follow the checked code and
 the locked E002 protocol. Citation keys are defined in
-[reference-sources.md](reference-sources.md). Fetch and verify formal
-bibliographic records before compiling the release manuscript.
+[reference-sources.md](reference-sources.md). The bibliography is sourced from arXiv and Crossref exports in
+[references.bib](references.bib).
 
 Publication checklist:
 
