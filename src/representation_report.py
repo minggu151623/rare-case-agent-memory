@@ -70,9 +70,13 @@ def report(source, e003, run, phi):
     for arm in ARMS:
         per_seed = [effects({cell: row[arm][cell]["key_detour"] for cell in CELLS})
                     for row in seeds.values()]
-        arm_effects[arm] = {key: {
-            "mean": float(sum(values) / len(values)), "per_seed": [float(v) for v in values],
-        } for key in per_seed[0] for values in ([row[key] for row in per_seed],)}
+        arm_effects[arm] = {}
+        for key in per_seed[0]:
+            values = [row[key] for row in per_seed]
+            arm_effects[arm][key] = {
+                "mean": float(sum(values) / len(values)),
+                "per_seed": [float(value) for value in values],
+            }
     gaps = {cell: totals["targeted_model"][cell]["key_detour"]["correct"]
                   - totals["random_model"][cell]["key_detour"]["correct"] for cell in CELLS}
     return {
