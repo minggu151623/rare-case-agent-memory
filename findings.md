@@ -30,3 +30,11 @@ frozen memories per seed. Targeted/model key-detour accuracy went from
 9/18 on fresh motifs compared with 10/18 for random/model. The paper
 reports the gain in the original representation together with this
 transfer failure. The free-form H1 question remains outside the study.
+
+The extended [E004](experiments/E004-representation/analysis.md) study
+shows losses after either one-sided label change, and partial recovery
+under a shared derangement (12/18 targeted, 2/18 random).
+[E005](experiments/E005-fifo-null/analysis.md) gives an exact FIFO
+absence probability under stationary independent attempts.
+[E007](experiments/E007-error-audit/analysis.md) finds zero exact
+literal path repeats among the 17 lost targeted key-detour answers.

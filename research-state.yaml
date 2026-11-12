@@ -3,7 +3,7 @@ project:
   question: "Where is rare-case coverage lost, and does targeted supplementation improve held-out accuracy over random supplementation at a matched budget?"
   domain: "cs.AI, LLM agents and planning"
   started: "2026-11-12"
-  status: manuscript_complete
+  status: extended_study
 hypotheses:
   - id: H1
     statement: "Rare-case representation decreases over memory updates under self-generated examples."
@@ -30,7 +30,22 @@ experiments:
   - id: E003
     path: experiments/E003-transfer/protocol.md
     status: completed_and_audited
+  - id: E004
+    path: experiments/E004-representation/analysis.md
+    status: completed_and_audited
+  - id: E005
+    path: experiments/E005-fifo-null/analysis.md
+    status: completed_and_audited
+  - id: E006
+    path: experiments/E006-cross-model/protocol.md
+    status: waiting_for_model_download
+  - id: E007
+    path: experiments/E007-error-audit/analysis.md
+    status: completed_and_audited
+  - id: E008
+    path: experiments/E008-end-to-end/protocol.md
+    status: running_local_model
 manuscript:
   source: paper/main.tex
-  status: complete_for_author_review
+  status: extended_revision_in_progress
 publication: "The author will handle Zenodo submission."

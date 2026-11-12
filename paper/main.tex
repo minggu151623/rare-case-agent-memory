@@ -251,7 +251,13 @@ a seed, including the stored solution paths. This changes every vertex
 label while keeping the correspondence of labels across graphs.
 The six seeds and two policies require 36 new evaluations. We report
 the policy gap within each condition and the within-policy factorial
-effects, averaging over the six paired seeds.
+effects, averaging over the six paired seeds. Within a seed and
+policy, let $a_{mq}$ be the key-detour accuracy with memory and
+query renaming indicators $m,q$. The memory effect is
+$\tfrac12[(a_{10}-a_{00})+(a_{11}-a_{01})]$, the query effect is
+$\tfrac12[(a_{01}-a_{00})+(a_{11}-a_{10})]$, and their interaction
+is $a_{11}-a_{10}-a_{01}+a_{00}$. The shared permutation is a
+separate condition outside the factorial design.
 
 \paragraph{Inspecting wrong answers.}
 For the original and independently relabeled conditions, E007 assigns
@@ -368,7 +374,12 @@ aggregate rare-task gain came from one family under the original
 representation. The renaming check preserves the underlying
 planning problems and shows that the observed gain is sensitive
 to their presentation. The fresh-motif result further limits what
-can be inferred from structural deduplication alone.
+can be inferred from structural deduplication alone. Both one-sided
+changes reduced the targeted advantage, and a shared permutation
+largely restored the policy gap. This combination is consistent with
+the model relying partly on correspondence across examples and
+queries. A single shared permutation preserves several features
+at once, so this test leaves open which of those features matter.
 
 For a memory audit in an exactly verifiable domain, these results
 support recording the path from task exposure to correct solution,

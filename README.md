@@ -76,3 +76,19 @@ python3 -m src.transfer_report experiments/E002-admission/results/qwen3-8b exper
 
 See [the paper directory](paper/README.md) for offline replay and PDF build
 instructions.
+
+## Extended evaluation and reference model
+
+[E004 label attribution](experiments/E004-representation/analysis.md) ·
+[E005 FIFO reference model](experiments/E005-fifo-null/analysis.md) ·
+[E006 cross-model protocol](experiments/E006-cross-model/protocol.md) ·
+[E007 path-error audit](experiments/E007-error-audit/analysis.md) ·
+[E008 acquisition protocol](experiments/E008-end-to-end/protocol.md)
+
+The checks below require only the standard library and the archived traces.
+
+```sh
+python3 experiments/E005-fifo-null/verify.py
+python3 -m src.representation_report experiments/E002-admission/results/qwen3-8b experiments/E003-transfer/results/qwen3-8b experiments/E004-representation/results/qwen3-8b
+python3 -m src.path_errors experiments/E002-admission/results/qwen3-8b experiments/E003-transfer/results/qwen3-8b
+```

@@ -53,3 +53,13 @@ Ran and replayed all 36 transfer calls. Renaming vertices removed the
 targeted key-detour advantage. The same advantage was absent on fresh
 motifs. These results bound the E002 performance claim. The author
 will handle Zenodo publication.
+
+## 2026-11-12 · Extended study
+
+The author requested a stronger manuscript with self-critique.
+E004 separated demonstration and query labels and added a shared
+derangement. E005 checked the exact FIFO reference model on 3,150
+cases. E007 audited 216 scored records and found no literal path
+reuse among lost key-detour answers. E008 tests relabeling throughout
+acquisition. E006 is a pre-specified Phi evaluation of the frozen
+Qwen memories. The author's Zenodo submission remains separate.
