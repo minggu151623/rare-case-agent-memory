@@ -1,0 +1,452 @@
+{
+  "calls": 48,
+  "format_failures": 0,
+  "prompt_tokens": 91324,
+  "output_tokens": 7188,
+  "request_seconds": 800.079,
+  "scores": {
+    "random_model": {
+      "shared": {
+        "ungated": {
+          "correct": 33,
+          "total": 36
+        },
+        "key_detour": {
+          "correct": 10,
+          "total": 36
+        },
+        "unreachable": {
+          "correct": 0,
+          "total": 36
+        }
+      },
+      "mixed": {
+        "ungated": {
+          "correct": 29,
+          "total": 36
+        },
+        "key_detour": {
+          "correct": 7,
+          "total": 36
+        },
+        "unreachable": {
+          "correct": 0,
+          "total": 36
+        }
+      }
+    },
+    "targeted_model": {
+      "shared": {
+        "ungated": {
+          "correct": 32,
+          "total": 36
+        },
+        "key_detour": {
+          "correct": 20,
+          "total": 36
+        },
+        "unreachable": {
+          "correct": 0,
+          "total": 36
+        }
+      },
+      "mixed": {
+        "ungated": {
+          "correct": 25,
+          "total": 36
+        },
+        "key_detour": {
+          "correct": 10,
+          "total": 36
+        },
+        "unreachable": {
+          "correct": 0,
+          "total": 36
+        }
+      }
+    }
+  },
+  "per_seed_correct": {
+    "6201": {
+      "random_model": {
+        "shared": {
+          "ungated": {
+            "total": 6,
+            "correct": 6
+          },
+          "key_detour": {
+            "total": 6,
+            "correct": 0
+          },
+          "unreachable": {
+            "total": 6,
+            "correct": 0
+          }
+        },
+        "mixed": {
+          "ungated": {
+            "total": 6,
+            "correct": 4
+          },
+          "key_detour": {
+            "total": 6,
+            "correct": 1
+          },
+          "unreachable": {
+            "total": 6,
+            "correct": 0
+          }
+        }
+      },
+      "targeted_model": {
+        "shared": {
+          "ungated": {
+            "total": 6,
+            "correct": 6
+          },
+          "key_detour": {
+            "total": 6,
+            "correct": 3
+          },
+          "unreachable": {
+            "total": 6,
+            "correct": 0
+          }
+        },
+        "mixed": {
+          "ungated": {
+            "total": 6,
+            "correct": 4
+          },
+          "key_detour": {
+            "total": 6,
+            "correct": 1
+          },
+          "unreachable": {
+            "total": 6,
+            "correct": 0
+          }
+        }
+      }
+    },
+    "6202": {
+      "random_model": {
+        "shared": {
+          "ungated": {
+            "total": 6,
+            "correct": 6
+          },
+          "key_detour": {
+            "total": 6,
+            "correct": 6
+          },
+          "unreachable": {
+            "total": 6,
+            "correct": 0
+          }
+        },
+        "mixed": {
+          "ungated": {
+            "total": 6,
+            "correct": 6
+          },
+          "key_detour": {
+            "total": 6,
+            "correct": 6
+          },
+          "unreachable": {
+            "total": 6,
+            "correct": 0
+          }
+        }
+      },
+      "targeted_model": {
+        "shared": {
+          "ungated": {
+            "total": 6,
+            "correct": 6
+          },
+          "key_detour": {
+            "total": 6,
+            "correct": 6
+          },
+          "unreachable": {
+            "total": 6,
+            "correct": 0
+          }
+        },
+        "mixed": {
+          "ungated": {
+            "total": 6,
+            "correct": 5
+          },
+          "key_detour": {
+            "total": 6,
+            "correct": 0
+          },
+          "unreachable": {
+            "total": 6,
+            "correct": 0
+          }
+        }
+      }
+    },
+    "6203": {
+      "random_model": {
+        "shared": {
+          "ungated": {
+            "total": 6,
+            "correct": 6
+          },
+          "key_detour": {
+            "total": 6,
+            "correct": 4
+          },
+          "unreachable": {
+            "total": 6,
+            "correct": 0
+          }
+        },
+        "mixed": {
+          "ungated": {
+            "total": 6,
+            "correct": 6
+          },
+          "key_detour": {
+            "total": 6,
+            "correct": 0
+          },
+          "unreachable": {
+            "total": 6,
+            "correct": 0
+          }
+        }
+      },
+      "targeted_model": {
+        "shared": {
+          "ungated": {
+            "total": 6,
+            "correct": 6
+          },
+          "key_detour": {
+            "total": 6,
+            "correct": 4
+          },
+          "unreachable": {
+            "total": 6,
+            "correct": 0
+          }
+        },
+        "mixed": {
+          "ungated": {
+            "total": 6,
+            "correct": 6
+          },
+          "key_detour": {
+            "total": 6,
+            "correct": 4
+          },
+          "unreachable": {
+            "total": 6,
+            "correct": 0
+          }
+        }
+      }
+    },
+    "6204": {
+      "random_model": {
+        "shared": {
+          "ungated": {
+            "total": 6,
+            "correct": 4
+          },
+          "key_detour": {
+            "total": 6,
+            "correct": 0
+          },
+          "unreachable": {
+            "total": 6,
+            "correct": 0
+          }
+        },
+        "mixed": {
+          "ungated": {
+            "total": 6,
+            "correct": 3
+          },
+          "key_detour": {
+            "total": 6,
+            "correct": 0
+          },
+          "unreachable": {
+            "total": 6,
+            "correct": 0
+          }
+        }
+      },
+      "targeted_model": {
+        "shared": {
+          "ungated": {
+            "total": 6,
+            "correct": 4
+          },
+          "key_detour": {
+            "total": 6,
+            "correct": 3
+          },
+          "unreachable": {
+            "total": 6,
+            "correct": 0
+          }
+        },
+        "mixed": {
+          "ungated": {
+            "total": 6,
+            "correct": 3
+          },
+          "key_detour": {
+            "total": 6,
+            "correct": 1
+          },
+          "unreachable": {
+            "total": 6,
+            "correct": 0
+          }
+        }
+      }
+    },
+    "6205": {
+      "random_model": {
+        "shared": {
+          "ungated": {
+            "total": 6,
+            "correct": 5
+          },
+          "key_detour": {
+            "total": 6,
+            "correct": 0
+          },
+          "unreachable": {
+            "total": 6,
+            "correct": 0
+          }
+        },
+        "mixed": {
+          "ungated": {
+            "total": 6,
+            "correct": 6
+          },
+          "key_detour": {
+            "total": 6,
+            "correct": 0
+          },
+          "unreachable": {
+            "total": 6,
+            "correct": 0
+          }
+        }
+      },
+      "targeted_model": {
+        "shared": {
+          "ungated": {
+            "total": 6,
+            "correct": 4
+          },
+          "key_detour": {
+            "total": 6,
+            "correct": 3
+          },
+          "unreachable": {
+            "total": 6,
+            "correct": 0
+          }
+        },
+        "mixed": {
+          "ungated": {
+            "total": 6,
+            "correct": 4
+          },
+          "key_detour": {
+            "total": 6,
+            "correct": 4
+          },
+          "unreachable": {
+            "total": 6,
+            "correct": 0
+          }
+        }
+      }
+    },
+    "6206": {
+      "random_model": {
+        "shared": {
+          "ungated": {
+            "total": 6,
+            "correct": 6
+          },
+          "key_detour": {
+            "total": 6,
+            "correct": 0
+          },
+          "unreachable": {
+            "total": 6,
+            "correct": 0
+          }
+        },
+        "mixed": {
+          "ungated": {
+            "total": 6,
+            "correct": 4
+          },
+          "key_detour": {
+            "total": 6,
+            "correct": 0
+          },
+          "unreachable": {
+            "total": 6,
+            "correct": 0
+          }
+        }
+      },
+      "targeted_model": {
+        "shared": {
+          "ungated": {
+            "total": 6,
+            "correct": 6
+          },
+          "key_detour": {
+            "total": 6,
+            "correct": 1
+          },
+          "unreachable": {
+            "total": 6,
+            "correct": 0
+          }
+        },
+        "mixed": {
+          "ungated": {
+            "total": 6,
+            "correct": 3
+          },
+          "key_detour": {
+            "total": 6,
+            "correct": 0
+          },
+          "unreachable": {
+            "total": 6,
+            "correct": 0
+          }
+        }
+      }
+    }
+  },
+  "key_detour_gap_difference_by_seed": [
+    0.5,
+    1.0,
+    -0.6666666666666666,
+    0.3333333333333333,
+    -0.16666666666666666,
+    0.16666666666666666
+  ],
+  "key_detour_gap_difference": 0.19444444444444445
+}

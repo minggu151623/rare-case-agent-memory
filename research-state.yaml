@@ -38,12 +38,15 @@ experiments:
     status: completed_and_audited
   - id: E006
     path: experiments/E006-cross-model/protocol.md
-    status: waiting_for_model_download
+    status: running_cached_gemma
   - id: E007
     path: experiments/E007-error-audit/analysis.md
     status: completed_and_audited
   - id: E008
     path: experiments/E008-end-to-end/analysis.md
+    status: completed_and_audited
+  - id: E009
+    path: experiments/E009-matched-labels/analysis.md
     status: completed_and_audited
 manuscript:
   source: paper/main.tex

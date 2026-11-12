@@ -275,6 +275,19 @@ pipeline-level representation change. Admission and adaptive
 targeting can change along the way, so the final memories need
 not contain the same examples as in E002.
 
+\paragraph{Matching each graph's labels across conditions.}
+The shared and independent conditions of E004 differ in their
+individual permutation draws. E009 chooses two derangements per
+seed that disagree at every vertex. Each graph is shown under both
+maps in each condition. In shared prompts, all graphs use the same
+map and switch together in the second repetition. In mixed prompts,
+graphs alternate between the two maps within the demonstration and
+query lists. The second repetition swaps the assignment. The two
+conditions therefore differ in how graph representations are combined
+within a prompt, while each graph has exactly the same two rendered
+forms across conditions. E009 uses the same frozen Qwen memories,
+query order, and model settings as E004, with 48 new calls.
+
 \paragraph{Inspecting wrong answers.}
 For the original and independently relabeled conditions, E007 assigns
 each wrong answer its first detectable failure: malformed or missing
@@ -382,6 +395,19 @@ the two studies. These counts show that applying independent
 labels during acquisition did not recover the original advantage
 in this setup.
 
+\subsection{Shared labels at matched graph exposures}
+
+Under shared labels, targeted and random scored $20/36$ and $10/36$
+on key detours. Under mixed labels, they scored $10/36$ and $7/36$.
+The policy gap was thus $7/36$ larger under shared labels, or
+$19.4$ percentage points. The paired differences in correct counts
+out of six were $(+3,+6,-4,+2,-1,+1)$. Four seeds favored shared
+labels and two favored mixed. The 36 answer records per condition
+contain two labelings of each of 18 graphs. Matching the rendered
+forms narrows the explanation to properties of the prompt-level
+combination. The alternating assignment changes several such
+properties and does not identify one internal feature.
+
 \subsection{Which failures replaced correct paths?}
 
 Of the 17 targeted key-detour paths that became incorrect after
@@ -411,8 +437,9 @@ can be inferred from structural deduplication alone. Both one-sided
 changes reduced the targeted advantage, and a shared permutation
 largely restored the policy gap. This combination is consistent with
 the model relying partly on correspondence across examples and
-queries. A single shared permutation preserves several features
-at once, so this test leaves open which of those features matter.
+queries. The matched-exposure comparison also favored shared labels on
+average, with heterogeneous effects across seeds. Both experiments
+leave open which cross-graph correspondences matter.
 
 For a memory audit in an exactly verifiable domain, these results
 support recording the path from task exposure to correct solution,
@@ -430,9 +457,10 @@ other environments may have imperfect verifiers or no exact answer
 source. Unreachable tasks differ from the solvable families in both
 reasoning requirements and response format. The family-specific
 results therefore do not isolate frequency from every difference in
-task difficulty. Renaming changes the presentation of both the
-demonstrations and the held-out graphs, so the two sources of
-sensitivity remain unresolved. The new-motif condition also changes
+task difficulty. The one-sided experiments isolate which prompts were changed.
+They cannot reveal how the model uses vertex labels internally.
+The matched-label comparison used two permutations per seed and
+an alternating mixture, leaving other label mixtures untested. The new-motif condition also changes
 the holdout draw, and its key-required tasks avoid revisiting a node.
 The findings concern fixed weights, controlled task construction,
 and short memory trajectories. Free-form generation, longer
