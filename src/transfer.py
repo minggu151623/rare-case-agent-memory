@@ -55,12 +55,16 @@ def novel(family, rng):
 
 def rename(case, seed):
     labels = dict(zip(NODES, Random(f"{seed + 210000}:{case.id}").sample(list(NODES), len(NODES))))
+    return rename_with_labels(case, labels), labels
+
+
+def rename_with_labels(case, labels):
     task = case.task
     renamed = Task(labels[task.start], labels[task.goal], tuple(
         Edge(labels[edge.source], labels[edge.destination], edge.requires_key)
         for edge in task.edges
     ), labels.get(task.key_at))
-    return replace(case, task=renamed), labels
+    return replace(case, task=renamed)
 
 
 def flatten(pools):
