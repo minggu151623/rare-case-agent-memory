@@ -51,6 +51,17 @@ use an answer from an exact solver. The latter intervention tests whether
 access to a verified answer changes retention when the agent already has
 an opportunity to attempt the task.
 
+The study asks three empirical questions. First, can correct-answer
+admission exclude a family even when the agent attempts it? Second,
+does allocating more attempts to rare families improve performance
+at the same call budget? Third, does any observed advantage persist
+when test problems and demonstrations retain their semantics but
+change their labels? The experiments address these questions in a
+small planning domain with an exact verifier. The FIFO reference
+model specifies what loss of coverage means when attempts are
+independent. The empirical trajectories allow both answer quality
+and allocation to depend on the current memory.
+
 \section{Related work}
 
 Xiong et al. study selective addition and deletion, including an
@@ -212,7 +223,7 @@ preserving node roles and directed edge locks when computing graph
 equivalence. Initial-memory and empty-memory controls use the same
 holdout within the seed. Held-out answers are not used to update memory.
 
-All live experiments used the same Qwen3 8B model \cite{qwen3},
+The main acquisition and transfer experiments used Qwen3 8B \cite{qwen3},
 running locally in Ollama 0.40.12 with thinking disabled, temperature
 zero, a 4096-token context, and up to 384 output tokens per call.
 The protocols record the exact model digest and seeds. Each E002 arm
@@ -287,6 +298,21 @@ conditions therefore differ in how graph representations are combined
 within a prompt, while each graph has exactly the same two rendered
 forms across conditions. E009 uses the same frozen Qwen memories,
 query order, and model settings as E004, with 48 new calls.
+
+\paragraph{Cross-model readout and answer completeness.}
+E006 repeats the five label conditions of E004 with Gemma 4 E4B
+as the reader. It uses the same Qwen-generated memory, queries,
+system instructions, and per-call limits. Gemma uses a cached MLX
+4-bit snapshot in LM Studio, with a grammar that requires the
+outer \texttt{answers} object. The grammar does not require every
+case ID. Each batch contains nine tasks. We score missing answers
+as incorrect and count returned IDs by query position. E010
+is a follow-up prompted by omissions observed early in E006.
+It presents only the first key-detour case in the original order
+for each seed. It uses both frozen memory policies and the
+original, independent, and shared label conditions. This removes
+the requirement to answer multiple tasks within a call. It
+changes the prompt, so it is a diagnostic of the batch result.
 
 \paragraph{Inspecting wrong answers.}
 For the original and independently relabeled conditions, E007 assigns
@@ -441,11 +467,14 @@ queries. The matched-exposure comparison also favored shared labels on
 average, with heterogeneous effects across seeds. Both experiments
 leave open which cross-graph correspondences matter.
 
-For a memory audit in an exactly verifiable domain, these results
-support recording the path from task exposure to correct solution,
-admission, and retention, then measuring accuracy on separately
-constructed tasks. This distinguishes an inability to add examples
-from an inability to use examples when they are present.
+For a memory audit in an exactly verifiable domain, we suggest
+reporting the number of attempted cases in each family, the
+number of accepted answers, and the retained composition after
+eviction. Then evaluate held-out cases under both the reference
+representation and semantics-preserving alternatives. Track response
+completeness separately from correctness when several tasks share
+one prompt. These measurements let a reader distinguish missing
+opportunities, failed admissions, eviction, and failed readout.
 
 \section{Limitations}
 
