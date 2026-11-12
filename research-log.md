@@ -46,3 +46,10 @@ Archived and replayed 84 responses from the six locked seeds. Recorded
 both primary contrasts, controls, and family-level results. Integrated
 them into the preprint draft. The main follow-up is to test sensitivity
 to fixed node labels and graph templates on fresh graphs.
+
+## 2026-11-12 · E003 and manuscript completed
+
+Ran and replayed all 36 transfer calls. Renaming vertices removed the
+targeted key-detour advantage. The same advantage was absent on fresh
+motifs. These results bound the E002 performance claim. The author
+will handle Zenodo publication.

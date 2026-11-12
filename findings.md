@@ -23,3 +23,10 @@ in rare macro accuracy through key-detour gains, alongside an
 unreachable accuracy decrease. The inference is restricted to the
 tested model and graph templates. The report preserves both locked
 contrasts and all seed-level evidence.
+
+[E003](experiments/E003-transfer/analysis.md) replayed 36 calls on three
+frozen memories per seed. Targeted/model key-detour accuracy went from
+18/18 on the original graphs to 1/18 after vertex renaming. It scored
+9/18 on fresh motifs compared with 10/18 for random/model. The paper
+reports the gain in the original representation together with this
+transfer failure. The free-form H1 question remains outside the study.
