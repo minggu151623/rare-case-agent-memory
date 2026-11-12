@@ -13,3 +13,8 @@ Commit each finalized protocol before generating its results. Record deviations,
 exploratory analyses, and negative outcomes in the experiment directory.
 Update the state, decision log, and findings at meaningful checkpoints.
 Keep evaluation fixtures and outputs out of the model's example memory.
+
+For manuscript drafting, use the pinned Orchestra Research
+[ml-paper-writing](https://github.com/Orchestra-Research/AI-Research-SKILLs/tree/773a52944ba4747a18bd4ae9ade53fff041adcbc/20-ml-paper-writing/ml-paper-writing)
+skill. Cross-check every numeric claim against the archived study outputs and
+fetch bibliography entries from their primary records.

@@ -1,0 +1,117 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,booktabs,hyperref}
+\title{Auditing Rare-Case Coverage in LLM Agents with Iterative Example Memory}
+\author{Tran Vu Bao Minh\\Independent Researcher}
+\date{Working draft}
+
+\begin{document}
+\maketitle
+
+\section{Introduction}
+
+An agent can improve its working context by storing examples that it
+solves and verifying the answers before reuse. The resulting memory is
+shaped by which tasks are available, which tasks the agent attempts,
+which answers pass verification, and which examples the memory policy
+evicts. A low-frequency task family can disappear even when each
+retained answer is correct and aggregate accuracy improves. We study this
+mechanism in a controlled planning domain with fixed model weights.
+
+We distinguish coverage, the composition of memory, from generalization,
+the model's accuracy on structurally disjoint held-out tasks. We compare
+random and coverage-targeted task selection at matched inference budgets.
+We also vary whether the added example must be solved by the model or can
+use an answer from an exact solver. The latter intervention tests whether
+access to a verified answer changes retention when the agent already has
+an opportunity to attempt the task.
+
+\section{Related work}
+
+Memory studies have evaluated selective addition and deletion and how
+agents reuse experience on similar tasks
+\cite{experience-following}. EvoMemBench compares memory strategies
+across knowledge and execution tasks \cite{evomembench}. We focus on a
+narrow setting with exact answer verification and track family-level
+counts at each memory update. Our intervention changes access to a
+verified answer for one task while holding the task slots and model-call
+budget fixed.
+
+Studies of recursive synthetic training show that low-frequency events can
+vanish across model generations \cite{shumailov2024}. Formal verification
+and diverse task proposals are important in some self-play settings
+\cite{psv}. Here the model parameters are fixed and the state carried
+across rounds is a list of solved examples. The question is which examples
+survive and whether the surviving examples affect held-out answers.
+
+\section{Planning tasks and memory}
+
+Each task is a directed graph with unit-cost edges, a start, a goal, and
+an optional key node. A locked edge can be traversed only after visiting
+the key node. A valid answer is a shortest path or a declaration that
+the goal is unreachable. Breadth-first search on the product state
+$(\text{location},\text{has key})$ supplies the exact shortest distance
+or proves unreachability. The verifier checks the answer format, every
+path transition, and optimality. The three families are ungated,
+key-detour, and unreachable. Every generated graph has six nodes and
+seven edges. Solvable instances have optimal distance four. In
+key-detour tasks the goal is inaccessible with the key disabled, and in
+unreachable tasks ignoring locks would create a path to the goal.
+We define the reference frequencies as $(0.8,0.1,0.1)$. The latter two
+families are rare under that reference distribution.
+
+Let $M_{f,t}$ be the number of examples of family $f$ after update $t$.
+For each family and update, the audit records attempted examples
+$A_{f,t}$, answers passing verification $V_{f,t}$, admissions $I_{f,t}$,
+and evictions $E_{f,t}$. The identity
+\[
+ M_{f,t+1} = M_{f,t} + I_{f,t} - E_{f,t}
+\]
+separates lost coverage from a lack of task attempts. With full FIFO
+memory, if a family receives no new admissions, its last old example is
+evicted once enough later examples have been admitted to reach that
+example's initial position. This can occur while the combined count of
+rare examples increases, because other rare families can replace it.
+
+\section{Experimental design}
+
+The exploratory feasibility runs compare self-selection from a fixed
+menu with random or targeted supplementation. They establish the
+engineering workflow and motivate the family-level audit. These runs
+were used to design the follow-up and are reported separately from it.
+
+The follow-up is a paired $2\times2$ experiment. The allocation rule
+draws a family at random from the reference distribution or targets the
+least represented rare family in the current memory. The answer source
+is the model or the exact solver for the one external supplement. In
+every arm the model is asked to solve two common background tasks and
+one supplement per round. In oracle arms, we replace the supplement's
+model answer before applying the shared verification and admission rules.
+All background answers come from the model. Because the targeted rule
+depends on memory, the answer-source contrast captures the total policy
+effect across the two rounds.
+
+We use six paired seeds with shuffled initial memory order. Each initial
+memory holds four ungated, one key-detour and one unreachable example.
+Memory has capacity six and uses FIFO eviction. Each seed has an
+independent holdout with three tasks per family. We reject graph
+isomorphs across seeds, task pools, and the earlier feasibility runs,
+preserving node roles and directed edge locks when computing graph
+equivalence. Initial-memory and empty-memory controls use the same
+holdout within the seed. Held-out answers are not used to update memory.
+
+The primary mechanism contrast is the paired difference in the final
+number of unreachable examples between targeted oracle and targeted
+model. The primary performance contrast is the paired difference in
+final rare-family macro accuracy between targeted model and random
+model. We report seed-level differences and their mean. An exact
+two-sided sign-flip calculation is reported under sign exchangeability
+as a sensitivity analysis for the small paired sample.
+
+\section{Results}
+
+This working draft documents the design. Follow-up results are pending.
+
+\bibliographystyle{plain}
+\bibliography{references}
+\end{document}
