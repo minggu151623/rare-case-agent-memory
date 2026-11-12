@@ -14,3 +14,10 @@
 
 The protocol was committed before implementation and execution. All nine
 local oracle checks passed. The live pilot design remains a draft.
+
+## 2026-11-12 · E001a local feasibility
+
+Locked the protocol before implementation. The offline fixture reproduced
+byte-for-byte and the Qwen3 pilot ran all 19 calls locally. Model-selected
+slots were all invalid because the model picked IDs from example memory.
+The observation motivates a menu-constrained proposal interface for E001b.
