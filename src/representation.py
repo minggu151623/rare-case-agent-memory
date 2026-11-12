@@ -1,6 +1,7 @@
 """E004 factorial attribution of graph-label sensitivity."""
 
 import argparse
+import hashlib
 import json
 from pathlib import Path
 from random import Random
@@ -16,10 +17,56 @@ CELLS = ("original", "memory_only", "query_only", "independent_both", "shared_ma
 FRESH = ("memory_only", "query_only", "shared_map")
 
 
-class PhiBackend(Backend):
-    model = "phi3.5:3.8b"
-    digest = "61819fb370a3c1a9be6694869331e5f85f867a079e9271d66cb223acb81d04ba"
+GEMMA_HASHES = {
+    "model.safetensors": "2bce06d8373d9edec745c66bafd8d3965eb04a2efa2b229bca9078241ea05e6b",
+    "config.json": "18521c2237729a659a3b821eeb706f088e46518d8698f8e357df7bf7300e7041",
+    "tokenizer.json": "cc8d3a0ce36466ccc1278bf987df5f71db1719b9ca6b4118264f45cb627bfe0f",
+    "chat_template.jinja": "55572b8d3c8342044e25874c73fe5234b661fa0a57a57f6ef75b58e03d7d959a",
+}
+
+
+def verify_gemma_files(directory):
+    for name, expected in GEMMA_HASHES.items():
+        with (directory / name).open("rb") as source:
+            digest = hashlib.file_digest(source, "sha256").hexdigest()
+        if digest != expected:
+            raise ValueError(f"Unexpected Gemma file hash: {name}")
+
+
+class GemmaBackend(Backend):
+    model = "rare-case-gemma-e4b"
     thinking_options = {}
+
+    def connect(self):
+        ids = {row["id"] for row in self.request("/v1/models")["data"]}
+        if self.model not in ids:
+            raise ValueError(f"Missing local LM Studio model {self.model}")
+        return "LM Studio"
+
+    def complete(self, payload):
+        options = payload["options"]
+        result = self.request("/v1/chat/completions", {
+            "model": self.model,
+            "messages": payload["messages"],
+            "stream": False,
+            "temperature": options["temperature"],
+            "seed": options["seed"],
+            "max_tokens": options["num_predict"],
+            "response_format": {
+                "type": "json_schema",
+                "json_schema": {"name": "json_object", "schema": {"type": "object"}},
+            },
+        })
+        choice = result["choices"][0]
+        message = choice["message"]
+        usage = result["usage"]
+        return {
+            "message": {"content": message.get("content") or ""},
+            "prompt_eval_count": usage["prompt_tokens"],
+            "eval_count": usage["completion_tokens"],
+            "done_reason": choice["finish_reason"],
+            "reasoning_present": bool(message.get("reasoning_content")),
+        }
 
 
 def shared_labels(seed):
@@ -120,7 +167,11 @@ if __name__ == "__main__":
     parser.add_argument("source", type=Path)
     parser.add_argument("--output", required=True, type=Path)
     parser.add_argument("--ollama-port", type=int)
-    parser.add_argument("--phi", action="store_true", help="Run all five E006 cells on Phi.")
+    parser.add_argument("--gemma-model-dir", type=Path, help="Run all five E006 cells on Gemma.")
+    parser.add_argument("--lmstudio-port", type=int, default=1234)
     args = parser.parse_args()
-    run(args.source, args.output, args.ollama_port,
-        backend_type=PhiBackend if args.phi else Backend, cells=CELLS if args.phi else FRESH)
+    if args.gemma_model_dir:
+        verify_gemma_files(args.gemma_model_dir)
+        run(args.source, args.output, args.lmstudio_port, backend_type=GemmaBackend, cells=CELLS)
+    else:
+        run(args.source, args.output, args.ollama_port)

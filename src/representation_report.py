@@ -24,13 +24,13 @@ def effects(counts):
     }
 
 
-def report(source, e003, run, phi):
+def report(source, e003, run, cross_model):
     calls = read_calls(run)
     rows = {row["arm"]: row for row in calls}
-    expected_calls = 60 if phi else 36
+    expected_calls = 60 if cross_model else 36
     if len(rows) != len(calls) or len(rows) != expected_calls:
         raise ValueError(f"Expected {expected_calls} unique calls")
-    e003_rows = {row["arm"]: row for row in read_calls(e003)} if not phi else {}
+    e003_rows = {row["arm"]: row for row in read_calls(e003)} if not cross_model else {}
     seeds = {}
     totals = {
         arm: {cell: {family: Counter() for family in FAMILIES} for cell in CELLS}
@@ -46,16 +46,16 @@ def report(source, e003, run, phi):
         for arm in ARMS:
             seeds[str(seed)][arm] = {}
             for cell in CELLS:
-                if not phi and cell == "original":
+                if not cross_model and cell == "original":
                     row = original[arm]
-                elif not phi and cell == "independent_both":
+                elif not cross_model and cell == "independent_both":
                     row = e003_rows[f"{seed}/{arm}/renamed"]
                 else:
                     row = rows.pop(f"{seed}/{arm}/{cell}")
                 if (row["phase"], row["round"]) != ("evaluation", 2):
                     raise ValueError(f"Wrong phase for {seed}/{arm}/{cell}")
                 items = score_call(row, *cases_by_arm[arm][cell])
-                if (phi or cell in FRESH) and items != actual[arm][cell]:
+                if (cross_model or cell in FRESH) and items != actual[arm][cell]:
                     raise ValueError(f"Score mismatch for {seed}/{arm}/{cell}")
                 counts = Counter()
                 for item in items:
@@ -82,6 +82,7 @@ def report(source, e003, run, phi):
     return {
         "calls": len(calls),
         "format_failures": sum(not row["valid_format"] for row in calls),
+        "reasoning_present_calls": sum(bool(row.get("reasoning_present")) for row in calls),
         "prompt_tokens": sum(row["prompt_tokens"] or 0 for row in calls),
         "output_tokens": sum(row["output_tokens"] or 0 for row in calls),
         "request_seconds": round(sum(row.get("seconds", 0) for row in calls), 3),
@@ -97,6 +98,6 @@ if __name__ == "__main__":
     parser.add_argument("source", type=Path)
     parser.add_argument("e003", type=Path)
     parser.add_argument("run", type=Path)
-    parser.add_argument("--phi", action="store_true")
+    parser.add_argument("--cross-model", action="store_true")
     args = parser.parse_args()
-    print(json.dumps(report(args.source, args.e003, args.run, args.phi), indent=2))
+    print(json.dumps(report(args.source, args.e003, args.run, args.cross_model), indent=2))

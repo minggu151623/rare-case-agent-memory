@@ -43,14 +43,17 @@ class Backend:
         self.trace = trace
         self.base = f"http://127.0.0.1:{port}" if port is not None else None
         self.opener = build_opener(ProxyHandler({}))
-        if self.base:
-            matches = [model for model in self.request("/api/tags")["models"]
-                       if model["name"] == self.model and model["digest"] == self.digest]
-            if not matches:
-                raise ValueError(f"Expected installed {self.model} digest {self.digest}")
-            self.version = self.request("/api/version")["version"]
-        else:
-            self.version = "fixture"
+        self.version = self.connect() if self.base else "fixture"
+
+    def connect(self):
+        matches = [model for model in self.request("/api/tags")["models"]
+                   if model["name"] == self.model and model["digest"] == self.digest]
+        if not matches:
+            raise ValueError(f"Expected installed {self.model} digest {self.digest}")
+        return self.request("/api/version")["version"]
+
+    def complete(self, payload):
+        return self.request("/api/chat", payload)
 
     def request(self, endpoint, payload=None):
         request = Request(
@@ -95,7 +98,7 @@ class Backend:
         }, separators=(",", ":"))
         start = perf_counter()
         if self.base:
-            response = self.request("/api/chat", {
+            response = self.complete({
                 "model": self.model, "stream": False, "format": output_format,
                 **self.thinking_options,
                 "options": {"seed": sampling_seed + round_, "temperature": 0, "num_ctx": 4096,
@@ -123,6 +126,8 @@ class Backend:
                "output_tokens": response.get("eval_count"), "done_reason": response.get("done_reason")}
         if self.base:
             row["seconds"] = round(perf_counter() - start, 3)
+            if "reasoning_present" in response:
+                row["reasoning_present"] = response["reasoning_present"]
         self.trace.write(json.dumps(row) + "\n")
         self.trace.flush()
         return parsed[expected] if valid else expected_type()
