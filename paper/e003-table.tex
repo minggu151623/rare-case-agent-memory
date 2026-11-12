@@ -1,0 +1,22 @@
+\begin{table}[tbp]
+\centering
+\caption{E003 transfer accuracy. Original and renamed conditions use the same graphs. New motifs use fresh graphs.}
+\label{tab:e003-transfer}
+\begin{tabular}{llrrr}
+\toprule
+Condition & Test graphs & Ungated & Key required & Unreachable \\
+\midrule
+Random / model & Original & 18/18 & 7/18 & 3/18 \\
+ & Renamed & 9/18 & 2/18 & 0/18 \\
+ & New motifs & 9/18 & 10/18 & 0/18 \\
+\addlinespace
+Targeted / model & Original & 18/18 & 18/18 & 0/18 \\
+ & Renamed & 11/18 & 1/18 & 0/18 \\
+ & New motifs & 11/18 & 9/18 & 0/18 \\
+\addlinespace
+Targeted / oracle & Original & 17/18 & 17/18 & 0/18 \\
+ & Renamed & 7/18 & 0/18 & 0/18 \\
+ & New motifs & 10/18 & 9/18 & 0/18 \\
+\bottomrule
+\end{tabular}
+\end{table}

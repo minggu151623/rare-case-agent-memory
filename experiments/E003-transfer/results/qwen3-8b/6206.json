@@ -1,0 +1,431 @@
+{
+  "random_model": {
+    "original": [
+      {
+        "id": "h00",
+        "family": "key_detour",
+        "correct": true
+      },
+      {
+        "id": "h01",
+        "family": "ungated",
+        "correct": true
+      },
+      {
+        "id": "h02",
+        "family": "unreachable",
+        "correct": false
+      },
+      {
+        "id": "h03",
+        "family": "unreachable",
+        "correct": false
+      },
+      {
+        "id": "h04",
+        "family": "unreachable",
+        "correct": false
+      },
+      {
+        "id": "h05",
+        "family": "key_detour",
+        "correct": false
+      },
+      {
+        "id": "h06",
+        "family": "ungated",
+        "correct": true
+      },
+      {
+        "id": "h07",
+        "family": "ungated",
+        "correct": true
+      },
+      {
+        "id": "h08",
+        "family": "key_detour",
+        "correct": false
+      }
+    ],
+    "renamed": [
+      {
+        "id": "h00",
+        "family": "key_detour",
+        "correct": false
+      },
+      {
+        "id": "h01",
+        "family": "ungated",
+        "correct": false
+      },
+      {
+        "id": "h02",
+        "family": "unreachable",
+        "correct": false
+      },
+      {
+        "id": "h03",
+        "family": "unreachable",
+        "correct": false
+      },
+      {
+        "id": "h04",
+        "family": "unreachable",
+        "correct": false
+      },
+      {
+        "id": "h05",
+        "family": "key_detour",
+        "correct": false
+      },
+      {
+        "id": "h06",
+        "family": "ungated",
+        "correct": true
+      },
+      {
+        "id": "h07",
+        "family": "ungated",
+        "correct": true
+      },
+      {
+        "id": "h08",
+        "family": "key_detour",
+        "correct": false
+      }
+    ],
+    "new_motif": [
+      {
+        "id": "n00",
+        "family": "unreachable",
+        "correct": false
+      },
+      {
+        "id": "n01",
+        "family": "key_detour",
+        "correct": true
+      },
+      {
+        "id": "n02",
+        "family": "ungated",
+        "correct": false
+      },
+      {
+        "id": "n03",
+        "family": "unreachable",
+        "correct": false
+      },
+      {
+        "id": "n04",
+        "family": "ungated",
+        "correct": true
+      },
+      {
+        "id": "n05",
+        "family": "key_detour",
+        "correct": false
+      },
+      {
+        "id": "n06",
+        "family": "unreachable",
+        "correct": false
+      },
+      {
+        "id": "n07",
+        "family": "ungated",
+        "correct": false
+      },
+      {
+        "id": "n08",
+        "family": "key_detour",
+        "correct": true
+      }
+    ]
+  },
+  "targeted_model": {
+    "original": [
+      {
+        "id": "h00",
+        "family": "key_detour",
+        "correct": true
+      },
+      {
+        "id": "h01",
+        "family": "ungated",
+        "correct": true
+      },
+      {
+        "id": "h02",
+        "family": "unreachable",
+        "correct": false
+      },
+      {
+        "id": "h03",
+        "family": "unreachable",
+        "correct": false
+      },
+      {
+        "id": "h04",
+        "family": "unreachable",
+        "correct": false
+      },
+      {
+        "id": "h05",
+        "family": "key_detour",
+        "correct": true
+      },
+      {
+        "id": "h06",
+        "family": "ungated",
+        "correct": true
+      },
+      {
+        "id": "h07",
+        "family": "ungated",
+        "correct": true
+      },
+      {
+        "id": "h08",
+        "family": "key_detour",
+        "correct": true
+      }
+    ],
+    "renamed": [
+      {
+        "id": "h00",
+        "family": "key_detour",
+        "correct": false
+      },
+      {
+        "id": "h01",
+        "family": "ungated",
+        "correct": false
+      },
+      {
+        "id": "h02",
+        "family": "unreachable",
+        "correct": false
+      },
+      {
+        "id": "h03",
+        "family": "unreachable",
+        "correct": false
+      },
+      {
+        "id": "h04",
+        "family": "unreachable",
+        "correct": false
+      },
+      {
+        "id": "h05",
+        "family": "key_detour",
+        "correct": false
+      },
+      {
+        "id": "h06",
+        "family": "ungated",
+        "correct": true
+      },
+      {
+        "id": "h07",
+        "family": "ungated",
+        "correct": true
+      },
+      {
+        "id": "h08",
+        "family": "key_detour",
+        "correct": false
+      }
+    ],
+    "new_motif": [
+      {
+        "id": "n00",
+        "family": "unreachable",
+        "correct": false
+      },
+      {
+        "id": "n01",
+        "family": "key_detour",
+        "correct": true
+      },
+      {
+        "id": "n02",
+        "family": "ungated",
+        "correct": false
+      },
+      {
+        "id": "n03",
+        "family": "unreachable",
+        "correct": false
+      },
+      {
+        "id": "n04",
+        "family": "ungated",
+        "correct": true
+      },
+      {
+        "id": "n05",
+        "family": "key_detour",
+        "correct": false
+      },
+      {
+        "id": "n06",
+        "family": "unreachable",
+        "correct": false
+      },
+      {
+        "id": "n07",
+        "family": "ungated",
+        "correct": false
+      },
+      {
+        "id": "n08",
+        "family": "key_detour",
+        "correct": true
+      }
+    ]
+  },
+  "targeted_oracle": {
+    "original": [
+      {
+        "id": "h00",
+        "family": "key_detour",
+        "correct": true
+      },
+      {
+        "id": "h01",
+        "family": "ungated",
+        "correct": true
+      },
+      {
+        "id": "h02",
+        "family": "unreachable",
+        "correct": false
+      },
+      {
+        "id": "h03",
+        "family": "unreachable",
+        "correct": false
+      },
+      {
+        "id": "h04",
+        "family": "unreachable",
+        "correct": false
+      },
+      {
+        "id": "h05",
+        "family": "key_detour",
+        "correct": true
+      },
+      {
+        "id": "h06",
+        "family": "ungated",
+        "correct": true
+      },
+      {
+        "id": "h07",
+        "family": "ungated",
+        "correct": true
+      },
+      {
+        "id": "h08",
+        "family": "key_detour",
+        "correct": true
+      }
+    ],
+    "renamed": [
+      {
+        "id": "h00",
+        "family": "key_detour",
+        "correct": false
+      },
+      {
+        "id": "h01",
+        "family": "ungated",
+        "correct": false
+      },
+      {
+        "id": "h02",
+        "family": "unreachable",
+        "correct": false
+      },
+      {
+        "id": "h03",
+        "family": "unreachable",
+        "correct": false
+      },
+      {
+        "id": "h04",
+        "family": "unreachable",
+        "correct": false
+      },
+      {
+        "id": "h05",
+        "family": "key_detour",
+        "correct": false
+      },
+      {
+        "id": "h06",
+        "family": "ungated",
+        "correct": true
+      },
+      {
+        "id": "h07",
+        "family": "ungated",
+        "correct": true
+      },
+      {
+        "id": "h08",
+        "family": "key_detour",
+        "correct": false
+      }
+    ],
+    "new_motif": [
+      {
+        "id": "n00",
+        "family": "unreachable",
+        "correct": false
+      },
+      {
+        "id": "n01",
+        "family": "key_detour",
+        "correct": true
+      },
+      {
+        "id": "n02",
+        "family": "ungated",
+        "correct": false
+      },
+      {
+        "id": "n03",
+        "family": "unreachable",
+        "correct": false
+      },
+      {
+        "id": "n04",
+        "family": "ungated",
+        "correct": true
+      },
+      {
+        "id": "n05",
+        "family": "key_detour",
+        "correct": false
+      },
+      {
+        "id": "n06",
+        "family": "unreachable",
+        "correct": false
+      },
+      {
+        "id": "n07",
+        "family": "ungated",
+        "correct": false
+      },
+      {
+        "id": "n08",
+        "family": "key_detour",
+        "correct": true
+      }
+    ]
+  }
+}

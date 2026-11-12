@@ -1,22 +1,35 @@
-# Manuscript and deposit
+# Manuscript and reproducibility
 
-[main.tex](main.tex) is a working draft for the Zenodo preprint. The
-introduction, task definition, and methods follow the checked code and
-the locked E002 protocol. Citation keys are defined in
-[reference-sources.md](reference-sources.md). The bibliography is sourced from arXiv and Crossref exports in
-[references.bib](references.bib).
+The manuscript source is [main.tex](main.tex). The bibliography was fetched
+from the primary records listed in [reference-sources.md](reference-sources.md).
+The data, code, and protocols are included in the accompanying archive.
 
-Publication checklist:
+## Build the PDF
 
-1. Complete and audit the paired E002 results. Decide whether a replication
-   is needed for each claim the abstract makes.
-2. Finalize the manuscript, exact run metadata, AI-use statement, and
-   limitations. Check every result against the saved per-call evidence.
-3. Compile and visually inspect the PDF. Package code, protocols, seeds,
-   model digest, raw responses, and analysis instructions as a supplement.
-4. Prepare a new Zenodo Preprint record and verify its creator metadata,
-   license and public files. After publication, verify DOI resolution and
-   that Zenodo serves the expected artifacts.
+From this directory, use a standard LaTeX distribution with BibTeX.
 
-Zenodo provides an [upload guide](https://help.zenodo.org/docs/deposit/create-new-upload/)
-and [REST API documentation](https://developers.zenodo.org/).
+```sh
+pdflatex -interaction=nonstopmode -halt-on-error main.tex
+bibtex main
+pdflatex -interaction=nonstopmode -halt-on-error main.tex
+pdflatex -interaction=nonstopmode -halt-on-error main.tex
+```
+
+## Verify the results
+
+From the archive root, run the checks with Python 3.10 or later. These
+commands use only the standard library and replay archived model answers.
+
+```sh
+python3 -m unittest discover -s experiments/E000-oracle-smoke
+python3 -m unittest discover -s experiments/E001-memory-coverage
+python3 -m unittest discover -s experiments/E002-admission
+python3 -m src.admission_audit experiments/E002-admission/results/qwen3-8b
+python3 -m src.admission_report experiments/E002-admission/results/qwen3-8b
+python3 -m src.transfer_report experiments/E002-admission/results/qwen3-8b experiments/E003-transfer/results/qwen3-8b
+```
+
+The live run commands in the root README require the pinned Qwen3 8B model
+and local Ollama. For exact reconstruction of the published counts, use
+the archived responses. Hardware and inference implementation can affect
+regenerated model responses.

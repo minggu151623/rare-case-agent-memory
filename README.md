@@ -63,3 +63,16 @@ Each completed seed has a per-call trace and summary. If an infrastructure
 error interrupts one seed, use the same locked seed with --seed and a new
 output directory, then assemble the six completed seed directories for the
 report.
+
+## E003 graph transfer check
+
+[Protocol](experiments/E003-transfer/protocol.md) ·
+[Results](experiments/E003-transfer/analysis.md)
+
+```sh
+python3 -m src.transfer experiments/E002-admission/results/qwen3-8b --ollama-port 11434 --output local-runs/e003-qwen3
+python3 -m src.transfer_report experiments/E002-admission/results/qwen3-8b experiments/E003-transfer/results/qwen3-8b
+```
+
+See [the paper directory](paper/README.md) for offline replay and PDF build
+instructions.

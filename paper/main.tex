@@ -21,9 +21,11 @@ targeted conditions scored zero on 18 held-out unreachable tasks.
 Targeted model-answer supplementation scored 22.2 percentage points
 higher than random model-answer supplementation on rare-family macro
 accuracy, driven by key-detour performance and accompanied by lower
-unreachable accuracy. These results are specific to the tested model
-and task generator. They illustrate why auditing example memory requires
-both family-level admission counts and held-out outcomes.
+unreachable accuracy. In a transfer check with frozen final memories,
+the targeted model's key-detour score dropped from $18/18$ to $1/18$
+after vertex renaming. The targeted advantage also disappeared on
+new graph motifs. These results show why this setting requires
+family-level admission counts and tests of held-out transfer.
 \end{abstract}
 
 
@@ -195,6 +197,41 @@ unreachable cases.
 
 \input{e002-tables}
 
+\subsection{Transfer under vertex renaming and new motifs}
+
+Table~\ref{tab:e003-transfer} shows scores after freezing the final
+memories. The key-detour advantage of targeted model over random
+model was $11/18$ on the original graphs. With independent vertex
+renaming, targeted model retained just one of its 18 originally
+correct answers. Random model answered $2/18$ correctly, and
+targeted oracle answered $0/18$. On fresh graphs with new motifs,
+the targeted and random model conditions scored $9/18$ and
+$10/18$ on key-required tasks, respectively. All three arms scored
+$0/18$ on unreachable tasks in both transfer conditions.
+
+\input{e003-table}
+
+\section{Discussion}
+
+The experiments expose two points at which an apparent improvement
+can weaken. First, targeting changes the tasks that reach the
+verifier. In E002, the model failed every recorded unreachable
+attempt, so it could not add an example from that family using its
+own answers. Providing an exact answer changed which examples
+entered and survived in memory. Accuracy on new unreachable tasks
+remained unchanged in the targeted comparison. Second, the
+aggregate rare-task gain came from one family under the original
+representation. The renaming check preserves the underlying
+planning problems and shows that the observed gain is sensitive
+to their presentation. The fresh-motif result further limits what
+can be inferred from structural deduplication alone.
+
+For a memory audit in an exactly verifiable domain, these results
+support recording the path from task exposure to correct solution,
+admission, and retention, then measuring accuracy on separately
+constructed tasks. This distinguishes an inability to add examples
+from an inability to use examples when they are present.
+
 \section{Limitations}
 
 The paired study used six trajectories for a single model, two update
@@ -205,8 +242,14 @@ other environments may have imperfect verifiers or no exact answer
 source. Unreachable tasks differ from the solvable families in both
 reasoning requirements and response format. The family-specific
 results therefore do not isolate frequency from every difference in
-task difficulty. The study did not evaluate free-form generation,
-long-horizon agents, or weight updates.
+task difficulty. Renaming changes the presentation of both the
+demonstrations and the held-out graphs, so the two sources of
+sensitivity remain unresolved. The new-motif condition also changes
+the holdout draw, and its key-required tasks avoid revisiting a node.
+The findings concern fixed weights, controlled task construction,
+and short memory trajectories. Free-form generation, longer
+trajectories, and replication with other model families remain
+open.
 
 \section*{Reproducibility and AI use}
 
