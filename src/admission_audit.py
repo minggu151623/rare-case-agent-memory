@@ -34,17 +34,18 @@ def decode_answers(raw):
     return {}, False
 
 
-def audit_seed(directory, seed, pools):
+def audit_seed(directory, seed, pools, *, arms=ARMS, include_controls=True):
     summary = json.loads((directory / "summary.json").read_text())
     initial, backgrounds, supplements, holdout = pools
     rows = read_calls(directory)
     rng = Random(seed + 100_000)
     random_families = rng.choices(FAMILIES, weights=REFERENCE_WEIGHTS, k=ROUNDS)
     tie_order = rng.sample(RARE, len(RARE))
-    order = rng.sample(ARMS, len(ARMS))
+    order = [arm for arm in rng.sample(ARMS, len(ARMS)) if arm in arms]
     require(summary["seed"] == seed, f"Wrong seed label in {directory}")
     require(summary["initial_memory"] == counts(initial), "Wrong initial family counts")
-    require(len(rows) == summary["calls"] == 14, "Unexpected call count")
+    expected_calls = len(arms) * (ROUNDS + 1) + 2 * include_controls
+    require(len(rows) == summary["calls"] == expected_calls, "Unexpected call count")
     if summary["backend"] == MODEL:
         require(summary["digest"] == DIGEST, "Unexpected model snapshot")
         for row in rows:
@@ -74,7 +75,8 @@ def audit_seed(directory, seed, pools):
         return counts(case for case in cases if is_correct(case.task, answers.get(case.id)))
 
     initial_memory = [(case, oracle_answer(case)) for case in initial]
-    for arm, memory in (("empty", []), ("frozen", initial_memory)):
+    controls = (("empty", []), ("frozen", initial_memory)) if include_controls else ()
+    for arm, memory in controls:
         actual = {"correct": score(holdout, replay("evaluation", arm, 0, holdout, memory)),
                   "total": counts(holdout)}
         require(summary["controls"][arm] == actual, f"{arm} score mismatch")
