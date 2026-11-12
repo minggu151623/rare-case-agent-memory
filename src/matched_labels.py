@@ -10,9 +10,8 @@ from src.admission import study_pools
 from src.admission_audit import read_calls
 from src.benchmark import FAMILIES
 from src.pilot import Backend
-from src.planning import is_correct
 from src.representation import ARMS, NODES, prompts, rename_memory, score_call
-from src.transfer import rename_with_labels, score
+from src.transfer import rename_with_labels
 
 CONDITIONS = ("shared", "mixed")
 
@@ -65,13 +64,10 @@ def run(source, output, port):
     with (output / "calls.jsonl").open("w") as trace:
         backend = Backend(port, trace)
         for seed, arm, condition, repetition, (cases, memory) in keyed_prompts(source):
-            answers = backend.call(
+            backend.call(
                 "evaluation", f"{seed}/{arm}/{condition}/{repetition}",
                 2, cases, memory, sampling_seed=seed,
             )
-            marks = [is_correct(case.task, answers.get(case.id)) for case in cases]
-            if len(score(cases, marks)) != len(cases):
-                raise ValueError("Incomplete score")
             if arm == ARMS[-1] and condition == CONDITIONS[-1] and repetition == 1:
                 print(f"Seed {seed} complete", flush=True)
 
