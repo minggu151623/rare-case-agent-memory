@@ -9,10 +9,11 @@ from random import Random
 
 from src.admission import ROUNDS, SEEDS, study_pools
 from src.admission_audit import audit_seed, decode_answers, read_calls, require
+from src.admission_report import sign_flip_p
 from src.benchmark import Case, FAMILIES, make_pools, structural_key
 from src.pilot import Backend, counts
 from src.planning import Edge, Task, is_correct, shortest_distance
-from src.rare_only import RUNTIME, replay_seed as replay_rare_seed, sensitivity
+from src.rare_only import RUNTIME, replay_seed as replay_rare_seed
 from src.representation import score_call
 from src.transfer import flatten, inputs
 
@@ -152,7 +153,7 @@ def report(mixture, rare, output):
             "original_gap": sum(g[0] for g in by_seed) / 18,
             "varied_gap": sum(g[1] for g in by_seed) / 18,
             "varied_minus_original": sum(changes) / 18,
-            "sign_flip_p": sensitivity(changes),
+            "sign_flip_p": sign_flip_p(changes),
         }
     return {"calls": len(per_seed) * len(ARMS) * len(CONDITIONS),
             "format_failures": failures,

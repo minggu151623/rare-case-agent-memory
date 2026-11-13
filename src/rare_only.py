@@ -1,12 +1,12 @@
 """Run and replay the E012 matched rare-only comparison."""
 import argparse
-from itertools import product
 import json
 from pathlib import Path
 from random import Random
 
 from src.admission import assignment, run_seed, study_pools
 from src.admission_audit import audit_seed, require
+from src.admission_report import sign_flip_p
 from src.benchmark import RARE
 from src.pilot import DIGEST, MODEL
 
@@ -19,15 +19,6 @@ def plan_for(seed):
     families = Random(seed + 612000).sample(RARE, len(RARE))
     order = Random(seed + 612001).sample(ARMS, len(ARMS))
     return families, tie_order, order
-
-
-def sensitivity(gaps):
-    observed = abs(sum(gaps))
-    extreme = sum(
-        abs(sum(gap * sign for gap, sign in zip(gaps, signs, strict=True))) >= observed
-        for signs in product((-1, 1), repeat=len(gaps))
-    )
-    return extreme / 2**len(gaps)
 
 
 def replay_seed(output, seed, pools):
@@ -81,7 +72,7 @@ def report(output):
                                         for name in names} for s in summaries},
         "rare_gaps_out_of_six": gaps,
         "rare_mean_gap": sum(gaps) / (6 * len(gaps)),
-        "sign_flip_p": sensitivity(gaps),
+        "sign_flip_p": sign_flip_p(gaps),
     }
 
 
