@@ -34,7 +34,7 @@ def decode_answers(raw):
     return {}, False
 
 
-def audit_seed(directory, seed, pools, *, arms=ARMS, include_controls=True):
+def audit_seed(directory, seed, pools, *, arms=ARMS, include_controls=True, plan=None):
     summary = json.loads((directory / "summary.json").read_text())
     initial, backgrounds, supplements, holdout = pools
     rows = read_calls(directory)
@@ -42,6 +42,8 @@ def audit_seed(directory, seed, pools, *, arms=ARMS, include_controls=True):
     random_families = rng.choices(FAMILIES, weights=REFERENCE_WEIGHTS, k=ROUNDS)
     tie_order = rng.sample(RARE, len(RARE))
     order = [arm for arm in rng.sample(ARMS, len(ARMS)) if arm in arms]
+    if plan is not None:
+        random_families, tie_order, order = plan
     require(summary["seed"] == seed, f"Wrong seed label in {directory}")
     require(summary["initial_memory"] == counts(initial), "Wrong initial family counts")
     expected_calls = len(arms) * (ROUNDS + 1) + 2 * include_controls
@@ -84,7 +86,9 @@ def audit_seed(directory, seed, pools, *, arms=ARMS, include_controls=True):
     for allocation, source in order:
         arm = f"{allocation}_{source}"
         memory = initial_memory.copy()
-        for index, record in enumerate(summary["arms"][arm]["rounds"]):
+        records = summary["arms"][arm]["rounds"]
+        require(len(records) == ROUNDS, "Unexpected round count")
+        for index, record in enumerate(records):
             require(record["round"] == index + 1, "Round mismatch")
             before = counts(case for case, _ in memory)
             family = (min(tie_order, key=before.__getitem__) if allocation == "targeted"

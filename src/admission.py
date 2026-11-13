@@ -68,14 +68,20 @@ def evaluation(backend, arm, round_, cases, memory, seed):
     return {"correct": counts(correct), "total": counts(cases)}
 
 
-def run_seed(seed, pools, port, output, *, arms=ARMS, include_controls=True):
-    initial, backgrounds, supplements, holdout = pools
-    initial_memory = [(case, oracle_answer(case)) for case in initial]
-    output.mkdir(parents=True)
+def assignment(seed, arms):
     rng = Random(seed + 100_000)
     random_families = rng.choices(FAMILIES, weights=REFERENCE_WEIGHTS, k=ROUNDS)
     tie_order = rng.sample(RARE, len(RARE))
     arm_order = [arm for arm in rng.sample(ARMS, len(ARMS)) if arm in arms]
+    return random_families, tie_order, arm_order
+
+
+def run_seed(seed, pools, port, output, *, arms=ARMS, include_controls=True,
+             plan=None):
+    initial, backgrounds, supplements, holdout = pools
+    initial_memory = [(case, oracle_answer(case)) for case in initial]
+    output.mkdir(parents=True)
+    random_families, tie_order, arm_order = assignment(seed, arms) if plan is None else plan
 
     with (output / "calls.jsonl").open("w") as trace:
         backend = AdmissionBackend(port, trace)
