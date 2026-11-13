@@ -5,35 +5,28 @@
 \newtheorem{proposition}{Proposition}
 \title{Auditing Rare-Case Coverage in LLM Agents with Iterative Example Memory}
 \author{Tran Vu Bao Minh\\Independent Researcher}
-\date{November 12, 2026}
+\date{November 13, 2026}
 
 \begin{document}
 \maketitle
 
 \begin{abstract}
-Iterative example memory can lose a task family when candidate answers
-must pass verification before being stored. We audit this mechanism
-using exactly verifiable graph planning and a fixed-weight Qwen3 8B
-model. A six-seed factorial study crosses random or coverage-targeted
-supplementation with model or oracle answers for the supplement. In the
-targeted condition, access to oracle answers increased final
-unreachable-example coverage by 0.67 examples on average, while both
-targeted conditions scored zero on 18 held-out unreachable tasks.
-Targeted model-answer supplementation scored 22.2 percentage points
-higher than random model-answer supplementation on rare-family macro
-accuracy, driven by key-detour performance and accompanied by lower
-unreachable accuracy. In a transfer check with frozen final memories,
-the targeted model's key-detour score dropped from $18/18$ to $1/18$
-after independent vertex renaming. Changing memory labels alone or
-query labels alone removed most of the policy gap, while a shared
-permutation recovered the gap to $10/18$. The advantage was also
-absent when independent labels were used throughout acquisition.
-A control matching each graph's rendered forms found a $19.4$-point
-larger policy gap under shared than mixed label assignments, with
-reversals in two of six seeds. A second model showed the same
-direction on a small single-query diagnostic with frozen Qwen
-memories. These results motivate auditing both admission and the
-robustness of held-out accuracy to equivalent representations.
+We audit a fixed-weight language model that updates a bounded memory of
+verified graph-planning examples. In a six-seed Qwen3 8B study, replacing
+the model answer on targeted supplements with an exact answer increased
+the final number of unreachable examples by 0.67 on average. Both
+targeted conditions solved $0/18$ held-out unreachable tasks. On the
+original key-detour tasks, targeted supplementation scored $18/18$
+against $7/18$ for a reference-mixture random policy. A fixed path
+chosen from the generator also scores $18/18$ on these tasks.
+With frozen memories and independent vertex renaming, the policy gap
+changed from $+11/18$ to $-1/18$. A follow-up matched each graph's two
+rendered forms and changed their arrangement within prompts. The gap
+was 19.4 percentage points larger under shared than alternating
+label assignments, with reversals in two of six seeds. The study is a
+controlled case showing how the representation can change an
+evaluation of a memory policy. It also shows why keeping a task
+family in memory and solving new instances should be measured separately.
 \end{abstract}
 
 
@@ -44,12 +37,12 @@ solves and verifying the answers before reuse. The resulting memory is
 shaped by which tasks are available, which tasks the agent attempts,
 which answers pass verification, and which examples the memory policy
 evicts. A low-frequency task family can disappear even when each
-retained answer is correct and aggregate accuracy improves. We study this
+retained answer is correct and the combined count of rare examples increases. We study this
 mechanism in a controlled planning domain with fixed model weights.
 
 We distinguish coverage, the composition of memory, from generalization,
 the model's accuracy on structurally disjoint held-out tasks. We compare
-random and coverage-targeted task selection at matched inference budgets.
+random and coverage-targeted task selection at matched call counts, task slots, and output-token caps.
 We also vary whether the added example must be solved by the model or can
 use an answer from an exact solver. The latter intervention tests whether
 access to a verified answer changes retention when the agent already has
@@ -62,7 +55,7 @@ at the same call budget? Third, does any observed advantage persist
 when test problems and demonstrations retain their semantics but
 change their labels? The experiments address these questions in a
 small planning domain with an exact verifier. The FIFO reference
-model specifies what loss of coverage means when attempts are
+model quantifies loss of coverage when attempts are
 independent. The empirical trajectories allow both answer quality
 and allocation to depend on the current memory.
 
@@ -95,7 +88,12 @@ produce an admissible example.
 
 Herbst et al.\ document sensitivity to node labels, edge ordering, and
 syntax in graph reasoning \cite{lostserialization}. Their work motivates
-testing equivalent graph representations. Here we vary the representation
+testing equivalent graph representations. Fatemi et al.\ also show that
+graph encoding and the graph generator affect performance under few-shot
+prompting \cite{fatemi_graph}. The empirical contribution here is an
+audit of the \emph{difference between memory policies} across label
+conditions, including a comparison that matches individual graph
+renderings while changing how they co-occur in prompts. Here we vary the representation
 of the demonstrations and the queries separately, with the graph, stored
 solutions, and memory policy fixed. We also compare independent relabeling
 with a single shared permutation. The comparison asks whether a model can
@@ -119,7 +117,8 @@ families are rare under that reference distribution.
 
 Let $M_{f,t}$ be the number of examples of family $f$ after update $t$.
 For each family and update, the audit records attempted examples
-$A_{f,t}$, answers passing verification $V_{f,t}$, admissions $I_{f,t}$,
+$A_{f,t}$, model answers passing verification before oracle substitution $V_{f,t}$,
+admissions after any substitution $I_{f,t}$,
 and evictions $E_{f,t}$. The identity
 \[
  M_{f,t+1} = M_{f,t} + I_{f,t} - E_{f,t}
@@ -214,14 +213,18 @@ is the model or the exact solver for the one external supplement. In
 every arm the model is asked to solve two common background tasks and
 one supplement per round. In oracle arms, we replace the supplement's
 model answer before applying the shared verification and admission rules.
-All background answers come from the model. Because the targeted rule
+All background answers come from the model. The random arm samples
+supplements from all three families and the targeted arm only from
+the two rare families. This comparison bundles enrichment for rare
+tasks with adaptive choice between the rare families. A nonadaptive
+rare-only policy was not evaluated. Because the targeted rule
 depends on memory, the answer-source contrast captures the total policy
 effect across the two rounds.
 
 We use six paired seeds with shuffled initial memory order. Each initial
 memory holds four ungated, one key-detour and one unreachable example.
-Memory has capacity six and uses FIFO eviction. Each seed has an
-independent holdout with three tasks per family. We reject graph
+Memory has capacity six and uses FIFO eviction. Each seed has a disjoint
+holdout with three tasks per family. We reject graph
 isomorphs across seeds, task pools, and the earlier feasibility runs,
 preserving node roles and directed edge locks when computing graph
 equivalence. Initial-memory and empty-memory controls use the same
@@ -232,8 +235,7 @@ running locally in Ollama 0.40.12 with thinking disabled, temperature
 zero, a 4096-token context, and up to 384 output tokens per call.
 The protocols record the exact model digest and seeds. Each E002 arm
 had two solve calls and one final evaluation call per seed. The
-empty and frozen baselines added two calls per seed. All nine
-held-out tasks in an evaluation were answered in one call. A missing
+empty and frozen baselines added two calls per seed. Each evaluation call requested answers to nine held-out tasks. A missing
 or incorrect answer received zero credit.
 
 The primary mechanism contrast is the paired difference in the final
@@ -260,8 +262,8 @@ final memory composition fixed.
 
 \paragraph{Separating query and demonstration labels.}
 E004 isolates the two transformations that E003 applied jointly.
-For each of the two model-answer policies, we fix the six final
-memories and the nine test problems per seed. A $2\times2$ design
+For each of the two model-answer policies, we fix one final memory
+and nine test problems per seed, across six seeds. A $2\times2$ design
 crosses original versus independently relabeled memory examples with
 original versus independently relabeled queries. The original/original
 and independent/independent responses come from E002 and E003.
@@ -354,8 +356,11 @@ unreachable-example count were $(1,1,1,0,1,0)$, for a mean of $0.67$.
 The exact two-sided sign-flip sensitivity value was $0.125$. Both
 targeted arms scored $0/18$ on held-out unreachable cases
 (Tables~\ref{tab:e002-accuracy} and~\ref{tab:e002-coverage}).
-The verified examples improved coverage in this condition, with
-no corresponding observed gain on that family.
+The policy with oracle substitution retained more unreachable
+examples in this sample. Since supplementation adapts to the
+current memory, this contrast includes changes in later task
+allocation and cannot identify the effect of one extra example
+on accuracy.
 
 Targeted model yielded a mean rare-macro accuracy difference of
 $+22.2$ percentage points relative to random model. Its seed
@@ -364,9 +369,23 @@ value was $0.250$. Key-detour performance rose from $7/18$ to
 $18/18$, while unreachable performance fell from $3/18$ to $0/18$.
 This pooled contrast conceals opposite family-level changes. The
 frozen control scored $16/18$ on key detours and $0/18$ on
-unreachable cases.
+unreachable cases. Of twelve supplement slots, the random/model
+arm allocated nine to ungated tasks, two to key detours and one to
+unreachable tasks. The targeted/model arm allocated nine to key
+detours and three to unreachable tasks.
 
 \input{e002-tables}
+
+\paragraph{A generator-aware shortcut.} In a post hoc audit, we
+scored the fixed path $A\to D\to C\to D\to B$, chosen directly
+from the generator, on all 18 original key-detour holdouts. It was
+optimal on every one. On all 18 fresh E003 key-required graphs
+before renaming, that path failed. This check requires neither the
+memory nor inspection of individual edges at test time. Structural
+deduplication therefore left a common answer within the original
+family. The $18/18$ score cannot distinguish structural planning
+from a solution that exploits this regularity. This diagnostic
+does not identify how Qwen produced its answers.
 
 \subsection{Transfer under vertex renaming and new motifs}
 
@@ -430,12 +449,16 @@ Under shared labels, targeted and random scored $20/36$ and $10/36$
 on key detours. Under mixed labels, they scored $10/36$ and $7/36$.
 The policy gap was thus $7/36$ larger under shared labels, or
 $19.4$ percentage points. The paired differences in correct counts
-out of six were $(+3,+6,-4,+2,-1,+1)$. Four seeds favored shared
-labels and two favored mixed. The 36 answer records per condition
+out of six were $(+3,+6,-4,+2,-1,+1)$. The policy-gap difference was positive
+in four seeds and negative in two. Omitting one seed at a time gave
+mean differences from 3.3 to 36.7 points. This descriptive sensitivity
+check reuses the same data. The 36 answer records per condition
 contain two labelings of each of 18 graphs. Matching the rendered
 forms narrows the explanation to properties of the prompt-level
-combination. The alternating assignment changes several such
-properties and does not identify one internal feature.
+combination. The alternating assignment jointly changes the
+consistency of labels within memory, within the batch of queries, and
+between the two lists. The experiment does not isolate any one of
+these sources.
 
 \subsection{Cross-model readout and the limits of batched prompts}
 
@@ -455,10 +478,14 @@ answered $1/6$ correctly in each of the three label conditions.
 With targeted memory it scored $4/6$ with original labels, $0/6$
 with independently renamed examples and queries, and $3/6$ with
 the shared derangement. The resulting gaps of $+3/6$, $-1/6$ and
-$+2/6$ agree in direction with the corresponding Qwen contrasts.
-This evidence is limited to six selected tasks, three
-representations and frozen Qwen memories. It neither resolves the
-batch floor nor establishes the effect for acquisition by Gemma.
+$+2/6$ can be compared with Qwen's archived batch predictions on
+the same six item IDs, which yield gaps of $+3/6$, $0/6$, and
+$+3/6$, respectively.
+Thus both readouts show a positive gap with original and shared labels,
+and neither shows a positive gap with independent labels. The Qwen
+predictions were still generated in nine-query batches. These
+six-item results provide a descriptive comparison of two readout
+setups, with memory acquisition fixed to Qwen.
 
 \subsection{Which failures replaced correct paths?}
 
@@ -484,8 +511,9 @@ remained unchanged in the targeted comparison. Second, the
 aggregate rare-task gain came from one family under the original
 representation. The renaming check preserves the underlying
 planning problems and shows that the observed gain is sensitive
-to their presentation. The fresh-motif result further limits what
-can be inferred from structural deduplication alone. Both one-sided
+to their presentation. The fixed-path diagnostic establishes that deduplication alone
+did not eliminate a shortcut in the original family. The fresh-motif
+result limits the evidence for transfer beyond that template. Both one-sided
 changes reduced the targeted advantage, and a shared permutation
 largely restored the policy gap. This combination is consistent with
 the model relying partly on correspondence across examples and
@@ -512,10 +540,14 @@ other environments may have imperfect verifiers or no exact answer
 source. Unreachable tasks differ from the solvable families in both
 reasoning requirements and response format. The family-specific
 results therefore do not isolate frequency from every difference in
-task difficulty. The one-sided experiments isolate which prompts were changed.
+task difficulty. The one-sided experiments isolate which inputs were changed.
+A comparison with a nonadaptive rare-only sampler would separate the
+value of adaptive allocation from rare-family enrichment.
 They cannot reveal how the model uses vertex labels internally.
-The matched-label comparison used two permutations per seed and
-an alternating mixture, leaving other label mixtures untested. The new-motif condition also changes
+The matched-label comparison used two permutations per seed, an
+alternating mixture, and a fixed shared-then-mixed call order within
+each arm. The calls were stateless. The design does not measure
+sensitivity to other mixtures or inference-order effects. The new-motif condition also changes
 the holdout draw, and its key-required tasks avoid revisiting a node.
 The Gemma experiment changes the model, quantization, serving backend,
 and response grammar. Its single-query evidence measures only readout
@@ -552,7 +584,10 @@ The same holdout graphs occur under each policy within a seed, and
 many reappear in the relabeling experiments. We use paired counts
 rather than interpreting these responses as independent samples.
 The E002 sign-flip values are sensitivity calculations on six seed
-differences. The follow-ups were motivated by earlier results and
+differences, assuming the joint distribution of paired differences
+is invariant to independent sign flips under the null. We did not
+randomly assign policy labels. The values do not establish a causal
+randomization test or equivalence between policies. The follow-ups were motivated by earlier results and
 reuse the same seeds. Their added cells test specific alternatives
 under controlled changes, without adding independent replications
 of the original intervention.

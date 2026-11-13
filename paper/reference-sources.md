@@ -12,3 +12,4 @@
 | lostserialization | [Herbst et al., Lost in Serialization](https://arxiv.org/abs/2511.10234v3) |
 | prioritizedreplay | [Schaul et al., Prioritized Experience Replay](https://arxiv.org/abs/1511.05952) |
 | gemma4 | [Gemma 4 Technical Report](https://arxiv.org/abs/2607.02770) |
+| fatemi_graph | [Fatemi et al., Talk Like a Graph, ICLR 2024](https://proceedings.iclr.cc/paper_files/paper/2024/file/bf72f65f30eedf5d48da6980ee02b589-Paper-Conference.pdf) |

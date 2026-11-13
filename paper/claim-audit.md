@@ -54,3 +54,12 @@ seeds, with two reversals and a specific two-map mixture. The FIFO
 proposition is a transparent reference calculation based on
 binomial thinning. Its algebra alone is insufficient as a claim of
 substantial theoretical novelty.
+
+## November 13 audit
+
+[E011](../experiments/E011-manuscript-audit/analysis.md) finds a fixed-path
+shortcut that ties the 18/18 Qwen result on the original key-detour family.
+It also matches the Gemma diagnostic's six item IDs in the archived Qwen
+responses and finds a Qwen tie under independent relabeling. The revised
+manuscript reports both findings, the E009 leave-one-seed-out range, and the
+missing nonadaptive rare-only comparison.

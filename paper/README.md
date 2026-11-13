@@ -54,3 +54,9 @@ python3 -m src.gemma_diagnostics experiments/E010-single-query/results/gemma-e4b
 E006's batch completeness command reproduces
 `completeness.json`. The other JSON commands reproduce
 `aggregate.json`. The FIFO command prints the count of exact checks.
+
+The November 13 manuscript audit reproduces its evidence with
+~~~
+python3 -m experiments.E011-manuscript-audit.check
+~~~
+Compare with experiments/E011-manuscript-audit/results.json.
