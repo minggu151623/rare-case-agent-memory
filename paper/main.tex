@@ -11,22 +11,23 @@
 \maketitle
 
 \begin{abstract}
-We audit a fixed-weight language model that updates a bounded memory of
-verified graph-planning examples. In a six-seed Qwen3 8B study, replacing
-the model answer on targeted supplements with an exact answer increased
-the final number of unreachable examples by 0.67 on average. Both
-targeted conditions solved $0/18$ held-out unreachable tasks. On the
-original key-detour tasks, targeted supplementation scored $18/18$
-against $7/18$ for a reference-mixture random policy. A fixed path
-chosen from the generator also scores $18/18$ on these tasks.
-With frozen memories and independent vertex renaming, the policy gap
-changed from $+11/18$ to $-1/18$. A follow-up matched each graph's two
-rendered forms and changed their arrangement within prompts. The gap
-was 19.4 percentage points larger under shared than alternating
-label assignments, with reversals in two of six seeds. The study is a
-controlled case showing how the representation can change an
-evaluation of a memory policy. It also shows why keeping a task
-family in memory and solving new instances should be measured separately.
+We audit a fixed-weight language model that updates a bounded memory
+of verified graph-planning examples. In six paired seeds with Qwen3 8B,
+supplying exact answers for targeted supplements increased the final
+number of unreachable examples by 0.67 on average. Both targeted
+conditions solved $0/18$ held-out unreachable tasks. On the original
+key-detour queries, adaptive allocation scored $18/18$, compared with
+$7/18$ for reference-mixture sampling and $16/18$ for a control that
+spent the same budget on rare tasks. At fixed vertex labels, replacing
+the detours with graphs that require nine distinct optimal paths
+reduced the scores to $7/18$, $3/18$, and $5/18$, respectively. The
+two-answer gap against the matched control came from one seed in each
+batch. In a separate experiment with frozen memories and matched
+per-graph renderings, the adaptive-minus-mixture gap was 19.4
+percentage points larger with shared label assignments than with
+alternating assignments, with reversals in two of six seeds. The
+audit shows how baseline allocation, query construction, and label
+assignments affect the measured performance of memory policies.
 \end{abstract}
 
 
@@ -42,19 +43,19 @@ mechanism in a controlled planning domain with fixed model weights.
 
 We distinguish coverage, the composition of memory, from generalization,
 the model's accuracy on structurally disjoint held-out tasks. We compare
-random and coverage-targeted task selection at matched call counts, task slots, and output-token caps.
+random and coverage-targeted task selection at matched call counts,
+task slots, and output-token caps.
 We also vary whether the added example must be solved by the model or can
 use an answer from an exact solver. The latter intervention tests whether
 access to a verified answer changes retention when the agent already has
 an opportunity to attempt the task.
 
-The study asks three empirical questions. First, can correct-answer
-admission exclude a family even when the agent attempts it? Second,
-does allocating more attempts to rare families improve performance
-at the same call budget? Third, does any observed advantage persist
-when test problems and demonstrations retain their semantics but
-change their labels? The experiments address these questions in a
-small planning domain with an exact verifier. The FIFO reference
+The audit follows a family through task allocation, verified
+admission, FIFO retention, and held-out evaluation. It tests adaptive
+allocation against a reference mixture and against a control with the
+same rare budget. It then measures how the policy gap changes when
+equivalent graphs are relabeled or when held-out queries require
+different paths at fixed labels. The FIFO reference
 model quantifies loss of coverage when attempts are
 independent. The empirical trajectories allow both answer quality
 and allocation to depend on the current memory.
@@ -216,13 +217,12 @@ model answer before applying the shared verification and admission rules.
 All background answers come from the model. The random arm samples
 supplements from all three families and the targeted arm only from
 the two rare families. This comparison bundles enrichment for rare
-tasks with adaptive choice between the rare families. A nonadaptive
-rare-only policy was not evaluated. Because the targeted rule
+tasks with adaptive choice between the rare families. Because the targeted rule
 depends on memory, the answer-source contrast captures the total policy
 effect across the two rounds.
 
 We use six paired seeds with shuffled initial memory order. Each initial
-memory holds four ungated, one key-detour and one unreachable example.
+memory holds four ungated examples, one key-detour example, and one unreachable example.
 Memory has capacity six and uses FIFO eviction. Each seed has a disjoint
 holdout with three tasks per family. We reject graph
 isomorphs across seeds, task pools, and the earlier feasibility runs,
@@ -230,7 +230,7 @@ preserving node roles and directed edge locks when computing graph
 equivalence. Initial-memory and empty-memory controls use the same
 holdout within the seed. Held-out answers are not used to update memory.
 
-The main acquisition and transfer experiments used Qwen3 8B \cite{qwen3},
+The acquisition and Qwen transfer experiments used Qwen3 8B \cite{qwen3},
 running locally in Ollama 0.40.12 with thinking disabled, temperature
 zero, a 4096-token context, and up to 384 output tokens per call.
 The protocols record the exact model digest and seeds. Each E002 arm
@@ -238,7 +238,7 @@ had two solve calls and one final evaluation call per seed. The
 empty and frozen baselines added two calls per seed. Each evaluation call requested answers to nine held-out tasks. A missing
 or incorrect answer received zero credit.
 
-The primary mechanism contrast is the paired difference in the final
+In E002, the primary mechanism contrast is the paired difference in the final
 number of unreachable examples between targeted oracle and targeted
 model. The primary performance contrast is the paired difference in
 final rare-family macro accuracy between targeted model and random
@@ -304,6 +304,32 @@ conditions therefore differ in how graph representations are combined
 within a prompt, while each graph has exactly the same two rendered
 forms across conditions. E009 uses the same frozen Qwen memories,
 query order, and model settings as E004, with 48 new calls.
+
+\paragraph{Matching the rare supplement budget.}
+E012 reruns the adaptive model-answer arm from E002 and compares it
+with a balanced nonadaptive control. For each seed, the control
+randomly orders one key-detour and one unreachable supplement across
+two rounds. The adaptive arm can pick the same rare family twice.
+Both arms receive the same initial memory, background tasks, candidate
+pools, rare supplement count, admission rule, and holdout. Arm order is
+shuffled by seed. The study uses 36 fresh Qwen3 calls. Its primary
+contrast is adaptive minus rare-only random rare macro accuracy, with
+the same paired sensitivity calculation as in E002.
+
+\paragraph{Varying optimal paths at fixed labels.}
+E013 freezes the final memories from both E012 arms and the archived
+E002 reference-mixture model arm. Each memory is evaluated on the
+original batch and a batch that replaces only its three key-detour
+queries. The replacements keep the query positions and identifiers, six
+nodes, seven edges, a unique shortest path of length four, and the
+original labels (start A, goal B, key C). The generator balances the
+nine backbones $A\to X\to C\to Y\to B$ for $X,Y\in\{D,E,F\}$, including
+one return route per seed. It rejects graph isomorphs with the earlier
+task pools. The 36 fresh evaluations use seed-shuffled call order. Both follow-ups
+ran on the same Apple M1 Pro with local inference.
+The primary contrast is the change in the targeted-minus-mixture
+key-detour gap from the original to the varied batch. We also report
+the comparison with the rare-only random control.
 
 \paragraph{Cross-model readout and answer completeness.}
 E006 repeats the five label conditions of E004 with Gemma 4 E4B \cite{gemma4} as the reader. It uses the same Qwen-generated memory, queries,
@@ -387,6 +413,23 @@ family. The $18/18$ score cannot distinguish structural planning
 from a solution that exploits this regularity. This diagnostic
 does not identify how Qwen produced its answers.
 
+\subsection{Matching the number of rare supplements}
+
+All 18 adaptive-arm prompts and responses in E012 matched their
+archived E002 counterparts. With all
+12 supplement slots devoted to rare families in each arm, adaptive
+allocation solved $18/18$ key detours and the balanced rare-only
+control solved $16/18$. Both scored $0/18$ on unreachable queries
+and $18/18$ on ungated queries. The rare macro-accuracy gap was
+$+5.6$ percentage points, entirely from two extra correct answers
+in one of six seeds (sign-flip sensitivity $p=1.00$).
+Table~\ref{tab:controls-seeds} reports the paired counts. The adaptive
+arm attempted nine key-detour supplements and admitted eight.
+The balanced control attempted and admitted six. Neither admitted a
+new unreachable example. The balanced control recovered most of the
+adaptive score on the original holdout. The paired comparison gives
+limited evidence for an advantage from adapting to current coverage.
+
 \subsection{Transfer under vertex renaming and new motifs}
 
 Table~\ref{tab:e003-transfer} shows scores after freezing the final
@@ -400,6 +443,25 @@ $10/18$ on key-required tasks, respectively. All three arms scored
 $0/18$ on unreachable tasks in both transfer conditions.
 
 \input{e003-table}
+
+\subsection{Varying optimal paths at fixed vertex labels}
+
+All 18 original-batch prompts and responses in E013 matched their
+source archives. A single fixed path solves all 18 original detours.
+Exhaustive enumeration finds nine distinct unique optimal paths among
+the replacements, each solving two queries. Table~\ref{tab:diverse-paths}
+shows that adaptive and balanced rare-only scores each fell by 11
+correct answers. The two-answer gap between them persisted on the
+varied batch and came from the same seed. The adaptive-minus-mixture
+gap narrowed from $+11/18$ to $+4/18$, a change of $-38.9$ percentage
+points (sign-flip sensitivity $p=0.125$).
+Table~\ref{tab:controls-seeds} gives the six paired contrasts.
+In the reference-mixture arm, accuracy also fell on the unchanged
+ungated queries ($18/18$ to $17/18$) and unreachable queries ($3/18$
+to $1/18$). Replacing part of a batch can affect answers to the
+other queries.
+
+\input{diverse-paths-table}
 
 \subsection{Changing demonstration and query labels separately}
 
@@ -509,7 +571,15 @@ own answers. Providing an exact answer changed which examples
 entered and survived in memory. Accuracy on new unreachable tasks
 remained unchanged in the targeted comparison. Second, the
 aggregate rare-task gain came from one family under the original
-representation. The renaming check preserves the underlying
+representation. The balanced rare-only sampler recovered most of the
+adaptive key-detour score on that holdout. The remaining two-answer
+gap came from a single seed. In the fixed-label transfer experiment,
+both rare-only arms lost 11 correct answers when the holdout required
+varied paths. This shows that the observed drop extends to a change in
+task construction with stable labels. The adaptive policy retained a
+positive gap against reference-mixture sampling, and the small gap
+against balanced rare-only sampling stayed unchanged. The renaming
+check preserves the underlying
 planning problems and shows that the observed gain is sensitive
 to their presentation. The fixed-path diagnostic establishes that deduplication alone
 did not eliminate a shortcut in the original family. The fresh-motif
@@ -540,10 +610,15 @@ other environments may have imperfect verifiers or no exact answer
 source. Unreachable tasks differ from the solvable families in both
 reasoning requirements and response format. The family-specific
 results therefore do not isolate frequency from every difference in
-task difficulty. The one-sided experiments isolate which inputs were changed.
-A comparison with a nonadaptive rare-only sampler would separate the
-value of adaptive allocation from rare-family enrichment.
-They cannot reveal how the model uses vertex labels internally.
+task difficulty. The one-sided experiments isolate which inputs were changed and leave
+the model's internal use of vertex labels unresolved. E012 compares
+adaptation with one balanced schedule on the original pools. A larger
+comparison across different budgets and rare-family mixtures could
+establish where adaptation helps. E013 changes query topology and
+the mix of return and through routes while holding vertex roles and
+optimal length fixed. It evaluates frozen memories acquired on the
+original generator. Acquisition on a varied-path population remains
+untested.
 The matched-label comparison used two permutations per seed, an
 alternating mixture, and a fixed shared-then-mixed call order within
 each arm. The calls were stateless. The design does not measure
@@ -570,6 +645,7 @@ experimental traces came from the pinned Qwen3 8B and Gemma 4 E4B snapshots.
 \label{app:seed-scores}
 \input{paired-results}
 \input{e004-seeds}
+\input{control-seeds}
 
 \section{Interpreting the evaluation}
 The verifier treats a route as correct only when its endpoints match,
@@ -581,16 +657,15 @@ node-only visited set would incorrectly prune a return to a junction
 after collecting the key.
 
 The same holdout graphs occur under each policy within a seed, and
-many reappear in the relabeling experiments. We use paired counts
-rather than interpreting these responses as independent samples.
-The E002 sign-flip values are sensitivity calculations on six seed
+many reappear in the relabeling experiments. The seed is the paired
+unit of analysis.
+The reported sign-flip values are sensitivity calculations on six seed
 differences, assuming the joint distribution of paired differences
-is invariant to independent sign flips under the null. We did not
-randomly assign policy labels. The values do not establish a causal
-randomization test or equivalence between policies. The follow-ups were motivated by earlier results and
-reuse the same seeds. Their added cells test specific alternatives
-under controlled changes, without adding independent replications
-of the original intervention.
+is invariant to independent sign flips under the null. The sign-flip values describe the sensitivity of the
+observed mean
+under that assumption. The follow-ups reuse the same seeds and test
+specific alternatives motivated by earlier results. E013 adds new
+queries to a readout of previously acquired memories.
 
 \input{prompt-example}
 

@@ -1,0 +1,19 @@
+\begin{table}[H]
+\centering
+\caption{Fixed-label evaluation with frozen memories (E013). Each cell
+pools 18 queries over six paired seeds. Only the key-detour queries change
+between batches. The balanced and adaptive memories come from E012,
+and the reference-mixture memories come from E002.}
+\label{tab:diverse-paths}
+\begin{tabular}{lrrrr}
+\toprule
+& \multicolumn{2}{c}{Key detour} & \multicolumn{2}{c}{Unreachable} \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}
+Policy & Original & Varied & Original & Varied \\
+\midrule
+Reference-mixture random & 7/18 & 3/18 & 3/18 & 1/18 \\
+Balanced rare-only random & 16/18 & 5/18 & 0/18 & 0/18 \\
+Adaptive & 18/18 & 7/18 & 0/18 & 0/18 \\
+\bottomrule
+\end{tabular}
+\end{table}

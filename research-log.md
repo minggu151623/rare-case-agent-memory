@@ -74,3 +74,22 @@ download files and switched to the cached Gemma model under a
 recorded protocol amendment. E006 completed 60 calls with severe
 answer omissions. E010 completed 36 single-query calls with
 complete answers and directional, subset-specific agreement.
+
+## 2026-11-13 · Manuscript audit and controlled follow-up
+
+E011 replayed the reported scores and found an original-holdout shortcut.
+The author requested two follow-up controls before preparing the next
+preprint draft. E012 reruns adaptive selection against a balanced
+nonadaptive rare-only schedule on the E002 pools. E013 keeps the original
+label convention and tests transfer with nine equally frequent optimal
+paths. Both protocols were committed before their model runs. The
+replacement graphs passed independent state-space distance checks.
+
+E012 and E013 completed 36 calls each on Qwen3 8B with Ollama 0.40.12
+on an Apple M1 Pro. The archived traces replayed without format
+failures. The adaptive E012 responses and original-batch E013
+responses matched their source archives byte for byte. E012's
+matched-budget gain came from one seed. E013 narrowed the adaptive
+gap against the reference mixture and left its two-answer gap against
+the balanced rare-only control unchanged. The manuscript now reports
+these bounds and includes the paired contrasts.

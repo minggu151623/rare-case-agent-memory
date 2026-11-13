@@ -7,8 +7,8 @@ and 0/18 unreachable cases. The rare macro-accuracy difference is
 +5.6 percentage points (18/36 versus 16/36). The six seed gaps, in correct
 answers out of six, are [0, 0, 0, 0, 0, 2]. The two-sided exact sign-flip
 sensitivity value is 1.0. The gain came entirely from seed 6206.
-The adaptive scores and supplement families reproduce the corresponding
-historical E002 arm on all six seeds.
+All 18 adaptive prompts and raw responses match the corresponding
+historical E002 arm byte for byte.
 
 Both arms attempted 12 rare supplements. The adaptive arm attempted
 nine key detours and three unreachable tasks, admitting eight and zero,

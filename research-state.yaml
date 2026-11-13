@@ -3,14 +3,14 @@ project:
   question: "Where is rare-case coverage lost, and does targeted supplementation improve held-out accuracy over random supplementation at a matched budget?"
   domain: "cs.AI, LLM agents and planning"
   started: "2026-11-12"
-  status: extended_manuscript_complete
+  status: follow_up_controls_completed
 hypotheses:
   - id: H1
     statement: "Rare-case representation decreases over memory updates under self-generated examples."
-    status: pending
+    status: not_tested_with_free_form_proposals
   - id: H2
     statement: "Targeted supplementation yields higher final held-out rare-case accuracy than random supplementation."
-    status: pending
+    status: limited_support_against_matched_rare_only_control
 experiments:
   - id: E000
     path: experiments/E000-oracle-smoke
@@ -51,7 +51,16 @@ experiments:
   - id: E010
     path: experiments/E010-single-query/analysis.md
     status: completed_and_audited
+  - id: E011
+    path: experiments/E011-manuscript-audit/analysis.md
+    status: completed_and_audited
+  - id: E012
+    path: experiments/E012-rare-only/analysis.md
+    status: completed_and_audited
+  - id: E013
+    path: experiments/E013-diverse-paths/analysis.md
+    status: completed_and_audited
 manuscript:
   source: paper/main.tex
-  status: extended_version_for_author_review
+  status: revised_preprint_for_author_review
 publication: "The author will handle Zenodo submission."

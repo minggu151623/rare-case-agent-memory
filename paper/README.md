@@ -60,3 +60,31 @@ The November 13 manuscript audit reproduces its evidence with
 python3 -m experiments.E011-manuscript-audit.check
 ~~~
 Compare with experiments/E011-manuscript-audit/results.json.
+
+## Replay the matched-budget and diverse-path controls
+
+From the archive root, run:
+
+```sh
+e002=experiments/E002-admission/results/qwen3-8b
+e012=experiments/E012-rare-only/results/qwen3-8b
+e013=experiments/E013-diverse-paths/results/qwen3-8b
+python3 -m unittest discover -s experiments/E013-diverse-paths
+python3 -m src.rare_only "$e012" --audit | cmp - "$e012/aggregate.json"
+python3 -m src.diverse_paths "$e002" "$e012" "$e013" --audit | cmp - "$e013/aggregate.json"
+```
+
+For a live run, use separate output directories and replace `--audit`
+with `--ollama-port 11434` after starting Ollama 0.40.12 with the
+pinned Qwen3 8B snapshot. E013 takes the completed E012 run as input.
+The study protocols record the seeds, schedule, and failure handling.
+Completed seed directories can be reused after audit. To retry a partial
+seed, preserve its directory outside the run root before invoking the same
+command again.
+
+Regenerate the two new manuscript tables with:
+
+```sh
+python3 paper/control_tables.py > paper/diverse-paths-table.tex
+python3 paper/control_tables.py --seeds > paper/control-seeds.tex
+```

@@ -51,5 +51,30 @@ targeted-minus-random gap by 19.4 points on average, with reversals
 in two of six seeds. [E006](experiments/E006-cross-model/analysis.md)
 showed that Gemma answered only the first query in all 60 batch calls.
 In [E010](experiments/E010-single-query/analysis.md) it answered all
-single queries and reproduced the direction of three Qwen readout
-contrasts on six key-detour cases with frozen Qwen memories.
+single queries. On those same six cases, the Qwen batch and Gemma
+single-query policy gaps were positive under original and shared labels.
+Under independent labels Qwen tied and Gemma favored random. This is
+a qualitative readout check with frozen Qwen memories.
+
+[E011](experiments/E011-manuscript-audit/analysis.md) found that a
+generator-aware constant path solved all 18 original detours and none of
+the 18 fresh E003 key-required graphs before vertex renaming. E002
+attempted 12 rare supplements with targeted allocation versus three
+under the reference-mixture control. E012 locks a matched rare-only
+budget, and E013 locks a fixed-label holdout with varied optimal paths.
+
+[E012](experiments/E012-rare-only/analysis.md) reran both model-answer
+policies with 12 rare supplements each. Adaptive scored 18/18 key detours
+and balanced rare-only random scored 16/18, with both at 0/18 unreachable.
+The +5.6-point rare macro gap came from a single seed. This is limited
+evidence for an adaptive advantage over the matched control.
+
+[E013](experiments/E013-diverse-paths/analysis.md) kept the original
+vertex convention and replaced 18 detours with graphs requiring nine
+distinct optimal paths. The best fixed path dropped from 18/18 to
+2/18. With frozen memories, adaptive scores went from 18/18 to 7/18,
+balanced rare-only from 16/18 to 5/18, and reference-mixture random
+from 7/18 to 3/18. The adaptive gap against mixture narrowed by 38.9
+points, while the two-answer gap against the matched control came from
+the same one seed on both batches. This is a readout study at fixed
+labels, with acquisition on the original graph distribution.

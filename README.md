@@ -18,7 +18,7 @@ It uses the standard library and runs locally.
 python3 -m unittest discover -s experiments/E000-oracle-smoke -v
 ```
 
-The LLM pilot remains planned. The CPU check validates benchmark mechanics.
+The CPU check validates benchmark mechanics.
 
 ## E001 feasibility pilots
 
@@ -102,3 +102,12 @@ python3 -m src.end_to_end experiments/E008-end-to-end/results/qwen3-8b --audit
 [E009 matched graph exposures](experiments/E009-matched-labels/analysis.md) · [E010 single-query diagnostic](experiments/E010-single-query/analysis.md)
 
 See [the manuscript README](paper/README.md) for all offline verification commands.
+
+## Matched-budget and fixed-label controls
+
+[E012](experiments/E012-rare-only/protocol.md) compares adaptive allocation
+with a nonadaptive sampler that spends both supplements on rare families.
+[E013](experiments/E013-diverse-paths/protocol.md) tests frozen memories
+on key detours with nine distinct optimal paths while retaining the
+original vertex-label convention. See [manuscript reproducibility](paper/README.md)
+for the replay commands.
