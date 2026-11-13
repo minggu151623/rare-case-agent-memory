@@ -57,6 +57,12 @@ def report(output):
                      for field in ("correct", "total")}
             for family in summaries[0]["arms"][name]["final"]["total"]
         } for name in names},
+        "stage_totals": {name: {
+            field: {family: sum(row[field][family] for s in summaries
+                                for row in s["arms"][name]["rounds"])
+                    for family in summaries[0]["initial_memory"]}
+            for field in ("attempted", "model_passes", "admitted", "evicted")
+        } for name in names},
         "coverage": {name: {
             family: {
                 "supplement_attempts": sum(
