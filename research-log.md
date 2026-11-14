@@ -93,3 +93,10 @@ matched-budget gain came from one seed. E013 narrowed the adaptive
 gap against the reference mixture and left its two-answer gap against
 the balanced rare-only control unchanged. The manuscript now reports
 these bounds and includes the paired contrasts.
+
+## 2026-11-14 · Machine-checked FIFO reference model
+
+Pinned Lean and Mathlib at 4.26.0. Formalized the FIFO transition and
+the product weights of independent attempts. Built with warnings as
+errors and inspected the axioms of the exported results. Independently
+reran all 3,150 exact rational checks in E005.

@@ -78,3 +78,9 @@ from 7/18 to 3/18. The adaptive gap against mixture narrowed by 38.9
 points, while the two-answer gap against the matched control came from
 the same one seed on both batches. This is a readout study at fixed
 labels, with acquisition on the original graph distribution.
+
+The [Lean 4 formalization](formal/README.md) proves the FIFO absence
+threshold, the finite i.i.d. law, the zero-admission case, and the
+positive-rate limit. The list-level FIFO characterization holds
+for any admission history. The probability result applies to E005's
+reference law with independent attempts and constant weights.

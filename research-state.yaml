@@ -60,6 +60,10 @@ experiments:
   - id: E013
     path: experiments/E013-diverse-paths/analysis.md
     status: completed_and_audited
+formal_verification:
+  path: formal/README.md
+  scope: FIFO reference model
+  status: checked_with_lean_4_26_0
 manuscript:
   source: paper/main.tex
   status: revised_preprint_for_author_review

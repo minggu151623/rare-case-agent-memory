@@ -111,3 +111,9 @@ with a nonadaptive sampler that spends both supplements on rare families.
 on key detours with nine distinct optimal paths while retaining the
 original vertex-label convention. See [manuscript reproducibility](paper/README.md)
 for the replay commands.
+
+## Machine-checked FIFO reference model
+
+[Lean 4 proofs and instructions](formal/README.md) for the FIFO
+eviction threshold, exact finite-horizon absence probability,
+zero-admission case, and positive-admission limit.

@@ -192,7 +192,16 @@ reference calculations with hypothetical parameters. When $\alpha=0$
 and other admissions continue, any initial focal example will
 eventually leave the FIFO buffer.
 
-We checked the finite expression against exact rational state
+A Lean~4 artifact formalizes the full positive-capacity buffer, proves
+the last-initial-position threshold, and verifies the finite formula,
+the zero-admission case, and the limit in the proposition. It derives
+the binomial expression from the product weights of the three attempt
+outcomes and the executable FIFO update on lists. The deterministic
+suffix characterization also applies to a realized adaptive admission
+history. The probability calculation assumes independent attempts
+with constant outcome weights.
+
+We independently checked the finite expression against exact rational state
 enumeration on 3,150 cases, varying the initial memory, capacity,
 number of attempts, and admission probabilities. E002's task
 selection and answer quality can depend on memory, so the expression
@@ -636,7 +645,9 @@ acquisition policies with a second model remain open.
 The accompanying archive includes the graph generator, exact verifier,
 inference settings, protocols, compressed per-call traces, scoring
 code, and manuscript source. The reported scores can be recomputed
-from the traces without running an LLM. Codex assisted with research
+from the traces without running an LLM. The source archive includes
+the Lean~4 proof and a pinned dependency manifest under
+\texttt{formal/}. Codex assisted with research
 design, implementation, analysis, and manuscript drafting. The
 experimental traces came from the pinned Qwen3 8B and Gemma 4 E4B snapshots.
 

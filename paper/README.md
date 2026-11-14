@@ -88,3 +88,9 @@ Regenerate the two new manuscript tables with:
 python3 paper/control_tables.py > paper/diverse-paths-table.tex
 python3 paper/control_tables.py --seeds > paper/control-seeds.tex
 ```
+
+## Check the FIFO proof in Lean
+
+See [the Lean artifact](../formal/README.md) for the pinned toolchain,
+theorem names, and commands for kernel checking. The Python E005
+enumeration above provides an independent check of the finite formula.
