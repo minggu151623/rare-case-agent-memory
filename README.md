@@ -120,4 +120,21 @@ for the replay commands.
 
 [Lean 4 proofs and instructions](formal/README.md) for the FIFO
 eviction threshold, exact finite-horizon absence probability,
-zero-admission case, and positive-admission limit.
+zero-admission case, positive-admission limit, normalization of the
+reference law, and the proposal-share threshold.
+
+## Publication audit
+
+[E014](experiments/E014-publication-audit/analysis.md) is a post hoc,
+offline audit of the archived traces. It reports the E009 sign-flip
+value, splits held-out accuracy by whether the evaluated memory still
+holds an example of the queried family, replays the Lean FIFO
+characterization on all 42 archived update trajectories, and asserts the
+manuscript's numbers against the archives.
+
+```sh
+python3 -m experiments.E014-publication-audit.check | cmp - experiments/E014-publication-audit/results.json
+```
+
+[E015](experiments/E015-confirmatory/protocol-draft.md) is an unlocked
+design draft for a confirmatory experiment. Nothing in it has been run.

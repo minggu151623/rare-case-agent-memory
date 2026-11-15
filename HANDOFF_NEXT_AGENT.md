@@ -2,6 +2,28 @@
 
 Ngày bàn giao: **15/11/2026**.
 
+## 0. Cập nhật sau phiên rà soát trước khi đăng (15/11/2026)
+
+Phần này ghi trạng thái mới nhất. Các mục 1–13 bên dưới là bản bàn giao
+gốc và được giữ nguyên để đối chiếu.
+
+- **Việc A đã xong.** Bản thảo, PDF và ZIP mới nằm ở `artifacts/current/`.
+  Chi tiết: [báo cáo rà soát](artifacts/review/publication-audit-2026-11-15/REVIEW_VI.md)
+  và [claim audit](paper/claim-audit.md#november-15-publication-audit).
+- **E014 đã chạy** (phân tích hậu nghiệm, offline): p sign-flip của E009
+  là 0,50; bộ nhớ còn ví dụ key-detour đúng 80/87, đã mất đúng 9/39;
+  42 quỹ đạo khớp bổ đề FIFO trong Lean. Script cũng kiểm 76 con số của
+  bản thảo. [Kết quả](experiments/E014-publication-audit/analysis.md)
+- **Lean đã mở rộng**: chuẩn hóa, giá trị trong [0,1], ngưỡng
+  proposal-share, hai ví dụ số. 16 mệnh đề, không `sorry`.
+- **Việc B chưa làm.** Chỉ có bản thiết kế nháp
+  [E015](experiments/E015-confirmatory/protocol-draft.md), chưa khóa,
+  chưa chạy. Ba quyết định cần tác giả chọn được liệt kê trong đó.
+- Bằng chứng của bản thảo cố định ở commit `6c25fbf84ac2`. SHA trong
+  mục 2 là của bản trước.
+- Khuyến nghị: đăng Zenodo như exploratory audit preprint. Tác giả tự
+  đăng.
+
 ## 1. Nhiệm vụ
 
 Tiếp tục từ bản thảo hiện tại để làm rõ đóng góp, sửa những thiếu sót được chỉ ra trong lần rà soát cuối và thiết kế một thí nghiệm xác nhận có giá trị. Không bắt đầu lại dự án. Không tối ưu công việc để adaptive nhất thiết phải thắng.
@@ -50,7 +72,7 @@ Các tệp review này được tạo cục bộ, **không nằm trong commit đ
 
 PDF có Lean đã được tạo ở phiên trước:
 
-[PDF có Lean](artifacts/current/rare-case-agent-memory-with-lean.pdf)
+[PDF có Lean](artifacts/archive/rare-case-agent-memory-with-lean.pdf)
 
 Đọc nguồn LaTeX làm chuẩn; nếu sửa nguồn, phải tạo và kiểm tra PDF mới, không giao lại PDF cũ.
 

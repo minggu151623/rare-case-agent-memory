@@ -100,3 +100,30 @@ Pinned Lean and Mathlib at 4.26.0. Formalized the FIFO transition and
 the product weights of independent attempts. Built with warnings as
 errors and inspected the axioms of the exported results. Independently
 reran all 3,150 exact rational checks in E005.
+
+## 2026-11-15 · Publication audit and release revision
+
+Continued from the handoff after the Codex readiness review. Reran the
+18 archived check groups and the Lean build before changing anything.
+
+Locked E014 as a post hoc offline audit, with one amendment, before
+writing its outputs. It gives the E009 sign-flip value (0.50), shows
+that key-detour accuracy tracks whether the evaluated memory kept a
+key-detour example (80/87 against 9/39), attributes the mixture arm's
+three correct unreachable answers to one blanket response, and replays
+the Lean FIFO characterization on all 42 archived trajectories without
+a mismatch. The frozen memory (16/18) and empty memory (7/18) now frame
+the E002 policy gap as mostly retention.
+
+Amended the formal protocol, then proved normalization of the reference
+law, the unit-interval bound, the proposal-share threshold, and the two
+worked examples. Lean 4.26.0 checks all six files with warnings as
+errors. No `sorry`.
+
+Revised the manuscript with the pinned ml-paper-writing skill: new
+abstract and contribution list, a summary table, explicit assumptions
+in Section 4, the retained-coverage subsection, E009 marked exploratory,
+a paragraph on the uncombined controls, a conclusion, a repository link
+and evidence commit, and four citations fetched from primary records.
+Decision: release as an exploratory audit preprint. A confirmatory
+experiment is drafted as E015 and has not been locked or run.

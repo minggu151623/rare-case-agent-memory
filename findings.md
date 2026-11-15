@@ -84,3 +84,25 @@ threshold, the finite i.i.d. law, the zero-admission case, and the
 positive-rate limit. The list-level FIFO characterization holds
 for any admission history. The probability result applies to E005's
 reference law with independent attempts and constant weights.
+
+[E014](experiments/E014-publication-audit/analysis.md) is a post hoc
+offline audit. Memories that still held a key-detour example answered
+80/87 original key-detour queries and memories without one 9/39. The
+frozen memory scored 16/18 and the empty memory 7/18, the same as the
+reference-mixture arm, which lost the example in four of six seeds.
+Most of the E002 policy gap is therefore retained coverage. Sixteen of
+17 memories holding an unreachable example scored 0/3. The three
+correct unreachable answers in the mixture arm come from one seed
+where the model declared all six rare queries unreachable. The E009
+sign-flip value over 64 assignments is 0.50. All 42 archived update
+trajectories conform to the Lean FIFO characterization, and all 32
+family losses occurred without a new admission from that family.
+
+The Lean development now also proves that the reference law is
+normalized, that the absence value lies in the unit interval under
+valid weights, and Section 4's proposal-share threshold. Sixteen
+exported statements use only the three standard axioms.
+
+No experiment combines a matched rare budget, varied paths during
+acquisition, and matched renderings. An adaptive advantage over a
+matched rare-only budget is not established.

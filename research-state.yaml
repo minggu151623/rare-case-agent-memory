@@ -3,7 +3,7 @@ project:
   question: "Where is rare-case coverage lost, and does targeted supplementation improve held-out accuracy over random supplementation at a matched budget?"
   domain: "cs.AI, LLM agents and planning"
   started: "2026-11-12"
-  status: follow_up_controls_completed
+  status: publication_audit_completed
 hypotheses:
   - id: H1
     statement: "Rare-case representation decreases over memory updates under self-generated examples."
@@ -60,11 +60,24 @@ experiments:
   - id: E013
     path: experiments/E013-diverse-paths/analysis.md
     status: completed_and_audited
+  - id: E014
+    path: experiments/E014-publication-audit/analysis.md
+    status: completed_post_hoc_offline_audit
+  - id: E015
+    path: experiments/E015-confirmatory/protocol-draft.md
+    status: design_draft_not_locked_not_run
 formal_verification:
   path: formal/README.md
-  scope: FIFO reference model
+  scope: FIFO reference model, normalization, proposal-share threshold
   status: checked_with_lean_4_26_0
+  exported_statements: 16
+  conformance_replay: experiments/E014-publication-audit/analysis.md
 manuscript:
   source: paper/main.tex
-  status: revised_preprint_for_author_review
+  status: exploratory_audit_preprint_ready_for_author_release
+  release_scope: "Exploratory audit. No claim of adaptive superiority over a matched rare-only budget."
+open_questions:
+  - "Does the retention effect hold when acquisition and evaluation both use varied optimal paths?"
+  - "Does adaptive allocation beat a matched rare-only budget on fresh seeds?"
+  - "Do label assignments change the policy comparison once budget and paths are controlled?"
 publication: "The author will handle Zenodo submission."
