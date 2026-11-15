@@ -25,13 +25,17 @@ Section 2.
 
 | Key | Source |
 | --- | --- |
-| expel | [Zhao et al., ExpeL: LLM Agents Are Experiential Learners](https://arxiv.org/abs/2308.10144) |
-| reflexion | [Shinn et al., Reflexion: Language Agents with Verbal Reinforcement Learning](https://arxiv.org/abs/2303.11366) |
+| expel | [Zhao et al., ExpeL, AAAI 2024](https://doi.org/10.1609/aaai.v38i17.29936); abstract read at [arXiv](https://arxiv.org/abs/2308.10144) |
+| reflexion | [Shinn et al., Reflexion, NeurIPS 36 (2023)](https://doi.org/10.52202/075280-0377); abstract read at [arXiv](https://arxiv.org/abs/2303.11366) |
 | voyager | [Wang et al., Voyager: An Open-Ended Embodied Agent with Large Language Models](https://arxiv.org/abs/2305.16291) |
-| goodexamples | [Liu et al., What Makes Good In-Context Examples for GPT-3?](https://arxiv.org/abs/2101.06804) |
-| roledemonstrations | [Min et al., Rethinking the Role of Demonstrations](https://arxiv.org/abs/2202.12837) |
+| goodexamples | [Liu et al., What Makes Good In-Context Examples for GPT-3?, DeeLIO 2022](https://doi.org/10.18653/v1/2022.deelio-1.10); abstract read at [arXiv](https://arxiv.org/abs/2101.06804) |
+| roledemonstrations | [Min et al., Rethinking the Role of Demonstrations, EMNLP 2022](https://doi.org/10.18653/v1/2022.emnlp-main.759); abstract read at [arXiv](https://arxiv.org/abs/2202.12837) |
 
 The five entries above were fetched on 2026-11-16 from the arXiv BibTeX
 export, after an independent review asked for broader related work. The
 five abstracts were read through the arXiv API to confirm the statements
 made about them in Section 2.
+
+Published records for four of the five were then fetched from Crossref
+and doi.org content negotiation. No Crossref record was found for
+Voyager, which stays cited as its arXiv record.

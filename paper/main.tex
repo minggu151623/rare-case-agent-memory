@@ -19,12 +19,12 @@ graph-planning examples. The main result is negative: held-out accuracy
 did not follow memory coverage. In an exploratory study on six paired
 seeds, adaptive allocation toward the least-covered rare family scored
 $18/18$ on held-out key-detour queries, against $7/18$ for sampling
-from the reference mixture. Controls bound that gap. A memory that was
-never updated scored $16/18$, an empty memory $7/18$, and a nonadaptive
-policy with the same rare budget $16/18$, while one fixed path solves
-all 18 queries. A confirmatory experiment, with its protocol committed
+from the reference mixture. Controls bound that gap: a never-updated
+memory scored $16/18$, an empty memory $7/18$, a nonadaptive policy
+with the same rare budget $16/18$, and one fixed path solves all 18
+queries. A confirmatory experiment, with its protocol committed
 first, tested the post hoc reading that mixture updates evict a needed
-example. It used 30 fresh seeds and diversified key-detour routes.
+example, on 30 fresh seeds with diversified key-detour routes.
 Mixture updates kept a key-detour example in 6 of 30 seeds, yet the
 frozen memory answered $55/90$ key-detour queries against $51/90$
 ($+4.4$ percentage points, 95\% bootstrap interval $-5.6$ to $+13.3$,
@@ -185,8 +185,8 @@ similar to the test input outperforms random selection
 \cite{goodexamples}. Min et al.\ find that, on classification and
 multiple-choice tasks, the label space, input distribution, and format
 of demonstrations matter more than whether their labels are correct
-\cite{roledemonstrations}. Our path-availability split is a related
-observation in a planning task: a stored example coincided with higher
+\cite{roledemonstrations}. Our path-availability split points the
+other way in a planning task: a stored example coincided with higher
 accuracy when its answer matched the query's answer.
 
 Herbst et al.\ document sensitivity to node labels, edge ordering, and
