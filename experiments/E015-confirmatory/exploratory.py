@@ -22,6 +22,7 @@ def main():
                                                        "no_key_detour_example")}
                  for name in MEMORIES}
     mixture = {group: Counter() for group in ("kept", "lost")}
+    matched = {group: Counter() for group in ("path_in_memory", "path_not_in_memory")}
     for seed in SEEDS:
         by_id = {case.id: case for case in all_cases(pools[seed])}
         initial, _, _, holdout = pools[seed]
@@ -56,6 +57,13 @@ def main():
                          "path_in_memory" if any(is_correct(case.task, p) for p in paths)
                          else "path_not_in_memory")
                 by_memory[name][group].update(correct=marks[case.id]["correct"], total=1)
+                if group in matched:
+                    before = summary["readout"]["empty"][case.id]["correct"]
+                    after = marks[case.id]["correct"]
+                    matched[group].update(answers=1, with_memory=after, empty_memory=before,
+                                          gained=after and not before,
+                                          lost=before and not after)
+                    matched[group][f"query/{seed}/{case.id}"] = 1
                 if name == "random_model":
                     mixture["kept" if paths else "lost"].update(
                         correct=marks[case.id]["correct"], total=1)
@@ -68,6 +76,11 @@ def main():
             name: {group: tidy(cell) for group, cell in groups.items() if cell["total"]}
             for name, groups in by_memory.items()},
         "mixture_arm_key_detour_by_retention": {g: tidy(c) for g, c in mixture.items()},
+        "path_split_against_empty_memory_on_same_queries": {
+            group: {**{key: int(value) for key, value in cell.items()
+                       if not key.startswith("query/")},
+                    "unique_queries": sum(key.startswith("query/") for key in cell)}
+            for group, cell in matched.items()},
     }, indent=1))
 
 

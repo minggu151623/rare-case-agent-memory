@@ -17,8 +17,8 @@ We audit what a memory-update policy changes when a fixed-weight
 language model, Qwen3 8B, keeps a six-slot FIFO memory of verified
 graph-planning examples. The audit follows each task family through
 allocation, verified admission, eviction, and held-out evaluation. Its
-main result is negative: memory coverage followed a machine-checked
-FIFO model, and held-out accuracy did not follow coverage. In an
+main result is negative: held-out accuracy did not follow memory
+coverage. In an
 exploratory study on six paired seeds, adaptive allocation toward the
 least-covered rare family scored $18/18$ on held-out key-detour
 queries, against $7/18$ for sampling from the reference mixture.
@@ -35,11 +35,13 @@ $55/90$ key-detour queries against $51/90$ ($+4.4$ percentage points,
 and the empty memory answered $53/90$. The retention reading was not
 confirmed. Adaptive allocation did not beat the matched rare-only
 budget ($-1.7$ points of rare accuracy, $p=0.51$), and an earlier label
-interaction did not replicate. Descriptively, a stored example helped
-when it contained the query's optimal path ($29/32$ against
-$116/208$). No memory helped on unreachable tasks ($0/450$). A Lean~4
-development proves the FIFO reference model, and all 132 archived
-update trajectories conform to it.
+interaction did not replicate. Descriptively, accuracy was higher when
+a stored example contained the query's optimal path ($29/32$, against
+$20/32$ for the empty memory on the same queries). No unreachable
+query was answered correctly ($0/450$), because the model never
+declared a task unreachable, so that family is at a response floor. A
+Lean~4 development proves the FIFO reference model, and the implemented
+update agrees with it on all 132 audited trajectories.
 \end{abstract}
 
 
@@ -83,7 +85,7 @@ contributions are as follows.
 \item \textbf{A family-level audit of a memory-policy gap.} With frozen
 and empty baselines and a control matched on rare budget, the
 key-detour gain of adaptive allocation over the reference mixture is
-mostly retained coverage on the original holdout. Against the matched control the gain is two
+mostly retained coverage on the original holdout, a post hoc reading. Against the matched control the gain is two
 answers from one seed. For unreachable tasks, retained examples did
 not improve held-out accuracy, even when an exact solver supplied them.
 \item \textbf{A confirmatory test of the audit's own reading.} A locked
@@ -102,7 +104,7 @@ co-occur in a prompt. Its result is exploratory.
 \item \textbf{A machine-checked reference model and a replayable
 archive.} A Lean~4 development proves the FIFO eviction threshold, the
 exact finite-horizon absence law under independent attempts, its limit,
-and the proposal-share threshold. Every archived update trajectory
+and the proposal-share threshold. Every audited update trajectory
 conforms to the checked update rule, and every reported score is
 recomputed from stored model responses.
 \end{itemize}
@@ -294,8 +296,11 @@ independent checks connect the model to the experiments. First, we
 compared the finite expression with exact rational state enumeration
 on 3,150 cases, varying the initial memory, capacity, number of
 attempts, and admission probabilities. Second, we replayed the
-list-level characterization on all 42 archived update trajectories,
-across seven policy arms and six seeds. The final memory always equals
+list-level characterization on 42 archived update trajectories,
+across seven policy arms and six seeds. These are not the 42 evaluated
+memories of the coverage split below. The memory is implemented as a
+FIFO buffer, so this replay checks the implementation against the
+formal statement and is not a finding about the language model. The final memory always equals
 the newest six entries, and predicted and observed absence agree in
 all 126 family-trajectory checks. A rare family ended absent in 32 of
 them, each time with no admission from that family, which is the
@@ -766,7 +771,8 @@ as it had before. Its final memory held a key-detour example in 6 of
 follow. The frozen memory answered $55/90$ key-detour queries and the
 mixture memory $51/90$. The paired difference in correct answers out
 of three was $+1$ in 11 seeds, $0$ in 13, $-1$ in five, and $-2$ in
-one. Its mean is $+4.4$ percentage points, with a percentile bootstrap
+one, with a standard deviation of $0.82$ answers and a standardized
+effect of $0.16$. Its mean is $+4.4$ percentage points, with a percentile bootstrap
 interval from $-5.6$ to $+13.3$ points and an exact two-sided
 sign-flip value of $0.51$. The criterion fixed in the protocol is not
 met, so the retention reading is not confirmed under these conditions.
@@ -779,7 +785,9 @@ was $-1.7$ points (interval $-5.0$ to $+1.7$, sign-flip $0.51$,
 Holm-adjusted $0.51$). The label interaction for the same pair was
 $-5.0$ points ($-11.7$ to $+1.1$, sign-flip $0.18$, adjusted $0.36$).
 Neither is established, and neither value is evidence of equivalence.
-The audit counts show why adaptation had no room to help. None of the
+Unreachable accuracy was zero in every memory, so the rare-accuracy
+contrast reduces to key-detour answers, where it is $-3.3$ points. The
+audit counts suggest one reason. None of the
 208 unreachable attempts was admitted, so every update trajectory lost
 the unreachable example and that family became the least covered. The
 adaptive rule then spent 84 of its 120 supplements on unreachable tasks
@@ -796,9 +804,13 @@ is absent. A finer split is more informative. When a retained
 key-detour example had the query's optimal path as its own stored
 answer, 29 of 32 answers were correct. With a key-detour example of a
 different path the count was $116/208$, and with no such example
-$129/210$. Presence of a matching path was not randomized and the first
-group is small. The pattern is the one expected if a stored example
-helps mainly when its answer can be reused, which the fixed-path
+$129/210$. The 32 answers in the first group cover 23 distinct queries.
+On those same queries the empty memory gave $20/32$ correct answers,
+with 11 answers gained and two lost. In the second group the empty
+memory gave $117/208$ on the same queries. Presence of a matching path
+was not randomized and the first group is small. The pattern is
+compatible with a stored example helping mainly when its answer can be
+reused, which the fixed-path
 diagnostic had suggested for the original holdout. Ungated accuracy
 rose from $62/90$ with the empty memory to 87 or 88 of 90 with every
 nonempty memory. Ungated tasks still share one backbone.
@@ -813,13 +825,13 @@ $0.0$ to $+17.8$, sign-flip $0.10$) and adaptive minus mixture $+5.6$
 points ($-1.1$ to $+12.2$, $0.23$). In the label sub-study the
 adaptive-minus-mixture interaction, which E009 estimated at $+19.4$
 points on six seeds, was $-10.0$ points ($-17.8$ to $-2.2$, sign-flip
-$0.03$). This is one of eight uncorrected descriptive values, and we do
+$0.03$). This is one of seven uncorrected descriptive values, and we do
 not read it as an effect in the opposite direction. The direction
 observed in E009 did not replicate.
 
 \section{Discussion}
 
-\paragraph{The original gap was retention of a reusable answer.} The
+\paragraph{A reusable answer may explain the original gap.} The
 comparison that motivated the study, adaptive allocation against
 reference-mixture sampling, measured two things at once. The adaptive
 rule spent all twelve supplements on rare families and the mixture
@@ -837,8 +849,8 @@ seeds and its accuracy was not distinguishable from the frozen memory,
 which was itself two answers ahead of the empty memory. The two results
 agree if the retained example in E002 mattered because its path
 answered every held-out query. The path split of E015 fits that account
-descriptively. For this model the E002 gap is best described as
-retention of a reusable answer. It is not evidence that retaining a
+descriptively. Our working hypothesis is that the E002 gap was
+retention of a reusable answer. That gap is not evidence that retaining a
 rare example improves accuracy on other tasks of its family, and
 neither experiment shows a benefit of adapting to current coverage
 beyond spending the budget on rare tasks.
@@ -851,10 +863,9 @@ survived in memory, and held-out accuracy on unreachable tasks stayed
 at zero. For key detours, retained examples coincided with correct
 answers on the original holdout, where one path answers every query.
 When the holdout required varied paths, both rare-only arms lost 11
-correct answers. In E015 coverage followed the FIFO model in every
-trajectory, and accuracy was the same with and without a retained
-key-detour example. A coverage count therefore bounds what a memory can
-contribute and does not measure what the model reads out of it.
+correct answers. In E015 accuracy was similar with and without a retained
+key-detour example, 60.4\% and 61.4\%. A coverage count does not
+measure what the model reads out of a memory.
 
 \paragraph{The evaluation construction moved the gap.} The fixed-path
 diagnostic establishes that structural deduplication did not remove a
@@ -882,7 +893,11 @@ interval leaves room for a retention effect of up to about 13 points.
 E015 changed the generator, the number of rounds, and the readout
 format together, so it does not identify which change removed the gap,
 and it did not rerun the original generator on fresh seeds. The
-six-seed counts stand as reported. The adaptive rule was also tested
+six-seed counts stand as reported. In E015 the frozen memory was
+itself only two answers ahead of the empty memory (interval $-10.0$ to
+$+14.4$ points), so the experiment cannot separate ``retention does
+not matter'' from ``the retained example was not useful on these
+tasks.'' The adaptive rule was also tested
 in a case that is unfavorable to it by construction, a least-covered
 family that the model never solved. A rule that accounts for admission
 rates was not tested.
@@ -951,10 +966,11 @@ avoidance of that loss on a holdout that one stored path could answer.
 A confirmatory experiment on 30 fresh seeds with diversified routes did
 not confirm that retention improves accuracy, found no adaptive
 advantage over a matched rare budget, and did not replicate an earlier
-label interaction. Coverage followed the machine-checked FIFO model in
-all 132 trajectories. Accuracy followed coverage only where a stored
-answer could be reused, and retained examples of the family the model
-could not solve never helped. We recommend that memory-policy
+label interaction. The implemented update agreed with the machine-checked FIFO model in
+all 132 audited trajectories. Descriptively, accuracy was higher only
+where a stored answer could be reused. The model never produced the
+response that the unreachable family requires, with or without a
+retained example. We recommend that memory-policy
 comparisons report frozen and empty baselines, family-level admission
 and eviction counts, a budget-matched control, and a constant-answer
 baseline, and that a post hoc reading of a policy gap be tested on
@@ -968,10 +984,10 @@ source are in the project repository:
 \begin{center}
 \url{https://github.com/minggu151623/rare-case-agent-memory}
 \end{center}
-The evidence for this version is fixed at commit
-\texttt{7df0cbdbc499}. Every reported score can be recomputed from
+The traces and aggregates for this version are fixed at commit
+\texttt{7df0cbdbc499}. Later commits change text, checks, and licenses. Every reported score can be recomputed from
 the traces without running a language model, and two scripts assert
-76 and 38 numeric statements of this manuscript against the archives. The Lean~4
+76 and 44 numeric statements of this manuscript against the archives. The Lean~4
 proofs build with Lean and Mathlib 4.26.0 from a pinned dependency
 manifest under \texttt{formal/}. For every experiment that called a model, the
 protocol was committed before the results. The offline audits E007 and

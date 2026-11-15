@@ -37,6 +37,12 @@
     "unreachable declarations",
     "mixture seeds that lost the key-detour example",
     "E002 frozen minus mixture, original holdout",
+    "path-matched queries against the empty memory",
+    "other-path queries against the empty memory",
+    "primary standard deviation",
+    "adaptation contrast in key-detour points",
+    "frozen minus empty interval",
+    "descriptive sign-flip values",
     "request hours"
   ]
 }

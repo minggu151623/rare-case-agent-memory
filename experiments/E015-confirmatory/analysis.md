@@ -77,7 +77,7 @@ spends the budget on a family the model cannot add.
 
 ## Descriptive results
 
-No test here is confirmatory. Eight sign-flip values were computed in
+No test here is confirmatory. Seven sign-flip values were computed in
 this block without correction.
 
 **Key detours against the mixture arm.** Balanced minus mixture: +8.9
@@ -125,7 +125,7 @@ Presence of a matching path was not randomized.
 The adaptive-minus-mixture interaction, the contrast that E009 reported
 as +19.4 points on six seeds, is −10.0 points here (interval −17.8 to
 −2.2, sign-flip 0.031). The sign is opposite to E009. The value is
-uncorrected and one of eight, so we do not read it as an effect in the
+uncorrected and one of seven, so we do not read it as an effect in the
 opposite direction. E009's direction did not replicate.
 
 **Unreachable tasks.** Zero of 450 readout answers were correct,
@@ -168,6 +168,16 @@ archived. Its output is [exploratory.json](exploratory.json).
   wrong endpoint (35). In this run the unreachable family measures a
   response the model does not produce, with or without an example.
 - The path-availability split by memory is in the JSON file.
+- Added after an independent review: the 32 path-matched answers cover
+  23 distinct queries. On the same queries the empty memory gave 20/32
+  (11 answers gained with the memory, two lost). For the 208 answers
+  with a key-detour example of another path, the empty memory gave
+  117/208 on the same queries. The matched gain is 9 of 32 answers.
+- Q2 counts rare answers out of six, and unreachable accuracy is zero
+  everywhere, so Q2 equals the key-detour difference: 56/90 against
+  59/90, −3.3 points of key-detour accuracy.
+- FIFO conformance checks the implementation. The memory is coded as a
+  FIFO buffer, so agreement is not a finding about the model.
 
 ## Deviations and observations
 

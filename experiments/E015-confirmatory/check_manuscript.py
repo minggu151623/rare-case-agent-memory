@@ -107,6 +107,21 @@ def statements():
                if k.endswith("_queries"))), (0, 3510))
     claim("mixture seeds that lost the key-detour example", 30 - kept["random_model"], 24)
     claim("E002 frozen minus mixture, original holdout", 16 - 7, 9)
+    same = EXTRA["path_split_against_empty_memory_on_same_queries"]
+    claim("path-matched queries against the empty memory",
+          [same["path_in_memory"][k] for k in
+           ("answers", "unique_queries", "with_memory", "empty_memory", "gained", "lost")],
+          [32, 23, 29, 20, 11, 2])
+    claim("other-path queries against the empty memory",
+          (same["path_not_in_memory"]["empty_memory"], same["path_not_in_memory"]["answers"]),
+          (117, 208))
+    claim("primary standard deviation", primary["sd"], 0.82)
+    claim("adaptation contrast in key-detour points",
+          round(100 * (scores["targeted_model"][1] - scores["rare_only_model"][1]) / 90, 1), -3.3)
+    claim("frozen minus empty interval",
+          numbers(extra["frozen_minus_empty_key_detour"])[1:3], (-10.0, 14.4))
+    claim("descriptive sign-flip values",
+          str(extra).count("exact_sign_flip_p_two_sided"), 7)
     usage = RESULT["usage"]
     claim("request hours",
           sum(usage[f"{stage}_seconds"] for stage in ("acquisition", "readout", "label")) / 3600,

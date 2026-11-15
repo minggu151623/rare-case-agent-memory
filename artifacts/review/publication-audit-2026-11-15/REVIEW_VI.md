@@ -24,7 +24,7 @@ luận thực nghiệm khái quát: một model, một miền đồ thị tổng
 | 18 nhóm kiểm tra của lần rà soát trước | 18/18 qua, 12 báo cáo JSON khớp bản lưu |
 | E005, 3.150 cấu hình FIFO bằng số hữu tỉ | Qua |
 | Lean 4.26.0, `lake build` và từng tệp với `-DwarningAsError=true` | 6 tệp qua, không `sorry`, 16 mệnh đề chỉ dùng `propext`, `Classical.choice`, `Quot.sound` |
-| 76 + 38 con số trong bản thảo đối chiếu với dữ liệu lưu | Qua, hai script dừng nếu lệch |
+| 76 + 44 con số trong bản thảo đối chiếu với dữ liệu lưu | Qua, hai script dừng nếu lệch |
 | 4 bảng sinh từ script | Khớp từng byte |
 | PDF | 21 trang, không cảnh báo LaTeX, không tham chiếu hỏng |
 | E015: 9 test, replay 30 seed khớp aggregate từng byte | Qua |
@@ -133,7 +133,7 @@ FIFO đã kiểm bằng Lean nhưng độ chính xác không đi theo coverage.
 | Thuật ngữ nhất quán | Đạt có ghi chú | random/targeted và reference-mixture/adaptive được giải thích một lần ở Section 5 |
 | Bảng booktabs, cột số căn phải | Đạt | Bảng sinh từ script, khớp từng byte |
 | Từ đệm, hedging | Đạt | Không còn "very", "quite", "essentially"... trong nguồn |
-| Checklist kiểu NeurIPS: claim khớp bằng chứng, tái lập, mã mở | Đạt | 114 con số được script đối chiếu; replay offline khớp từng byte |
+| Checklist kiểu NeurIPS: claim khớp bằng chứng, tái lập, mã mở | Đạt | 120 con số được script đối chiếu; replay offline khớp từng byte |
 | Checklist: giấy phép tài sản | Đạt sau sửa | Tác giả chọn MIT + CC BY 4.0; bản thảo ghi giấy phép của Qwen3, Lean, Mathlib |
 
 **Chấm theo bốn tiêu chí reviewer của skill.**
@@ -172,7 +172,7 @@ thảo này.
 
 | # | Mục | Trả lời | Căn cứ |
 | --- | --- | --- | --- |
-| 1 | Claim ở abstract/intro khớp kết quả | Có | 114 con số được hai script đối chiếu; abstract nêu kết quả âm |
+| 1 | Claim ở abstract/intro khớp kết quả | Có | 120 con số được hai script đối chiếu; abstract nêu kết quả âm |
 | 2 | Có mục Limitations | Có | Section 8, gồm giới hạn của E015 |
 | 3 | Giả định và chứng minh đầy đủ | Có | Mệnh đề 1 có chứng minh trong bài; 16 mệnh đề Lean, không `sorry` |
 | 4 | Tuyên bố tái lập | Có | Mục Reproducibility, link repo, commit bằng chứng |
@@ -214,3 +214,37 @@ trang và ẩn danh không áp dụng cho preprint Zenodo.
 
 - Tác giả tự tạo bản ghi Zenodo, tải PDF và ZIP trong
   `artifacts/current/`, và chọn giấy phép CC BY 4.0 trên Zenodo.
+
+## Phản biện độc lập (16/11/2026)
+
+Một agent khác, không có ngữ cảnh của phiên rà soát và chỉ được đọc,
+đã phản biện bản thảo theo `reviewer-guidelines.md` và `checklists.md`
+của skill ml-paper-writing. Nguyên văn:
+[INDEPENDENT_REVIEW.md](INDEPENDENT_REVIEW.md). Đây vẫn là phản biện bằng
+AI, chưa phải phản biện của con người.
+
+Kết quả của reviewer: 24 con số được tính lại từ dữ liệu, 23 khớp, 1
+lệch ("eight" phải là "seven"); phân tích E015 khớp protocol đã khóa,
+không có sai lệch chưa khai báo; `lake build` qua, không `sorry`; điểm
+Quality 3/4, Clarity 2/4, Significance 2/4, Originality 2/4; tổng 3/6
+(borderline reject) cho hội nghị chính; **Zenodo: được, sau khi sửa
+bốn điểm bắt buộc.**
+
+| Điểm của reviewer | Loại | Xử lý |
+| --- | --- | --- |
+| Cách giải thích "reusable answer" viết chắc hơn mức mô tả cho phép | Bắt buộc | Đổi tiêu đề đoạn Discussion, gọi là giả thuyết, bỏ "helped" ở abstract, làm mềm Conclusion |
+| "Eight" giá trị mô tả, thực tế là bảy | Bắt buộc | Sửa trong bản thảo và `analysis.md`; thêm vào script kiểm |
+| FIFO conformance bị trình bày như phát hiện thực nghiệm | Bắt buộc | Ghi rõ đây là kiểm tra cài đặt; bỏ khỏi "main result"; dùng "audited" |
+| Family unreachable và Q2 chạm sàn | Bắt buộc | Ghi ở abstract và tại Q2 (−3,3 điểm key-detour) |
+| Đối chứng cùng truy vấn cho path split | Tùy chọn | Thêm: bộ nhớ rỗng đạt 20/32 trên cùng truy vấn (được 11, mất 2); nhóm còn lại 117/208 |
+| Độ lệch chuẩn của contrast chính | Tùy chọn | Thêm 0,82 và effect 0,16 |
+| Hai nghĩa của "42" | Tùy chọn | Tách rõ |
+| Frozen − empty cũng null | Tùy chọn | Thêm vào Discussion |
+| Trích commit | Tùy chọn | Ghi rõ commit cố định trace và aggregate |
+| Thêm hình, rút gọn E003–E010, mở rộng related work | Tùy chọn | Chưa làm; ghi lại là điểm yếu về trình bày |
+
+Các câu hỏi reviewer nêu mà dữ liệu hiện có không trả lời được: bộ sinh
+gốc trên seed mới với readout một truy vấn; công suất của sign-flip với
+13/30 seed hòa. Về câu hỏi 3: tương tác nhãn được hạ xuống thứ cấp khi
+khóa protocol, trước khi so sánh bất kỳ bộ nhớ nào trên seed phát triển
+(protocol ghi chỉ xem giao diện).

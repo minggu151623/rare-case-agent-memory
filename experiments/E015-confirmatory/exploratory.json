@@ -106,5 +106,23 @@
    "correct": 44,
    "total": 72
   }
+ },
+ "path_split_against_empty_memory_on_same_queries": {
+  "path_in_memory": {
+   "answers": 32,
+   "with_memory": 29,
+   "empty_memory": 20,
+   "gained": 11,
+   "lost": 2,
+   "unique_queries": 23
+  },
+  "path_not_in_memory": {
+   "answers": 208,
+   "with_memory": 116,
+   "empty_memory": 117,
+   "gained": 28,
+   "lost": 29,
+   "unique_queries": 89
+  }
  }
 }
