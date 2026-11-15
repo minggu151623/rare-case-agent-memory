@@ -1,0 +1,1123 @@
+{
+  "e009_post_hoc_sensitivity": {
+    "seed_differences_out_of_six": [
+      3,
+      6,
+      -4,
+      2,
+      -1,
+      1
+    ],
+    "mean_percentage_points": 19.444,
+    "sign_assignments": 64,
+    "exact_sign_flip_p_two_sided": 0.5
+  },
+  "coverage_and_readout": {
+    "units": 42,
+    "units_with_correct_unreachable_answers": [
+      {
+        "seed": 6204,
+        "memory": "random_model",
+        "unreachable_correct": 3,
+        "key_detour_answer_classes": {
+          "false_unreachable": 3
+        }
+      }
+    ],
+    "original_batch": {
+      "key_detour": {
+        "pooled": {
+          "present": {
+            "units": 29,
+            "correct": 80,
+            "total": 87,
+            "perfect": 25,
+            "zero": 0
+          },
+          "absent": {
+            "units": 13,
+            "correct": 9,
+            "total": 39,
+            "perfect": 1,
+            "zero": 8
+          }
+        },
+        "by_memory": {
+          "random_model": {
+            "present": {
+              "units": 2,
+              "correct": 6,
+              "total": 6,
+              "perfect": 2,
+              "zero": 0
+            },
+            "absent": {
+              "units": 4,
+              "correct": 1,
+              "total": 12,
+              "perfect": 0,
+              "zero": 3
+            }
+          },
+          "targeted_oracle": {
+            "present": {
+              "units": 6,
+              "correct": 17,
+              "total": 18,
+              "perfect": 5,
+              "zero": 0
+            }
+          },
+          "random_oracle": {
+            "present": {
+              "units": 3,
+              "correct": 7,
+              "total": 9,
+              "perfect": 2,
+              "zero": 0
+            },
+            "absent": {
+              "units": 3,
+              "correct": 1,
+              "total": 9,
+              "perfect": 0,
+              "zero": 2
+            }
+          },
+          "targeted_model": {
+            "present": {
+              "units": 6,
+              "correct": 18,
+              "total": 18,
+              "perfect": 6,
+              "zero": 0
+            }
+          },
+          "rare_only_model": {
+            "present": {
+              "units": 6,
+              "correct": 16,
+              "total": 18,
+              "perfect": 5,
+              "zero": 0
+            }
+          },
+          "frozen": {
+            "present": {
+              "units": 6,
+              "correct": 16,
+              "total": 18,
+              "perfect": 5,
+              "zero": 0
+            }
+          },
+          "empty": {
+            "absent": {
+              "units": 6,
+              "correct": 7,
+              "total": 18,
+              "perfect": 1,
+              "zero": 3
+            }
+          }
+        },
+        "by_seed": {
+          "6201": {
+            "present": {
+              "units": 4,
+              "correct": 12,
+              "total": 12,
+              "perfect": 4,
+              "zero": 0
+            },
+            "absent": {
+              "units": 3,
+              "correct": 0,
+              "total": 9,
+              "perfect": 0,
+              "zero": 3
+            }
+          },
+          "6202": {
+            "present": {
+              "units": 6,
+              "correct": 18,
+              "total": 18,
+              "perfect": 6,
+              "zero": 0
+            },
+            "absent": {
+              "units": 1,
+              "correct": 2,
+              "total": 3,
+              "perfect": 0,
+              "zero": 0
+            }
+          },
+          "6203": {
+            "present": {
+              "units": 6,
+              "correct": 17,
+              "total": 18,
+              "perfect": 5,
+              "zero": 0
+            },
+            "absent": {
+              "units": 1,
+              "correct": 3,
+              "total": 3,
+              "perfect": 1,
+              "zero": 0
+            }
+          },
+          "6204": {
+            "present": {
+              "units": 5,
+              "correct": 13,
+              "total": 15,
+              "perfect": 4,
+              "zero": 0
+            },
+            "absent": {
+              "units": 2,
+              "correct": 0,
+              "total": 6,
+              "perfect": 0,
+              "zero": 2
+            }
+          },
+          "6205": {
+            "present": {
+              "units": 4,
+              "correct": 12,
+              "total": 12,
+              "perfect": 4,
+              "zero": 0
+            },
+            "absent": {
+              "units": 3,
+              "correct": 0,
+              "total": 9,
+              "perfect": 0,
+              "zero": 3
+            }
+          },
+          "6206": {
+            "present": {
+              "units": 4,
+              "correct": 8,
+              "total": 12,
+              "perfect": 2,
+              "zero": 0
+            },
+            "absent": {
+              "units": 3,
+              "correct": 4,
+              "total": 9,
+              "perfect": 0,
+              "zero": 0
+            }
+          }
+        }
+      },
+      "unreachable": {
+        "pooled": {
+          "present": {
+            "units": 17,
+            "correct": 3,
+            "total": 51,
+            "perfect": 1,
+            "zero": 16
+          },
+          "absent": {
+            "units": 25,
+            "correct": 0,
+            "total": 75,
+            "perfect": 0,
+            "zero": 25
+          }
+        },
+        "by_memory": {
+          "random_model": {
+            "present": {
+              "units": 1,
+              "correct": 3,
+              "total": 3,
+              "perfect": 1,
+              "zero": 0
+            },
+            "absent": {
+              "units": 5,
+              "correct": 0,
+              "total": 15,
+              "perfect": 0,
+              "zero": 5
+            }
+          },
+          "targeted_oracle": {
+            "present": {
+              "units": 4,
+              "correct": 0,
+              "total": 12,
+              "perfect": 0,
+              "zero": 4
+            },
+            "absent": {
+              "units": 2,
+              "correct": 0,
+              "total": 6,
+              "perfect": 0,
+              "zero": 2
+            }
+          },
+          "random_oracle": {
+            "present": {
+              "units": 2,
+              "correct": 0,
+              "total": 6,
+              "perfect": 0,
+              "zero": 2
+            },
+            "absent": {
+              "units": 4,
+              "correct": 0,
+              "total": 12,
+              "perfect": 0,
+              "zero": 4
+            }
+          },
+          "targeted_model": {
+            "present": {
+              "units": 1,
+              "correct": 0,
+              "total": 3,
+              "perfect": 0,
+              "zero": 1
+            },
+            "absent": {
+              "units": 5,
+              "correct": 0,
+              "total": 15,
+              "perfect": 0,
+              "zero": 5
+            }
+          },
+          "rare_only_model": {
+            "present": {
+              "units": 3,
+              "correct": 0,
+              "total": 9,
+              "perfect": 0,
+              "zero": 3
+            },
+            "absent": {
+              "units": 3,
+              "correct": 0,
+              "total": 9,
+              "perfect": 0,
+              "zero": 3
+            }
+          },
+          "frozen": {
+            "present": {
+              "units": 6,
+              "correct": 0,
+              "total": 18,
+              "perfect": 0,
+              "zero": 6
+            }
+          },
+          "empty": {
+            "absent": {
+              "units": 6,
+              "correct": 0,
+              "total": 18,
+              "perfect": 0,
+              "zero": 6
+            }
+          }
+        },
+        "by_seed": {
+          "6201": {
+            "present": {
+              "units": 2,
+              "correct": 0,
+              "total": 6,
+              "perfect": 0,
+              "zero": 2
+            },
+            "absent": {
+              "units": 5,
+              "correct": 0,
+              "total": 15,
+              "perfect": 0,
+              "zero": 5
+            }
+          },
+          "6202": {
+            "present": {
+              "units": 2,
+              "correct": 0,
+              "total": 6,
+              "perfect": 0,
+              "zero": 2
+            },
+            "absent": {
+              "units": 5,
+              "correct": 0,
+              "total": 15,
+              "perfect": 0,
+              "zero": 5
+            }
+          },
+          "6203": {
+            "present": {
+              "units": 3,
+              "correct": 0,
+              "total": 9,
+              "perfect": 0,
+              "zero": 3
+            },
+            "absent": {
+              "units": 4,
+              "correct": 0,
+              "total": 12,
+              "perfect": 0,
+              "zero": 4
+            }
+          },
+          "6204": {
+            "present": {
+              "units": 4,
+              "correct": 3,
+              "total": 12,
+              "perfect": 1,
+              "zero": 3
+            },
+            "absent": {
+              "units": 3,
+              "correct": 0,
+              "total": 9,
+              "perfect": 0,
+              "zero": 3
+            }
+          },
+          "6205": {
+            "present": {
+              "units": 4,
+              "correct": 0,
+              "total": 12,
+              "perfect": 0,
+              "zero": 4
+            },
+            "absent": {
+              "units": 3,
+              "correct": 0,
+              "total": 9,
+              "perfect": 0,
+              "zero": 3
+            }
+          },
+          "6206": {
+            "present": {
+              "units": 2,
+              "correct": 0,
+              "total": 6,
+              "perfect": 0,
+              "zero": 2
+            },
+            "absent": {
+              "units": 5,
+              "correct": 0,
+              "total": 15,
+              "perfect": 0,
+              "zero": 5
+            }
+          }
+        }
+      }
+    },
+    "varied_batch_key_detour": {
+      "pooled": {
+        "present": {
+          "units": 14,
+          "correct": 15,
+          "total": 42,
+          "perfect": 0,
+          "zero": 3
+        },
+        "absent": {
+          "units": 4,
+          "correct": 0,
+          "total": 12,
+          "perfect": 0,
+          "zero": 4
+        }
+      },
+      "by_memory": {
+        "random_model": {
+          "present": {
+            "units": 2,
+            "correct": 3,
+            "total": 6,
+            "perfect": 0,
+            "zero": 0
+          },
+          "absent": {
+            "units": 4,
+            "correct": 0,
+            "total": 12,
+            "perfect": 0,
+            "zero": 4
+          }
+        },
+        "targeted_model": {
+          "present": {
+            "units": 6,
+            "correct": 7,
+            "total": 18,
+            "perfect": 0,
+            "zero": 1
+          }
+        },
+        "rare_only_model": {
+          "present": {
+            "units": 6,
+            "correct": 5,
+            "total": 18,
+            "perfect": 0,
+            "zero": 2
+          }
+        }
+      },
+      "by_seed": {
+        "6201": {
+          "present": {
+            "units": 2,
+            "correct": 4,
+            "total": 6,
+            "perfect": 0,
+            "zero": 0
+          },
+          "absent": {
+            "units": 1,
+            "correct": 0,
+            "total": 3,
+            "perfect": 0,
+            "zero": 1
+          }
+        },
+        "6202": {
+          "present": {
+            "units": 3,
+            "correct": 4,
+            "total": 9,
+            "perfect": 0,
+            "zero": 0
+          }
+        },
+        "6203": {
+          "present": {
+            "units": 3,
+            "correct": 3,
+            "total": 9,
+            "perfect": 0,
+            "zero": 0
+          }
+        },
+        "6204": {
+          "present": {
+            "units": 2,
+            "correct": 2,
+            "total": 6,
+            "perfect": 0,
+            "zero": 0
+          },
+          "absent": {
+            "units": 1,
+            "correct": 0,
+            "total": 3,
+            "perfect": 0,
+            "zero": 1
+          }
+        },
+        "6205": {
+          "present": {
+            "units": 2,
+            "correct": 0,
+            "total": 6,
+            "perfect": 0,
+            "zero": 2
+          },
+          "absent": {
+            "units": 1,
+            "correct": 0,
+            "total": 3,
+            "perfect": 0,
+            "zero": 1
+          }
+        },
+        "6206": {
+          "present": {
+            "units": 2,
+            "correct": 2,
+            "total": 6,
+            "perfect": 0,
+            "zero": 1
+          },
+          "absent": {
+            "units": 1,
+            "correct": 0,
+            "total": 3,
+            "perfect": 0,
+            "zero": 1
+          }
+        }
+      }
+    },
+    "unit_table": [
+      {
+        "seed": 6201,
+        "memory": "random_model",
+        "key_detour_retained": 0,
+        "unreachable_retained": 0,
+        "key_detour_correct": 0,
+        "unreachable_correct": 0
+      },
+      {
+        "seed": 6201,
+        "memory": "targeted_oracle",
+        "key_detour_retained": 1,
+        "unreachable_retained": 1,
+        "key_detour_correct": 3,
+        "unreachable_correct": 0
+      },
+      {
+        "seed": 6201,
+        "memory": "random_oracle",
+        "key_detour_retained": 0,
+        "unreachable_retained": 0,
+        "key_detour_correct": 0,
+        "unreachable_correct": 0
+      },
+      {
+        "seed": 6201,
+        "memory": "targeted_model",
+        "key_detour_retained": 1,
+        "unreachable_retained": 0,
+        "key_detour_correct": 3,
+        "unreachable_correct": 0
+      },
+      {
+        "seed": 6201,
+        "memory": "rare_only_model",
+        "key_detour_retained": 1,
+        "unreachable_retained": 0,
+        "key_detour_correct": 3,
+        "unreachable_correct": 0
+      },
+      {
+        "seed": 6201,
+        "memory": "frozen",
+        "key_detour_retained": 1,
+        "unreachable_retained": 1,
+        "key_detour_correct": 3,
+        "unreachable_correct": 0
+      },
+      {
+        "seed": 6201,
+        "memory": "empty",
+        "key_detour_retained": 0,
+        "unreachable_retained": 0,
+        "key_detour_correct": 0,
+        "unreachable_correct": 0
+      },
+      {
+        "seed": 6202,
+        "memory": "targeted_oracle",
+        "key_detour_retained": 1,
+        "unreachable_retained": 1,
+        "key_detour_correct": 3,
+        "unreachable_correct": 0
+      },
+      {
+        "seed": 6202,
+        "memory": "random_oracle",
+        "key_detour_retained": 1,
+        "unreachable_retained": 0,
+        "key_detour_correct": 3,
+        "unreachable_correct": 0
+      },
+      {
+        "seed": 6202,
+        "memory": "targeted_model",
+        "key_detour_retained": 1,
+        "unreachable_retained": 0,
+        "key_detour_correct": 3,
+        "unreachable_correct": 0
+      },
+      {
+        "seed": 6202,
+        "memory": "random_model",
+        "key_detour_retained": 1,
+        "unreachable_retained": 0,
+        "key_detour_correct": 3,
+        "unreachable_correct": 0
+      },
+      {
+        "seed": 6202,
+        "memory": "rare_only_model",
+        "key_detour_retained": 1,
+        "unreachable_retained": 0,
+        "key_detour_correct": 3,
+        "unreachable_correct": 0
+      },
+      {
+        "seed": 6202,
+        "memory": "frozen",
+        "key_detour_retained": 1,
+        "unreachable_retained": 1,
+        "key_detour_correct": 3,
+        "unreachable_correct": 0
+      },
+      {
+        "seed": 6202,
+        "memory": "empty",
+        "key_detour_retained": 0,
+        "unreachable_retained": 0,
+        "key_detour_correct": 2,
+        "unreachable_correct": 0
+      },
+      {
+        "seed": 6203,
+        "memory": "random_model",
+        "key_detour_retained": 1,
+        "unreachable_retained": 0,
+        "key_detour_correct": 3,
+        "unreachable_correct": 0
+      },
+      {
+        "seed": 6203,
+        "memory": "targeted_oracle",
+        "key_detour_retained": 2,
+        "unreachable_retained": 1,
+        "key_detour_correct": 2,
+        "unreachable_correct": 0
+      },
+      {
+        "seed": 6203,
+        "memory": "random_oracle",
+        "key_detour_retained": 1,
+        "unreachable_retained": 1,
+        "key_detour_correct": 3,
+        "unreachable_correct": 0
+      },
+      {
+        "seed": 6203,
+        "memory": "targeted_model",
+        "key_detour_retained": 2,
+        "unreachable_retained": 0,
+        "key_detour_correct": 3,
+        "unreachable_correct": 0
+      },
+      {
+        "seed": 6203,
+        "memory": "rare_only_model",
+        "key_detour_retained": 2,
+        "unreachable_retained": 0,
+        "key_detour_correct": 3,
+        "unreachable_correct": 0
+      },
+      {
+        "seed": 6203,
+        "memory": "frozen",
+        "key_detour_retained": 1,
+        "unreachable_retained": 1,
+        "key_detour_correct": 3,
+        "unreachable_correct": 0
+      },
+      {
+        "seed": 6203,
+        "memory": "empty",
+        "key_detour_retained": 0,
+        "unreachable_retained": 0,
+        "key_detour_correct": 3,
+        "unreachable_correct": 0
+      },
+      {
+        "seed": 6204,
+        "memory": "random_model",
+        "key_detour_retained": 0,
+        "unreachable_retained": 1,
+        "key_detour_correct": 0,
+        "unreachable_correct": 3
+      },
+      {
+        "seed": 6204,
+        "memory": "random_oracle",
+        "key_detour_retained": 1,
+        "unreachable_retained": 1,
+        "key_detour_correct": 1,
+        "unreachable_correct": 0
+      },
+      {
+        "seed": 6204,
+        "memory": "targeted_model",
+        "key_detour_retained": 2,
+        "unreachable_retained": 0,
+        "key_detour_correct": 3,
+        "unreachable_correct": 0
+      },
+      {
+        "seed": 6204,
+        "memory": "targeted_oracle",
+        "key_detour_retained": 2,
+        "unreachable_retained": 0,
+        "key_detour_correct": 3,
+        "unreachable_correct": 0
+      },
+      {
+        "seed": 6204,
+        "memory": "rare_only_model",
+        "key_detour_retained": 1,
+        "unreachable_retained": 1,
+        "key_detour_correct": 3,
+        "unreachable_correct": 0
+      },
+      {
+        "seed": 6204,
+        "memory": "frozen",
+        "key_detour_retained": 1,
+        "unreachable_retained": 1,
+        "key_detour_correct": 3,
+        "unreachable_correct": 0
+      },
+      {
+        "seed": 6204,
+        "memory": "empty",
+        "key_detour_retained": 0,
+        "unreachable_retained": 0,
+        "key_detour_correct": 0,
+        "unreachable_correct": 0
+      },
+      {
+        "seed": 6205,
+        "memory": "targeted_oracle",
+        "key_detour_retained": 1,
+        "unreachable_retained": 2,
+        "key_detour_correct": 3,
+        "unreachable_correct": 0
+      },
+      {
+        "seed": 6205,
+        "memory": "targeted_model",
+        "key_detour_retained": 2,
+        "unreachable_retained": 1,
+        "key_detour_correct": 3,
+        "unreachable_correct": 0
+      },
+      {
+        "seed": 6205,
+        "memory": "random_oracle",
+        "key_detour_retained": 0,
+        "unreachable_retained": 0,
+        "key_detour_correct": 0,
+        "unreachable_correct": 0
+      },
+      {
+        "seed": 6205,
+        "memory": "random_model",
+        "key_detour_retained": 0,
+        "unreachable_retained": 0,
+        "key_detour_correct": 0,
+        "unreachable_correct": 0
+      },
+      {
+        "seed": 6205,
+        "memory": "rare_only_model",
+        "key_detour_retained": 2,
+        "unreachable_retained": 1,
+        "key_detour_correct": 3,
+        "unreachable_correct": 0
+      },
+      {
+        "seed": 6205,
+        "memory": "frozen",
+        "key_detour_retained": 1,
+        "unreachable_retained": 1,
+        "key_detour_correct": 3,
+        "unreachable_correct": 0
+      },
+      {
+        "seed": 6205,
+        "memory": "empty",
+        "key_detour_retained": 0,
+        "unreachable_retained": 0,
+        "key_detour_correct": 0,
+        "unreachable_correct": 0
+      },
+      {
+        "seed": 6206,
+        "memory": "random_model",
+        "key_detour_retained": 0,
+        "unreachable_retained": 0,
+        "key_detour_correct": 1,
+        "unreachable_correct": 0
+      },
+      {
+        "seed": 6206,
+        "memory": "targeted_oracle",
+        "key_detour_retained": 2,
+        "unreachable_retained": 0,
+        "key_detour_correct": 3,
+        "unreachable_correct": 0
+      },
+      {
+        "seed": 6206,
+        "memory": "targeted_model",
+        "key_detour_retained": 2,
+        "unreachable_retained": 0,
+        "key_detour_correct": 3,
+        "unreachable_correct": 0
+      },
+      {
+        "seed": 6206,
+        "memory": "random_oracle",
+        "key_detour_retained": 0,
+        "unreachable_retained": 0,
+        "key_detour_correct": 1,
+        "unreachable_correct": 0
+      },
+      {
+        "seed": 6206,
+        "memory": "rare_only_model",
+        "key_detour_retained": 1,
+        "unreachable_retained": 1,
+        "key_detour_correct": 1,
+        "unreachable_correct": 0
+      },
+      {
+        "seed": 6206,
+        "memory": "frozen",
+        "key_detour_retained": 1,
+        "unreachable_retained": 1,
+        "key_detour_correct": 1,
+        "unreachable_correct": 0
+      },
+      {
+        "seed": 6206,
+        "memory": "empty",
+        "key_detour_retained": 0,
+        "unreachable_retained": 0,
+        "key_detour_correct": 2,
+        "unreachable_correct": 0
+      }
+    ]
+  },
+  "fifo_conformance": {
+    "trajectories": 42,
+    "family_trajectory_checks": 126,
+    "mismatches": 0,
+    "by_study_arm_family": {
+      "E002": {
+        "random_model": {
+          "ungated": {
+            "trajectories": 6,
+            "absent_at_end": 0,
+            "absent_without_focal_admission": 0
+          },
+          "key_detour": {
+            "trajectories": 6,
+            "absent_at_end": 4,
+            "absent_without_focal_admission": 4
+          },
+          "unreachable": {
+            "trajectories": 6,
+            "absent_at_end": 5,
+            "absent_without_focal_admission": 5
+          }
+        },
+        "random_oracle": {
+          "ungated": {
+            "trajectories": 6,
+            "absent_at_end": 0,
+            "absent_without_focal_admission": 0
+          },
+          "key_detour": {
+            "trajectories": 6,
+            "absent_at_end": 3,
+            "absent_without_focal_admission": 3
+          },
+          "unreachable": {
+            "trajectories": 6,
+            "absent_at_end": 4,
+            "absent_without_focal_admission": 4
+          }
+        },
+        "targeted_model": {
+          "ungated": {
+            "trajectories": 6,
+            "absent_at_end": 0,
+            "absent_without_focal_admission": 0
+          },
+          "key_detour": {
+            "trajectories": 6,
+            "absent_at_end": 0,
+            "absent_without_focal_admission": 0
+          },
+          "unreachable": {
+            "trajectories": 6,
+            "absent_at_end": 5,
+            "absent_without_focal_admission": 5
+          }
+        },
+        "targeted_oracle": {
+          "ungated": {
+            "trajectories": 6,
+            "absent_at_end": 0,
+            "absent_without_focal_admission": 0
+          },
+          "key_detour": {
+            "trajectories": 6,
+            "absent_at_end": 0,
+            "absent_without_focal_admission": 0
+          },
+          "unreachable": {
+            "trajectories": 6,
+            "absent_at_end": 2,
+            "absent_without_focal_admission": 2
+          }
+        }
+      },
+      "E012": {
+        "rare_only_model": {
+          "ungated": {
+            "trajectories": 6,
+            "absent_at_end": 0,
+            "absent_without_focal_admission": 0
+          },
+          "key_detour": {
+            "trajectories": 6,
+            "absent_at_end": 0,
+            "absent_without_focal_admission": 0
+          },
+          "unreachable": {
+            "trajectories": 6,
+            "absent_at_end": 3,
+            "absent_without_focal_admission": 3
+          }
+        }
+      },
+      "E008": {
+        "random_model": {
+          "ungated": {
+            "trajectories": 6,
+            "absent_at_end": 0,
+            "absent_without_focal_admission": 0
+          },
+          "key_detour": {
+            "trajectories": 6,
+            "absent_at_end": 3,
+            "absent_without_focal_admission": 3
+          },
+          "unreachable": {
+            "trajectories": 6,
+            "absent_at_end": 1,
+            "absent_without_focal_admission": 1
+          }
+        },
+        "targeted_model": {
+          "ungated": {
+            "trajectories": 6,
+            "absent_at_end": 0,
+            "absent_without_focal_admission": 0
+          },
+          "key_detour": {
+            "trajectories": 6,
+            "absent_at_end": 1,
+            "absent_without_focal_admission": 1
+          },
+          "unreachable": {
+            "trajectories": 6,
+            "absent_at_end": 1,
+            "absent_without_focal_admission": 1
+          }
+        }
+      }
+    }
+  },
+  "manuscript_statements_checked": [
+    "E002 calls",
+    "E002 unreachable-memory differences",
+    "E002 unreachable-memory mean",
+    "E002 unreachable-memory sign-flip",
+    "E002 rare macro differences",
+    "E002 rare macro mean (points)",
+    "E002 rare macro sign-flip",
+    "E002 random_model family scores",
+    "E002 random_model rare macro",
+    "E002 targeted_model family scores",
+    "E002 targeted_model rare macro",
+    "E002 random_oracle family scores",
+    "E002 random_oracle rare macro",
+    "E002 targeted_oracle family scores",
+    "E002 targeted_oracle rare macro",
+    "E002 unreachable attempts",
+    "E002 unreachable model passes",
+    "E002 unreachable admissions",
+    "E002 mean final unreachable examples",
+    "E002 targeted key-detour attempts and admissions",
+    "E002 empty memory scores",
+    "E002 frozen memory scores",
+    "E002 mixture supplement families",
+    "E002 adaptive supplement families",
+    "E011 fixed path",
+    "E011 Qwen subset gaps",
+    "E003 random_model key detours",
+    "E003 random_model unreachable after transfer",
+    "E003 targeted_model key detours",
+    "E003 targeted_model unreachable after transfer",
+    "E003 targeted_oracle key detours",
+    "E003 targeted_oracle unreachable after transfer",
+    "E004 random key detours",
+    "E004 targeted key detours",
+    "E004 targeted_model memory_main",
+    "E004 targeted_model query_main",
+    "E004 targeted_model interaction",
+    "E004 random_model memory_main",
+    "E004 random_model query_main",
+    "E004 random_model interaction",
+    "E007 targeted first errors",
+    "E007 losses after a correct original",
+    "E008 scores",
+    "E008 targeted key-detour attempts and admissions",
+    "E009 key detours",
+    "E009 seed differences",
+    "E009 mean difference (points)",
+    "E009 leave-one-seed-out minimum",
+    "E009 leave-one-seed-out maximum",
+    "E009 post hoc sign-flip",
+    "E006 completeness",
+    "E010 Gemma correct counts",
+    "E012 scores",
+    "E012 rare gaps",
+    "E012 rare macro gap (points)",
+    "E012 sign-flip",
+    "E012 key-detour supplements",
+    "E012 unreachable supplement admissions",
+    "E013 fixed-path coverage",
+    "E013 key detours",
+    "E013 mixture unchanged queries",
+    "E013 gap change (points)",
+    "E013 gap change sign-flip",
+    "E014 key-detour readout by retained coverage",
+    "E014 unreachable readout by retained coverage",
+    "E014 varied-batch key-detour readout by retained coverage",
+    "E014 seeds with higher key-detour accuracy when the example is retained",
+    "E014 key-detour units with a perfect or zero score",
+    "E014 mixture arm by retained key-detour example",
+    "E014 units with a correct unreachable answer",
+    "E014 FIFO conformance",
+    "E014 family losses and losses without replenishment"
+  ]
+}
