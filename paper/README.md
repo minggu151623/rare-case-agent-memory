@@ -122,6 +122,7 @@ python3 -m src.confirmatory "$root" --audit | cmp - "$root/aggregate.json"
 python3 -m experiments.E015-confirmatory.exploratory | cmp - experiments/E015-confirmatory/exploratory.json
 python3 -m experiments.E015-confirmatory.check_manuscript | cmp - experiments/E015-confirmatory/manuscript-statements.json
 python3 paper/audit_tables.py --confirmatory > paper/confirmatory-table.tex
+python3 paper/coverage_figure.py  # writes paper/coverage-accuracy.pdf, needs matplotlib
 ```
 
 ## Check the FIFO proof in Lean

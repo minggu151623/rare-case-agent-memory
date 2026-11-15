@@ -26,7 +26,7 @@ luận thực nghiệm khái quát: một model, một miền đồ thị tổng
 | Lean 4.26.0, `lake build` và từng tệp với `-DwarningAsError=true` | 6 tệp qua, không `sorry`, 16 mệnh đề chỉ dùng `propext`, `Classical.choice`, `Quot.sound` |
 | 76 + 44 con số trong bản thảo đối chiếu với dữ liệu lưu | Qua, hai script dừng nếu lệch |
 | 4 bảng sinh từ script | Khớp từng byte |
-| PDF | 21 trang, không cảnh báo LaTeX, không tham chiếu hỏng |
+| PDF | 23 trang, không cảnh báo LaTeX, không tham chiếu hỏng |
 | E015: 9 test, replay 30 seed khớp aggregate từng byte | Qua |
 | 4 tài liệu tham khảo mới | Lấy BibTeX từ arXiv và doi.org, đã đọc abstract |
 
@@ -241,7 +241,11 @@ bốn điểm bắt buộc.**
 | Hai nghĩa của "42" | Tùy chọn | Tách rõ |
 | Frozen − empty cũng null | Tùy chọn | Thêm vào Discussion |
 | Trích commit | Tùy chọn | Ghi rõ commit cố định trace và aggregate |
-| Thêm hình, rút gọn E003–E010, mở rộng related work | Tùy chọn | Chưa làm; ghi lại là điểm yếu về trình bày |
+| Thêm một hình kết quả | Tùy chọn | Đã thêm Hình 1 (coverage so với độ chính xác, E002 và E015), sinh từ dữ liệu lưu bằng `paper/coverage_figure.py` |
+| Chuyển E003–E010 xuống phụ lục | Tùy chọn | Đã chuyển thiết kế và kết quả của E003, E004, E006, E007, E008, E010 sang Phụ lục B; thân bài giữ một đoạn tóm tắt |
+| Mở rộng related work | Tùy chọn | Thêm 5 trích dẫn (Reflexion, ExpeL, Voyager, Liu et al. 2021, Min et al. 2022); BibTeX lấy từ arXiv, đã đọc abstract |
+| Bảng 2 nằm ở Introduction | Nhỏ | Đưa về mục Results; Introduction dùng Hình 1 |
+| Lỗi nối câu giữa dòng trong nguồn | Nhỏ | Đã ngắt lại các dòng dài |
 
 Các câu hỏi reviewer nêu mà dữ liệu hiện có không trả lời được: bộ sinh
 gốc trên seed mới với readout một truy vấn; công suất của sign-flip với

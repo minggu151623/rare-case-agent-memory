@@ -22,3 +22,16 @@ The four entries above were fetched on 2026-11-15 from the arXiv BibTeX
 export and from doi.org content negotiation. The abstracts of the two
 arXiv records were read to confirm the statements made about them in
 Section 2.
+
+| Key | Source |
+| --- | --- |
+| expel | [Zhao et al., ExpeL: LLM Agents Are Experiential Learners](https://arxiv.org/abs/2308.10144) |
+| reflexion | [Shinn et al., Reflexion: Language Agents with Verbal Reinforcement Learning](https://arxiv.org/abs/2303.11366) |
+| voyager | [Wang et al., Voyager: An Open-Ended Embodied Agent with Large Language Models](https://arxiv.org/abs/2305.16291) |
+| goodexamples | [Liu et al., What Makes Good In-Context Examples for GPT-3?](https://arxiv.org/abs/2101.06804) |
+| roledemonstrations | [Min et al., Rethinking the Role of Demonstrations](https://arxiv.org/abs/2202.12837) |
+
+The five entries above were fetched on 2026-11-16 from the arXiv BibTeX
+export, after an independent review asked for broader related work. The
+five abstracts were read through the arXiv API to confirm the statements
+made about them in Section 2.

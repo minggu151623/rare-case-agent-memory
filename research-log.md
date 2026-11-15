@@ -145,3 +145,13 @@ path. Decision: keep the six-seed counts as reported, narrow the
 retention reading to the original holdout, and report the null results
 in the abstract, a new Results subsection, the Discussion, and the
 Conclusion. The manuscript now carries 120 asserted statements.
+
+An independent AI reviewer, read-only and without the revision
+context, reviewed the manuscript with the pinned skill's reviewer
+guidelines. It recomputed 24 numbers (one wording error, "eight" for
+seven), confirmed protocol conformance and the Lean build, scored the
+paper 3 of 6 for a main track, and judged it ready for Zenodo after four
+fixes. All four were made, along with the optional ones: a same-query
+control for the path split, a results figure, the six-seed follow-ups
+moved to an appendix, and five related-work citations fetched from
+arXiv. The author chose MIT for code and CC BY 4.0 for everything else.

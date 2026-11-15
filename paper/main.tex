@@ -1,6 +1,6 @@
 \documentclass[11pt]{article}
 \usepackage[margin=1in]{geometry}
-\usepackage{amsmath,amsthm,booktabs,float}
+\usepackage{amsmath,amsthm,booktabs,float,graphicx}
 \usepackage[hidelinks]{hyperref}
 \newtheorem{proposition}{Proposition}
 \renewcommand{\labelitemi}{$\bullet$}
@@ -67,7 +67,8 @@ comparison: a baseline that spends the same budget on rare tasks,
 held-out queries that no single answer path solves, and equivalent
 relabelings of the same graphs.
 
-Table~\ref{tab:summary} summarizes the main comparison. Adaptive
+Table~\ref{tab:summary} and Figure~\ref{fig:coverage-accuracy} summarize
+the main comparison. Adaptive
 allocation beat reference-mixture sampling by 11 of 18 key-detour
 queries. The memory that was never updated was only two answers behind
 the adaptive policy, and the mixture policy matched the empty memory.
@@ -75,8 +76,8 @@ The mixture policy lost the initial key-detour example in four of six
 seeds, and each loss occurred without any new admission from that
 family. After seeing these counts we read the gap as retained coverage.
 Section~\ref{sec:confirmatory} tests that reading on 30 fresh seeds
-with diversified key-detour routes (Table~\ref{tab:confirmatory}). It
-was not confirmed: the mixture
+with diversified key-detour routes (Figure~\ref{fig:coverage-accuracy},
+right). It was not confirmed: the mixture
 policy again lost the example in most seeds, and its accuracy stayed
 within sampling error of the frozen and empty memories. The
 contributions are as follows.
@@ -85,7 +86,8 @@ contributions are as follows.
 \item \textbf{A family-level audit of a memory-policy gap.} With frozen
 and empty baselines and a control matched on rare budget, the
 key-detour gain of adaptive allocation over the reference mixture is
-mostly retained coverage on the original holdout, a post hoc reading. Against the matched control the gain is two
+mostly retained coverage on the original holdout, a post hoc reading.
+Against the matched control the gain is two
 answers from one seed. For unreachable tasks, retained examples did
 not improve held-out accuracy, even when an exact solver supplied them.
 \item \textbf{A confirmatory test of the audit's own reading.} A locked
@@ -116,10 +118,33 @@ advance. Both parts use one acquisition model and synthetic graphs.
 Neither shows that adaptive allocation outperforms a policy with the
 same rare budget.
 
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{coverage-accuracy}
+\caption{Retained coverage and held-out accuracy on key-detour tasks,
+by evaluated memory. Blue bars give the percentage of seeds whose
+memory still holds a key-detour example, and hatched orange bars the
+percentage of held-out key-detour queries answered correctly. Left:
+exploratory study, where one stored path answers every query; accuracy
+tracks retained coverage. Right: confirmatory experiment with nine
+answer paths; coverage differs across memories as much as before and
+accuracy does not. Mixture, Balanced, and Adaptive are the
+reference-mixture, balanced rare-only, and adaptive update policies.}
+\label{fig:coverage-accuracy}
+\end{figure}
+
 \input{summary-table}
-\input{confirmatory-table}
 
 \section{Related work}
+
+Several agent designs improve a fixed-weight model by storing its own
+experience. Reflexion keeps verbal reflections in an episodic memory
+buffer \cite{reflexion}, ExpeL gathers experiences and extracts
+insights that it recalls at inference \cite{expel}, and Voyager grows a
+library of executable skills refined with self-verification
+\cite{voyager}. These systems report gains as experience accumulates.
+We ask a narrower question about one such store: which task families
+remain in it, and whether what remains changes held-out answers.
 
 Xiong et al. study selective addition and deletion, including an
 error-free comparison that replaces the model's stored execution with
@@ -146,7 +171,8 @@ update decisions fully auditable.
 
 Studies of recursive synthetic training show that low-frequency events can
 vanish across model generations \cite{shumailov2024}. Verification can
-limit degradation in some synthetic-training settings \cite{feng2024}. Formal verification
+limit degradation in some synthetic-training settings \cite{feng2024}.
+Formal verification
 and diverse task proposals are important in some self-play settings
 \cite{psv}. Here the model parameters are fixed and the state carried
 across rounds is a list of solved examples. The question is which examples
@@ -155,6 +181,16 @@ Prioritized experience replay in reinforcement learning changes how
 frequently stored transitions are sampled \cite{prioritizedreplay}.
 Our analysis concerns the earlier decision of which attempted tasks
 produce an admissible example.
+
+Work on in-context learning shows that results depend on which
+demonstrations are chosen. Liu et al.\ find that retrieving examples
+similar to the test input outperforms random selection
+\cite{goodexamples}. Min et al.\ find that, on classification and
+multiple-choice tasks, the label space, input distribution, and format
+of demonstrations matter more than whether their labels are correct
+\cite{roledemonstrations}. Our path-availability split is a related
+observation in a planning task: a stored example coincided with higher
+accuracy when its answer matched the query's answer.
 
 Herbst et al.\ document sensitivity to node labels, edge ordering, and
 syntax in graph reasoning \cite{lostserialization}. Their work motivates
@@ -190,7 +226,8 @@ families are rare under that reference distribution.
 
 Let $M_{f,t}$ be the number of examples of family $f$ after update $t$.
 For each family and update, the audit records attempted examples
-$A_{f,t}$, model answers passing verification before oracle substitution $V_{f,t}$,
+$A_{f,t}$, model answers passing verification before oracle substitution
+$V_{f,t}$,
 admissions after any substitution $I_{f,t}$,
 and evictions $E_{f,t}$. The identity
 \[
@@ -202,7 +239,8 @@ evicted once enough later examples have been admitted to reach that
 example's initial position. This can occur while the combined count of
 rare examples increases, because other rare families can replace it.
 
-Figure~\ref{fig:detour} illustrates the key detour and an equivalent change of vertex names.
+Figure~\ref{fig:detour} illustrates the key detour and an equivalent
+change of vertex names.
 
 \input{detour-example}
 
@@ -300,7 +338,8 @@ list-level characterization on 42 archived update trajectories,
 across seven policy arms and six seeds. These are not the 42 evaluated
 memories of the coverage split below. The memory is implemented as a
 FIFO buffer, so this replay checks the implementation against the
-formal statement and is not a finding about the language model. The final memory always equals
+formal statement and is not a finding about the language model. The
+final memory always equals
 the newest six entries, and predicted and observed absence agree in
 all 126 family-trajectory checks. A rare family ended absent in 32 of
 them, each time with no admission from that family, which is the
@@ -340,7 +379,8 @@ depends on memory, the answer-source contrast captures the total policy
 effect across the two rounds.
 
 We use six paired seeds with shuffled initial memory order. Each initial
-memory holds four ungated examples, one key-detour example, and one unreachable example.
+memory holds four ungated examples, one key-detour example, and one
+unreachable example.
 Memory has capacity six and uses FIFO eviction. Each seed has a disjoint
 holdout with three tasks per family. We reject graph
 isomorphs across seeds, task pools, and the earlier feasibility runs,
@@ -351,10 +391,12 @@ holdout within the seed. Held-out answers are not used to update memory.
 The acquisition and Qwen transfer experiments used Qwen3 8B \cite{qwen3},
 running locally in Ollama 0.40.12 with thinking disabled, temperature
 zero, a 4096-token context, and up to 384 output tokens per call.
-The protocols record the exact model digest and seeds. The confirmatory experiment ran on Ollama 0.40.16 with the
+The protocols record the exact model digest and seeds. The confirmatory
+experiment ran on Ollama 0.40.16 with the
 same digest and settings. Each E002 arm
 had two solve calls and one final evaluation call per seed. The
-empty and frozen baselines added two calls per seed. Each evaluation call requested answers to nine held-out tasks. A missing
+empty and frozen baselines added two calls per seed. Each evaluation
+call requested answers to nine held-out tasks. A missing
 or incorrect answer received zero credit.
 
 In E002, the primary mechanism contrast is the paired difference in the final
@@ -365,51 +407,11 @@ model. We report seed-level differences and their mean. An exact
 two-sided sign-flip calculation is reported under sign exchangeability
 as a sensitivity analysis for the small paired sample.
 
-\paragraph{Transfer checks.} We recovered three final memories per
-seed from the E002 evaluation prompts. In the renamed condition, we
-permuted the six vertex labels independently in each memory example
-and held-out graph, transforming any stored solution path by the
-same permutation as its graph. Test graphs and their vertex mappings
-were shared across arms. In the new-motif condition, we held the
-renamed memory fixed and evaluated fresh six-vertex, seven-edge
-graphs. The new ungated graphs contained two shortest routes. The new
-key-required graphs had a simple optimal path, whereas the original
-backbone revisited a vertex after key acquisition. The new unreachable
-backbone placed the key behind a lock. Exact checking and structural
-deduplication applied to all graphs. E003 held the model weights and
-final memory composition fixed.
-
-\paragraph{Separating query and demonstration labels.}
-E004 isolates the two transformations that E003 applied jointly.
-For each of the two model-answer policies, we fix one final memory
-and nine test problems per seed, across six seeds. A $2\times2$ design
-crosses original versus independently relabeled memory examples with
-original versus independently relabeled queries. The original/original
-and independent/independent responses come from E002 and E003.
-Two additional conditions change only the memory or only the queries.
-A fifth condition applies a single shared permutation to all graphs in
-a seed, including the stored solution paths. This changes every vertex
-label while keeping the correspondence of labels across graphs.
-The six seeds and two policies require 36 new evaluations. We report
-the policy gap within each condition and the within-policy factorial
-effects, averaging over the six paired seeds. Within a seed and
-policy, let $a_{mq}$ be the key-detour accuracy with memory and
-query renaming indicators $m,q$. The memory effect is
-$\tfrac12[(a_{10}-a_{00})+(a_{11}-a_{01})]$, the query effect is
-$\tfrac12[(a_{01}-a_{00})+(a_{11}-a_{10})]$, and their interaction
-is $a_{11}-a_{10}-a_{01}+a_{00}$. The shared permutation is a
-separate condition outside the factorial design.
-
-\paragraph{Changing labels throughout acquisition.}
-E008 repeats the two model-answer policies with the same six seeds
-and two rounds. It applies the independent per-graph maps before the
-model sees any inputs, including the initial examples, attempted
-tasks, and final queries. Both arms start from correct solutions
-to renamed examples. Thereafter the model solves the renamed tasks
-and only verified answers enter memory. The 36 calls isolate a
-pipeline-level representation change. Admission and adaptive
-targeting can change along the way, so the final memories need
-not contain the same examples as in E002.
+\paragraph{Representation and cross-model follow-ups.}
+Six follow-ups on the same six seeds vary vertex labels after
+acquisition (E003, E004), vary them throughout acquisition (E008),
+change the reading model (E006, E010), and classify wrong answers
+(E007). Appendix~\ref{app:followups} gives their designs.
 
 \paragraph{Matching each graph's labels across conditions.}
 The shared and independent conditions of E004 differ in their
@@ -444,35 +446,12 @@ nodes, seven edges, a unique shortest path of length four, and the
 original labels (start A, goal B, key C). The generator balances the
 nine backbones $A\to X\to C\to Y\to B$ for $X,Y\in\{D,E,F\}$, including
 one return route per seed. It rejects graph isomorphs with the earlier
-task pools. The 36 fresh evaluations use seed-shuffled call order. Both follow-ups
+task pools. The 36 fresh evaluations use seed-shuffled call order. Both
+follow-ups
 ran on the same Apple M1 Pro with local inference.
 The primary contrast is the change in the targeted-minus-mixture
 key-detour gap from the original to the varied batch. We also report
 the comparison with the rare-only random control.
-
-\paragraph{Cross-model readout and answer completeness.}
-E006 repeats the five label conditions of E004 with Gemma 4 E4B \cite{gemma4} as the reader. It uses the same Qwen-generated memory, queries,
-system instructions, and per-call limits. Gemma uses a cached MLX
-4-bit snapshot in LM Studio 0.4.25+1, with a grammar that requires the
-outer \texttt{answers} object. The grammar does not require every
-case ID. Each batch contains nine tasks. We score missing answers
-as incorrect and count returned IDs by query position. E010
-is a follow-up prompted by omissions observed early in E006.
-It presents only the first key-detour case in the original order
-for each seed. It uses both frozen memory policies and the
-original, independent, and shared label conditions. This removes
-the requirement to answer multiple tasks within a call. It
-changes the prompt, so it is a diagnostic of the batch result.
-
-\paragraph{Inspecting wrong answers.}
-For the original and independently relabeled conditions, E007 assigns
-each wrong answer its first detectable failure: malformed or missing
-response, false unreachable claim, wrong endpoint, nonexistent edge,
-locked edge traversed before acquiring the key, or a valid but
-suboptimal path. For errors on relabeled problems previously solved
-correctly, we also test whether the literal path string matches
-the prior answer. This exploratory analysis distinguishes a specific
-kind of repetition from other causes of representation sensitivity.
 
 \paragraph{Confirmatory experiment.}
 E015 combines the controls on 30 fresh seeds. Two further seeds were
@@ -554,7 +533,8 @@ correct answers accompany three false unreachable claims on key
 detours. The frozen control scored $16/18$ on key detours and $0/18$
 on unreachable cases, and the empty control scored $7/18$ and $0/18$.
 Relative to not updating the memory, targeted allocation therefore
-added two correct key-detour answers and random allocation lost nine. Of twelve supplement slots, the random/model
+added two correct key-detour answers and random allocation lost nine. Of
+twelve supplement slots, the random/model
 arm allocated nine to ungated tasks, two to key detours and one to
 unreachable tasks. The targeted/model arm allocated nine to key
 detours and three to unreachable tasks.
@@ -565,6 +545,7 @@ detours and three to unreachable tasks.
 scored the fixed path $A\to D\to C\to D\to B$, chosen directly
 from the generator, on all 18 original key-detour holdouts. It was
 optimal on every one. On all 18 fresh E003 key-required graphs
+(Appendix~\ref{app:followups})
 before renaming, that path failed. This check requires neither the
 memory nor inspection of individual edges at test time. Structural
 deduplication therefore left a common answer within the original
@@ -620,20 +601,6 @@ retained example from reuse of its path.
 
 \input{coverage-table}
 
-\subsection{Transfer under vertex renaming and new motifs}
-
-Table~\ref{tab:e003-transfer} shows scores after freezing the final
-memories. The key-detour advantage of targeted model over random
-model was $11/18$ on the original graphs. With independent vertex
-renaming, targeted model retained just one of its 18 originally
-correct answers. Random model answered $2/18$ correctly, and
-targeted oracle answered $0/18$. On fresh graphs with new motifs,
-the targeted and random model conditions scored $9/18$ and
-$10/18$ on key-required tasks, respectively. All three arms scored
-$0/18$ on unreachable tasks in both transfer conditions.
-
-\input{e003-table}
-
 \subsection{Varying optimal paths at fixed vertex labels}
 
 All 18 original-batch prompts and responses in E013 matched their
@@ -653,47 +620,22 @@ other queries.
 
 \input{diverse-paths-table}
 
-\subsection{Changing demonstration and query labels separately}
+\subsection{Representation and cross-model follow-ups}
 
-Either one-sided transformation reduced the targeted condition's
-key-detour accuracy from $18/18$ to nearly zero. Changing the
-memory alone yielded $3/18$ and changing queries alone yielded
-$2/18$. The targeted-minus-random gap dropped from $11/18$ to
-$0/18$ and $1/18$, respectively. When a single derangement
-preserved label correspondence across the examples and queries,
-the targeted condition recovered to $12/18$ and the gap recovered
-to $10/18$ (Table~\ref{tab:e004-labels}). All five conditions keep
-the same memory contents and the same test problems. A shared
-mapping changes the names of all vertices, so the recovery cannot
-be attributed to restoring the original literal names.
-
-\input{e004-table}
-
-In the targeted condition, the average factorial effects of
-independent memory and query renaming were $-44.4$ and $-50.0$
-percentage points. The interaction was $+77.8$ points on the
-accuracy scale. Each one-sided change leaves little room for a
-further drop, so the interaction should be read with the cell
-counts. The random condition starts from a lower original score
-and yields smaller effects, $-8.3$, $-19.4$, and $+27.8$ points,
-respectively. Appendix~\ref{app:seed-scores} gives paired counts.
-
-\subsection{Independent labels throughout acquisition}
-
-Relabeling only after acquisition might have produced a distribution
-shift between what the model saw while building its memory and what
-it saw at evaluation. E008 removed that timing difference. With
-independent labels from the start, the random and targeted arms
-scored $3/18$ and $2/18$ on key detours, $8/18$ each on ungated
-tasks, and $0/18$ each on unreachable tasks. Targeted admitted
-two of twelve key-detour attempts under independent labeling,
-compared with nine of ten under the original labels. The policy
-gap under end-to-end relabeling was $-1/18$ on key detours, the
-same numerical gap as when the frozen memories were independently
-relabeled. The identity of admitted examples differs across
-the two studies. These counts show that applying independent
-labels during acquisition did not recover the original advantage
-in this setup.
+Appendix~\ref{app:followups} reports six exploratory follow-ups on the
+same seeds with their tables. We summarize them here. With vertices
+renamed independently in each graph, the targeted memory kept one of
+its 18 correct key-detour answers. Renaming only the memory or only
+the queries gave $3/18$ and $2/18$, and a single shared renaming
+restored the targeted score to $12/18$ and the policy gap to $10/18$.
+With independent labels from the start of acquisition the two policies
+scored $3/18$ and $2/18$. A second reader, Gemma 4 E4B, returned only
+the first of nine answers in all 60 batched calls. With one query per
+call it showed a positive gap under original and shared labels and none
+under independent labels, as Qwen did on the same six items. None of
+the 17 targeted answers lost under renaming repeated its original
+literal path. The measured gap therefore depends on how labels
+correspond across the graphs in a prompt.
 
 \subsection{Shared labels at matched graph exposures}
 
@@ -708,7 +650,8 @@ check reuses the same data and is not a confidence interval. A post hoc
 exact sign-flip calculation over the 64 sign assignments gives a
 two-sided value of $0.50$. Under sign exchangeability the observed
 mean is unremarkable, and the value does not show that the effect is
-zero. We therefore treat this comparison as exploratory. The 36 answer records per condition
+zero. We therefore treat this comparison as exploratory. The 36 answer
+records per condition
 contain two labelings of each of 18 graphs. Matching the rendered
 forms narrows the explanation to properties of the prompt-level
 combination. The alternating assignment jointly changes the
@@ -716,54 +659,16 @@ consistency of labels within memory, within the batch of queries, and
 between the two lists. The experiment does not isolate any one of
 these sources.
 
-\subsection{Cross-model readout and the limits of batched prompts}
-
-Gemma returned valid outer JSON in all 60 batch calls. Each
-response included only the first query ID, for 60 of the 540
-requested answers. The remaining 480 were scored incorrect.
-Key-detour and unreachable scores were $0/18$ in every label
-condition and both policies. Ungated scores ranged from $0/18$
-to $3/18$. The zero key-detour contrasts arise at the accuracy
-floor and give no basis for comparing permutation sensitivity.
-Even with valid structured output, answer completeness can dominate
-the score of a multi-task prompt.
-
-When Gemma received one key-detour task per call in E010, all
-36 responses included the requested ID. With random memory it
-answered $1/6$ correctly in each of the three label conditions.
-With targeted memory it scored $4/6$ with original labels, $0/6$
-with independently renamed examples and queries, and $3/6$ with
-the shared derangement. The resulting gaps of $+3/6$, $-1/6$ and
-$+2/6$ can be compared with Qwen's archived batch predictions on
-the same six item IDs, which yield gaps of $+3/6$, $0/6$, and
-$+3/6$, respectively.
-Thus both readouts show a positive gap with original and shared labels,
-and neither shows a positive gap with independent labels. The Qwen
-predictions were still generated in nine-query batches. These
-six-item results provide a descriptive comparison of two readout
-setups, with memory acquisition fixed to Qwen.
-
-\subsection{Which failures replaced correct paths?}
-
-Of the 17 targeted key-detour paths that became incorrect after
-independent renaming, eight first failed at a locked edge before
-key acquisition, seven used a nonexistent edge, and two had the
-wrong endpoints. None exactly reproduced its correct original
-literal path. The random condition had six corresponding losses
-and also no exact literal reuse. This exploratory error audit
-supports sensitivity to the representation, and provides
-counterevidence to a specific explanation based on copying the
-entire original answer. Partial use of label cues remains possible.
-
 \subsection{Confirmatory experiment on fresh seeds}
 \label{sec:confirmatory}
 
 All 2,790 calls completed and all 1,350 requested readout answers were
 returned. One response in the label sub-study reached the output limit
-and was scored incorrect. Table~\ref{tab:confirmatory} in the
-introduction gives the scores.
+and was scored incorrect. Table~\ref{tab:confirmatory} gives the scores.
 The readout asks one query per call, so absolute scores are not
 comparable with the nine-query batches of the earlier experiments.
+
+\input{confirmatory-table}
 
 \paragraph{Primary contrast.} Reference-mixture updating lost coverage
 as it had before. Its final memory held a key-detour example in 6 of
@@ -772,7 +677,8 @@ follow. The frozen memory answered $55/90$ key-detour queries and the
 mixture memory $51/90$. The paired difference in correct answers out
 of three was $+1$ in 11 seeds, $0$ in 13, $-1$ in five, and $-2$ in
 one, with a standard deviation of $0.82$ answers and a standardized
-effect of $0.16$. Its mean is $+4.4$ percentage points, with a percentile bootstrap
+effect of $0.16$. Its mean is $+4.4$ percentage points, with a
+percentile bootstrap
 interval from $-5.6$ to $+13.3$ points and an exact two-sided
 sign-flip value of $0.51$. The criterion fixed in the protocol is not
 met, so the retention reading is not confirmed under these conditions.
@@ -910,7 +816,8 @@ evaluate held-out cases under both the reference representation and
 semantics-preserving alternatives, and score the best constant answer.
 Track response completeness separately from correctness when several
 tasks share one prompt. Report a family's pass rate before interpreting
-an allocation rule that targets its coverage. These measurements let a reader distinguish
+an allocation rule that targets its coverage. These measurements let a
+reader distinguish
 missing opportunities, failed admissions, eviction, and failed readout.
 
 \section{Limitations}
@@ -925,7 +832,8 @@ independent replications. The confirmatory experiment used one model,
 one runtime, four update rounds, and one query per call. Its null
 results bound effects only within the reported intervals, its
 descriptive splits are observational, and thirty seeds cannot detect a
-standardized paired effect much below $0.5$. The coverage split, the E009 sign-flip value, and the
+standardized paired effect much below $0.5$. The coverage split, the
+E009 sign-flip value, and the
 fixed-path diagnostic are post hoc. The graphs share path
 templates and node roles despite being structurally disjoint. Exact
 answer verification makes the admission mechanism observable, while
@@ -933,7 +841,8 @@ other environments may have imperfect verifiers or no exact answer
 source. Unreachable tasks differ from the solvable families in both
 reasoning requirements and response format. The family-specific
 results therefore do not isolate frequency from every difference in
-task difficulty. The one-sided experiments isolate which inputs were changed and leave
+task difficulty. The one-sided experiments isolate which inputs were
+changed and leave
 the model's internal use of vertex labels unresolved. E012 compares
 adaptation with one balanced schedule on the original pools. A larger
 comparison across different budgets and rare-family mixtures could
@@ -945,7 +854,8 @@ ungated tasks that still share one backbone.
 The matched-label comparison used two permutations per seed, an
 alternating mixture, and a fixed shared-then-mixed call order within
 each arm. The calls were stateless. The design does not measure
-sensitivity to other mixtures or inference-order effects. The new-motif condition also changes
+sensitivity to other mixtures or inference-order effects. The new-motif
+condition also changes
 the holdout draw, and its key-required tasks avoid revisiting a node.
 The Gemma experiment changes the model, quantization, serving backend,
 and response grammar. Its single-query evidence measures only readout
@@ -966,7 +876,8 @@ avoidance of that loss on a holdout that one stored path could answer.
 A confirmatory experiment on 30 fresh seeds with diversified routes did
 not confirm that retention improves accuracy, found no adaptive
 advantage over a matched rare budget, and did not replicate an earlier
-label interaction. The implemented update agreed with the machine-checked FIFO model in
+label interaction. The implemented update agreed with the
+machine-checked FIFO model in
 all 132 audited trajectories. Descriptively, accuracy was higher only
 where a stored answer could be reused. The model never produced the
 response that the unreachable family requires, with or without a
@@ -985,7 +896,8 @@ source are in the project repository:
 \url{https://github.com/minggu151623/rare-case-agent-memory}
 \end{center}
 The traces and aggregates for this version are fixed at commit
-\texttt{7df0cbdbc499}. Later commits change text, checks, and licenses. Every reported score can be recomputed from
+\texttt{7df0cbdbc499}. Later commits change text, checks, and licenses.
+Every reported score can be recomputed from
 the traces without running a language model, and two scripts assert
 76 and 44 numeric statements of this manuscript against the archives. The Lean~4
 proofs build with Lean and Mathlib 4.26.0 from a pinned dependency
@@ -1021,6 +933,180 @@ Gemma 4 E4B snapshots.
 \input{e004-seeds}
 \input{control-seeds}
 
+\section{Representation and cross-model follow-ups}
+\label{app:followups}
+
+These experiments reuse the six seeds of E002 and are exploratory.
+
+\subsection{Designs}
+
+\paragraph{Transfer checks.} We recovered three final memories per
+seed from the E002 evaluation prompts. In the renamed condition, we
+permuted the six vertex labels independently in each memory example
+and held-out graph, transforming any stored solution path by the
+same permutation as its graph. Test graphs and their vertex mappings
+were shared across arms. In the new-motif condition, we held the
+renamed memory fixed and evaluated fresh six-vertex, seven-edge
+graphs. The new ungated graphs contained two shortest routes. The new
+key-required graphs had a simple optimal path, whereas the original
+backbone revisited a vertex after key acquisition. The new unreachable
+backbone placed the key behind a lock. Exact checking and structural
+deduplication applied to all graphs. E003 held the model weights and
+final memory composition fixed.
+
+\paragraph{Separating query and demonstration labels.}
+E004 isolates the two transformations that E003 applied jointly.
+For each of the two model-answer policies, we fix one final memory
+and nine test problems per seed, across six seeds. A $2\times2$ design
+crosses original versus independently relabeled memory examples with
+original versus independently relabeled queries. The original/original
+and independent/independent responses come from E002 and E003.
+Two additional conditions change only the memory or only the queries.
+A fifth condition applies a single shared permutation to all graphs in
+a seed, including the stored solution paths. This changes every vertex
+label while keeping the correspondence of labels across graphs.
+The six seeds and two policies require 36 new evaluations. We report
+the policy gap within each condition and the within-policy factorial
+effects, averaging over the six paired seeds. Within a seed and
+policy, let $a_{mq}$ be the key-detour accuracy with memory and
+query renaming indicators $m,q$. The memory effect is
+$\tfrac12[(a_{10}-a_{00})+(a_{11}-a_{01})]$, the query effect is
+$\tfrac12[(a_{01}-a_{00})+(a_{11}-a_{10})]$, and their interaction
+is $a_{11}-a_{10}-a_{01}+a_{00}$. The shared permutation is a
+separate condition outside the factorial design.
+
+\paragraph{Changing labels throughout acquisition.}
+E008 repeats the two model-answer policies with the same six seeds
+and two rounds. It applies the independent per-graph maps before the
+model sees any inputs, including the initial examples, attempted
+tasks, and final queries. Both arms start from correct solutions
+to renamed examples. Thereafter the model solves the renamed tasks
+and only verified answers enter memory. The 36 calls isolate a
+pipeline-level representation change. Admission and adaptive
+targeting can change along the way, so the final memories need
+not contain the same examples as in E002.
+
+\paragraph{Cross-model readout and answer completeness.}
+E006 repeats the five label conditions of E004 with Gemma 4 E4B
+\cite{gemma4} as the reader. It uses the same Qwen-generated memory,
+queries,
+system instructions, and per-call limits. Gemma uses a cached MLX
+4-bit snapshot in LM Studio 0.4.25+1, with a grammar that requires the
+outer \texttt{answers} object. The grammar does not require every
+case ID. Each batch contains nine tasks. We score missing answers
+as incorrect and count returned IDs by query position. E010
+is a follow-up prompted by omissions observed early in E006.
+It presents only the first key-detour case in the original order
+for each seed. It uses both frozen memory policies and the
+original, independent, and shared label conditions. This removes
+the requirement to answer multiple tasks within a call. It
+changes the prompt, so it is a diagnostic of the batch result.
+
+\paragraph{Inspecting wrong answers.}
+For the original and independently relabeled conditions, E007 assigns
+each wrong answer its first detectable failure: malformed or missing
+response, false unreachable claim, wrong endpoint, nonexistent edge,
+locked edge traversed before acquiring the key, or a valid but
+suboptimal path. For errors on relabeled problems previously solved
+correctly, we also test whether the literal path string matches
+the prior answer. This exploratory analysis distinguishes a specific
+kind of repetition from other causes of representation sensitivity.
+
+\subsection{Transfer under vertex renaming and new motifs}
+
+Table~\ref{tab:e003-transfer} shows scores after freezing the final
+memories. The key-detour advantage of targeted model over random
+model was $11/18$ on the original graphs. With independent vertex
+renaming, targeted model retained just one of its 18 originally
+correct answers. Random model answered $2/18$ correctly, and
+targeted oracle answered $0/18$. On fresh graphs with new motifs,
+the targeted and random model conditions scored $9/18$ and
+$10/18$ on key-required tasks, respectively. All three arms scored
+$0/18$ on unreachable tasks in both transfer conditions.
+
+\input{e003-table}
+
+\subsection{Changing demonstration and query labels separately}
+
+Either one-sided transformation reduced the targeted condition's
+key-detour accuracy from $18/18$ to nearly zero. Changing the
+memory alone yielded $3/18$ and changing queries alone yielded
+$2/18$. The targeted-minus-random gap dropped from $11/18$ to
+$0/18$ and $1/18$, respectively. When a single derangement
+preserved label correspondence across the examples and queries,
+the targeted condition recovered to $12/18$ and the gap recovered
+to $10/18$ (Table~\ref{tab:e004-labels}). All five conditions keep
+the same memory contents and the same test problems. A shared
+mapping changes the names of all vertices, so the recovery cannot
+be attributed to restoring the original literal names.
+
+\input{e004-table}
+
+In the targeted condition, the average factorial effects of
+independent memory and query renaming were $-44.4$ and $-50.0$
+percentage points. The interaction was $+77.8$ points on the
+accuracy scale. Each one-sided change leaves little room for a
+further drop, so the interaction should be read with the cell
+counts. The random condition starts from a lower original score
+and yields smaller effects, $-8.3$, $-19.4$, and $+27.8$ points,
+respectively. Appendix~\ref{app:seed-scores} gives paired counts.
+
+\subsection{Independent labels throughout acquisition}
+
+Relabeling only after acquisition might have produced a distribution
+shift between what the model saw while building its memory and what
+it saw at evaluation. E008 removed that timing difference. With
+independent labels from the start, the random and targeted arms
+scored $3/18$ and $2/18$ on key detours, $8/18$ each on ungated
+tasks, and $0/18$ each on unreachable tasks. Targeted admitted
+two of twelve key-detour attempts under independent labeling,
+compared with nine of ten under the original labels. The policy
+gap under end-to-end relabeling was $-1/18$ on key detours, the
+same numerical gap as when the frozen memories were independently
+relabeled. The identity of admitted examples differs across
+the two studies. These counts show that applying independent
+labels during acquisition did not recover the original advantage
+in this setup.
+
+\subsection{Cross-model readout and the limits of batched prompts}
+
+Gemma returned valid outer JSON in all 60 batch calls. Each
+response included only the first query ID, for 60 of the 540
+requested answers. The remaining 480 were scored incorrect.
+Key-detour and unreachable scores were $0/18$ in every label
+condition and both policies. Ungated scores ranged from $0/18$
+to $3/18$. The zero key-detour contrasts arise at the accuracy
+floor and give no basis for comparing permutation sensitivity.
+Even with valid structured output, answer completeness can dominate
+the score of a multi-task prompt.
+
+When Gemma received one key-detour task per call in E010, all
+36 responses included the requested ID. With random memory it
+answered $1/6$ correctly in each of the three label conditions.
+With targeted memory it scored $4/6$ with original labels, $0/6$
+with independently renamed examples and queries, and $3/6$ with
+the shared derangement. The resulting gaps of $+3/6$, $-1/6$ and
+$+2/6$ can be compared with Qwen's archived batch predictions on
+the same six item IDs, which yield gaps of $+3/6$, $0/6$, and
+$+3/6$, respectively.
+Thus both readouts show a positive gap with original and shared labels,
+and neither shows a positive gap with independent labels. The Qwen
+predictions were still generated in nine-query batches. These
+six-item results provide a descriptive comparison of two readout
+setups, with memory acquisition fixed to Qwen.
+
+\subsection{Which failures replaced correct paths?}
+
+Of the 17 targeted key-detour paths that became incorrect after
+independent renaming, eight first failed at a locked edge before
+key acquisition, seven used a nonexistent edge, and two had the
+wrong endpoints. None exactly reproduced its correct original
+literal path. The random condition had six corresponding losses
+and also no exact literal reuse. This exploratory error audit
+supports sensitivity to the representation, and provides
+counterevidence to a specific explanation based on copying the
+entire original answer. Partial use of label cues remains possible.
+
 \section{Interpreting the evaluation}
 The verifier treats a route as correct only when its endpoints match,
 each step uses an allowed directed edge, and the path length equals
@@ -1033,9 +1119,11 @@ after collecting the key.
 The same holdout graphs occur under each policy within a seed, and
 many reappear in the relabeling experiments. The seed is the paired
 unit of analysis.
-Outside E015, the reported sign-flip values are sensitivity calculations on six seed
+Outside E015, the reported sign-flip values are sensitivity calculations
+on six seed
 differences, assuming the joint distribution of paired differences
-is invariant to independent sign flips under the null. The sign-flip values describe the sensitivity of the
+is invariant to independent sign flips under the null. The sign-flip
+values describe the sensitivity of the
 observed mean
 under that assumption. The follow-ups reuse the same seeds and test
 specific alternatives motivated by earlier results. E013 adds new
