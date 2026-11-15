@@ -1,0 +1,110 @@
+{
+ "format_failures": [
+  {
+   "seed": 7126,
+   "call": 72,
+   "phase": "evaluation",
+   "arm": "label/random_model/mixed/0/h04",
+   "round": 4,
+   "done_reason": "length",
+   "output_tokens": 384
+  }
+ ],
+ "unreachable_declarations": {
+  "acquisition": {
+   "key_detour_declared_unreachable": 0,
+   "key_detour_queries": 169,
+   "ungated_declared_unreachable": 0,
+   "ungated_queries": 703,
+   "unreachable_declared_unreachable": 0,
+   "unreachable_queries": 208
+  },
+  "readout": {
+   "key_detour_declared_unreachable": 0,
+   "key_detour_queries": 450,
+   "ungated_declared_unreachable": 0,
+   "ungated_queries": 450,
+   "unreachable_declared_unreachable": 0,
+   "unreachable_queries": 450
+  },
+  "label": {
+   "key_detour_declared_unreachable": 0,
+   "key_detour_queries": 1080
+  }
+ },
+ "first_error_on_unreachable_readout_queries": {
+  "locked_before_key": 147,
+  "nonexistent_edge": 268,
+  "wrong_endpoint": 35
+ },
+ "key_detour_by_path_availability_and_memory": {
+  "empty": {
+   "no_key_detour_example": {
+    "correct": 53,
+    "total": 90
+   }
+  },
+  "frozen": {
+   "path_in_memory": {
+    "correct": 12,
+    "total": 13
+   },
+   "path_not_in_memory": {
+    "correct": 43,
+    "total": 77
+   }
+  },
+  "random_model": {
+   "path_in_memory": {
+    "correct": 2,
+    "total": 2
+   },
+   "path_not_in_memory": {
+    "correct": 5,
+    "total": 16
+   },
+   "no_key_detour_example": {
+    "correct": 44,
+    "total": 72
+   }
+  },
+  "rare_only_model": {
+   "path_in_memory": {
+    "correct": 9,
+    "total": 10
+   },
+   "path_not_in_memory": {
+    "correct": 38,
+    "total": 62
+   },
+   "no_key_detour_example": {
+    "correct": 12,
+    "total": 18
+   }
+  },
+  "targeted_model": {
+   "path_in_memory": {
+    "correct": 6,
+    "total": 7
+   },
+   "path_not_in_memory": {
+    "correct": 30,
+    "total": 53
+   },
+   "no_key_detour_example": {
+    "correct": 20,
+    "total": 30
+   }
+  }
+ },
+ "mixture_arm_key_detour_by_retention": {
+  "kept": {
+   "correct": 7,
+   "total": 18
+  },
+  "lost": {
+   "correct": 44,
+   "total": 72
+  }
+ }
+}
