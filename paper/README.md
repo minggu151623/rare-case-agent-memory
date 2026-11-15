@@ -113,13 +113,14 @@ disagrees. When the manuscript gains a number, add it to the list in
 [E015](../experiments/E015-confirmatory/analysis.md) ran 30 fresh seeds
 on Ollama 0.40.16 under a protocol committed beforehand. The replay
 rebuilds every prompt, admission, and score from the stored responses.
-A second script asserts 44 numeric statements of the manuscript.
+A second script asserts 47 numeric statements of the manuscript.
 
 ```sh
 python3 -m unittest discover -s experiments/E015-confirmatory
 root=experiments/E015-confirmatory/results/qwen3-8b
 python3 -m src.confirmatory "$root" --audit | cmp - "$root/aggregate.json"
 python3 -m experiments.E015-confirmatory.exploratory | cmp - experiments/E015-confirmatory/exploratory.json
+python3 -m experiments.E015-confirmatory.sensitivity | cmp - experiments/E015-confirmatory/sensitivity.json
 python3 -m experiments.E015-confirmatory.check_manuscript | cmp - experiments/E015-confirmatory/manuscript-statements.json
 python3 paper/audit_tables.py --confirmatory > paper/confirmatory-table.tex
 python3 paper/coverage_figure.py  # writes paper/coverage-accuracy.pdf, needs matplotlib

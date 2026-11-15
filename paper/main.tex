@@ -712,7 +712,8 @@ answer, 29 of 32 answers were correct. With a key-detour example of a
 different path the count was $116/208$, and with no such example
 $129/210$. The 32 answers in the first group cover 23 distinct queries.
 On those same queries the empty memory gave $20/32$ correct answers,
-with 11 answers gained and two lost. In the second group the empty
+with 11 answers gained and two lost. The gains are spread over nine
+seeds and six routes. In the second group the empty
 memory gave $117/208$ on the same queries. Presence of a matching path
 was not randomized and the first group is small. The pattern is
 compatible with a stored example helping mainly when its answer can be
@@ -831,8 +832,11 @@ experiments E003 through E013 reuse the same six seeds and are not
 independent replications. The confirmatory experiment used one model,
 one runtime, four update rounds, and one query per call. Its null
 results bound effects only within the reported intervals, its
-descriptive splits are observational, and thirty seeds cannot detect a
-standardized paired effect much below $0.5$. The coverage split, the
+descriptive splits are observational, and its power is limited. In a
+simulation with independent binomial answers, the locked criterion
+detects a true gap of 25 points in 93\% of studies, 20 points in 74\%,
+and 15 points in 46\%. The lower bound of the label-interaction
+interval moves between $-11.7$ and $-11.1$ across resampling streams. The coverage split, the
 E009 sign-flip value, and the
 fixed-path diagnostic are post hoc. The graphs share path
 templates and node roles despite being structurally disjoint. Exact
@@ -899,7 +903,7 @@ The traces and aggregates for this version are fixed at commit
 \texttt{7df0cbdbc499}. Later commits change text, checks, and licenses.
 Every reported score can be recomputed from
 the traces without running a language model, and two scripts assert
-76 and 44 numeric statements of this manuscript against the archives. The Lean~4
+76 and 47 numeric statements of this manuscript against the archives. The Lean~4
 proofs build with Lean and Mathlib 4.26.0 from a pinned dependency
 manifest under \texttt{formal/}. For every experiment that called a model, the
 protocol was committed before the results. The offline audits E007 and

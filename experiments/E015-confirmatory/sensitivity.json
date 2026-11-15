@@ -1,0 +1,73 @@
+{
+ "power_of_locked_criterion_by_true_gap": {
+  "10_points": 0.226,
+  "15_points": 0.464,
+  "20_points": 0.737,
+  "25_points": 0.932,
+  "30_points": 0.992
+ },
+ "false_positive_rate_at_zero_gap": 0.023,
+ "bootstrap_interval_by_stream": {
+  "primary": {
+   "715200": [
+    -5.56,
+    13.33
+   ],
+   "1": [
+    -5.56,
+    13.33
+   ],
+   "2": [
+    -5.56,
+    13.33
+   ],
+   "3": [
+    -5.56,
+    13.33
+   ]
+  },
+  "label_interaction": {
+   "715200": [
+    -11.67,
+    1.11
+   ],
+   "1": [
+    -11.11,
+    1.11
+   ],
+   "2": [
+    -11.67,
+    1.11
+   ],
+   "3": [
+    -11.11,
+    1.11
+   ]
+  }
+ },
+ "path_matched_gains": {
+  "gained_answers": 11,
+  "seeds_with_a_gain": 9,
+  "largest_seed_share": 2,
+  "routes_with_a_gain": 6,
+  "by_seed": {
+   "7101": 2,
+   "7113": 1,
+   "7115": 1,
+   "7117": 1,
+   "7119": 1,
+   "7121": 1,
+   "7122": 2,
+   "7123": 1,
+   "7126": 1
+  },
+  "by_route": {
+   "ADCDB": 1,
+   "ADCEB": 3,
+   "ADCFB": 2,
+   "AECEB": 2,
+   "AFCDB": 1,
+   "AFCEB": 2
+  }
+ }
+}

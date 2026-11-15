@@ -24,7 +24,7 @@ luận thực nghiệm khái quát: một model, một miền đồ thị tổng
 | 18 nhóm kiểm tra của lần rà soát trước | 18/18 qua, 12 báo cáo JSON khớp bản lưu |
 | E005, 3.150 cấu hình FIFO bằng số hữu tỉ | Qua |
 | Lean 4.26.0, `lake build` và từng tệp với `-DwarningAsError=true` | 6 tệp qua, không `sorry`, 16 mệnh đề chỉ dùng `propext`, `Classical.choice`, `Quot.sound` |
-| 76 + 44 con số trong bản thảo đối chiếu với dữ liệu lưu | Qua, hai script dừng nếu lệch |
+| 76 + 47 con số trong bản thảo đối chiếu với dữ liệu lưu | Qua, hai script dừng nếu lệch |
 | 4 bảng sinh từ script | Khớp từng byte |
 | PDF | 23 trang, không cảnh báo LaTeX, không tham chiếu hỏng |
 | E015: 9 test, replay 30 seed khớp aggregate từng byte | Qua |

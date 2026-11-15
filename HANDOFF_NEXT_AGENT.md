@@ -31,7 +31,7 @@ gốc và được giữ nguyên để đối chiếu.
   - 90 quỹ đạo mới khớp bổ đề FIFO (tổng 132).
 - Bản thảo đã thu hẹp kết luận retention về holdout gốc và báo cáo kết
   quả âm ở abstract, Results, Discussion, Conclusion. Hai script kiểm
-  76 + 44 con số.
+  76 + 47 con số.
 - Bằng chứng của bản thảo cố định ở commit `7df0cbdbc499`. SHA trong
   mục 2 là của bản trước.
 - Khuyến nghị: đăng Zenodo như audit preprint có thí nghiệm xác nhận

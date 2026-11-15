@@ -122,6 +122,18 @@ def statements():
           numbers(extra["frozen_minus_empty_key_detour"])[1:3], (-10.0, 14.4))
     claim("descriptive sign-flip values",
           str(extra).count("exact_sign_flip_p_two_sided"), 7)
+    extra_checks = json.loads((HERE / "sensitivity.json").read_text())
+    gains = extra_checks["path_matched_gains"]
+    claim("path gains by seed and route",
+          (gains["gained_answers"], gains["seeds_with_a_gain"], gains["routes_with_a_gain"]),
+          (11, 9, 6))
+    claim("simulated power at 25, 20 and 15 points",
+          [round(100 * extra_checks["power_of_locked_criterion_by_true_gap"][f"{g}_points"])
+           for g in (25, 20, 15)], [93, 74, 46])
+    claim("label-interaction lower bound across streams",
+          sorted({v[0] for v in
+                  extra_checks["bootstrap_interval_by_stream"]["label_interaction"].values()}),
+          [-11.67, -11.11])
     usage = RESULT["usage"]
     claim("request hours",
           sum(usage[f"{stage}_seconds"] for stage in ("acquisition", "readout", "label")) / 3600,

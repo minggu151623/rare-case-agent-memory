@@ -43,6 +43,9 @@
     "adaptation contrast in key-detour points",
     "frozen minus empty interval",
     "descriptive sign-flip values",
+    "path gains by seed and route",
+    "simulated power at 25, 20 and 15 points",
+    "label-interaction lower bound across streams",
     "request hours"
   ]
 }

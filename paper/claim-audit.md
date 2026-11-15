@@ -121,5 +121,5 @@ counts were wrong, that labels reverse the policy gap, or which of the
 three design changes removed the gap. E015 changed the generator, the
 number of rounds, and the readout format together.
 
-All 44 E015 statements in the manuscript are asserted by
+All 47 E015 statements in the manuscript are asserted by
 `experiments/E015-confirmatory/check_manuscript.py`.

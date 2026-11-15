@@ -213,3 +213,19 @@ archived. Its output is [exploratory.json](exploratory.json).
 4. The E009 label interaction did not replicate.
 5. The FIFO reference model describes coverage in all 90 new
    trajectories. Coverage did not predict accuracy.
+
+## Sensitivity readings added after the independent review
+
+[sensitivity.py](sensitivity.py) writes [sensitivity.json](sensitivity.json).
+
+- **Power.** With independent binomial answers at the observed mixture
+  rate (51/90) and 30 seeds, the locked criterion is met in 23% of
+  simulated studies at a true gap of 10 points, 46% at 15, 74% at 20,
+  93% at 25, and 99% at 30. At zero gap it is met in 2.3%. The
+  experiment could detect a gap of the E002 size and was weak below 20
+  points.
+- **Bootstrap stream.** The primary interval is the same under four
+  resampling streams. The lower bound of the Q3 interval is −11.7 or
+  −11.1 depending on the stream.
+- **Where the path gains sit.** The 11 answers gained on path-matched
+  queries come from nine seeds and six routes, at most two per seed.
