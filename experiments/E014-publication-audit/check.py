@@ -361,6 +361,20 @@ def manuscript(e009, cover, fifo):
     claim("E014 mixture arm by retained key-detour example",
           [(mixture[g]["units"], mixture[g]["correct"], mixture[g]["total"])
            for g in ("present", "absent")], [(2, 6, 6), (4, 1, 12)])
+    by_memory = cover["original_batch"]["key_detour"]["by_memory"]
+    claim("E014 seeds retaining a key-detour example by memory",
+          [by_memory[name].get("present", {"units": 0})["units"] for name in
+           ("empty", "frozen", "random_model", "rare_only_model", "targeted_model")],
+          [0, 6, 2, 6, 6])
+    held = cover["original_batch"]["unreachable"]
+    claim("E014 memories holding an unreachable example that scored zero",
+          (held["pooled"]["present"]["zero"], held["pooled"]["present"]["units"]), (16, 17))
+    claim("E014 frozen and targeted-oracle memories holding an unreachable example",
+          [(held["by_memory"][name]["present"]["units"], held["by_memory"][name]["present"]["zero"])
+           for name in ("frozen", "targeted_oracle")], [(6, 6), (4, 4)])
+    claim("E014 mixture trajectories that lost the key-detour family without replenishment",
+          fifo["by_study_arm_family"]["E002"]["random_model"]["key_detour"]
+          ["absent_without_focal_admission"], 4)
     blanket = cover["units_with_correct_unreachable_answers"]
     claim("E014 units with a correct unreachable answer",
           [(unit["seed"], unit["memory"], unit["key_detour_answer_classes"])

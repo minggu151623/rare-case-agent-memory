@@ -103,7 +103,7 @@ probability law, which these adaptive runs do not follow.
 
 ## Part C · Manuscript number check
 
-72 manuscript statements are asserted against the archives and replayed
+76 manuscript statements are asserted against the archives and replayed
 reports, including the Part A, B, and D numbers above. All pass.
 
 ## What changed in the manuscript

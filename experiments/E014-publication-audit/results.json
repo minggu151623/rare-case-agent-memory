@@ -1116,6 +1116,10 @@
     "E014 seeds with higher key-detour accuracy when the example is retained",
     "E014 key-detour units with a perfect or zero score",
     "E014 mixture arm by retained key-detour example",
+    "E014 seeds retaining a key-detour example by memory",
+    "E014 memories holding an unreachable example that scored zero",
+    "E014 frozen and targeted-oracle memories holding an unreachable example",
+    "E014 mixture trajectories that lost the key-detour family without replenishment",
     "E014 units with a correct unreachable answer",
     "E014 FIFO conformance",
     "E014 family losses and losses without replenishment"
