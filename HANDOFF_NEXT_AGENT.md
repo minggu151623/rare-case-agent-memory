@@ -38,8 +38,9 @@ gốc và được giữ nguyên để đối chiếu.
   với kết quả âm. Tác giả tự đăng. Tệp phát hành:
   `artifacts/current/rare-case-agent-memory-audit-confirmatory.pdf` và
   `...-audit-confirmatory-reproducibility.zip`.
-- Repo chưa có tệp LICENSE. Giấy phép là quyền của tác giả và phải chọn
-  khi tạo bản ghi Zenodo (gợi ý: CC BY 4.0 cho bài, MIT cho mã).
+- Giấy phép do tác giả chọn ngày 16/11/2026: MIT cho mã, CC BY 4.0 cho
+  bài, dữ liệu và tài liệu ([LICENSE](LICENSE)). Chọn cùng giấy phép
+  khi tạo bản ghi Zenodo.
 - Việc còn mở: chạy lại bộ sinh gốc trên seed mới để tách ảnh hưởng của
   bộ sinh khỏi số vòng và định dạng readout; model thứ hai; quy tắc
   phân bổ có tính đến tỉ lệ admission.

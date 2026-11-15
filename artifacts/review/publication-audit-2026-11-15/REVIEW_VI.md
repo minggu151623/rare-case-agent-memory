@@ -134,7 +134,7 @@ FIFO đã kiểm bằng Lean nhưng độ chính xác không đi theo coverage.
 | Bảng booktabs, cột số căn phải | Đạt | Bảng sinh từ script, khớp từng byte |
 | Từ đệm, hedging | Đạt | Không còn "very", "quite", "essentially"... trong nguồn |
 | Checklist kiểu NeurIPS: claim khớp bằng chứng, tái lập, mã mở | Đạt | 114 con số được script đối chiếu; replay offline khớp từng byte |
-| Checklist: giấy phép tài sản | **Chưa** | Repo chưa có LICENSE, xem dưới |
+| Checklist: giấy phép tài sản | Đạt sau sửa | Tác giả chọn MIT + CC BY 4.0; bản thảo ghi giấy phép của Qwen3, Lean, Mathlib |
 
 **Chấm theo bốn tiêu chí reviewer của skill.**
 
@@ -156,7 +156,7 @@ preprint. Với Zenodo, không có rào cản nào còn lại về nội dung.
 - **Câu AI-use: giữ nguyên.** Câu ghi OpenAI Codex và Anthropic Claude
   hỗ trợ thiết kế, cài đặt, phân tích, chứng minh, rà soát và viết. Đây
   là mô tả đúng sự thật về cách bài được làm; bỏ hay làm nhẹ đi sẽ sai.
-- **Ngày bản thảo: 15/11/2026**, ngày hoàn tất E015 và bản này.
+- **Ngày bản thảo: 16/11/2026**, ngày chốt bản này. E015 chạy ngày 15/11.
 - **Tên tệp phát hành: đổi** thành
   `rare-case-agent-memory-audit-confirmatory.pdf` và
   `rare-case-agent-memory-audit-confirmatory-reproducibility.zip`, vì
@@ -164,9 +164,53 @@ preprint. Với Zenodo, không có rào cản nào còn lại về nội dung.
 - **Tiêu đề bài: giữ.** "Auditing Rare-Case Coverage..." vẫn đúng với
   nội dung.
 
-## Một việc cố ý để lại cho tác giả
+## Checklist 16 mục và checklist chung của skill
 
-- **Giấy phép.** Repo chưa có tệp LICENSE. Cấp giấy phép là quyền pháp lý
-  của tác giả, không rút lại được sau khi phát hành, và Zenodo bắt buộc
-  chọn khi tạo bản ghi. Gợi ý: CC BY 4.0 cho bài và dữ liệu, MIT cho mã.
-- Tác giả tự tạo bản ghi Zenodo và tải PDF, ZIP trong `artifacts/current/`.
+Lấy nguyên văn từ `references/checklists.md` và
+`references/reviewer-guidelines.md` của skill đã ghim, rồi điền cho bản
+thảo này.
+
+| # | Mục | Trả lời | Căn cứ |
+| --- | --- | --- | --- |
+| 1 | Claim ở abstract/intro khớp kết quả | Có | 114 con số được hai script đối chiếu; abstract nêu kết quả âm |
+| 2 | Có mục Limitations | Có | Section 8, gồm giới hạn của E015 |
+| 3 | Giả định và chứng minh đầy đủ | Có | Mệnh đề 1 có chứng minh trong bài; 16 mệnh đề Lean, không `sorry` |
+| 4 | Tuyên bố tái lập | Có | Mục Reproducibility, link repo, commit bằng chứng |
+| 5 | Lệnh chạy, môi trường, dữ liệu | Có sau sửa | Lệnh trong README; bản thảo ghi Python 3.10+, chỉ thư viện chuẩn |
+| 6 | Chi tiết thí nghiệm | Có | Seed, digest model, nhiệt độ 0, context 4096, 384 token; không huấn luyện nên không có split/hyperparameter search |
+| 7 | Ý nghĩa thống kê | Có | Khoảng bootstrap 10.000 lần theo seed, sign-flip chính xác, Holm; số seed ghi rõ |
+| 8 | Tài nguyên tính toán | Có | Apple M1 Pro, 2.790 lượt gọi, 2,8 giờ cho E015 |
+| 9 | Quy tắc đạo đức | Có | Không có dữ liệu người, không có sai lệch |
+| 10 | Broader impacts | Có sau sửa | Thêm đoạn Broader impact |
+| 11 | Safeguards | Không áp dụng | Không phát hành model hay dữ liệu thu thập |
+| 12 | Giấy phép tài sản đã dùng | Có sau sửa | Qwen3, Lean 4, Mathlib: Apache 2.0 (đọc từ bản cài local); Gemma theo điều khoản của nhà phát hành |
+| 13 | Tài liệu cho tài sản mới | Có sau sửa | LICENSE: MIT cho mã, CC BY 4.0 cho bài và dữ liệu, do tác giả chọn |
+| 14 | Human subjects | Không áp dụng | |
+| 15 | IRB | Không áp dụng | |
+| 16 | Khai báo LLM | Có | LLM là đối tượng nghiên cứu; câu AI-use ghi cả việc hỗ trợ viết và phân tích |
+
+Checklist chung: abstract khoảng 270 từ (trong giới hạn 250–300); mọi
+bảng, hình có caption tự đủ; PDF biên dịch không lỗi, không tham chiếu
+hỏng; trích dẫn đều resolve. Các mục về template hội nghị, giới hạn
+trang và ẩn danh không áp dụng cho preprint Zenodo.
+
+**Mô phỏng reviewer theo cấu trúc của skill.**
+
+- *Tóm tắt:* bài audit một khoảng cách giữa hai chính sách cập nhật bộ
+  nhớ, rồi kiểm định cách đọc của chính nó bằng một thí nghiệm khóa trước.
+- *Điểm mạnh:* đối chứng frozen/empty/matched-budget; protocol commit
+  trước kết quả; kết quả âm báo cáo thẳng; mô hình FIFO kiểm bằng Lean và
+  khớp 132 quỹ đạo; replay offline từng byte.
+- *Điểm yếu:* một model nhỏ, miền tổng hợp; E015 đổi ba yếu tố cùng lúc;
+  khoảng tin cậy còn rộng (tới +13 điểm); phân tích theo đường đi là quan
+  sát; family unreachable chạm sàn nên không phân biệt được chính sách.
+- *Câu hỏi reviewer sẽ hỏi:* khoảng cách E002 có lặp lại trên seed mới
+  với bộ sinh gốc không; kết quả có giữ với model biết trả lời
+  "unreachable" không.
+- *Khuyến nghị:* borderline reject (3/6) ở hội nghị chính vì
+  significance; chấp nhận được ở workshop; đăng preprint được.
+
+## Việc của tác giả
+
+- Tác giả tự tạo bản ghi Zenodo, tải PDF và ZIP trong
+  `artifacts/current/`, và chọn giấy phép CC BY 4.0 trên Zenodo.

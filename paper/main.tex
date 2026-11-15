@@ -7,7 +7,7 @@
 \setlength{\belowcaptionskip}{6pt}
 \title{Auditing Rare-Case Coverage in LLM Agents with Iterative Example Memory}
 \author{Tran Vu Bao Minh\\Independent Researcher}
-\date{November 15, 2026}
+\date{November 16, 2026}
 
 \begin{document}
 \maketitle
@@ -977,6 +977,20 @@ manifest under \texttt{formal/}. For every experiment that called a model, the
 protocol was committed before the results. The offline audits E007 and
 E011 were not preceded by a separate protocol commit. A commit records
 the time of a design and is not a third-party preregistration.
+
+\paragraph{Assets and environment.} The code needs Python 3.10 or later
+and only its standard library. The code in the repository is released
+under the MIT License, and the manuscript, protocols, traces, and
+aggregates under CC BY 4.0. Qwen3 8B, Lean~4, and Mathlib are
+distributed under the Apache License 2.0. Gemma 4 E4B is used under the
+terms published with it. The study uses synthetic graphs, involves no
+human participants or personal data, and releases no model.
+
+\paragraph{Broader impact.} The work is a measurement study on a
+synthetic domain and we see no direct path to misuse. Its practical
+implication is cautionary: a gain attributed to a memory policy can
+come from reuse of stored answers, so a deployed agent's memory should
+not be credited with generalization on the basis of such a gap.
 
 OpenAI Codex and Anthropic Claude assisted with research design,
 implementation, analysis, proof development, review, and manuscript

@@ -152,3 +152,9 @@ root=experiments/E015-confirmatory/results/qwen3-8b
 python3 -m src.confirmatory "$root" --audit | cmp - "$root/aggregate.json"
 python3 -m experiments.E015-confirmatory.check_manuscript | cmp - experiments/E015-confirmatory/manuscript-statements.json
 ```
+
+## License
+
+Code (Python and Lean) is under the [MIT License](LICENSES/MIT.txt). The
+manuscript, protocols, analyses, traces, aggregates, and documentation
+are under [CC BY 4.0](LICENSES/CC-BY-4.0.txt). See [LICENSE](LICENSE).
