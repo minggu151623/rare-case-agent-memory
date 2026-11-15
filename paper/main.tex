@@ -14,32 +14,32 @@
 
 \begin{abstract}
 We audit what a memory-update policy changes when a fixed-weight
-language model maintains a bounded memory of verified examples. The
-agent keeps six graph-planning examples under FIFO eviction, and we
-follow each task family through allocation, verified admission,
-eviction, and held-out evaluation with Qwen3 8B. In an exploratory
-study on six paired seeds, adaptive allocation toward the least-covered
-rare family scored $18/18$ on held-out key-detour queries, against
-$7/18$ for sampling from the reference mixture. Controls bound that
-gap. A memory that was never updated scored $16/18$, an empty memory
-$7/18$, and a nonadaptive policy with the same rare budget $16/18$, and
-one fixed path solves all 18 queries. Post hoc, the gap looked like
-eviction of a needed example. We tested that reading in a confirmatory
-experiment whose protocol was committed first: 30 fresh seeds, four
-update rounds, and key-detour routes diversified in memory, supplements,
-and holdout. Reference-mixture updates kept a key-detour example in 6
-of 30 seeds, yet the frozen memory answered $55/90$ key-detour queries
-against $51/90$ ($+4.4$ percentage points, 95\% bootstrap interval
-$-5.6$ to $+13.3$, exact sign-flip $p=0.51$), and the empty memory
-answered $53/90$. The retention reading was not confirmed. Adaptive
-allocation did not beat the matched rare-only budget ($-1.7$ points of
-rare accuracy, $p=0.51$), and an earlier label interaction did not
-replicate. Descriptively, a stored example helped when it contained the
-query's optimal path ($29/32$ against $116/208$). No memory helped on
-unreachable tasks ($0/450$). A Lean~4 development machine-checks the
-FIFO reference model, and all 132 archived update trajectories conform
-to it. In this setting coverage followed the FIFO model, and held-out
-accuracy did not follow coverage.
+language model, Qwen3 8B, keeps a six-slot FIFO memory of verified
+graph-planning examples. The audit follows each task family through
+allocation, verified admission, eviction, and held-out evaluation. Its
+main result is negative: memory coverage followed a machine-checked
+FIFO model, and held-out accuracy did not follow coverage. In an
+exploratory study on six paired seeds, adaptive allocation toward the
+least-covered rare family scored $18/18$ on held-out key-detour
+queries, against $7/18$ for sampling from the reference mixture.
+Controls bound that gap. A memory that was never updated scored
+$16/18$, an empty memory $7/18$, and a nonadaptive policy with the same
+rare budget $16/18$, and one fixed path solves all 18 queries. Post
+hoc, the gap looked like eviction of a needed example. A confirmatory
+experiment, with its protocol committed first, tested that reading on
+30 fresh seeds with four update rounds and key-detour routes
+diversified in every task pool. Reference-mixture updates kept a
+key-detour example in 6 of 30 seeds, yet the frozen memory answered
+$55/90$ key-detour queries against $51/90$ ($+4.4$ percentage points,
+95\% bootstrap interval $-5.6$ to $+13.3$, exact sign-flip $p=0.51$),
+and the empty memory answered $53/90$. The retention reading was not
+confirmed. Adaptive allocation did not beat the matched rare-only
+budget ($-1.7$ points of rare accuracy, $p=0.51$), and an earlier label
+interaction did not replicate. Descriptively, a stored example helped
+when it contained the query's optimal path ($29/32$ against
+$116/208$). No memory helped on unreachable tasks ($0/450$). A Lean~4
+development proves the FIFO reference model, and all 132 archived
+update trajectories conform to it.
 \end{abstract}
 
 
@@ -73,7 +73,8 @@ The mixture policy lost the initial key-detour example in four of six
 seeds, and each loss occurred without any new admission from that
 family. After seeing these counts we read the gap as retained coverage.
 Section~\ref{sec:confirmatory} tests that reading on 30 fresh seeds
-with diversified key-detour routes. It was not confirmed: the mixture
+with diversified key-detour routes (Table~\ref{tab:confirmatory}). It
+was not confirmed: the mixture
 policy again lost the example in most seeds, and its accuracy stayed
 within sampling error of the frozen and empty memories. The
 contributions are as follows.
@@ -82,7 +83,7 @@ contributions are as follows.
 \item \textbf{A family-level audit of a memory-policy gap.} With frozen
 and empty baselines and a control matched on rare budget, the
 key-detour gain of adaptive allocation over the reference mixture is
-mostly retained coverage. Against the matched control the gain is two
+mostly retained coverage on the original holdout. Against the matched control the gain is two
 answers from one seed. For unreachable tasks, retained examples did
 not improve held-out accuracy, even when an exact solver supplied them.
 \item \textbf{A confirmatory test of the audit's own reading.} A locked
@@ -114,6 +115,7 @@ Neither shows that adaptive allocation outperforms a policy with the
 same rare budget.
 
 \input{summary-table}
+\input{confirmatory-table}
 
 \section{Related work}
 
@@ -491,12 +493,15 @@ the exact two-sided sign-flip value over all $2^{30}$ assignments was
 at most $0.05$. Two secondary contrasts were Holm-adjusted: adaptive
 minus balanced in rare accuracy, and the difference in the
 adaptive-minus-balanced key-detour gap between shared and mixed labels.
-Thirty seeds were sized for a standardized paired effect near $0.55$.
+Intervals are percentile bootstrap intervals over seeds with 10,000
+resamples. Thirty seeds were sized for a standardized paired effect
+near $0.55$.
 The protocol, runner, and checks were committed before any call on the
 30 seeds, and no interim analysis was run. The local runtime updated
 itself before the first such call. An amendment committed beforehand
 records the change, and the two interface seeds gave identical
-responses under both versions. The run made 2,790 calls.
+responses under both versions. The run made 2,790 calls in 2.8 hours
+of request time on the same Apple M1 Pro.
 
 
 \section{Results}
@@ -750,11 +755,10 @@ entire original answer. Partial use of label cues remains possible.
 
 All 2,790 calls completed and all 1,350 requested readout answers were
 returned. One response in the label sub-study reached the output limit
-and was scored incorrect. Table~\ref{tab:confirmatory} gives the scores.
+and was scored incorrect. Table~\ref{tab:confirmatory} in the
+introduction gives the scores.
 The readout asks one query per call, so absolute scores are not
 comparable with the nine-query batches of the earlier experiments.
-
-\input{confirmatory-table}
 
 \paragraph{Primary contrast.} Reference-mixture updating lost coverage
 as it had before. Its final memory held a key-detour example in 6 of
@@ -967,7 +971,7 @@ source are in the project repository:
 The evidence for this version is fixed at commit
 \texttt{7df0cbdbc499}. Every reported score can be recomputed from
 the traces without running a language model, and two scripts assert
-76 and 37 numeric statements of this manuscript against the archives. The Lean~4
+76 and 38 numeric statements of this manuscript against the archives. The Lean~4
 proofs build with Lean and Mathlib 4.26.0 from a pinned dependency
 manifest under \texttt{formal/}. For every experiment that called a model, the
 protocol was committed before the results. The offline audits E007 and

@@ -36,6 +36,7 @@
     "trajectories checked in total",
     "unreachable declarations",
     "mixture seeds that lost the key-detour example",
-    "E002 frozen minus mixture, original holdout"
+    "E002 frozen minus mixture, original holdout",
+    "request hours"
   ]
 }

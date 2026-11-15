@@ -107,6 +107,10 @@ def statements():
                if k.endswith("_queries"))), (0, 3510))
     claim("mixture seeds that lost the key-detour example", 30 - kept["random_model"], 24)
     claim("E002 frozen minus mixture, original holdout", 16 - 7, 9)
+    usage = RESULT["usage"]
+    claim("request hours",
+          sum(usage[f"{stage}_seconds"] for stage in ("acquisition", "readout", "label")) / 3600,
+          2.8)
     return checked
 
 

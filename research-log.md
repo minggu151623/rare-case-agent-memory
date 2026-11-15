@@ -144,4 +144,4 @@ Accuracy tracked whether the stored example had the query's own answer
 path. Decision: keep the six-seed counts as reported, narrow the
 retention reading to the original holdout, and report the null results
 in the abstract, a new Results subsection, the Discussion, and the
-Conclusion. The manuscript now carries 113 asserted statements.
+Conclusion. The manuscript now carries 114 asserted statements.

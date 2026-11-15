@@ -24,7 +24,7 @@ luận thực nghiệm khái quát: một model, một miền đồ thị tổng
 | 18 nhóm kiểm tra của lần rà soát trước | 18/18 qua, 12 báo cáo JSON khớp bản lưu |
 | E005, 3.150 cấu hình FIFO bằng số hữu tỉ | Qua |
 | Lean 4.26.0, `lake build` và từng tệp với `-DwarningAsError=true` | 6 tệp qua, không `sorry`, 16 mệnh đề chỉ dùng `propext`, `Classical.choice`, `Quot.sound` |
-| 76 + 37 con số trong bản thảo đối chiếu với dữ liệu lưu | Qua, hai script dừng nếu lệch |
+| 76 + 38 con số trong bản thảo đối chiếu với dữ liệu lưu | Qua, hai script dừng nếu lệch |
 | 4 bảng sinh từ script | Khớp từng byte |
 | PDF | 21 trang, không cảnh báo LaTeX, không tham chiếu hỏng |
 | E015: 9 test, replay 30 seed khớp aggregate từng byte | Qua |
@@ -106,8 +106,67 @@ Sai lệch đã ghi: Ollama tự cập nhật lên 0.40.16 trước lượt gọ
 (Amendment 1); một câu trả lời ở phần nhãn chạm giới hạn token và bị
 chấm sai theo protocol.
 
-## Cần tác giả xem lại trước khi đăng
+## Rà soát bản cuối theo skill ml-paper-writing
 
-- Câu AI-use trong bản thảo hiện ghi cả OpenAI Codex và Anthropic Claude.
-- Ngày bản thảo là 15/11/2026.
-- Khi tạo bản ghi Zenodo, tải lên PDF và ZIP trong `artifacts/current/`.
+Áp dụng bản skill đã ghim (Orchestra Research, commit `773a5294`) lên
+bản thảo sau E015. Skill yêu cầu tác giả xác nhận câu đóng góp; tác giả
+đã ủy quyền nên quyết định được ghi lại ở đây.
+
+**Câu đóng góp (một câu).** Một audit theo từng family cho thấy khoảng
+cách giữa hai chính sách bộ nhớ là do giữ lại một đáp án chép được, và
+một thí nghiệm xác nhận khóa trước cho thấy coverage đi đúng mô hình
+FIFO đã kiểm bằng Lean nhưng độ chính xác không đi theo coverage.
+
+| Hạng mục của skill | Trạng thái | Việc đã làm ở bản này |
+| --- | --- | --- |
+| Narrative: What / Why / So what rõ ở cuối Introduction | Đạt | Thêm bullet đóng góp về thí nghiệm xác nhận; đoạn cuối Introduction tách phần exploratory và confirmatory |
+| Abstract: nêu kết quả ngay, có con số nổi bật | Đạt sau sửa | Viết lại, đưa kết luận âm lên câu thứ ba, còn khoảng 270 từ |
+| "Figure 1": kết quả chính ở trang đầu | Đạt sau sửa | Bảng E015 chuyển lên cạnh Bảng 1 trong Introduction |
+| 2–4 bullet đóng góp | Đạt | 4 bullet |
+| Mỗi thí nghiệm nêu claim được kiểm | Đạt | Đoạn thiết kế E015 nêu contrast chính, tiêu chí quyết định, hai contrast phụ |
+| Error bar kèm phương pháp, số lần chạy, kiểm định | Đạt sau sửa | Ghi rõ bootstrap percentile 10.000 lần theo seed, sign-flip chính xác, Holm cho hai contrast phụ |
+| Hạ tầng tính toán, thời gian | Đạt sau sửa | Ghi 2.790 lượt gọi, 2,8 giờ, Apple M1 Pro, Ollama 0.40.16 |
+| Seed và cách đặt | Đạt | Seed 7101–7130, hai seed giao diện 7001–7002 |
+| Related work theo chủ đề, không bịa trích dẫn | Đạt | Bản này không thêm trích dẫn; 4 trích dẫn thêm trước đó lấy từ arXiv/doi.org |
+| Limitations | Đạt | Thêm giới hạn của E015: một model, null chỉ trong khoảng tin cậy, đổi ba yếu tố cùng lúc |
+| Giả định trước định lý | Đạt | Section 4 ghi `K ≥ 1`, `u, v ≥ 0`, `u + v ≤ 1`; 16 mệnh đề Lean |
+| Thuật ngữ nhất quán | Đạt có ghi chú | random/targeted và reference-mixture/adaptive được giải thích một lần ở Section 5 |
+| Bảng booktabs, cột số căn phải | Đạt | Bảng sinh từ script, khớp từng byte |
+| Từ đệm, hedging | Đạt | Không còn "very", "quite", "essentially"... trong nguồn |
+| Checklist kiểu NeurIPS: claim khớp bằng chứng, tái lập, mã mở | Đạt | 114 con số được script đối chiếu; replay offline khớp từng byte |
+| Checklist: giấy phép tài sản | **Chưa** | Repo chưa có LICENSE, xem dưới |
+
+**Chấm theo bốn tiêu chí reviewer của skill.**
+
+- *Quality:* vững trong phạm vi. Claim khớp bằng chứng, có đối chứng
+  frozen/empty, có thí nghiệm khóa trước, kết quả âm được báo cáo thẳng.
+- *Clarity:* tốt; tái lập được từ trace mà không cần chạy model.
+- *Significance:* hạn chế. Một model 8B, đồ thị tổng hợp sáu đỉnh, bộ nhớ
+  sáu ô. Kết quả chính là null.
+- *Originality:* vừa phải. Từng đối chứng đã có ở công trình trước; cái
+  mới là audit một khoảng cách chính sách kèm mô hình FIFO kiểm bằng Lean
+  và phép thử xác nhận.
+
+Ước lượng trên thang NeurIPS 6 điểm: khoảng 3 (borderline reject) ở hội
+nghị chính, phù hợp hơn với workshop về agent memory/evaluation hoặc
+preprint. Với Zenodo, không có rào cản nào còn lại về nội dung.
+
+## Quyết định đã chốt thay tác giả (theo ủy quyền)
+
+- **Câu AI-use: giữ nguyên.** Câu ghi OpenAI Codex và Anthropic Claude
+  hỗ trợ thiết kế, cài đặt, phân tích, chứng minh, rà soát và viết. Đây
+  là mô tả đúng sự thật về cách bài được làm; bỏ hay làm nhẹ đi sẽ sai.
+- **Ngày bản thảo: 15/11/2026**, ngày hoàn tất E015 và bản này.
+- **Tên tệp phát hành: đổi** thành
+  `rare-case-agent-memory-audit-confirmatory.pdf` và
+  `rare-case-agent-memory-audit-confirmatory-reproducibility.zip`, vì
+  bài không còn thuần exploratory. Bản trước E015 nằm ở `artifacts/archive/`.
+- **Tiêu đề bài: giữ.** "Auditing Rare-Case Coverage..." vẫn đúng với
+  nội dung.
+
+## Một việc cố ý để lại cho tác giả
+
+- **Giấy phép.** Repo chưa có tệp LICENSE. Cấp giấy phép là quyền pháp lý
+  của tác giả, không rút lại được sau khi phát hành, và Zenodo bắt buộc
+  chọn khi tạo bản ghi. Gợi ý: CC BY 4.0 cho bài và dữ liệu, MIT cho mã.
+- Tác giả tự tạo bản ghi Zenodo và tải PDF, ZIP trong `artifacts/current/`.

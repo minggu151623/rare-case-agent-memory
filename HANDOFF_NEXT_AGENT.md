@@ -31,11 +31,15 @@ gốc và được giữ nguyên để đối chiếu.
   - 90 quỹ đạo mới khớp bổ đề FIFO (tổng 132).
 - Bản thảo đã thu hẹp kết luận retention về holdout gốc và báo cáo kết
   quả âm ở abstract, Results, Discussion, Conclusion. Hai script kiểm
-  76 + 37 con số.
+  76 + 38 con số.
 - Bằng chứng của bản thảo cố định ở commit `7df0cbdbc499`. SHA trong
   mục 2 là của bản trước.
 - Khuyến nghị: đăng Zenodo như audit preprint có thí nghiệm xác nhận
-  với kết quả âm. Tác giả tự đăng.
+  với kết quả âm. Tác giả tự đăng. Tệp phát hành:
+  `artifacts/current/rare-case-agent-memory-audit-confirmatory.pdf` và
+  `...-audit-confirmatory-reproducibility.zip`.
+- Repo chưa có tệp LICENSE. Giấy phép là quyền của tác giả và phải chọn
+  khi tạo bản ghi Zenodo (gợi ý: CC BY 4.0 cho bài, MIT cho mã).
 - Việc còn mở: chạy lại bộ sinh gốc trên seed mới để tách ảnh hưởng của
   bộ sinh khỏi số vòng và định dạng readout; model thứ hai; quy tắc
   phân bổ có tính đến tỉ lệ admission.
