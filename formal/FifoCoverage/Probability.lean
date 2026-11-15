@@ -4,6 +4,7 @@ import Mathlib.Algebra.Module.Submodule.LinearMap
 import Mathlib.Algebra.Module.Pi
 import Mathlib.Algebra.BigOperators.Pi
 import Mathlib.Data.Real.Basic
+import Mathlib.Tactic.Linarith
 import Mathlib.Tactic.Ring
 
 namespace FifoCoverage
@@ -82,6 +83,75 @@ def iidAbsence (initial : List Bool) (u v : ℝ) (T : ℕ) : ℝ :=
 theorem absenceProbability_eq_iid (initial : List Bool) (a b : ℝ) (T : ℕ) :
     absenceProbability initial a b T = iidAbsence initial (a * (1 - b)) (a * b) T :=
   attempt_pow_eq_weighted a b T _ []
+
+private theorem weightedAttempts_add (u v : ℝ) (g h : Observable) (T : ℕ)
+    (labels : List Bool) :
+    weightedAttempts u v (fun xs => g xs + h xs) T labels =
+      weightedAttempts u v g T labels + weightedAttempts u v h T labels := by
+  induction T generalizing labels with
+  | zero => simp [weightedAttempts]
+  | succ T ih =>
+    simp only [weightedAttempts, ih]
+    ring
+
+private theorem weightedAttempts_const (u v c : ℝ) (T : ℕ) (labels : List Bool) :
+    weightedAttempts u v (fun _ => c) T labels = c := by
+  induction T generalizing labels with
+  | zero => simp [weightedAttempts]
+  | succ T ih =>
+    simp only [weightedAttempts, ih]
+    ring
+
+private theorem weightedAttempts_nonneg {u v : ℝ} (hu : 0 ≤ u) (hv : 0 ≤ v)
+    (huv : u + v ≤ 1) {g : Observable} (nonneg : ∀ xs, 0 ≤ g xs) (T : ℕ)
+    (labels : List Bool) :
+    0 ≤ weightedAttempts u v g T labels := by
+  induction T generalizing labels with
+  | zero => simpa [weightedAttempts] using nonneg labels
+  | succ T ih =>
+    simp only [weightedAttempts]
+    have hw : 0 ≤ 1 - u - v := by linarith
+    have other := mul_nonneg hv (ih (false :: labels))
+    have focal := mul_nonneg hu (ih (true :: labels))
+    have rejected := mul_nonneg hw (ih labels)
+    linarith
+
+/-- Product weight of the complementary event: the focal family is present. -/
+def iidPresence (initial : List Bool) (u v : ℝ) (T : ℕ) : ℝ :=
+  weightedAttempts u v (fun labels => 1 - absenceIndicator initial labels) T []
+
+/-- The weighting is normalized. Absence and presence weights sum to one
+at every horizon, for any real weights. -/
+theorem iid_absence_add_presence (initial : List Bool) (u v : ℝ) (T : ℕ) :
+    iidAbsence initial u v T + iidPresence initial u v T = 1 := by
+  unfold iidAbsence iidPresence
+  rw [← weightedAttempts_add]
+  have total : (fun xs => absenceIndicator initial xs + (1 - absenceIndicator initial xs)) =
+      fun _ => (1 : ℝ) := by
+    funext xs
+    ring
+  rw [total, weightedAttempts_const]
+
+private theorem absenceIndicator_mem (initial labels : List Bool) :
+    0 ≤ absenceIndicator initial labels ∧ absenceIndicator initial labels ≤ 1 := by
+  unfold absenceIndicator
+  split <;> norm_num
+
+theorem iidAbsence_nonneg (initial : List Bool) {u v : ℝ} (hu : 0 ≤ u) (hv : 0 ≤ v)
+    (huv : u + v ≤ 1) (T : ℕ) : 0 ≤ iidAbsence initial u v T :=
+  weightedAttempts_nonneg hu hv huv (fun xs => (absenceIndicator_mem initial xs).1) T []
+
+theorem iidPresence_nonneg (initial : List Bool) {u v : ℝ} (hu : 0 ≤ u) (hv : 0 ≤ v)
+    (huv : u + v ≤ 1) (T : ℕ) : 0 ≤ iidPresence initial u v T :=
+  weightedAttempts_nonneg hu hv huv
+    (fun xs => sub_nonneg.mpr (absenceIndicator_mem initial xs).2) T []
+
+/-- Under valid outcome weights the absence value is a probability. -/
+theorem iidAbsence_le_one (initial : List Bool) {u v : ℝ} (hu : 0 ≤ u) (hv : 0 ≤ v)
+    (huv : u + v ≤ 1) (T : ℕ) : iidAbsence initial u v T ≤ 1 := by
+  have total := iid_absence_add_presence initial u v T
+  have present := iidPresence_nonneg initial hu hv huv T
+  linarith
 
 private def checkPrefix (k : ℕ) (labels : List Bool) : ℝ :=
   if true ∈ labels.take k then 0 else 1

@@ -1,0 +1,44 @@
+# lean --version
+Lean (version 4.26.0, arm64-apple-darwin24.6.0, commit d8204c9fd894f91bbb2cdfec5912ec8196fd8562, Release)
+# lake build
+info: FifoCoverage.lean:17:0: 'FifoCoverage.example_equal_rates' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FifoCoverage.lean:18:0: 'FifoCoverage.example_unequal_rates' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (1708 jobs).
+# lake env lean -DwarningAsError=true FifoCoverage/Basic.lean
+exit=0
+# lake env lean -DwarningAsError=true FifoCoverage/Probability.lean
+exit=0
+# lake env lean -DwarningAsError=true FifoCoverage/Limit.lean
+exit=0
+# lake env lean -DwarningAsError=true FifoCoverage/Paper.lean
+exit=0
+# lake env lean -DwarningAsError=true FifoCoverage/Threshold.lean
+exit=0
+# lake env lean -DwarningAsError=true FifoCoverage.lean
+'FifoCoverage.no_replenishment' depends on axioms: [propext, Quot.sound]
+'FifoCoverage.foldl_admit_absent_iff' depends on axioms: [propext, Quot.sound]
+'FifoCoverage.absent_after_flush' depends on axioms: [propext, Quot.sound]
+'FifoCoverage.paper_weights' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FifoCoverage.iid_finite' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FifoCoverage.iid_no_admission_of_rate_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FifoCoverage.iid_absent_before_last' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FifoCoverage.iid_limit' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FifoCoverage.iid_absence_add_presence' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FifoCoverage.iidAbsence_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FifoCoverage.iidAbsence_le_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FifoCoverage.absence_limit_le_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FifoCoverage.admitted_share_ge_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FifoCoverage.long_run_absence_le_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FifoCoverage.example_equal_rates' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FifoCoverage.example_unequal_rates' depends on axioms: [propext, Classical.choice, Quot.sound]
+exit=0
+# sha256 of checked sources
+f9d23ca22f37a3859c78e2577b992a3db658be298aca984bfed26c480c8ba4fc  FifoCoverage.lean
+7d5eac184f71074022797a5f1c2a40385da3f3514fc2d122cfc3251a747104d3  FifoCoverage/Basic.lean
+0c8e5e137c17db8b8579e460478ca08bfa3c195d17c3a2582f771799562f48cd  FifoCoverage/Limit.lean
+4fc8f9355b73c86bf57628b635a6e674d28d52f1fbaa77f06c7c547fc0c6b1ba  FifoCoverage/Paper.lean
+7ba180de58ab3528369db9874cae3480c9347904f99a7b1f60501da92adfb3c9  FifoCoverage/Probability.lean
+6f3dcaa52f3e9581409d8a5bddbf0f8b35bcd2877d8d3022389d72f844a5d243  FifoCoverage/Threshold.lean
+acad45ecd416c8aaaab941d45e61a33280a00a3d173081bb5b500d0bdabfda68  lakefile.toml
+a2c9a2578937617fa2a1b7dd324272abf3841a010aaefc84fbe954effc5dc424  lake-manifest.json
+e8173aad377a6d70041e5f7a5d8895ed587628f5cab243c53a18c40a1b7b6bf8  lean-toolchain
