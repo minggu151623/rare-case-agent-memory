@@ -1,0 +1,17 @@
+\begin{table}[H]
+\centering
+\caption{Post hoc split of the 42 evaluated memories (seven per seed) by
+whether the memory still holds an example of the queried family. Scores
+are on the original holdout, three queries per family and memory.}
+\label{tab:coverage-readout}
+\begin{tabular}{llrrrr}
+\toprule
+Family & Example retained & Memories & Correct & At 3/3 & At 0/3 \\
+\midrule
+Key detour & Yes & 29 & 80/87 & 25 & 0 \\
+Key detour & No & 13 & 9/39 & 1 & 8 \\
+Unreachable & Yes & 17 & 3/51 & 1 & 16 \\
+Unreachable & No & 25 & 0/75 & 0 & 25 \\
+\bottomrule
+\end{tabular}
+\end{table}

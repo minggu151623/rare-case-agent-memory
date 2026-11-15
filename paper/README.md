@@ -2,7 +2,9 @@
 
 The manuscript source is [main.tex](main.tex). The bibliography was fetched
 from the primary records listed in [reference-sources.md](reference-sources.md).
-The data, code, and protocols are included in the accompanying archive.
+The data, code, protocols, and Lean proofs are in this repository,
+<https://github.com/minggu151623/rare-case-agent-memory>. A snapshot of the
+same files is exported as a ZIP under [artifacts/current](../artifacts/current/).
 
 ## Build the PDF
 
@@ -88,6 +90,23 @@ Regenerate the two new manuscript tables with:
 python3 paper/control_tables.py > paper/diverse-paths-table.tex
 python3 paper/control_tables.py --seeds > paper/control-seeds.tex
 ```
+
+## Replay the publication audit
+
+[E014](../experiments/E014-publication-audit/analysis.md) recomputes the
+E009 sign-flip value, the retained-coverage split, and the FIFO
+conformance replay, and asserts 76 numeric statements of the manuscript
+against the archives. From the repository root:
+
+```sh
+python3 -m experiments.E014-publication-audit.check | cmp - experiments/E014-publication-audit/results.json
+python3 paper/audit_tables.py > paper/summary-table.tex
+python3 paper/audit_tables.py --coverage > paper/coverage-table.tex
+```
+
+A failed assertion stops the first command with the statement that
+disagrees. When the manuscript gains a number, add it to the list in
+`check.py`.
 
 ## Check the FIFO proof in Lean
 

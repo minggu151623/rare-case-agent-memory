@@ -1,0 +1,23 @@
+\begin{table}[t]
+\centering
+\caption{Held-out key-detour accuracy by evaluated memory, pooled over six
+paired seeds with three queries each. Rare supplements counts the
+supplement slots spent on the two rare families. Retained counts the seeds
+whose evaluated memory still holds a key-detour example. The varied-path
+holdout was evaluated for the three updated memories only. The last row
+scores the single best fixed answer path with no model.}
+\label{tab:summary}
+\begin{tabular}{lrrrr}
+\toprule
+Evaluated memory & Rare supplements & Retained & Original & Varied paths \\
+\midrule
+Empty & -- & 0/6 & 7/18 & -- \\
+Frozen initial memory & -- & 6/6 & 16/18 & -- \\
+Reference-mixture updates & 3/12 & 2/6 & 7/18 & 3/18 \\
+Balanced rare-only updates & 12/12 & 6/6 & 16/18 & 5/18 \\
+Adaptive updates & 12/12 & 6/6 & 18/18 & 7/18 \\
+\addlinespace
+Best fixed path, no model & -- & -- & 18/18 & 2/18 \\
+\bottomrule
+\end{tabular}
+\end{table}

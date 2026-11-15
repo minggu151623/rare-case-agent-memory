@@ -13,3 +13,12 @@
 | prioritizedreplay | [Schaul et al., Prioritized Experience Replay](https://arxiv.org/abs/1511.05952) |
 | gemma4 | [Gemma 4 Technical Report](https://arxiv.org/abs/2607.02770) |
 | fatemi_graph | [Fatemi et al., Talk Like a Graph, ICLR 2024](https://proceedings.iclr.cc/paper_files/paper/2024/file/bf72f65f30eedf5d48da6980ee02b589-Paper-Conference.pdf) |
+| admitpresent | [Liu and Ding, What to Admit and How to Present](https://arxiv.org/abs/2610.11188v1) |
+| amac | [Zhang et al., Adaptive Memory Admission Control for LLM Agents](https://arxiv.org/abs/2603.04549v1) |
+| lean4 | [de Moura and Ullrich, The Lean 4 Theorem Prover and Programming Language, CADE 28](https://doi.org/10.1007/978-3-030-79876-5_37) |
+| mathlib | [The mathlib Community, The Lean Mathematical Library, CPP 2020](https://doi.org/10.1145/3372885.3373824) |
+
+The four entries above were fetched on 2026-11-15 from the arXiv BibTeX
+export and from doi.org content negotiation. The abstracts of the two
+arXiv records were read to confirm the statements made about them in
+Section 2.

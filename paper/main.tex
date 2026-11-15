@@ -3,31 +3,40 @@
 \usepackage{amsmath,amsthm,booktabs,float}
 \usepackage[hidelinks]{hyperref}
 \newtheorem{proposition}{Proposition}
+\renewcommand{\labelitemi}{$\bullet$}
+\setlength{\belowcaptionskip}{6pt}
 \title{Auditing Rare-Case Coverage in LLM Agents with Iterative Example Memory}
 \author{Tran Vu Bao Minh\\Independent Researcher}
-\date{November 13, 2026}
+\date{November 15, 2026}
 
 \begin{document}
 \maketitle
 
 \begin{abstract}
-We audit a fixed-weight language model that updates a bounded memory
-of verified graph-planning examples. In six paired seeds with Qwen3 8B,
-supplying exact answers for targeted supplements increased the final
-number of unreachable examples by 0.67 on average. Both targeted
-conditions solved $0/18$ held-out unreachable tasks. On the original
-key-detour queries, adaptive allocation scored $18/18$, compared with
-$7/18$ for reference-mixture sampling and $16/18$ for a control that
-spent the same budget on rare tasks. At fixed vertex labels, replacing
-the detours with graphs that require nine distinct optimal paths
-reduced the scores to $7/18$, $3/18$, and $5/18$, respectively. The
-two-answer gap against the matched control came from one seed in each
-batch. In a separate experiment with frozen memories and matched
-per-graph renderings, the adaptive-minus-mixture gap was 19.4
-percentage points larger with shared label assignments than with
-alternating assignments, with reversals in two of six seeds. The
-audit shows how baseline allocation, query construction, and label
-assignments affect the measured performance of memory policies.
+We audit what a memory-update policy changes when a fixed-weight
+language model maintains a bounded memory of verified examples. The
+agent keeps six graph-planning examples under FIFO eviction. We follow
+each task family through allocation, verified admission, eviction, and
+held-out evaluation in six paired seeds with Qwen3 8B. On held-out
+key-detour queries, adaptive allocation toward the least-covered rare
+family scored $18/18$, against $7/18$ for sampling from the reference
+mixture. Three controls bound that gap. A memory that was never updated
+scored $16/18$, an empty memory $7/18$, and a nonadaptive policy with
+the same rare budget $16/18$. Post hoc, memories that still held a
+key-detour example answered $80/87$ such queries, and memories that had
+lost it $9/39$. The gap therefore mostly reflects eviction under the
+reference mixture. Retained coverage did not help on unreachable tasks:
+16 of 17 memories holding such an example scored $0/3$, including
+those whose example came from an exact solver. One fixed path solves
+every original key-detour query. On queries with nine distinct optimal
+paths the three policies scored $7/18$, $3/18$, and $5/18$. In an
+exploratory matched-rendering comparison, the adaptive-minus-mixture
+gap was 19.4 percentage points larger under shared than under
+alternating vertex labels, with reversals in two seeds (post hoc
+sign-flip $p=0.50$). A Lean~4 development machine-checks the FIFO
+reference model, and all 42 archived update trajectories conform to
+it. The evidence does not establish that adaptive allocation
+outperforms a matched rare-only budget.
 \end{abstract}
 
 
@@ -38,27 +47,56 @@ solves and verifying the answers before reuse. The resulting memory is
 shaped by which tasks are available, which tasks the agent attempts,
 which answers pass verification, and which examples the memory policy
 evicts. A low-frequency task family can disappear even when each
-retained answer is correct and the combined count of rare examples increases. We study this
-mechanism in a controlled planning domain with fixed model weights.
+retained answer is correct and the combined count of rare examples
+increases. A policy that targets rare families can then appear to
+improve held-out accuracy when it mainly prevents that loss.
 
-We distinguish coverage, the composition of memory, from generalization,
-the model's accuracy on structurally disjoint held-out tasks. We compare
-random and coverage-targeted task selection at matched call counts,
-task slots, and output-token caps.
-We also vary whether the added example must be solved by the model or can
-use an answer from an exact solver. The latter intervention tests whether
-access to a verified answer changes retention when the agent already has
-an opportunity to attempt the task.
+We study this mechanism in a controlled planning domain with fixed
+model weights, an exact solver, and a six-slot FIFO memory. We
+distinguish coverage, the composition of memory, from readout, the
+model's accuracy on structurally disjoint held-out tasks. The audit
+records, for every family and update, the attempted tasks, the answers
+that pass verification, the admissions, and the evictions. It then
+asks how much of a measured policy gap survives three changes to the
+comparison: a baseline that spends the same budget on rare tasks,
+held-out queries that no single answer path solves, and equivalent
+relabelings of the same graphs.
 
-The audit follows a family through task allocation, verified
-admission, FIFO retention, and held-out evaluation. It tests adaptive
-allocation against a reference mixture and against a control with the
-same rare budget. It then measures how the policy gap changes when
-equivalent graphs are relabeled or when held-out queries require
-different paths at fixed labels. The FIFO reference
-model quantifies loss of coverage when attempts are
-independent. The empirical trajectories allow both answer quality
-and allocation to depend on the current memory.
+Table~\ref{tab:summary} summarizes the main comparison. Adaptive
+allocation beat reference-mixture sampling by 11 of 18 key-detour
+queries. The memory that was never updated was only two answers behind
+the adaptive policy, and the mixture policy matched the empty memory.
+The mixture policy lost the initial key-detour example in four of six
+seeds, and each loss occurred without any new admission from that
+family. The contributions are as follows.
+
+\begin{itemize}
+\item \textbf{A family-level audit of a memory-policy gap.} With frozen
+and empty baselines and a control matched on rare budget, the
+key-detour gain of adaptive allocation over the reference mixture is
+mostly retained coverage. Against the matched control the gain is two
+answers from one seed. For unreachable tasks, retained examples did
+not improve held-out accuracy, even when an exact solver supplied them.
+\item \textbf{Controls on how the evaluation is built.} One fixed path
+solves all 18 original key-detour queries. Scores fall by more than
+half on queries with nine distinct optimal paths, and the policy gap
+shrinks under independent vertex relabeling. A matched-rendering design
+holds every graph's rendered forms fixed and changes only how they
+co-occur in a prompt. Its result is exploratory.
+\item \textbf{A machine-checked reference model and a replayable
+archive.} A Lean~4 development proves the FIFO eviction threshold, the
+exact finite-horizon absence law under independent attempts, its limit,
+and the proposal-share threshold. Every archived update trajectory
+conforms to the checked update rule, and every reported score is
+recomputed from stored model responses.
+\end{itemize}
+
+The study is exploratory. It uses six seeds, one acquisition model, two
+update rounds, and synthetic graphs. It does not show that adaptive
+allocation outperforms a policy with the same rare budget, and the three
+controls were not combined in one experiment.
+
+\input{summary-table}
 
 \section{Related work}
 
@@ -68,7 +106,17 @@ ground truth \cite{experience-following}. We use the same idea of a
 ground-truth comparison, applied to a single supplement and crossed
 with its allocation rule. This lets us measure a narrower mechanism:
 how correctness-conditioned admission affects the coverage of each
-task family under a fixed FIFO memory budget. EvoMemBench compares
+task family under a fixed FIFO memory budget. Two recent studies treat
+admission as a decision to be designed. Liu and Ding separate
+admission, which determines what recalled information enters the
+working context, from presentation, and compare selection rules at
+matched admission budgets \cite{admitpresent}. Zhang et al. score
+candidate entries for a long-term conversational memory with
+interpretable factors \cite{amac}. In our setting admission is the
+exact verification of the agent's own answer before it enters a
+persistent example store. We do not propose an admission rule. We
+measure which task families a fixed rule keeps and whether the kept
+examples change held-out answers. EvoMemBench compares
 memory strategies across knowledge and execution tasks \cite{evomembench}.
 MemoryAgentBench evaluates selective forgetting and test-time learning
 as separate competencies \cite{memoryagentbench}. Our setup uses
@@ -91,10 +139,13 @@ Herbst et al.\ document sensitivity to node labels, edge ordering, and
 syntax in graph reasoning \cite{lostserialization}. Their work motivates
 testing equivalent graph representations. Fatemi et al.\ also show that
 graph encoding and the graph generator affect performance under few-shot
-prompting \cite{fatemi_graph}. The empirical contribution here is an
-audit of the \emph{difference between memory policies} across label
-conditions, including a comparison that matches individual graph
-renderings while changing how they co-occur in prompts. Here we vary the representation
+prompting \cite{fatemi_graph}. Ground-truth memory comparisons, label
+permutations, and matched budgets each appear in this prior work, and we
+make no claim to be first with any of them. The empirical contribution
+here is an audit of the \emph{difference between memory policies}
+across baselines, query construction, and label conditions, including a
+comparison that matches individual graph renderings while changing how
+they co-occur in prompts. Here we vary the representation
 of the demonstrations and the queries separately, with the graph, stored
 solutions, and memory policy fixed. We also compare independent relabeling
 with a single shared permutation. The comparison asks whether a model can
@@ -136,9 +187,10 @@ Figure~\ref{fig:detour} illustrates the key detour and an equivalent change of v
 
 \section{An exact FIFO coverage reference model}
 
-Consider a full memory with capacity $K$. Index the initial entries
-from oldest to newest, and let $r$ be the index of the last initial
-entry of a focal family $f$, with $r=0$ if it starts absent. Each
+Consider a full memory with capacity $K\ge 1$. Index the initial
+entries $1,\dots,K$ from oldest to newest, and let $r$ be the index of
+the last initial entry of a focal family $f$, with $r=0$ if it starts
+absent. Each
 accepted attempt appends one entry and evicts the oldest. Without new
 admissions from $f$, the family disappears exactly when $r$ admissions
 have occurred, counting the already absent case as $r=0$. Thus the
@@ -147,9 +199,10 @@ unreplenished family disappears.
 
 \begin{proposition}
 Suppose attempts are independent and identically distributed.
-Each yields an admission from $f$ with probability $u$, an admission
-from another family with probability $v$, or a rejection. Write
-$a=u+v$ and $q=u/a$ for $a>0$. After $T$ attempts, the probability
+Each yields an admission from $f$ with probability $u\ge 0$, an
+admission from another family with probability $v\ge 0$, or a
+rejection with probability $1-u-v\ge 0$. Write $a=u+v$ and $q=u/a$ for
+$a>0$. After $T$ attempts, the probability
 that $f$ is absent from memory is
 \[
  \sum_{n=r}^{T}
@@ -173,11 +226,13 @@ For positive $a$, the probability that $N<K$ tends to zero, yielding
 the limit.
 \end{proof}
 
-Let $p$ be the proposal share for $f$, $\alpha$ its conditional pass
-rate, and $\beta$ the pass rate for other proposals. Then
+Let $p\in[0,1]$ be the proposal share for $f$, $\alpha$ its
+conditional pass rate, and $\beta$ the pass rate for other proposals,
+so that $u=p\alpha$ and $v=(1-p)\beta$. Then
 $q=p\alpha/[p\alpha+(1-p)\beta]$ whenever admissions occur.
-With both pass rates positive, a long-run absence probability at most
-$\delta$ requires an admitted share $q_\star=1-\delta^{1/K}$ or higher.
+With both pass rates positive and a target $0<\delta<1$, a long-run
+absence probability at most $\delta$ requires an admitted share
+$q_\star=1-\delta^{1/K}$ or higher.
 Equivalently, the proposal share must satisfy
 \[
  p \ge
@@ -192,22 +247,46 @@ reference calculations with hypothetical parameters. When $\alpha=0$
 and other admissions continue, any initial focal example will
 eventually leave the FIFO buffer.
 
-A Lean~4 artifact formalizes the full positive-capacity buffer, proves
-the last-initial-position threshold, and verifies the finite formula,
-the zero-admission case, and the limit in the proposition. It derives
-the binomial expression from the product weights of the three attempt
-outcomes and the executable FIFO update on lists. The deterministic
-suffix characterization also applies to a realized adaptive admission
-history. The probability calculation assumes independent attempts
-with constant outcome weights.
+\paragraph{Machine-checked statements.} A Lean~4 development
+\cite{lean4}, built on Mathlib \cite{mathlib}, formalizes the full
+positive-capacity buffer as an executable update on lists. It proves
+that repeated updates keep the newest $K$ entries, that a family is
+absent exactly when $r$ is at most the number of admissions and none
+of the last $K$ admissions belongs to it, and that without
+replenishment the family leaves at admission $r$. These list-level
+statements hold for any admission history, including an adaptive one.
+For the probability model, the development derives the binomial
+expression from the product weights of the three attempt outcomes,
+and proves the zero-admission case, the vanishing sum for $T<r$, and
+the limit. It also proves that the weighting is normalized and that
+the absence value lies in $[0,1]$ under the stated constraints on $u$
+and $v$. Finally it proves the threshold: for $K\ge 1$ and
+$q,q_\star\in[0,1]$, $(1-q)^K\le(1-q_\star)^K$ exactly when
+$q\ge q_\star$, and for positive pass rates $q\ge q_\star$ exactly when
+$p$ satisfies the displayed inequality. The formal statement uses
+$\delta=(1-q_\star)^K$ and so avoids real roots. The two worked
+examples above are checked as exact arithmetic. The sixteen exported
+statements depend only on the three standard axioms of Lean's
+classical logic, and no proof is left open.
 
-We independently checked the finite expression against exact rational state
-enumeration on 3,150 cases, varying the initial memory, capacity,
-number of attempts, and admission probabilities. E002's task
-selection and answer quality can depend on memory, so the expression
-does not predict its empirical effect sizes. It formalizes how
-proposal frequency and admission can produce different coverage
-even before considering whether stored examples help on new tasks.
+The proofs cover this reference model. They do not cover the task
+generator, the verifier, the scorer, or any model output. Two
+independent checks connect the model to the experiments. First, we
+compared the finite expression with exact rational state enumeration
+on 3,150 cases, varying the initial memory, capacity, number of
+attempts, and admission probabilities. Second, we replayed the
+list-level characterization on all 42 archived update trajectories,
+across seven policy arms and six seeds. The final memory always equals
+the newest six entries, and predicted and observed absence agree in
+all 126 family-trajectory checks. A rare family ended absent in 32 of
+them, each time with no admission from that family, which is the
+no-replenishment case.
+
+E002's task selection and answer quality can depend on memory, so the
+probability expression does not predict its empirical effect sizes.
+It formalizes how proposal frequency and admission can produce
+different coverage even before considering whether stored examples
+help on new tasks.
 
 \section{Experimental design}
 
@@ -218,7 +297,10 @@ were used to design the follow-up and are reported separately from it.
 
 The follow-up is a paired $2\times2$ experiment. The allocation rule
 draws a family at random from the reference distribution or targets the
-least represented rare family in the current memory. The answer source
+least represented rare family in the current memory. We call the first
+rule \emph{random} or \emph{reference-mixture} sampling and the second
+\emph{targeted} or \emph{adaptive} allocation. Tables that come from
+E002 through E010 use the first name of each pair. The answer source
 is the model or the exact solver for the one external supplement. In
 every arm the model is asked to solve two common background tasks and
 one supplement per round. In oracle arms, we replace the supplement's
@@ -402,9 +484,15 @@ $+22.2$ percentage points relative to random model. Its seed
 differences were $(1/2,0,0,0,1/2,1/3)$ and the sign-flip sensitivity
 value was $0.250$. Key-detour performance rose from $7/18$ to
 $18/18$, while unreachable performance fell from $3/18$ to $0/18$.
-This pooled contrast conceals opposite family-level changes. The
-frozen control scored $16/18$ on key detours and $0/18$ on
-unreachable cases. Of twelve supplement slots, the random/model
+This pooled contrast conceals opposite family-level changes. All three
+correct unreachable answers in the random arm come from one seed. Its
+final memory held an unreachable example and no key-detour example,
+and the model declared all six rare queries unreachable, so the three
+correct answers accompany three false unreachable claims on key
+detours. The frozen control scored $16/18$ on key detours and $0/18$
+on unreachable cases, and the empty control scored $7/18$ and $0/18$.
+Relative to not updating the memory, targeted allocation therefore
+added two correct key-detour answers and random allocation lost nine. Of twelve supplement slots, the random/model
 arm allocated nine to ungated tasks, two to key detours and one to
 unreachable tasks. The targeted/model arm allocated nine to key
 detours and three to unreachable tasks.
@@ -438,6 +526,37 @@ The balanced control attempted and admitted six. Neither admitted a
 new unreachable example. The balanced control recovered most of the
 adaptive score on the original holdout. The paired comparison gives
 limited evidence for an advantage from adapting to current coverage.
+
+\subsection{Retained coverage and held-out readout}
+
+The baselines above suggest that the policy gap follows what each
+memory still contains. We examined this after seeing the E002
+results, so the analysis is post hoc. It pools the 42 evaluated
+memories of E002 and E012: four E002 arms, the balanced rare-only arm,
+and the frozen and empty controls, for each of six seeds.
+
+Table~\ref{tab:coverage-readout} splits them by whether the memory
+still held an example of the queried family. With a key-detour example
+the memories answered $80/87$ key-detour queries, and 25 of 29 scored
+$3/3$. Without one they answered $9/39$, and 8 of 13 scored $0/3$. In
+the random arm the two seeds that kept the example scored $6/6$ and
+the four that lost it scored $1/12$. Accuracy was higher with a
+retained example in five of six seeds. In the sixth, the empty memory
+already scored $3/3$. On the varied-path queries of E013 the
+corresponding counts were $15/42$ and $0/12$.
+
+Unreachable examples show no such pattern. Sixteen of the 17 memories
+that held one scored $0/3$, including all six frozen memories and the
+four targeted-oracle memories, which together held four
+solver-supplied examples. The exception is the blanket response described above.
+
+Presence was not randomized. It depends on the policy, the seed, the
+model's answers, and FIFO order, and the seven memories of a seed share
+one holdout. On the original holdout a single answer path is optimal
+for every key-detour query, so this split cannot separate use of the
+retained example from reuse of its path.
+
+\input{coverage-table}
 
 \subsection{Transfer under vertex renaming and new motifs}
 
@@ -523,7 +642,11 @@ $19.4$ percentage points. The paired differences in correct counts
 out of six were $(+3,+6,-4,+2,-1,+1)$. The policy-gap difference was positive
 in four seeds and negative in two. Omitting one seed at a time gave
 mean differences from 3.3 to 36.7 points. This descriptive sensitivity
-check reuses the same data. The 36 answer records per condition
+check reuses the same data and is not a confidence interval. A post hoc
+exact sign-flip calculation over the 64 sign assignments gives a
+two-sided value of $0.50$. Under sign exchangeability the observed
+mean is unremarkable, and the value does not show that the effect is
+zero. We therefore treat this comparison as exploratory. The 36 answer records per condition
 contain two labelings of each of 18 graphs. Matching the rendered
 forms narrows the explanation to properties of the prompt-level
 combination. The alternating assignment jointly changes the
@@ -572,47 +695,77 @@ entire original answer. Partial use of label cues remains possible.
 
 \section{Discussion}
 
-The experiments expose two points at which an apparent improvement
-can weaken. First, targeting changes the tasks that reach the
-verifier. In E002, the model failed every recorded unreachable
-attempt, so it could not add an example from that family using its
-own answers. Providing an exact answer changed which examples
-entered and survived in memory. Accuracy on new unreachable tasks
-remained unchanged in the targeted comparison. Second, the
-aggregate rare-task gain came from one family under the original
-representation. The balanced rare-only sampler recovered most of the
-adaptive key-detour score on that holdout. The remaining two-answer
-gap came from a single seed. In the fixed-label transfer experiment,
-both rare-only arms lost 11 correct answers when the holdout required
-varied paths. This shows that the observed drop extends to a change in
-task construction with stable labels. The adaptive policy retained a
-positive gap against reference-mixture sampling, and the small gap
-against balanced rare-only sampling stayed unchanged. The renaming
-check preserves the underlying
-planning problems and shows that the observed gain is sensitive
-to their presentation. The fixed-path diagnostic establishes that deduplication alone
-did not eliminate a shortcut in the original family. The fresh-motif
-result limits the evidence for transfer beyond that template. Both one-sided
-changes reduced the targeted advantage, and a shared permutation
-largely restored the policy gap. This combination is consistent with
-the model relying partly on correspondence across examples and
-queries. The matched-exposure comparison also favored shared labels on
-average, with heterogeneous effects across seeds. Both experiments
-leave open which cross-graph correspondences matter.
+\paragraph{The policy gap was mostly retention.} The comparison that
+motivated the study, adaptive allocation against reference-mixture
+sampling, measured two things at once. The adaptive rule spent all
+twelve supplements on rare families and the mixture spent three. The
+mixture then lost the initial key-detour example in four of six seeds
+and fell to the empty-memory score, while a memory that was never
+updated stayed within two answers of the adaptive policy. The balanced
+rare-only sampler recovered the frozen score, and the remaining
+two-answer gap came from a single seed. For this model and holdout,
+the data support a narrow reading: updating at the reference mixture
+evicted a rare example that the model needed, and every memory
+condition that kept one in all six seeds scored at least $16/18$. They
+do not show a benefit of adapting to current coverage beyond spending
+the budget on rare tasks.
 
-For a memory audit in an exactly verifiable domain, we suggest
-reporting the number of attempted cases in each family, the
-number of accepted answers, and the retained composition after
-eviction. Then evaluate held-out cases under both the reference
-representation and semantics-preserving alternatives. Track response
-completeness separately from correctness when several tasks share
-one prompt. These measurements let a reader distinguish missing
-opportunities, failed admissions, eviction, and failed readout.
+\paragraph{Coverage is not readout.} Targeting changes the tasks that
+reach the verifier. The model failed every recorded unreachable
+attempt, so it could not add an example from that family using its own
+answers. Supplying an exact answer changed which examples entered and
+survived in memory, and held-out accuracy on unreachable tasks stayed
+at zero. For key detours, retained examples coincided with correct
+answers on the original holdout, where one path answers every query.
+When the holdout required varied paths, both rare-only arms lost 11
+correct answers. A coverage count therefore bounds what a memory can
+contribute and does not measure what the model reads out of it.
+
+\paragraph{The evaluation construction moved the gap.} The fixed-path
+diagnostic establishes that structural deduplication did not remove a
+shortcut from the original family, and the fresh-motif result limits
+the evidence for transfer beyond that template. The renaming checks
+preserve the planning problems and show that the measured gain is
+sensitive to their presentation. Both one-sided changes reduced the
+targeted advantage, and a shared permutation largely restored the
+policy gap. This combination is consistent with the model relying
+partly on correspondence across examples and queries. The
+matched-exposure comparison also favored shared labels on average,
+with heterogeneous effects across seeds and no support from the
+sign-flip calculation. Both experiments leave open which cross-graph
+correspondences matter.
+
+\paragraph{What the controls do not jointly establish.} Each control
+changed one aspect of the original comparison. The matched-rendering
+comparison used the reference-mixture baseline and the original
+generator. The matched-budget comparison used the holdout with the
+fixed-path shortcut. The varied-path evaluation read memories that
+were acquired on the original generator and did not vary labels. No
+experiment combined a matched rare budget, varied paths during
+acquisition, and matched renderings. Whether label assignments still
+change the policy comparison under all three is untested, and the
+separate results should not be read as if they were.
+
+\paragraph{Reporting suggestions.} For a memory audit in an exactly
+verifiable domain, we suggest reporting the number of attempted cases
+in each family, the number of accepted answers, and the retained
+composition after eviction, next to frozen and empty baselines. Then
+evaluate held-out cases under both the reference representation and
+semantics-preserving alternatives, and score the best constant answer.
+Track response completeness separately from correctness when several
+tasks share one prompt. These measurements let a reader distinguish
+missing opportunities, failed admissions, eviction, and failed readout.
 
 \section{Limitations}
 
 The paired acquisition study used six trajectories for one model, two
-update rounds, and a small synthetic graph domain. The graphs share path
+update rounds, and a small synthetic graph domain. With six pairs the
+smallest attainable two-sided sign-flip value is $2/64$, so these
+calculations cannot give strong evidence in either direction, and we
+apply no correction for the number of contrasts. All follow-up
+experiments reuse the same six seeds and are not independent
+replications. The coverage split, the E009 sign-flip value, and the
+fixed-path diagnostic are post hoc. The graphs share path
 templates and node roles despite being structurally disjoint. Exact
 answer verification makes the admission mechanism observable, while
 other environments may have imperfect verifiers or no exact answer
@@ -638,18 +791,48 @@ and response grammar. Its single-query evidence measures only readout
 from Qwen-generated memories on a fixed subset. The findings concern
 fixed weights, controlled task construction, and short trajectories.
 Free-form generation, longer trajectories, and replication of the
-acquisition policies with a second model remain open.
+acquisition policies with a second model remain open. The Lean proofs
+verify the reference model and do not verify the experiments. The
+manuscript was reviewed by its author and by AI assistants and has not
+been peer reviewed.
+
+\section{Conclusion}
+
+In this audit a bounded example memory lost rare task families through
+verified admission and FIFO eviction, and the apparent gain of a
+coverage-targeted policy was mostly the avoidance of that loss. The
+gain shrank against a baseline with the same rare budget, on queries
+without a common answer path, and under relabeling. Retained examples
+of the family the model could not solve did not help. We recommend
+that memory-policy comparisons report frozen and empty baselines,
+family-level admission and eviction counts, a budget-matched control,
+and a constant-answer baseline before attributing a gain to the
+policy. A confirmatory experiment that combines these controls on
+fresh seeds is the natural next step.
 
 \section*{Reproducibility and AI use}
 
-The accompanying archive includes the graph generator, exact verifier,
-inference settings, protocols, compressed per-call traces, scoring
-code, and manuscript source. The reported scores can be recomputed
-from the traces without running an LLM. The source archive includes
-the Lean~4 proof and a pinned dependency manifest under
-\texttt{formal/}. Codex assisted with research
-design, implementation, analysis, and manuscript drafting. The
-experimental traces came from the pinned Qwen3 8B and Gemma 4 E4B snapshots.
+The graph generator, exact verifier, inference settings, protocols,
+compressed per-call traces, scoring code, Lean sources, and manuscript
+source are in the project repository:
+\begin{center}
+\url{https://github.com/minggu151623/rare-case-agent-memory}
+\end{center}
+The evidence for this version is fixed at commit
+\texttt{6c25fbf84ac2}. Every reported score can be recomputed from
+the traces without running a language model, and a script asserts 76
+numeric statements of this manuscript against the archives. The Lean~4
+proofs build with Lean and Mathlib 4.26.0 from a pinned dependency
+manifest under \texttt{formal/}. For every experiment that called a model, the
+protocol was committed before the results. The offline audits E007 and
+E011 were not preceded by a separate protocol commit. A commit records
+the time of a design and is not a third-party preregistration.
+
+OpenAI Codex and Anthropic Claude assisted with research design,
+implementation, analysis, proof development, review, and manuscript
+drafting. The author directed the work and is responsible for its
+content. The experimental traces came from the pinned Qwen3 8B and
+Gemma 4 E4B snapshots.
 
 \appendix
 \section{Paired results by seed}
@@ -677,6 +860,16 @@ observed mean
 under that assumption. The follow-ups reuse the same seeds and test
 specific alternatives motivated by earlier results. E013 adds new
 queries to a readout of previously acquired memories.
+
+The contrasts differ in status. The two E002 contrasts, the E012
+contrast, and the E013 contrast were named as primary in protocols
+committed before the corresponding model calls. The E009 protocol named
+its gap difference as the primary outcome without an uncertainty
+calculation, and its sign-flip value was computed afterward. The
+error audit (E007), the fixed-path diagnostic (E011), and the coverage
+split and trajectory replay (E014) were designed after the results
+they examine. E014's
+protocol was committed before its outputs were written.
 
 \input{prompt-example}
 

@@ -76,3 +76,28 @@ need for a matched nonadaptive rare-only comparison, now tested in E012.
   mixture scores 3/18 on the varied queries, below both rare-only
   policies. Unchanged queries in the same mixture batches also change
   scores, so the transfer result concerns batched readout.
+
+## November 15 publication audit
+
+Changes to claims in this revision, with the evidence for each.
+
+| Claim | Change | Reason |
+| --- | --- | --- |
+| Adaptive allocation improved rare-task accuracy over the reference mixture. | Reframed as mostly retained coverage. | The frozen memory scored 16/18 and the empty memory 7/18 on key detours. The mixture arm lost the key-detour example in four of six seeds and scored 7/18. E014 Part B: 80/87 with a retained example, 9/39 without. |
+| Targeting lowered unreachable accuracy from 3/18 to 0/18. | Attributed to one seed. | In seed 6204 the mixture memory held an unreachable example and no key-detour example, and the model declared all six rare queries unreachable. E014 Part B, item 5. |
+| Shared labels widen the policy gap by 19.4 points. | Marked exploratory, with the post hoc value. | Sign-flip value 0.50 over 64 assignments. The protocol named the outcome and no uncertainty calculation. |
+| The controls bound the policy gap. | Added that they were not combined. | E009 used the mixture baseline and original generator, E012 the shortcut holdout, E013 memories from the original generator. |
+| The Lean artifact verifies the proposition. | Scope stated on both sides. | Sixteen statements, including normalization and the proposal-share threshold. The proofs do not cover the generator, scorer, or any model output. E014 Part D replays the list-level lemma on 42 trajectories. |
+| Ground-truth memory, matched budgets, and label permutations are contributions. | Disclaimed as prior work. | Xiong et al., Liu and Ding, Herbst et al. The contribution is the audit of a policy contrast. |
+
+Statements the evidence does not support and the manuscript does not
+make: that adaptive allocation outperforms a matched rare-only budget,
+that the retention split is causal, that the label effect is confirmed,
+that the acquisition result replicates on a second model, or that the
+Lean proofs validate the empirical scores.
+
+The split by retained coverage is post hoc and unrandomized. On the
+original holdout one fixed path answers every key-detour query, so the
+split cannot separate use of the retained example from reuse of its
+answer path. On the varied-path batch the same split gives 15/42
+against 0/12.
