@@ -1,0 +1,12 @@
+Checking FifoCoverage/Basic.lean
+Checking FifoCoverage/Probability.lean
+Checking FifoCoverage/Limit.lean
+Checking FifoCoverage/Paper.lean
+Checking FifoCoverage.lean
+'FifoCoverage.no_replenishment' depends on axioms: [propext, Quot.sound]
+'FifoCoverage.absent_after_flush' depends on axioms: [propext, Quot.sound]
+'FifoCoverage.paper_weights' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FifoCoverage.iid_finite' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FifoCoverage.iid_no_admission_of_rate_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FifoCoverage.iid_absent_before_last' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FifoCoverage.iid_limit' depends on axioms: [propext, Classical.choice, Quot.sound]

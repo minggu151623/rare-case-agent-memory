@@ -1,0 +1,10 @@
+[
+  {
+    "target": "paper/diverse-paths-table.tex",
+    "matches_exactly": true
+  },
+  {
+    "target": "paper/control-seeds.tex",
+    "matches_exactly": true
+  }
+]

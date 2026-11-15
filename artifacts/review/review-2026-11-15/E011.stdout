@@ -1,0 +1,45 @@
+{
+  "independent_shortest_distance_checks": 204,
+  "generator_aware_fixed_path": {
+    "original": {
+      "correct": 18,
+      "total": 18
+    },
+    "new_motif": {
+      "correct": 0,
+      "total": 18
+    }
+  },
+  "qwen_batched_e010_subset_correct_out_of_six": {
+    "random_model": {
+      "original": 3,
+      "independent_both": 1,
+      "shared_map": 1
+    },
+    "targeted_model": {
+      "original": 6,
+      "independent_both": 1,
+      "shared_map": 4
+    }
+  },
+  "e002_supplement_family_counts": {
+    "random_model": {
+      "ungated": 9,
+      "key_detour": 2,
+      "unreachable": 1
+    },
+    "targeted_model": {
+      "key_detour": 9,
+      "unreachable": 3
+    }
+  },
+  "e009_gap_difference_percentage_points": 19.444444444444443,
+  "e009_leave_one_seed_out_percentage_points": [
+    13.333333333333334,
+    3.3333333333333335,
+    36.666666666666664,
+    16.666666666666668,
+    26.666666666666668,
+    20.0
+  ]
+}

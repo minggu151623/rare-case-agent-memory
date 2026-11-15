@@ -1,0 +1,88 @@
+{
+  "first_error_counts": {
+    "random_model": {
+      "original": {
+        "ungated": {
+          "correct": 18
+        },
+        "unreachable": {
+          "nonexistent_edge": 12,
+          "correct": 3,
+          "locked_before_key": 3
+        },
+        "key_detour": {
+          "nonexistent_edge": 6,
+          "correct": 7,
+          "false_unreachable": 3,
+          "locked_before_key": 2
+        }
+      },
+      "renamed": {
+        "ungated": {
+          "correct": 9,
+          "nonexistent_edge": 9
+        },
+        "unreachable": {
+          "nonexistent_edge": 7,
+          "locked_before_key": 11
+        },
+        "key_detour": {
+          "nonexistent_edge": 8,
+          "wrong_endpoint": 1,
+          "locked_before_key": 7,
+          "correct": 2
+        }
+      }
+    },
+    "targeted_model": {
+      "original": {
+        "ungated": {
+          "correct": 18
+        },
+        "unreachable": {
+          "nonexistent_edge": 17,
+          "locked_before_key": 1
+        },
+        "key_detour": {
+          "correct": 18
+        }
+      },
+      "renamed": {
+        "ungated": {
+          "correct": 11,
+          "nonexistent_edge": 6,
+          "suboptimal": 1
+        },
+        "unreachable": {
+          "nonexistent_edge": 7,
+          "locked_before_key": 9,
+          "wrong_endpoint": 2
+        },
+        "key_detour": {
+          "locked_before_key": 8,
+          "nonexistent_edge": 7,
+          "correct": 1,
+          "wrong_endpoint": 2
+        }
+      }
+    }
+  },
+  "literal_path_reuse": {
+    "random_model": {
+      "ungated": {
+        "failures_after_correct_original_path": 9
+      },
+      "key_detour": {
+        "failures_after_correct_original_path": 6
+      }
+    },
+    "targeted_model": {
+      "key_detour": {
+        "failures_after_correct_original_path": 17
+      },
+      "ungated": {
+        "failures_after_correct_original_path": 7
+      }
+    }
+  }
+}

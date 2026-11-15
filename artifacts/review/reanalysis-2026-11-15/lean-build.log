@@ -1,0 +1,9 @@
+ℹ [1706/1707] Replayed FifoCoverage
+info: FifoCoverage.lean:3:0: 'FifoCoverage.no_replenishment' depends on axioms: [propext, Quot.sound]
+info: FifoCoverage.lean:4:0: 'FifoCoverage.absent_after_flush' depends on axioms: [propext, Quot.sound]
+info: FifoCoverage.lean:5:0: 'FifoCoverage.paper_weights' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FifoCoverage.lean:6:0: 'FifoCoverage.iid_finite' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FifoCoverage.lean:7:0: 'FifoCoverage.iid_no_admission_of_rate_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FifoCoverage.lean:8:0: 'FifoCoverage.iid_absent_before_last' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: FifoCoverage.lean:9:0: 'FifoCoverage.iid_limit' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (1707 jobs).

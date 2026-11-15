@@ -1,0 +1,656 @@
+{
+  "calls": 36,
+  "format_failures": 0,
+  "constant_path_coverage": {
+    "original": {
+      "total": 18,
+      "optimal_paths": 1,
+      "best_fixed_path_correct": 18
+    },
+    "varied": {
+      "total": 18,
+      "optimal_paths": 9,
+      "best_fixed_path_correct": 2
+    }
+  },
+  "scores": {
+    "random_model": {
+      "original": {
+        "ungated": {
+          "correct": 18,
+          "total": 18
+        },
+        "key_detour": {
+          "correct": 7,
+          "total": 18
+        },
+        "unreachable": {
+          "correct": 3,
+          "total": 18
+        }
+      },
+      "varied": {
+        "ungated": {
+          "correct": 17,
+          "total": 18
+        },
+        "key_detour": {
+          "correct": 3,
+          "total": 18
+        },
+        "unreachable": {
+          "correct": 1,
+          "total": 18
+        }
+      }
+    },
+    "targeted_model": {
+      "original": {
+        "ungated": {
+          "correct": 18,
+          "total": 18
+        },
+        "key_detour": {
+          "correct": 18,
+          "total": 18
+        },
+        "unreachable": {
+          "correct": 0,
+          "total": 18
+        }
+      },
+      "varied": {
+        "ungated": {
+          "correct": 18,
+          "total": 18
+        },
+        "key_detour": {
+          "correct": 7,
+          "total": 18
+        },
+        "unreachable": {
+          "correct": 0,
+          "total": 18
+        }
+      }
+    },
+    "rare_only_model": {
+      "original": {
+        "ungated": {
+          "correct": 18,
+          "total": 18
+        },
+        "key_detour": {
+          "correct": 16,
+          "total": 18
+        },
+        "unreachable": {
+          "correct": 0,
+          "total": 18
+        }
+      },
+      "varied": {
+        "ungated": {
+          "correct": 18,
+          "total": 18
+        },
+        "key_detour": {
+          "correct": 5,
+          "total": 18
+        },
+        "unreachable": {
+          "correct": 0,
+          "total": 18
+        }
+      }
+    }
+  },
+  "contrasts": {
+    "random_model": {
+      "per_seed_original_varied_gaps_out_of_three": [
+        [
+          3,
+          2
+        ],
+        [
+          0,
+          -1
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          2,
+          2
+        ]
+      ],
+      "original_gap": 0.6111111111111112,
+      "varied_gap": 0.2222222222222222,
+      "varied_minus_original": -0.3888888888888889,
+      "sign_flip_p": 0.125
+    },
+    "rare_only_model": {
+      "per_seed_original_varied_gaps_out_of_three": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          2,
+          2
+        ]
+      ],
+      "original_gap": 0.1111111111111111,
+      "varied_gap": 0.1111111111111111,
+      "varied_minus_original": 0.0,
+      "sign_flip_p": 1.0
+    }
+  },
+  "per_seed": {
+    "6201": {
+      "random_model": {
+        "varied": {
+          "correct": {
+            "ungated": 3,
+            "key_detour": 0,
+            "unreachable": 0
+          },
+          "total": {
+            "ungated": 3,
+            "key_detour": 3,
+            "unreachable": 3
+          }
+        },
+        "original": {
+          "correct": {
+            "ungated": 3,
+            "key_detour": 0,
+            "unreachable": 0
+          },
+          "total": {
+            "ungated": 3,
+            "key_detour": 3,
+            "unreachable": 3
+          }
+        }
+      },
+      "targeted_model": {
+        "original": {
+          "correct": {
+            "ungated": 3,
+            "key_detour": 3,
+            "unreachable": 0
+          },
+          "total": {
+            "ungated": 3,
+            "key_detour": 3,
+            "unreachable": 3
+          }
+        },
+        "varied": {
+          "correct": {
+            "ungated": 3,
+            "key_detour": 2,
+            "unreachable": 0
+          },
+          "total": {
+            "ungated": 3,
+            "key_detour": 3,
+            "unreachable": 3
+          }
+        }
+      },
+      "rare_only_model": {
+        "varied": {
+          "correct": {
+            "ungated": 3,
+            "key_detour": 2,
+            "unreachable": 0
+          },
+          "total": {
+            "ungated": 3,
+            "key_detour": 3,
+            "unreachable": 3
+          }
+        },
+        "original": {
+          "correct": {
+            "ungated": 3,
+            "key_detour": 3,
+            "unreachable": 0
+          },
+          "total": {
+            "ungated": 3,
+            "key_detour": 3,
+            "unreachable": 3
+          }
+        }
+      }
+    },
+    "6202": {
+      "random_model": {
+        "original": {
+          "correct": {
+            "ungated": 3,
+            "key_detour": 3,
+            "unreachable": 0
+          },
+          "total": {
+            "ungated": 3,
+            "key_detour": 3,
+            "unreachable": 3
+          }
+        },
+        "varied": {
+          "correct": {
+            "ungated": 2,
+            "key_detour": 2,
+            "unreachable": 0
+          },
+          "total": {
+            "ungated": 3,
+            "key_detour": 3,
+            "unreachable": 3
+          }
+        }
+      },
+      "targeted_model": {
+        "varied": {
+          "correct": {
+            "ungated": 3,
+            "key_detour": 1,
+            "unreachable": 0
+          },
+          "total": {
+            "ungated": 3,
+            "key_detour": 3,
+            "unreachable": 3
+          }
+        },
+        "original": {
+          "correct": {
+            "ungated": 3,
+            "key_detour": 3,
+            "unreachable": 0
+          },
+          "total": {
+            "ungated": 3,
+            "key_detour": 3,
+            "unreachable": 3
+          }
+        }
+      },
+      "rare_only_model": {
+        "original": {
+          "correct": {
+            "ungated": 3,
+            "key_detour": 3,
+            "unreachable": 0
+          },
+          "total": {
+            "ungated": 3,
+            "key_detour": 3,
+            "unreachable": 3
+          }
+        },
+        "varied": {
+          "correct": {
+            "ungated": 3,
+            "key_detour": 1,
+            "unreachable": 0
+          },
+          "total": {
+            "ungated": 3,
+            "key_detour": 3,
+            "unreachable": 3
+          }
+        }
+      }
+    },
+    "6203": {
+      "random_model": {
+        "original": {
+          "correct": {
+            "ungated": 3,
+            "key_detour": 3,
+            "unreachable": 0
+          },
+          "total": {
+            "ungated": 3,
+            "key_detour": 3,
+            "unreachable": 3
+          }
+        },
+        "varied": {
+          "correct": {
+            "ungated": 3,
+            "key_detour": 1,
+            "unreachable": 0
+          },
+          "total": {
+            "ungated": 3,
+            "key_detour": 3,
+            "unreachable": 3
+          }
+        }
+      },
+      "targeted_model": {
+        "original": {
+          "correct": {
+            "ungated": 3,
+            "key_detour": 3,
+            "unreachable": 0
+          },
+          "total": {
+            "ungated": 3,
+            "key_detour": 3,
+            "unreachable": 3
+          }
+        },
+        "varied": {
+          "correct": {
+            "ungated": 3,
+            "key_detour": 1,
+            "unreachable": 0
+          },
+          "total": {
+            "ungated": 3,
+            "key_detour": 3,
+            "unreachable": 3
+          }
+        }
+      },
+      "rare_only_model": {
+        "original": {
+          "correct": {
+            "ungated": 3,
+            "key_detour": 3,
+            "unreachable": 0
+          },
+          "total": {
+            "ungated": 3,
+            "key_detour": 3,
+            "unreachable": 3
+          }
+        },
+        "varied": {
+          "correct": {
+            "ungated": 3,
+            "key_detour": 1,
+            "unreachable": 0
+          },
+          "total": {
+            "ungated": 3,
+            "key_detour": 3,
+            "unreachable": 3
+          }
+        }
+      }
+    },
+    "6204": {
+      "random_model": {
+        "varied": {
+          "correct": {
+            "ungated": 3,
+            "key_detour": 0,
+            "unreachable": 1
+          },
+          "total": {
+            "ungated": 3,
+            "key_detour": 3,
+            "unreachable": 3
+          }
+        },
+        "original": {
+          "correct": {
+            "ungated": 3,
+            "key_detour": 0,
+            "unreachable": 3
+          },
+          "total": {
+            "ungated": 3,
+            "key_detour": 3,
+            "unreachable": 3
+          }
+        }
+      },
+      "targeted_model": {
+        "varied": {
+          "correct": {
+            "ungated": 3,
+            "key_detour": 1,
+            "unreachable": 0
+          },
+          "total": {
+            "ungated": 3,
+            "key_detour": 3,
+            "unreachable": 3
+          }
+        },
+        "original": {
+          "correct": {
+            "ungated": 3,
+            "key_detour": 3,
+            "unreachable": 0
+          },
+          "total": {
+            "ungated": 3,
+            "key_detour": 3,
+            "unreachable": 3
+          }
+        }
+      },
+      "rare_only_model": {
+        "original": {
+          "correct": {
+            "ungated": 3,
+            "key_detour": 3,
+            "unreachable": 0
+          },
+          "total": {
+            "ungated": 3,
+            "key_detour": 3,
+            "unreachable": 3
+          }
+        },
+        "varied": {
+          "correct": {
+            "ungated": 3,
+            "key_detour": 1,
+            "unreachable": 0
+          },
+          "total": {
+            "ungated": 3,
+            "key_detour": 3,
+            "unreachable": 3
+          }
+        }
+      }
+    },
+    "6205": {
+      "random_model": {
+        "original": {
+          "correct": {
+            "ungated": 3,
+            "key_detour": 0,
+            "unreachable": 0
+          },
+          "total": {
+            "ungated": 3,
+            "key_detour": 3,
+            "unreachable": 3
+          }
+        },
+        "varied": {
+          "correct": {
+            "ungated": 3,
+            "key_detour": 0,
+            "unreachable": 0
+          },
+          "total": {
+            "ungated": 3,
+            "key_detour": 3,
+            "unreachable": 3
+          }
+        }
+      },
+      "targeted_model": {
+        "original": {
+          "correct": {
+            "ungated": 3,
+            "key_detour": 3,
+            "unreachable": 0
+          },
+          "total": {
+            "ungated": 3,
+            "key_detour": 3,
+            "unreachable": 3
+          }
+        },
+        "varied": {
+          "correct": {
+            "ungated": 3,
+            "key_detour": 0,
+            "unreachable": 0
+          },
+          "total": {
+            "ungated": 3,
+            "key_detour": 3,
+            "unreachable": 3
+          }
+        }
+      },
+      "rare_only_model": {
+        "original": {
+          "correct": {
+            "ungated": 3,
+            "key_detour": 3,
+            "unreachable": 0
+          },
+          "total": {
+            "ungated": 3,
+            "key_detour": 3,
+            "unreachable": 3
+          }
+        },
+        "varied": {
+          "correct": {
+            "ungated": 3,
+            "key_detour": 0,
+            "unreachable": 0
+          },
+          "total": {
+            "ungated": 3,
+            "key_detour": 3,
+            "unreachable": 3
+          }
+        }
+      }
+    },
+    "6206": {
+      "random_model": {
+        "varied": {
+          "correct": {
+            "ungated": 3,
+            "key_detour": 0,
+            "unreachable": 0
+          },
+          "total": {
+            "ungated": 3,
+            "key_detour": 3,
+            "unreachable": 3
+          }
+        },
+        "original": {
+          "correct": {
+            "ungated": 3,
+            "key_detour": 1,
+            "unreachable": 0
+          },
+          "total": {
+            "ungated": 3,
+            "key_detour": 3,
+            "unreachable": 3
+          }
+        }
+      },
+      "targeted_model": {
+        "varied": {
+          "correct": {
+            "ungated": 3,
+            "key_detour": 2,
+            "unreachable": 0
+          },
+          "total": {
+            "ungated": 3,
+            "key_detour": 3,
+            "unreachable": 3
+          }
+        },
+        "original": {
+          "correct": {
+            "ungated": 3,
+            "key_detour": 3,
+            "unreachable": 0
+          },
+          "total": {
+            "ungated": 3,
+            "key_detour": 3,
+            "unreachable": 3
+          }
+        }
+      },
+      "rare_only_model": {
+        "original": {
+          "correct": {
+            "ungated": 3,
+            "key_detour": 1,
+            "unreachable": 0
+          },
+          "total": {
+            "ungated": 3,
+            "key_detour": 3,
+            "unreachable": 3
+          }
+        },
+        "varied": {
+          "correct": {
+            "ungated": 3,
+            "key_detour": 0,
+            "unreachable": 0
+          },
+          "total": {
+            "ungated": 3,
+            "key_detour": 3,
+            "unreachable": 3
+          }
+        }
+      }
+    }
+  }
+}

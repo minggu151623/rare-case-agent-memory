@@ -1,0 +1,79 @@
+{
+  "independent_scorer": {
+    "E002-admission": {
+      "calls": 84,
+      "answer_checks": 468,
+      "correct": 294,
+      "max_prompt_tokens": 1905,
+      "max_output_tokens": 163
+    },
+    "E003-transfer": {
+      "calls": 36,
+      "answer_checks": 324,
+      "correct": 88,
+      "max_prompt_tokens": 1905,
+      "max_output_tokens": 161
+    },
+    "E004-representation": {
+      "calls": 36,
+      "answer_checks": 324,
+      "correct": 85,
+      "max_prompt_tokens": 1905,
+      "max_output_tokens": 157
+    },
+    "E006-cross-model": {
+      "calls": 60,
+      "answer_checks": 540,
+      "correct": 21,
+      "max_prompt_tokens": 2027,
+      "max_output_tokens": 40
+    },
+    "E008-end-to-end": {
+      "calls": 36,
+      "answer_checks": 180,
+      "correct": 54,
+      "max_prompt_tokens": 1904,
+      "max_output_tokens": 159
+    },
+    "E009-matched-labels": {
+      "calls": 48,
+      "answer_checks": 432,
+      "correct": 166,
+      "max_prompt_tokens": 1905,
+      "max_output_tokens": 167
+    },
+    "E010-single-query": {
+      "calls": 36,
+      "answer_checks": 36,
+      "correct": 10,
+      "max_prompt_tokens": 1059,
+      "max_output_tokens": 34
+    },
+    "E012-rare-only": {
+      "calls": 36,
+      "answer_checks": 180,
+      "correct": 122,
+      "max_prompt_tokens": 1905,
+      "max_output_tokens": 157
+    },
+    "E013-diverse-paths": {
+      "calls": 36,
+      "answer_checks": 324,
+      "correct": 167,
+      "max_prompt_tokens": 1905,
+      "max_output_tokens": 173
+    }
+  },
+  "e009_posthoc_sign_flip": {
+    "differences_out_of_six": [
+      3,
+      6,
+      -4,
+      2,
+      -1,
+      1
+    ],
+    "p_two_sided": 0.5,
+    "interpretation": "Exploratory sensitivity under sign exchangeability; not a preregistered test or proof of no effect."
+  }
+}

@@ -1,0 +1,37 @@
+[
+  {
+    "source": "FifoCoverage/Basic.lean",
+    "sha256": "7d5eac184f71074022797a5f1c2a40385da3f3514fc2d122cfc3251a747104d3",
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "source": "FifoCoverage/Probability.lean",
+    "sha256": "1f8f35b0174d6aa9f3c4fa9fdcdf23f6282fab47981580862d814bf6efe7f063",
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "source": "FifoCoverage/Limit.lean",
+    "sha256": "0c8e5e137c17db8b8579e460478ca08bfa3c195d17c3a2582f771799562f48cd",
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "source": "FifoCoverage/Paper.lean",
+    "sha256": "4fc8f9355b73c86bf57628b635a6e674d28d52f1fbaa77f06c7c547fc0c6b1ba",
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "source": "FifoCoverage.lean",
+    "sha256": "cfe92f86d96e6323ac502257456d965ec83ad197ffb3806bf714596a803e88ad",
+    "exit_code": 0,
+    "stdout": "'FifoCoverage.no_replenishment' depends on axioms: [propext, Quot.sound]\n'FifoCoverage.absent_after_flush' depends on axioms: [propext, Quot.sound]\n'FifoCoverage.paper_weights' depends on axioms: [propext, Classical.choice, Quot.sound]\n'FifoCoverage.iid_finite' depends on axioms: [propext, Classical.choice, Quot.sound]\n'FifoCoverage.iid_no_admission_of_rate_zero' depends on axioms: [propext, Classical.choice, Quot.sound]\n'FifoCoverage.iid_absent_before_last' depends on axioms: [propext, Classical.choice, Quot.sound]\n'FifoCoverage.iid_limit' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+    "stderr": ""
+  }
+]

@@ -1,0 +1,251 @@
+[
+  {
+    "check": "E000-oracle-smoke-tests",
+    "command": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "experiments/E000-oracle-smoke"
+    ],
+    "exit_code": 0,
+    "seconds": 0.08,
+    "passed": true
+  },
+  {
+    "check": "E001-memory-coverage-tests",
+    "command": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "experiments/E001-memory-coverage"
+    ],
+    "exit_code": 0,
+    "seconds": 0.19,
+    "passed": true
+  },
+  {
+    "check": "E002-admission-tests",
+    "command": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "experiments/E002-admission"
+    ],
+    "exit_code": 0,
+    "seconds": 0.2,
+    "passed": true
+  },
+  {
+    "check": "E013-diverse-paths-tests",
+    "command": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "experiments/E013-diverse-paths"
+    ],
+    "exit_code": 0,
+    "seconds": 0.18,
+    "passed": true
+  },
+  {
+    "check": "E002-replay",
+    "command": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-m",
+      "src.admission_audit",
+      "experiments/E002-admission/results/qwen3-8b"
+    ],
+    "exit_code": 0,
+    "seconds": 0.12,
+    "passed": true
+  },
+  {
+    "check": "E002",
+    "command": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-m",
+      "src.admission_report",
+      "experiments/E002-admission/results/qwen3-8b"
+    ],
+    "exit_code": 0,
+    "seconds": 0.08,
+    "matches_archived_json": true,
+    "passed": true
+  },
+  {
+    "check": "E003",
+    "command": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-m",
+      "src.transfer_report",
+      "experiments/E002-admission/results/qwen3-8b",
+      "experiments/E003-transfer/results/qwen3-8b"
+    ],
+    "exit_code": 0,
+    "seconds": 0.13,
+    "matches_archived_json": true,
+    "passed": true
+  },
+  {
+    "check": "E004",
+    "command": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-m",
+      "src.representation_report",
+      "experiments/E002-admission/results/qwen3-8b",
+      "experiments/E003-transfer/results/qwen3-8b",
+      "experiments/E004-representation/results/qwen3-8b"
+    ],
+    "exit_code": 0,
+    "seconds": 0.13,
+    "matches_archived_json": true,
+    "passed": true
+  },
+  {
+    "check": "E005",
+    "command": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "experiments/E005-fifo-null/verify.py"
+    ],
+    "exit_code": 0,
+    "seconds": 0.28,
+    "passed": true
+  },
+  {
+    "check": "E006",
+    "command": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-m",
+      "src.representation_report",
+      "experiments/E002-admission/results/qwen3-8b",
+      "experiments/E003-transfer/results/qwen3-8b",
+      "experiments/E006-cross-model/results/gemma-e4b",
+      "--cross-model"
+    ],
+    "exit_code": 0,
+    "seconds": 0.13,
+    "matches_archived_json": true,
+    "passed": true
+  },
+  {
+    "check": "E006-completeness",
+    "command": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-m",
+      "src.gemma_diagnostics",
+      "experiments/E006-cross-model/results/gemma-e4b"
+    ],
+    "exit_code": 0,
+    "seconds": 0.09,
+    "matches_archived_json": true,
+    "passed": true
+  },
+  {
+    "check": "E007",
+    "command": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-m",
+      "src.path_errors",
+      "experiments/E002-admission/results/qwen3-8b",
+      "experiments/E003-transfer/results/qwen3-8b"
+    ],
+    "exit_code": 0,
+    "seconds": 0.1,
+    "matches_archived_json": true,
+    "passed": true
+  },
+  {
+    "check": "E008",
+    "command": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-m",
+      "src.end_to_end",
+      "experiments/E008-end-to-end/results/qwen3-8b",
+      "--audit"
+    ],
+    "exit_code": 0,
+    "seconds": 0.11,
+    "matches_archived_json": true,
+    "passed": true
+  },
+  {
+    "check": "E009",
+    "command": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-m",
+      "src.matched_labels",
+      "experiments/E002-admission/results/qwen3-8b",
+      "experiments/E009-matched-labels/results/qwen3-8b",
+      "--audit"
+    ],
+    "exit_code": 0,
+    "seconds": 0.13,
+    "matches_archived_json": true,
+    "passed": true
+  },
+  {
+    "check": "E010",
+    "command": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-m",
+      "src.gemma_diagnostics",
+      "experiments/E010-single-query/results/gemma-e4b",
+      "--source",
+      "experiments/E002-admission/results/qwen3-8b"
+    ],
+    "exit_code": 0,
+    "seconds": 0.11,
+    "matches_archived_json": true,
+    "passed": true
+  },
+  {
+    "check": "E011",
+    "command": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-m",
+      "experiments.E011-manuscript-audit.check"
+    ],
+    "exit_code": 0,
+    "seconds": 0.18,
+    "matches_archived_json": true,
+    "passed": true
+  },
+  {
+    "check": "E012",
+    "command": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-m",
+      "src.rare_only",
+      "experiments/E012-rare-only/results/qwen3-8b",
+      "--audit"
+    ],
+    "exit_code": 0,
+    "seconds": 0.11,
+    "matches_archived_json": true,
+    "passed": true
+  },
+  {
+    "check": "E013",
+    "command": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-m",
+      "src.diverse_paths",
+      "experiments/E002-admission/results/qwen3-8b",
+      "experiments/E012-rare-only/results/qwen3-8b",
+      "experiments/E013-diverse-paths/results/qwen3-8b",
+      "--audit"
+    ],
+    "exit_code": 0,
+    "seconds": 0.2,
+    "matches_archived_json": true,
+    "passed": true
+  }
+]

@@ -1,0 +1,190 @@
+{
+  "calls": 36,
+  "format_failures": 0,
+  "scores": {
+    "targeted_model": {
+      "ungated": {
+        "correct": 18,
+        "total": 18
+      },
+      "key_detour": {
+        "correct": 18,
+        "total": 18
+      },
+      "unreachable": {
+        "correct": 0,
+        "total": 18
+      }
+    },
+    "rare_only_model": {
+      "ungated": {
+        "correct": 18,
+        "total": 18
+      },
+      "key_detour": {
+        "correct": 16,
+        "total": 18
+      },
+      "unreachable": {
+        "correct": 0,
+        "total": 18
+      }
+    }
+  },
+  "stage_totals": {
+    "targeted_model": {
+      "attempted": {
+        "ungated": 21,
+        "key_detour": 10,
+        "unreachable": 5
+      },
+      "model_passes": {
+        "ungated": 18,
+        "key_detour": 9,
+        "unreachable": 0
+      },
+      "admitted": {
+        "ungated": 18,
+        "key_detour": 9,
+        "unreachable": 0
+      },
+      "evicted": {
+        "ungated": 17,
+        "key_detour": 5,
+        "unreachable": 5
+      }
+    },
+    "rare_only_model": {
+      "attempted": {
+        "ungated": 21,
+        "key_detour": 7,
+        "unreachable": 8
+      },
+      "model_passes": {
+        "ungated": 18,
+        "key_detour": 7,
+        "unreachable": 0
+      },
+      "admitted": {
+        "ungated": 18,
+        "key_detour": 7,
+        "unreachable": 0
+      },
+      "evicted": {
+        "ungated": 17,
+        "key_detour": 5,
+        "unreachable": 3
+      }
+    }
+  },
+  "coverage": {
+    "targeted_model": {
+      "key_detour": {
+        "supplement_attempts": 9,
+        "supplement_admissions": 8,
+        "final_retained": 10
+      },
+      "unreachable": {
+        "supplement_attempts": 3,
+        "supplement_admissions": 0,
+        "final_retained": 1
+      }
+    },
+    "rare_only_model": {
+      "key_detour": {
+        "supplement_attempts": 6,
+        "supplement_admissions": 6,
+        "final_retained": 8
+      },
+      "unreachable": {
+        "supplement_attempts": 6,
+        "supplement_admissions": 0,
+        "final_retained": 3
+      }
+    }
+  },
+  "per_seed_correct": {
+    "6201": {
+      "targeted_model": {
+        "ungated": 3,
+        "key_detour": 3,
+        "unreachable": 0
+      },
+      "rare_only_model": {
+        "ungated": 3,
+        "key_detour": 3,
+        "unreachable": 0
+      }
+    },
+    "6202": {
+      "targeted_model": {
+        "ungated": 3,
+        "key_detour": 3,
+        "unreachable": 0
+      },
+      "rare_only_model": {
+        "ungated": 3,
+        "key_detour": 3,
+        "unreachable": 0
+      }
+    },
+    "6203": {
+      "targeted_model": {
+        "ungated": 3,
+        "key_detour": 3,
+        "unreachable": 0
+      },
+      "rare_only_model": {
+        "ungated": 3,
+        "key_detour": 3,
+        "unreachable": 0
+      }
+    },
+    "6204": {
+      "targeted_model": {
+        "ungated": 3,
+        "key_detour": 3,
+        "unreachable": 0
+      },
+      "rare_only_model": {
+        "ungated": 3,
+        "key_detour": 3,
+        "unreachable": 0
+      }
+    },
+    "6205": {
+      "targeted_model": {
+        "ungated": 3,
+        "key_detour": 3,
+        "unreachable": 0
+      },
+      "rare_only_model": {
+        "ungated": 3,
+        "key_detour": 3,
+        "unreachable": 0
+      }
+    },
+    "6206": {
+      "targeted_model": {
+        "ungated": 3,
+        "key_detour": 3,
+        "unreachable": 0
+      },
+      "rare_only_model": {
+        "ungated": 3,
+        "key_detour": 1,
+        "unreachable": 0
+      }
+    }
+  },
+  "rare_gaps_out_of_six": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    2
+  ],
+  "rare_mean_gap": 0.05555555555555555,
+  "sign_flip_p": 1.0
+}

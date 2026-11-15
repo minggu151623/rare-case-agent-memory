@@ -11,6 +11,10 @@ supplementation. The agent's model weights are fixed.
 - [E000 CPU oracle check](experiments/E000-oracle-smoke/protocol.md)
 - [E001 LLM pilot design](experiments/E001-memory-coverage/protocol.md)
 
+## Project files and handoff
+
+Start with the [agent handoff](HANDOFF_NEXT_AGENT.md) and the [artifact index](artifacts/README.md) for the manuscript PDF, reproducibility package, review logs, and archived versions.
+
 Run the oracle check from the repository root with Python 3.10 or later.
 It uses the standard library and runs locally.
 
