@@ -270,7 +270,7 @@ sau hai câu sửa.**
 | Không nêu tên hai nhánh ở tóm tắt E008; thiếu kết quả fresh-motif | Khuyến nghị | Đã thêm |
 | "only" và thiếu "post hoc" ở Conclusion | Khuyến nghị | Đã sửa |
 | Commit về sau có thêm phân tích dẫn xuất | Khuyến nghị | Đã ghi |
-| Abstract dài, chưa nêu frozen − empty | Khuyến nghị | Viết lại, khoảng 235 từ, có nêu |
+| Abstract dài, chưa nêu frozen − empty | Khuyến nghị | Viết lại, khoảng 255 từ (trước là 287), có nêu |
 | Hình 1 thiếu mẫu số | Khuyến nghị | Thêm vào caption |
 | Trích bản đã xuất bản của 5 tài liệu mới | Khuyến nghị | Không làm: bản ghi arXiv là nguồn gốc đã kiểm; thông tin hội nghị chưa lấy được từ bản ghi chính thức nên không ghi theo trí nhớ |
 | Chữ "Agents" trong tiêu đề | Khuyến nghị | Giữ: hệ thống tự giải bài, tự kiểm và tự cập nhật bộ nhớ qua nhiều vòng; giới hạn một model, prompt không trạng thái đã ghi ở Limitations |
