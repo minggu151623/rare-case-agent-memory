@@ -168,6 +168,26 @@ FIFO characterization, as in E014 Part D.
 - Holdout tasks and their answers never enter a memory.
 - Deviations and unexpected observations go in `analysis.md`.
 
+## Amendment 1 · runtime version, before any confirmatory call
+
+Between the development run and the first confirmatory seed the local
+Ollama application updated itself from 0.40.12 to 0.40.16. The runner
+checks the version at the start of each seed and stopped before making
+a call. It left an empty trace file for seed 7101, which was removed. No
+confirmatory prompt had been sent.
+
+The confirmatory run uses Ollama 0.40.16 with the same model digest and
+settings. The two development seeds were rerun on 0.40.16
+(`development-0.40.16/`). All 186 prompts were identical to the 0.40.12
+run and all 186 responses were identical, so the interface observations
+above stand. Mean request times were 8.0 s, 2.3 s, and 3.5 s.
+
+The runner still checks the version at each seed. If the runtime changes
+again during the run, the run stops, the completed seeds are kept, and
+the change is recorded in a further amendment before continuing. All
+arms of a seed always share one runtime. Results are not expected to
+reproduce E002 outputs byte for byte, and no analysis depends on that.
+
 ## Replay
 
 ```sh

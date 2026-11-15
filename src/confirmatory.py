@@ -21,7 +21,7 @@ from src.transfer import flatten, inputs, rename_with_labels
 DEV_SEEDS = (7001, 7002)
 SEEDS = tuple(range(7101, 7131))
 ROUNDS = 4
-RUNTIME = "0.40.12"
+RUNTIME = "0.40.16"
 UPDATING = ("random_model", "rare_only_model", "targeted_model")
 MEMORIES = ("empty", "frozen", *UPDATING)
 CONDITIONS = ("shared", "mixed")
