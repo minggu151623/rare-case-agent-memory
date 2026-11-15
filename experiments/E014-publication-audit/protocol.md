@@ -64,6 +64,41 @@ manuscript statements against the archived aggregates and replayed
 reports (E002–E013). A failed assertion stops the script. The list is in
 the script and is extended when the manuscript adds a number.
 
+## Amendment 1 · added before any reported output
+
+A first run of the Part B split (no file written) showed that all three
+correct unreachable answers in the reference-mixture arm come from one
+unit. Two additions follow. Both were specified after seeing that split.
+
+**Part B, item 5.** For every unit with a correct unreachable answer,
+classify the answers to its three key-detour queries with
+`src.path_errors.classify` and report how many are false unreachable
+claims. This shows whether the correct answers reflect discrimination
+between the two rare families or one response applied to both.
+
+**Part D · FIFO conformance on realized trajectories.** The Lean lemma
+`foldl_admit_absent_iff` states, for any admission history, that a
+family is absent from a full FIFO memory exactly when its last initial
+position `r` is at most the number of admissions `n` and none of the
+last `K` admissions belongs to it. Check that statement against every
+archived update trajectory: E002 (four arms), the E012 balanced
+rare-only arm, and E008 (two arms), six seeds each, 42 trajectories.
+
+For each trajectory read the ordered memory identifiers from the three
+archived prompts (round-1 solve, round-2 solve, final evaluation) and
+recover the ordered admissions as the entries that appear after each
+round. Then check (i) the final memory equals the last `K = 6` entries
+of the initial list followed by the admissions, which is the Lean
+`retain` form of the update, and (ii) for each of the three families,
+the predicted absence equals the observed absence. Report the number of
+family-trajectory checks, and per experiment, arm, and family the
+number of trajectories in which the family ended absent and how many of
+those had no admission from that family. A mismatch stops the script.
+
+This is a consistency check between the archived implementation and
+the formal model on 42 short trajectories. It is not a statistical test
+and does not validate the i.i.d. probability law on these data.
+
 ## Outputs and replay
 
 ```sh
