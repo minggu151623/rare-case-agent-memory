@@ -1,0 +1,22 @@
+\begin{table}[t]
+\centering
+\caption{Confirmatory experiment E015: 30 fresh seeds, four update
+rounds, key-detour routes diversified in every pool, one held-out query
+per call. Rare supplements counts supplement slots spent on the two rare
+families. Retained counts the seeds whose evaluated memory still holds a
+key-detour example. Scores are correct answers out of 90 per family. The
+best fixed key-detour path solves 10 of 90 queries.}
+\label{tab:confirmatory}
+\setlength{\tabcolsep}{4.5pt}
+\begin{tabular}{lrrrrr}
+\toprule
+Evaluated memory & Rare supplements & Retained & Ungated & Key detour & Unreachable \\
+\midrule
+Empty & -- & 0/30 & 62 & 53 & 0 \\
+Frozen initial memory & -- & 30/30 & 87 & 55 & 0 \\
+Reference-mixture updates & 26/120 & 6/30 & 88 & 51 & 0 \\
+Balanced rare-only updates & 120/120 & 24/30 & 88 & 59 & 0 \\
+Adaptive updates & 120/120 & 20/30 & 88 & 56 & 0 \\
+\bottomrule
+\end{tabular}
+\end{table}

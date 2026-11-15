@@ -127,3 +127,21 @@ a paragraph on the uncombined controls, a conclusion, a repository link
 and evidence commit, and four citations fetched from primary records.
 Decision: release as an exploratory audit preprint. A confirmatory
 experiment is drafted as E015 and has not been locked or run.
+
+Took the three open E015 decisions under the author's delegation:
+retention as the primary question, four rounds, one model. Locked the
+protocol with its runner and CPU checks, ran two interface seeds, and
+committed before any confirmatory call. Ollama updated itself to
+0.40.16; Amendment 1 records it and the interface seeds gave identical
+responses on both versions.
+
+Ran all 30 seeds in one pass (2,790 calls, 2.84 hours), with no interim
+analysis. Result: the primary retention contrast was not confirmed
+(+4.4 points, sign-flip 0.51), adaptive did not beat the balanced
+rare-only budget (−1.7 points), and the E009 label interaction did not
+replicate. Coverage followed the FIFO model in all 90 trajectories.
+Accuracy tracked whether the stored example had the query's own answer
+path. Decision: keep the six-seed counts as reported, narrow the
+retention reading to the original holdout, and report the null results
+in the abstract, a new Results subsection, the Discussion, and the
+Conclusion. The manuscript now carries 113 asserted statements.

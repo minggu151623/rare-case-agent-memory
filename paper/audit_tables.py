@@ -1,4 +1,4 @@
-"""Render the summary and coverage tables from the E013 aggregate and the E014 audit."""
+"""Render the summary, coverage and confirmatory tables from the archived aggregates."""
 import argparse
 import json
 from pathlib import Path
@@ -6,6 +6,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 E013 = ROOT / "experiments/E013-diverse-paths/results/qwen3-8b/aggregate.json"
 E014 = ROOT / "experiments/E014-publication-audit/results.json"
+E015 = ROOT / "experiments/E015-confirmatory/results/qwen3-8b/aggregate.json"
 MEMORIES = (
     ("empty", "Empty", "--"),
     ("frozen", "Frozen initial memory", "--"),
@@ -72,12 +73,45 @@ Family & Example retained & Memories & Correct & At 3/3 & At 0/3 \\
 \end{table}""")
 
 
+def render_confirmatory(result):
+    seeds = len(result["seeds"])
+    print(r"""\begin{table}[t]
+\centering
+\caption{Confirmatory experiment E015: 30 fresh seeds, four update
+rounds, key-detour routes diversified in every pool, one held-out query
+per call. Rare supplements counts supplement slots spent on the two rare
+families. Retained counts the seeds whose evaluated memory still holds a
+key-detour example. Scores are correct answers out of 90 per family. The
+best fixed key-detour path solves 10 of 90 queries.}
+\label{tab:confirmatory}
+\setlength{\tabcolsep}{4.5pt}
+\begin{tabular}{lrrrrr}
+\toprule
+Evaluated memory & Rare supplements & Retained & Ungated & Key detour & Unreachable \\
+\midrule""")
+    for key, label, _ in MEMORIES:
+        families = result["supplement_families"].get(key)
+        budget = (f"{families['key_detour'] + families['unreachable']}/{sum(families.values())}"
+                  if families else "--")
+        kept = result["seeds_retaining_an_example"][key]["key_detour"]
+        row = result["scores"][key]
+        cells = " & ".join(str(row[family]["correct"])
+                           for family in ("ungated", "key_detour", "unreachable"))
+        print(f"{label} & {budget} & {kept}/{seeds} & {cells} \\\\")
+    print(r"""\bottomrule
+\end{tabular}
+\end{table}""")
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--coverage", action="store_true")
+    parser.add_argument("--confirmatory", action="store_true")
     args = parser.parse_args()
     audit = json.loads(E014.read_text())
-    if args.coverage:
+    if args.confirmatory:
+        render_confirmatory(json.loads(E015.read_text()))
+    elif args.coverage:
         render_coverage(audit)
     else:
         render_summary(json.loads(E013.read_text()), audit)

@@ -116,3 +116,10 @@ reports, including the Part A, B, and D numbers above. All pass.
 - E009 carries the 0.50 sensitivity value and the word exploratory.
 - Section 4 cites the Part D conformance check as the link between the
   Lean model and the experiment code.
+
+## Later confirmatory result
+
+[E015](../E015-confirmatory/analysis.md) tested the Part B reading on 30
+fresh seeds with diversified key-detour routes. It was not confirmed:
+145/240 with a retained key-detour example and 129/210 without. Part B
+describes the original holdout only.

@@ -108,6 +108,22 @@ A failed assertion stops the first command with the statement that
 disagrees. When the manuscript gains a number, add it to the list in
 `check.py`.
 
+## Replay the confirmatory experiment
+
+[E015](../experiments/E015-confirmatory/analysis.md) ran 30 fresh seeds
+on Ollama 0.40.16 under a protocol committed beforehand. The replay
+rebuilds every prompt, admission, and score from the stored responses.
+A second script asserts 37 numeric statements of the manuscript.
+
+```sh
+python3 -m unittest discover -s experiments/E015-confirmatory
+root=experiments/E015-confirmatory/results/qwen3-8b
+python3 -m src.confirmatory "$root" --audit | cmp - "$root/aggregate.json"
+python3 -m experiments.E015-confirmatory.exploratory | cmp - experiments/E015-confirmatory/exploratory.json
+python3 -m experiments.E015-confirmatory.check_manuscript | cmp - experiments/E015-confirmatory/manuscript-statements.json
+python3 paper/audit_tables.py --confirmatory > paper/confirmatory-table.tex
+```
+
 ## Check the FIFO proof in Lean
 
 See [the Lean artifact](../formal/README.md) for the pinned toolchain,

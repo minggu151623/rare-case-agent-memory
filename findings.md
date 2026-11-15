@@ -103,6 +103,24 @@ normalized, that the absence value lies in the unit interval under
 valid weights, and Section 4's proposal-share threshold. Sixteen
 exported statements use only the three standard axioms.
 
-No experiment combines a matched rare budget, varied paths during
-acquisition, and matched renderings. An adaptive advantage over a
-matched rare-only budget is not established.
+[E015](experiments/E015-confirmatory/analysis.md) is the confirmatory
+experiment: 30 fresh seeds, four rounds, key-detour routes diversified
+in every pool, one query per call, protocol committed first. The
+primary retention contrast was not confirmed. The frozen memory scored
+55/90 on key detours and the reference-mixture memory 51/90 (+4.4
+points, bootstrap interval −5.6 to +13.3, exact sign-flip 0.51),
+although the mixture arm kept a key-detour example in only 6 of 30
+seeds. The empty memory scored 53/90. Adaptive minus balanced rare
+accuracy was −1.7 points (Holm 0.51) and the label interaction −5.0
+points (Holm 0.36). Descriptively, a retained example helped when it
+stored the query's optimal path (29/32, against 116/208 with another
+path and 129/210 with none). No unreachable answer was correct (0/450),
+no unreachable attempt was admitted (0/208), and the model never
+declared a task unreachable. The adaptive rule spent 84 of 120
+supplements on that family. All 90 trajectories conform to the Lean
+FIFO characterization.
+
+The E002 gap is therefore best described as retention of a reusable
+answer path on the original holdout. Retention as a general benefit, an
+adaptive advantage over a matched rare-only budget, and the E009 label
+interaction are not established.

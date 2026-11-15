@@ -3,14 +3,14 @@ project:
   question: "Where is rare-case coverage lost, and does targeted supplementation improve held-out accuracy over random supplementation at a matched budget?"
   domain: "cs.AI, LLM agents and planning"
   started: "2026-11-12"
-  status: publication_audit_completed
+  status: confirmatory_experiment_completed
 hypotheses:
   - id: H1
     statement: "Rare-case representation decreases over memory updates under self-generated examples."
     status: not_tested_with_free_form_proposals
   - id: H2
     statement: "Targeted supplementation yields higher final held-out rare-case accuracy than random supplementation."
-    status: limited_support_against_matched_rare_only_control
+    status: not_supported_against_matched_rare_only_control_in_E015
 experiments:
   - id: E000
     path: experiments/E000-oracle-smoke
@@ -64,20 +64,20 @@ experiments:
     path: experiments/E014-publication-audit/analysis.md
     status: completed_post_hoc_offline_audit
   - id: E015
-    path: experiments/E015-confirmatory/protocol-draft.md
-    status: design_draft_not_locked_not_run
+    path: experiments/E015-confirmatory/analysis.md
+    status: completed_confirmatory_primary_not_confirmed
 formal_verification:
   path: formal/README.md
   scope: FIFO reference model, normalization, proposal-share threshold
   status: checked_with_lean_4_26_0
   exported_statements: 16
-  conformance_replay: experiments/E014-publication-audit/analysis.md
+  conformance_replay: experiments/E014-publication-audit/analysis.md and experiments/E015-confirmatory/analysis.md
 manuscript:
   source: paper/main.tex
-  status: exploratory_audit_preprint_ready_for_author_release
-  release_scope: "Exploratory audit. No claim of adaptive superiority over a matched rare-only budget."
+  status: audit_preprint_with_confirmatory_null_ready_for_author_release
+  release_scope: "Exploratory audit plus a confirmatory experiment with null results. No claim that retention or adaptive allocation improves accuracy beyond reuse of a stored answer path."
 open_questions:
-  - "Does the retention effect hold when acquisition and evaluation both use varied optimal paths?"
-  - "Does adaptive allocation beat a matched rare-only budget on fresh seeds?"
-  - "Do label assignments change the policy comparison once budget and paths are controlled?"
+  - "Does the E002 gap replicate on fresh seeds with the original generator, isolating the generator from rounds and readout format?"
+  - "Does an allocation rule that accounts for admission rates beat a matched rare-only budget?"
+  - "Does any result replicate with a second acquisition model that can declare unreachability?"
 publication: "The author will handle Zenodo submission."

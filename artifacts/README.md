@@ -4,7 +4,7 @@ Thư mục này tập trung các tệp đã xuất của dự án. [Hướng d�
 
 | Vị trí | Nội dung |
 | --- | --- |
-| [current/](current/) | [PDF bản exploratory audit](current/rare-case-agent-memory-exploratory-audit.pdf) và [ZIP tái lập](current/rare-case-agent-memory-exploratory-audit-reproducibility.zip) của bản thảo hiện tại, ngày 15/11/2026 |
+| [current/](current/) | [PDF bản thảo (gồm thí nghiệm xác nhận E015)](current/rare-case-agent-memory-exploratory-audit.pdf) và [ZIP tái lập](current/rare-case-agent-memory-exploratory-audit-reproducibility.zip) của bản thảo hiện tại, ngày 15/11/2026 |
 | [archive/](archive/) | Các bản PDF, ZIP và ghi chú rà soát của những phiên bản trước |
 | [review/review-2026-11-15/](review/review-2026-11-15/) | [Báo cáo rà soát gốc](review/review-2026-11-15/REVIEW_VI.md) và log, giữ nguyên nội dung theo manifest |
 | [review/publication-audit-2026-11-15/](review/publication-audit-2026-11-15/) | [Rà soát trước khi đăng](review/publication-audit-2026-11-15/REVIEW_VI.md) và log kiểm tra Lean của bản hiện tại |

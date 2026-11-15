@@ -2,14 +2,20 @@
 
 Người thực hiện: Claude (Anthropic), tiếp nối bản bàn giao của Codex. Đây
 là rà soát có hỗ trợ AI do tác giả giao, chưa phải phản biện độc lập.
-Không chạy thêm suy luận LLM. Không sửa dữ liệu thô hay aggregate đã lưu.
+Phần rà soát ban đầu không chạy suy luận LLM. Sau đó thí nghiệm xác nhận
+E015 được khóa protocol rồi chạy trên Qwen3 8B local (xem mục cuối).
+Không sửa dữ liệu thô hay aggregate đã lưu.
 
 ## Kết luận
 
-**Đủ điều kiện đăng Zenodo dưới dạng exploratory audit preprint.** Chưa
-đủ để gửi hội nghị như một bài thực nghiệm có kết luận khái quát. Bài
-không chứng minh adaptive tốt hơn một policy có cùng ngân sách rare, và
-bản thảo hiện nói rõ điều đó ngay trong abstract.
+**Đủ điều kiện đăng Zenodo dưới dạng audit preprint có thí nghiệm xác
+nhận với kết quả âm.** Bài không chứng minh adaptive tốt hơn một policy
+có cùng ngân sách rare, và thí nghiệm xác nhận E015 không xác nhận cách
+đọc "khoảng cách là do giữ được coverage". Bản thảo nói rõ cả hai điều
+ngay trong abstract. Giá trị của bài nằm ở phương pháp audit, mô hình
+FIFO được kiểm bằng Lean, và việc tự kiểm định rồi bác bỏ cách đọc hậu
+nghiệm của chính mình. Bài chưa đủ để gửi hội nghị như một bài có kết
+luận thực nghiệm khái quát: một model, một miền đồ thị tổng hợp.
 
 ## Đã kiểm chứng lại
 
@@ -18,9 +24,10 @@ bản thảo hiện nói rõ điều đó ngay trong abstract.
 | 18 nhóm kiểm tra của lần rà soát trước | 18/18 qua, 12 báo cáo JSON khớp bản lưu |
 | E005, 3.150 cấu hình FIFO bằng số hữu tỉ | Qua |
 | Lean 4.26.0, `lake build` và từng tệp với `-DwarningAsError=true` | 6 tệp qua, không `sorry`, 16 mệnh đề chỉ dùng `propext`, `Classical.choice`, `Quot.sound` |
-| 76 con số trong bản thảo đối chiếu với dữ liệu lưu | Qua, script dừng nếu lệch |
+| 76 + 37 con số trong bản thảo đối chiếu với dữ liệu lưu | Qua, hai script dừng nếu lệch |
 | 4 bảng sinh từ script | Khớp từng byte |
-| PDF | 18 trang, không cảnh báo LaTeX, không tham chiếu hỏng |
+| PDF | 21 trang, không cảnh báo LaTeX, không tham chiếu hỏng |
+| E015: 9 test, replay 30 seed khớp aggregate từng byte | Qua |
 | 4 tài liệu tham khảo mới | Lấy BibTeX từ arXiv và doi.org, đã đọc abstract |
 
 Log Lean: [lean-check.log](lean-check.log).
@@ -56,7 +63,7 @@ Log Lean: [lean-check.log](lean-check.log).
    Zhang et al. (2603.04549), và ghi rõ ground-truth memory, matched
    budget, label permutation đều đã có ở công trình trước.
 9. **Người chỉ có PDF không tìm được dữ liệu.** Đã chèn link repo và
-   commit bằng chứng `6c25fbf84ac2`.
+   commit bằng chứng (hiện là `7df0cbdbc499`).
 10. **Thiếu Conclusion, danh sách đóng góp, bảng tóm tắt.** Đã thêm theo
     hướng dẫn ml-paper-writing.
 11. **Tuyên bố về protocol.** Kiểm tra lịch sử git: E007 và E011 không
@@ -64,8 +71,10 @@ Log Lean: [lean-check.log](lean-check.log).
 
 ## Điểm yếu còn lại, không sửa được bằng chỉnh sửa văn bản
 
-- Sáu seed, một model tạo bộ nhớ, hai vòng cập nhật, đồ thị tổng hợp.
-- Mọi follow-up dùng lại sáu seed cũ.
+- Phần exploratory: sáu seed, hai vòng cập nhật; E003–E013 dùng lại sáu
+  seed đó. Phần xác nhận: 30 seed mới nhưng vẫn một model, đồ thị tổng hợp.
+- E015 đổi cùng lúc bộ sinh, số vòng và định dạng readout nên không chỉ
+  ra yếu tố nào làm mất khoảng cách.
 - Phân tích coverage là hậu nghiệm và không ngẫu nhiên hóa. Trên holdout
   gốc một đường cố định giải mọi truy vấn key-detour.
 - Lợi thế adaptive trước balanced rare-only là hai câu ở một seed.
@@ -73,12 +82,29 @@ Log Lean: [lean-check.log](lean-check.log).
 - Chứng minh Lean xác nhận mô hình tham chiếu i.i.d., không xác nhận
   điểm số thực nghiệm.
 
-## Việc chưa làm
+## Thí nghiệm xác nhận E015 (đã chạy)
 
-Thí nghiệm xác nhận. Bản thiết kế nháp nằm ở
-[E015](../../../experiments/E015-confirmatory/protocol-draft.md): khoảng
-3.150 lượt gọi local, ước lượng 4–7 giờ với Qwen3 8B, chưa khóa và chưa
-chạy. Có ba quyết định cần tác giả chọn trước khi khóa.
+[Protocol](../../../experiments/E015-confirmatory/protocol.md) được khóa
+và commit trước mọi lượt gọi; [kết quả](../../../experiments/E015-confirmatory/analysis.md).
+30 seed mới, 4 vòng cập nhật, đường key-detour đa dạng ở mọi pool, mỗi
+lượt gọi một truy vấn, 2.790 lượt gọi, 2,84 giờ.
+
+| Câu hỏi | Kết quả |
+| --- | --- |
+| Chính: frozen − mixture, key-detour | 55/90 so với 51/90; +4,4 điểm; khoảng −5,6 đến +13,3; sign-flip 0,51. **Không xác nhận** |
+| Phụ: adaptive − balanced, rare | −1,7 điểm; Holm 0,51. Không xác lập |
+| Phụ: tương tác nhãn | −5,0 điểm; Holm 0,36. Không xác lập, hướng E009 không lặp lại |
+
+Mixture chỉ giữ ví dụ key-detour ở 6/30 seed nhưng độ chính xác không
+giảm; bộ nhớ rỗng đạt 53/90. Ví dụ lưu giúp khi chứa đúng đường tối ưu
+của truy vấn (29/32) và không giúp khi chứa đường khác (116/208, so với
+129/210 khi không có ví dụ). Unreachable: 0/450 đúng, 0/208 được nhận
+vào bộ nhớ, model không lần nào trả lời "unreachable". Quy tắc adaptive
+vì thế dồn 84/120 supplement vào family mà model không giải được.
+
+Sai lệch đã ghi: Ollama tự cập nhật lên 0.40.16 trước lượt gọi đầu
+(Amendment 1); một câu trả lời ở phần nhãn chạm giới hạn token và bị
+chấm sai theo protocol.
 
 ## Cần tác giả xem lại trước khi đăng
 

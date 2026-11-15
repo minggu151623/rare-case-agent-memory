@@ -136,5 +136,19 @@ manuscript's numbers against the archives.
 python3 -m experiments.E014-publication-audit.check | cmp - experiments/E014-publication-audit/results.json
 ```
 
-[E015](experiments/E015-confirmatory/protocol-draft.md) is an unlocked
-design draft for a confirmatory experiment. Nothing in it has been run.
+## Confirmatory experiment
+
+[E015](experiments/E015-confirmatory/protocol.md) was locked and committed
+before any call on its 30 fresh seeds. It combines a matched rare budget,
+key-detour routes diversified in every task pool, and matched renderings.
+[Results](experiments/E015-confirmatory/analysis.md): the primary
+retention contrast was not confirmed (frozen minus reference mixture,
++4.4 points, exact sign-flip 0.51), and neither secondary contrast was
+established.
+
+```sh
+python3 -m unittest discover -s experiments/E015-confirmatory
+root=experiments/E015-confirmatory/results/qwen3-8b
+python3 -m src.confirmatory "$root" --audit | cmp - "$root/aggregate.json"
+python3 -m experiments.E015-confirmatory.check_manuscript | cmp - experiments/E015-confirmatory/manuscript-statements.json
+```

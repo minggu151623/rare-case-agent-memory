@@ -101,3 +101,25 @@ original holdout one fixed path answers every key-detour query, so the
 split cannot separate use of the retained example from reuse of its
 answer path. On the varied-path batch the same split gives 15/42
 against 0/12.
+
+## November 15 confirmatory experiment
+
+E015 was locked before its results and changes the following claims.
+
+| Claim | Change | Reason |
+| --- | --- | --- |
+| The E002 policy gap is mostly retained coverage. | Narrowed to the original holdout and described as retention of a reusable answer. | E015 primary contrast, frozen minus mixture on key detours: 55/90 against 51/90, +4.4 points, interval −5.6 to +13.3, exact sign-flip 0.51. The mixture arm kept a key-detour example in 6 of 30 seeds. The empty memory scored 53/90. |
+| Memories holding a key-detour example answer more key-detour queries. | Stated as specific to the original holdout. | E015: 145/240 with an example, 129/210 without. With the query's optimal path stored 29/32, with another path 116/208. |
+| Adaptive allocation may beat a matched rare-only budget. | Still unestablished, now with a negative point estimate. | E015 Q2: −1.7 points, interval −5.0 to +1.7, Holm-adjusted 0.51. Adaptive spent 84 of 120 supplements on unreachable tasks, none admitted. |
+| Shared labels widen the policy gap. | Stated as not replicated. | E015 Q3: −5.0 points, Holm-adjusted 0.36. The adaptive-minus-mixture interaction was −10.0 points, descriptive and uncorrected. |
+| Retained unreachable examples do not help. | Kept, with more data. | E015: 0/450 readout answers correct, 0 of 208 attempts admitted, no unreachable declaration in 3,510 requested answers. |
+| The FIFO model describes the update trajectories. | Extended to 132 trajectories. | E015: 90 trajectories, 270 checks, no disagreement. |
+
+Statements the manuscript does not make after E015: that retention has
+no effect (the interval allows up to about 13 points), that the E002
+counts were wrong, that labels reverse the policy gap, or which of the
+three design changes removed the gap. E015 changed the generator, the
+number of rounds, and the readout format together.
+
+All 37 E015 statements in the manuscript are asserted by
+`experiments/E015-confirmatory/check_manuscript.py`.

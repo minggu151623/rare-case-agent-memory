@@ -16,13 +16,29 @@ gốc và được giữ nguyên để đối chiếu.
   bản thảo. [Kết quả](experiments/E014-publication-audit/analysis.md)
 - **Lean đã mở rộng**: chuẩn hóa, giá trị trong [0,1], ngưỡng
   proposal-share, hai ví dụ số. 16 mệnh đề, không `sorry`.
-- **Việc B chưa làm.** Chỉ có bản thiết kế nháp
-  [E015](experiments/E015-confirmatory/protocol-draft.md), chưa khóa,
-  chưa chạy. Ba quyết định cần tác giả chọn được liệt kê trong đó.
-- Bằng chứng của bản thảo cố định ở commit `6c25fbf84ac2`. SHA trong
+- **Việc B đã xong.** [E015](experiments/E015-confirmatory/protocol.md)
+  được khóa và commit trước mọi lượt gọi trên 30 seed mới (7101–7130),
+  rồi chạy đủ 2.790 lượt gọi Qwen3 8B local trên Ollama 0.40.16.
+  [Kết quả](experiments/E015-confirmatory/analysis.md) là **âm**:
+  - Câu hỏi chính (retention): frozen 55/90, mixture 51/90 trên
+    key-detour, +4,4 điểm, khoảng bootstrap −5,6 đến +13,3, sign-flip
+    0,51. Không được xác nhận, dù mixture chỉ giữ ví dụ key-detour ở
+    6/30 seed. Bộ nhớ rỗng đạt 53/90.
+  - Adaptive so với balanced rare-only: −1,7 điểm (Holm 0,51).
+  - Tương tác nhãn: −5,0 điểm (Holm 0,36). Hướng của E009 không lặp lại.
+  - Mô tả: ví dụ lưu chỉ giúp khi nó chứa đúng đường tối ưu của truy
+    vấn (29/32, so với 116/208 và 129/210). Unreachable 0/450.
+  - 90 quỹ đạo mới khớp bổ đề FIFO (tổng 132).
+- Bản thảo đã thu hẹp kết luận retention về holdout gốc và báo cáo kết
+  quả âm ở abstract, Results, Discussion, Conclusion. Hai script kiểm
+  76 + 37 con số.
+- Bằng chứng của bản thảo cố định ở commit `7df0cbdbc499`. SHA trong
   mục 2 là của bản trước.
-- Khuyến nghị: đăng Zenodo như exploratory audit preprint. Tác giả tự
-  đăng.
+- Khuyến nghị: đăng Zenodo như audit preprint có thí nghiệm xác nhận
+  với kết quả âm. Tác giả tự đăng.
+- Việc còn mở: chạy lại bộ sinh gốc trên seed mới để tách ảnh hưởng của
+  bộ sinh khỏi số vòng và định dạng readout; model thứ hai; quy tắc
+  phân bổ có tính đến tỉ lệ admission.
 
 ## 1. Nhiệm vụ
 
