@@ -7,6 +7,28 @@
   "30_points": 0.992
  },
  "false_positive_rate_at_zero_gap": 0.023,
+ "power_with_within_query_correlation": {
+  "0_points": {
+   "power": 0.015,
+   "mean_sd_of_differences": 0.81,
+   "achieved_gap_points": 0.0
+  },
+  "10_points": {
+   "power": 0.439,
+   "mean_sd_of_differences": 0.77,
+   "achieved_gap_points": 10.0
+  },
+  "15_points": {
+   "power": 0.872,
+   "mean_sd_of_differences": 0.73,
+   "achieved_gap_points": 15.0
+  },
+  "20_points": {
+   "power": 1.0,
+   "mean_sd_of_differences": 0.68,
+   "achieved_gap_points": 19.8
+  }
+ },
  "bootstrap_interval_by_stream": {
   "primary": {
    "715200": [

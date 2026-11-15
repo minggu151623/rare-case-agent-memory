@@ -24,7 +24,7 @@ luận thực nghiệm khái quát: một model, một miền đồ thị tổng
 | 18 nhóm kiểm tra của lần rà soát trước | 18/18 qua, 12 báo cáo JSON khớp bản lưu |
 | E005, 3.150 cấu hình FIFO bằng số hữu tỉ | Qua |
 | Lean 4.26.0, `lake build` và từng tệp với `-DwarningAsError=true` | 6 tệp qua, không `sorry`, 16 mệnh đề chỉ dùng `propext`, `Classical.choice`, `Quot.sound` |
-| 76 + 47 con số trong bản thảo đối chiếu với dữ liệu lưu | Qua, hai script dừng nếu lệch |
+| 76 + 50 con số trong bản thảo đối chiếu với dữ liệu lưu | Qua, hai script dừng nếu lệch |
 | 4 bảng sinh từ script | Khớp từng byte |
 | PDF | 23 trang, không cảnh báo LaTeX, không tham chiếu hỏng |
 | E015: 9 test, replay 30 seed khớp aggregate từng byte | Qua |
@@ -252,3 +252,27 @@ gốc trên seed mới với readout một truy vấn; công suất của sign-f
 13/30 seed hòa. Về câu hỏi 3: tương tác nhãn được hạ xuống thứ cấp khi
 khóa protocol, trước khi so sánh bất kỳ bộ nhớ nào trên seed phát triển
 (protocol ghi chỉ xem giao diện).
+
+## Phản biện độc lập, vòng hai (16/11/2026)
+
+Cùng reviewer chấm lại bản đã sửa:
+[INDEPENDENT_REVIEW_ROUND2.md](INDEPENDENT_REVIEW_ROUND2.md). Kết luận:
+ba script kiểm khớp từng byte; 20 giá trị của Hình 1 khớp dữ liệu; việc
+chuyển sang phụ lục không làm mất kết quả nào; Clarity tăng từ 2/4 lên
+3/4; tổng vẫn 3/6 vì phạm vi nghiên cứu không đổi; **Zenodo: sẵn sàng
+sau hai câu sửa.**
+
+| Điểm vòng hai | Loại | Xử lý |
+| --- | --- | --- |
+| Bullet đóng góp còn viết "helped" theo nghĩa nhân quả | Bắt buộc | Đổi thành "Descriptively, accuracy was higher when…" |
+| Mô phỏng công suất giả định câu trả lời độc lập, trái với dữ liệu | Bắt buộc | Ghi rõ giả định cho độ lệch chuẩn 1,2 so với 0,82 quan sát, nên là ước lượng thận trọng; thêm mô phỏng thứ hai có tương quan theo truy vấn (87% ở 15 điểm, 44% ở 10 điểm) và đối chiếu với câu về cỡ mẫu |
+| "therefore depends" quá mạnh | Khuyến nghị | Đổi thành "consistent with" |
+| Không nêu tên hai nhánh ở tóm tắt E008; thiếu kết quả fresh-motif | Khuyến nghị | Đã thêm |
+| "only" và thiếu "post hoc" ở Conclusion | Khuyến nghị | Đã sửa |
+| Commit về sau có thêm phân tích dẫn xuất | Khuyến nghị | Đã ghi |
+| Abstract dài, chưa nêu frozen − empty | Khuyến nghị | Viết lại, khoảng 235 từ, có nêu |
+| Hình 1 thiếu mẫu số | Khuyến nghị | Thêm vào caption |
+| Trích bản đã xuất bản của 5 tài liệu mới | Khuyến nghị | Không làm: bản ghi arXiv là nguồn gốc đã kiểm; thông tin hội nghị chưa lấy được từ bản ghi chính thức nên không ghi theo trí nhớ |
+| Chữ "Agents" trong tiêu đề | Khuyến nghị | Giữ: hệ thống tự giải bài, tự kiểm và tự cập nhật bộ nhớ qua nhiều vòng; giới hạn một model, prompt không trạng thái đã ghi ở Limitations |
+
+Sau các sửa này không còn điểm bắt buộc nào của reviewer để ngỏ.

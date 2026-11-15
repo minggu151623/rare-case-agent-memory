@@ -113,7 +113,7 @@ disagrees. When the manuscript gains a number, add it to the list in
 [E015](../experiments/E015-confirmatory/analysis.md) ran 30 fresh seeds
 on Ollama 0.40.16 under a protocol committed beforehand. The replay
 rebuilds every prompt, admission, and score from the stored responses.
-A second script asserts 47 numeric statements of the manuscript.
+A second script asserts 50 numeric statements of the manuscript.
 
 ```sh
 python3 -m unittest discover -s experiments/E015-confirmatory

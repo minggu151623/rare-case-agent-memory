@@ -45,6 +45,9 @@
     "descriptive sign-flip values",
     "path gains by seed and route",
     "simulated power at 25, 20 and 15 points",
+    "correlated-answer power at 15 and 10 points, and its spread at zero gap",
+    "independent-answer spread of the paired difference",
+    "sizing effect in points at the observed spread",
     "label-interaction lower bound across streams",
     "request hours"
   ]

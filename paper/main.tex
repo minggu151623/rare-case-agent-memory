@@ -15,33 +15,29 @@
 \begin{abstract}
 We audit what a memory-update policy changes when a fixed-weight
 language model, Qwen3 8B, keeps a six-slot FIFO memory of verified
-graph-planning examples. The audit follows each task family through
-allocation, verified admission, eviction, and held-out evaluation. Its
-main result is negative: held-out accuracy did not follow memory
-coverage. In an
-exploratory study on six paired seeds, adaptive allocation toward the
-least-covered rare family scored $18/18$ on held-out key-detour
-queries, against $7/18$ for sampling from the reference mixture.
-Controls bound that gap. A memory that was never updated scored
-$16/18$, an empty memory $7/18$, and a nonadaptive policy with the same
-rare budget $16/18$, and one fixed path solves all 18 queries. Post
-hoc, the gap looked like eviction of a needed example. A confirmatory
-experiment, with its protocol committed first, tested that reading on
-30 fresh seeds with four update rounds and key-detour routes
-diversified in every task pool. Reference-mixture updates kept a
-key-detour example in 6 of 30 seeds, yet the frozen memory answered
-$55/90$ key-detour queries against $51/90$ ($+4.4$ percentage points,
-95\% bootstrap interval $-5.6$ to $+13.3$, exact sign-flip $p=0.51$),
-and the empty memory answered $53/90$. The retention reading was not
-confirmed. Adaptive allocation did not beat the matched rare-only
-budget ($-1.7$ points of rare accuracy, $p=0.51$), and an earlier label
-interaction did not replicate. Descriptively, accuracy was higher when
-a stored example contained the query's optimal path ($29/32$, against
-$20/32$ for the empty memory on the same queries). No unreachable
-query was answered correctly ($0/450$), because the model never
-declared a task unreachable, so that family is at a response floor. A
-Lean~4 development proves the FIFO reference model, and the implemented
-update agrees with it on all 132 audited trajectories.
+graph-planning examples. The main result is negative: held-out accuracy
+did not follow memory coverage. In an exploratory study on six paired
+seeds, adaptive allocation toward the least-covered rare family scored
+$18/18$ on held-out key-detour queries, against $7/18$ for sampling
+from the reference mixture. Controls bound that gap. A memory that was
+never updated scored $16/18$, an empty memory $7/18$, and a nonadaptive
+policy with the same rare budget $16/18$, while one fixed path solves
+all 18 queries. A confirmatory experiment, with its protocol committed
+first, tested the post hoc reading that mixture updates evict a needed
+example. It used 30 fresh seeds and diversified key-detour routes.
+Mixture updates kept a key-detour example in 6 of 30 seeds, yet the
+frozen memory answered $55/90$ key-detour queries against $51/90$
+($+4.4$ percentage points, 95\% bootstrap interval $-5.6$ to $+13.3$,
+exact sign-flip $p=0.51$). The reading was not confirmed, and the
+frozen memory was itself only two answers ahead of the empty memory
+($53/90$). Adaptive allocation did not beat the matched rare-only
+budget, and an earlier label interaction did not replicate.
+Descriptively, accuracy was higher when a stored example contained the
+query's optimal path ($29/32$, against $20/32$ for the empty memory on
+the same queries). The model never declared a task unreachable, so that
+family stayed at $0/450$. A Lean~4 development proves the FIFO
+reference model, and the implemented update agrees with it on all 132
+audited trajectories.
 \end{abstract}
 
 
@@ -95,8 +91,8 @@ experiment on 30 fresh seeds combines a matched rare budget, varied
 answer paths in every task pool, and matched renderings. It does not
 confirm that retaining a rare example improves accuracy, finds no
 adaptive advantage over the matched budget, and does not replicate the
-earlier label interaction. A stored example helped mainly when its own
-answer path solved the query.
+earlier label interaction. Descriptively, accuracy was higher when a
+stored example's own answer path solved the query.
 \item \textbf{Controls on how the evaluation is built.} One fixed path
 solves all 18 original key-detour queries. Scores fall by more than
 half on queries with nine distinct optimal paths, and the policy gap
@@ -128,7 +124,8 @@ percentage of held-out key-detour queries answered correctly. Left:
 exploratory study, where one stored path answers every query; accuracy
 tracks retained coverage. Right: confirmatory experiment with nine
 answer paths; coverage differs across memories as much as before and
-accuracy does not. Mixture, Balanced, and Adaptive are the
+accuracy does not. Each accuracy bar rests on 18 answers on the left
+and 90 on the right. Mixture, Balanced, and Adaptive are the
 reference-mixture, balanced rare-only, and adaptive update policies.}
 \label{fig:coverage-accuracy}
 \end{figure}
@@ -628,14 +625,16 @@ renamed independently in each graph, the targeted memory kept one of
 its 18 correct key-detour answers. Renaming only the memory or only
 the queries gave $3/18$ and $2/18$, and a single shared renaming
 restored the targeted score to $12/18$ and the policy gap to $10/18$.
-With independent labels from the start of acquisition the two policies
-scored $3/18$ and $2/18$. A second reader, Gemma 4 E4B, returned only
+With independent labels from the start of acquisition the random and
+targeted policies scored $3/18$ and $2/18$. A second reader, Gemma 4 E4B, returned only
 the first of nine answers in all 60 batched calls. With one query per
 call it showed a positive gap under original and shared labels and none
 under independent labels, as Qwen did on the same six items. None of
 the 17 targeted answers lost under renaming repeated its original
-literal path. The measured gap therefore depends on how labels
-correspond across the graphs in a prompt.
+literal path. On fresh graphs with new motifs the targeted and random
+memories scored $9/18$ and $10/18$. These results are consistent with
+a gap that depends on how labels correspond across the graphs in a
+prompt.
 
 \subsection{Shared labels at matched graph exposures}
 
@@ -832,10 +831,18 @@ experiments E003 through E013 reuse the same six seeds and are not
 independent replications. The confirmatory experiment used one model,
 one runtime, four update rounds, and one query per call. Its null
 results bound effects only within the reported intervals, its
-descriptive splits are observational, and its power is limited. In a
-simulation with independent binomial answers, the locked criterion
-detects a true gap of 25 points in 93\% of studies, 20 points in 74\%,
-and 15 points in 46\%. The lower bound of the label-interaction
+descriptive splits are observational, and its power is limited for
+small gaps. In a simulation with independent binomial answers, the
+locked criterion detects a true gap of 25 points in 93\% of studies,
+20 points in 74\%, and 15 points in 46\%. Independence implies a
+paired-difference standard deviation near $1.2$ answers, above the
+observed $0.82$, so these values are conservative. In a second
+simulation the frozen answer copies the mixture answer on 54\% of
+queries, which reproduces the observed spread. There the criterion
+detects a gap of 15 points in 87\% of studies and 10 points in 44\%.
+The sizing statement of the protocol, a standardized effect near
+$0.55$, corresponds to about 15 points at the observed spread and
+agrees with the second simulation. The lower bound of the label-interaction
 interval moves between $-11.7$ and $-11.1$ across resampling streams. The coverage split, the
 E009 sign-flip value, and the
 fixed-path diagnostic are post hoc. The graphs share path
@@ -875,14 +882,14 @@ been peer reviewed.
 
 In the exploratory part of this audit a bounded example memory lost
 rare task families through verified admission and FIFO eviction, and
-the apparent gain of a coverage-targeted policy was mostly the
-avoidance of that loss on a holdout that one stored path could answer.
+the apparent gain of a coverage-targeted policy was, on a post hoc
+reading, mostly the avoidance of that loss on a holdout that one stored path could answer.
 A confirmatory experiment on 30 fresh seeds with diversified routes did
 not confirm that retention improves accuracy, found no adaptive
 advantage over a matched rare budget, and did not replicate an earlier
 label interaction. The implemented update agreed with the
 machine-checked FIFO model in
-all 132 audited trajectories. Descriptively, accuracy was higher only
+all 132 audited trajectories. Descriptively, accuracy was higher
 where a stored answer could be reused. The model never produced the
 response that the unreachable family requires, with or without a
 retained example. We recommend that memory-policy
@@ -900,10 +907,11 @@ source are in the project repository:
 \url{https://github.com/minggu151623/rare-case-agent-memory}
 \end{center}
 The traces and aggregates for this version are fixed at commit
-\texttt{7df0cbdbc499}. Later commits change text, checks, and licenses.
+\texttt{7df0cbdbc499}. Later commits change text, checks, and licenses, and add analyses
+derived from the same traces.
 Every reported score can be recomputed from
 the traces without running a language model, and two scripts assert
-76 and 47 numeric statements of this manuscript against the archives. The Lean~4
+76 and 50 numeric statements of this manuscript against the archives. The Lean~4
 proofs build with Lean and Mathlib 4.26.0 from a pinned dependency
 manifest under \texttt{formal/}. For every experiment that called a model, the
 protocol was committed before the results. The offline audits E007 and

@@ -130,6 +130,14 @@ def statements():
     claim("simulated power at 25, 20 and 15 points",
           [round(100 * extra_checks["power_of_locked_criterion_by_true_gap"][f"{g}_points"])
            for g in (25, 20, 15)], [93, 74, 46])
+    tied = extra_checks["power_with_within_query_correlation"]
+    claim("correlated-answer power at 15 and 10 points, and its spread at zero gap",
+          (round(100 * tied["15_points"]["power"]), round(100 * tied["10_points"]["power"]),
+           tied["0_points"]["mean_sd_of_differences"]), (87, 44, 0.81))
+    claim("independent-answer spread of the paired difference",
+          (2 * 3 * (51 / 90) * (1 - 51 / 90)) ** 0.5, 1.2)
+    claim("sizing effect in points at the observed spread",
+          round(100 * 0.55 * primary["sd"] / 3), 15)
     claim("label-interaction lower bound across streams",
           sorted({v[0] for v in
                   extra_checks["bootstrap_interval_by_stream"]["label_interaction"].values()}),

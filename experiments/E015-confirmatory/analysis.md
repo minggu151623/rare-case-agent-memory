@@ -223,7 +223,12 @@ archived. Its output is [exploratory.json](exploratory.json).
   simulated studies at a true gap of 10 points, 46% at 15, 74% at 20,
   93% at 25, and 99% at 30. At zero gap it is met in 2.3%. The
   experiment could detect a gap of the E002 size and was weak below 20
-  points.
+  points. Independence gives a paired-difference standard deviation near
+  1.2 answers, above the observed 0.82, so these values are conservative
+  (a point raised in the second-round review). When the frozen answer
+  copies the mixture answer on 54.4% of queries, which reproduces the
+  observed spread, the criterion is met in 44% of studies at 10 points
+  and 87% at 15.
 - **Bootstrap stream.** The primary interval is the same under four
   resampling streams. The lower bound of the Q3 interval is −11.7 or
   −11.1 depending on the stream.
