@@ -276,3 +276,27 @@ sau hai câu sửa.**
 | Chữ "Agents" trong tiêu đề | Khuyến nghị | Giữ: hệ thống tự giải bài, tự kiểm và tự cập nhật bộ nhớ qua nhiều vòng; giới hạn một model, prompt không trạng thái đã ghi ở Limitations |
 
 Sau các sửa này không còn điểm bắt buộc nào của reviewer để ngỏ.
+
+## Phản biện độc lập, vòng ba (16/11/2026): kết luận cuối
+
+[INDEPENDENT_REVIEW_ROUND3.md](INDEPENDENT_REVIEW_ROUND3.md). Reviewer
+chấm bản ở commit `b42ede3`: ba script kiểm khớp từng byte, mọi con số
+trong abstract khớp dữ liệu, hai điểm bắt buộc của vòng hai đã đóng,
+không tìm thấy overclaim hay lỗi số nào cần sửa.
+
+**Kết luận về Zenodo: READY — no required fixes.**
+
+Điểm: Quality 3/4, Clarity 3/4, Significance 2/4, Originality 2/4, tổng
+3/6 (borderline reject) cho hội nghị chính. Điểm tổng phản ánh phạm vi
+nghiên cứu, không phải lỗi.
+
+Sau báo cáo này chỉ sửa một câu ở Limitations theo đúng ghi chú không
+bắt buộc của reviewer: thêm "at zero gap" và ghi rằng công suất phụ
+thuộc dạng tương quan giả định.
+
+Điểm yếu còn lại, không chặn việc đăng và không sửa được bằng chỉnh
+văn bản: phạm vi hẹp (một model 8B, đồ thị tổng hợp); E015 đổi ba yếu
+tố cùng lúc và bộ nhớ đóng băng gần như không hơn bộ nhớ rỗng; giả
+thuyết "chép lại đường đi" dựa trên 32 câu quan sát; family unreachable
+chạm sàn; hai cách gọi tên chính sách và các mã E còn trong bài; thời
+điểm khóa protocol dựa vào commit, không phải đăng ký bên thứ ba.
