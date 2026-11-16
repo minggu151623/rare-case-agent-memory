@@ -126,6 +126,21 @@ python3 paper/audit_tables.py --confirmatory > paper/confirmatory-table.tex
 python3 paper/coverage_figure.py  # writes paper/coverage-accuracy.pdf, needs matplotlib
 ```
 
+## Replay the second-model experiment
+
+[E016](../experiments/E016-second-model/analysis.md) ran the same 30
+seeds with Gemma 4 E4B in LM Studio 0.4.25+1. A script asserts 24
+numeric statements of the manuscript.
+
+```sh
+python3 -m unittest discover -s experiments/E016-second-model
+root=experiments/E016-second-model/results/gemma-e4b
+python3 -m src.second_model "$root" --audit | cmp - "$root/aggregate.json"
+python3 -m experiments.E016-second-model.exploratory | cmp - experiments/E016-second-model/exploratory.json
+python3 -m experiments.E016-second-model.check_manuscript | cmp - experiments/E016-second-model/manuscript-statements.json
+python3 paper/audit_tables.py --second-model > paper/second-model-table.tex
+```
+
 ## Check the FIFO proof in Lean
 
 See [the Lean artifact](../formal/README.md) for the pinned toolchain,

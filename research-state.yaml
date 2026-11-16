@@ -3,7 +3,7 @@ project:
   question: "Where is rare-case coverage lost, and does targeted supplementation improve held-out accuracy over random supplementation at a matched budget?"
   domain: "cs.AI, LLM agents and planning"
   started: "2026-11-12"
-  status: confirmatory_experiment_completed
+  status: confirmatory_and_second_model_experiments_completed
 hypotheses:
   - id: H1
     statement: "Rare-case representation decreases over memory updates under self-generated examples."
@@ -66,6 +66,9 @@ experiments:
   - id: E015
     path: experiments/E015-confirmatory/analysis.md
     status: completed_confirmatory_primary_not_confirmed
+  - id: E016
+    path: experiments/E016-second-model/analysis.md
+    status: completed_second_model_primary_not_confirmed
 formal_verification:
   path: formal/README.md
   scope: FIFO reference model, normalization, proposal-share threshold
@@ -79,5 +82,5 @@ manuscript:
 open_questions:
   - "Does the E002 gap replicate on fresh seeds with the original generator, isolating the generator from rounds and readout format?"
   - "Does an allocation rule that accounts for admission rates beat a matched rare-only budget?"
-  - "Does any result replicate with a second acquisition model that can declare unreachability?"
+  - "Does any result change with a larger model, or one that can declare unreachability? Gemma 4 E4B (E016) agreed with Qwen3 and also never declared it."
 publication: "The author will handle Zenodo submission."

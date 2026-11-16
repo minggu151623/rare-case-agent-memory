@@ -155,3 +155,13 @@ fixes. All four were made, along with the optional ones: a same-query
 control for the path split, a results figure, the six-seed follow-ups
 moved to an appendix, and five related-work citations fetched from
 arXiv. The author chose MIT for code and CC BY 4.0 for everything else.
+
+Ran E016 to address the single-model limit that all three review rounds
+named. Gemma 4 E4B, same 30 seeds as E015, one task per solve call, no
+label sub-study, and a single-entry scoring rule fixed from two
+interface seeds before locking. 2,430 calls in 1.15 hours, no deviation.
+Result: retention not confirmed (−8.9 points, sign-flip 0.24), adaptive
+contrast not established (+1.7 points). Decision: report E016 as a
+second locked experiment in the abstract, a new Results subsection, the
+Discussion, Limitations, and Conclusion, and replace "one acquisition
+model" by a statement about two small models.

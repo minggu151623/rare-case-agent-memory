@@ -1,0 +1,28 @@
+{
+  "manuscript_statements_checked": [
+    "seeds, calls, format failures",
+    "request hours",
+    "family scores",
+    "Qwen3 key-detour column",
+    "seeds retaining a key-detour example",
+    "primary sign counts",
+    "primary mean, interval, sign-flip",
+    "primary criterion not met",
+    "primary identical under the strict rule",
+    "frozen minus empty key-detour answers",
+    "secondary mean, interval, sign-flip",
+    "secondary in key-detour points, both models",
+    "unreachable attempts and admissions",
+    "adaptive supplements on unreachable tasks",
+    "rare-enriched minus mixture",
+    "coverage split",
+    "path split and same-query control",
+    "matched gain smaller than with Qwen3",
+    "requested IDs returned in readout",
+    "empty-memory placeholder responses among those without the requested ID",
+    "empty memory under the strict rule",
+    "unreachable tasks asked and declarations of an asked task",
+    "FIFO conformance",
+    "trajectories audited in total"
+  ]
+}

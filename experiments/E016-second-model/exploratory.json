@@ -1,0 +1,95 @@
+{
+ "unreachable_declarations": [
+  {
+   "seed": 7130,
+   "arm": "readout/frozen/h00",
+   "family": "unreachable",
+   "keys": [
+    "h00",
+    "i00",
+    "i01",
+    "i02",
+    "i03",
+    "i04",
+    "i05"
+   ],
+   "response": "{\"answers\": {\"i00\": {\"path\": [\"A\", \"C\", \"D\", \"E\", \"B\"]}, \"i01\": {\"path\": [\"A\", \"C\", \"D\", \"E\", \"B\"]}, \"i02\": {\"path\": [\"A\", \"C\", \"D\", \"E\", \"B\"]}, \"i03\": {\"unreachable\": true}, \"i04\": {\"path\": [\"A\", \"C\", \"D\", \"E\", \"B\"]}, \"i05\": {\"path\": [\"A\", \"E\", \"C\", \"E\", \"B\"]}, \"h00\": {\"path\": [\"A\", \"D\", \"B\"]}}}"
+  },
+  {
+   "seed": 7130,
+   "arm": "readout/frozen/h05",
+   "family": "key_detour",
+   "keys": [
+    "h05",
+    "i03"
+   ],
+   "response": "{\"answers\": {\"i03\": {\"unreachable\": true}, \"h05\": {\"path\": [\"A\", \"F\", \"C\", \"E\", \"B\"]}}}"
+  }
+ ],
+ "responses_without_the_requested_id": [
+  {
+   "phase": "evaluation",
+   "memory": "empty",
+   "keys": "id",
+   "calls": 169
+  },
+  {
+   "phase": "evaluation",
+   "memory": "frozen",
+   "keys": "i03",
+   "calls": 1
+  },
+  {
+   "phase": "evaluation",
+   "memory": "frozen",
+   "keys": "i06",
+   "calls": 1
+  },
+  {
+   "phase": "evaluation",
+   "memory": "frozen",
+   "keys": "i08",
+   "calls": 1
+  },
+  {
+   "phase": "evaluation",
+   "memory": "frozen",
+   "keys": "id",
+   "calls": 2
+  },
+  {
+   "phase": "solve",
+   "memory": "random_model",
+   "keys": "id",
+   "calls": 1
+  },
+  {
+   "phase": "solve",
+   "memory": "rare_only_model",
+   "keys": "id",
+   "calls": 1
+  },
+  {
+   "phase": "solve",
+   "memory": "targeted_model",
+   "keys": "id",
+   "calls": 1
+  }
+ ],
+ "path_split_against_empty_memory_on_same_queries": {
+  "path_in_memory": {
+   "answers": 36,
+   "with_memory": 25,
+   "empty_memory": 21,
+   "gained": 7,
+   "lost": 3
+  },
+  "path_not_in_memory": {
+   "answers": 222,
+   "with_memory": 115,
+   "empty_memory": 118,
+   "gained": 31,
+   "lost": 34
+  }
+ }
+}

@@ -153,6 +153,22 @@ python3 -m src.confirmatory "$root" --audit | cmp - "$root/aggregate.json"
 python3 -m experiments.E015-confirmatory.check_manuscript | cmp - experiments/E015-confirmatory/manuscript-statements.json
 ```
 
+## Second acquisition model
+
+[E016](experiments/E016-second-model/protocol.md) repeats the E015
+comparison with Gemma 4 E4B on the same 30 seeds, under a protocol
+committed before the run.
+[Results](experiments/E016-second-model/analysis.md): retention is not
+confirmed for Gemma either (frozen minus reference mixture, −8.9 points,
+exact sign-flip 0.24), and the adaptive contrast is not established.
+
+```sh
+python3 -m unittest discover -s experiments/E016-second-model
+root=experiments/E016-second-model/results/gemma-e4b
+python3 -m src.second_model "$root" --audit | cmp - "$root/aggregate.json"
+python3 -m experiments.E016-second-model.check_manuscript | cmp - experiments/E016-second-model/manuscript-statements.json
+```
+
 ## License
 
 Code (Python and Lean) is under the [MIT License](LICENSES/MIT.txt). The

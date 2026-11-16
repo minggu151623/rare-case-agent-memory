@@ -1,0 +1,24 @@
+\begin{table}[t]
+\centering
+\caption{Second acquisition model, E016: Gemma 4 E4B on the 30 seeds
+and task pools of E015, one task per call. Retained counts the seeds
+whose evaluated memory still holds a key-detour example. Scores are
+correct answers out of 90 per family. The last column repeats the
+key-detour score of Qwen3 8B from Table~\ref{tab:confirmatory} on the
+same queries.}
+\label{tab:second-model}
+\setlength{\tabcolsep}{4.5pt}
+\begin{tabular}{lrrrrr}
+\toprule
+ & \multicolumn{4}{c}{Gemma 4 E4B} & Qwen3 8B \\
+\cmidrule(lr){2-5}\cmidrule(lr){6-6}
+Evaluated memory & Retained & Ungated & Key detour & Unreachable & Key detour \\
+\midrule
+Empty & 0/30 & 86 & 48 & 0 & 53 \\
+Frozen initial memory & 30/30 & 87 & 47 & 0 & 55 \\
+Reference-mixture updates & 6/30 & 87 & 55 & 0 & 51 \\
+Balanced rare-only updates & 29/30 & 88 & 49 & 0 & 59 \\
+Adaptive updates & 21/30 & 88 & 52 & 0 & 56 \\
+\bottomrule
+\end{tabular}
+\end{table}

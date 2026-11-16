@@ -7,6 +7,7 @@ ROOT = Path(__file__).resolve().parent.parent
 E013 = ROOT / "experiments/E013-diverse-paths/results/qwen3-8b/aggregate.json"
 E014 = ROOT / "experiments/E014-publication-audit/results.json"
 E015 = ROOT / "experiments/E015-confirmatory/results/qwen3-8b/aggregate.json"
+E016 = ROOT / "experiments/E016-second-model/results/gemma-e4b/aggregate.json"
 MEMORIES = (
     ("empty", "Empty", "--"),
     ("frozen", "Frozen initial memory", "--"),
@@ -103,13 +104,46 @@ Evaluated memory & Rare supplements & Retained & Ungated & Key detour & Unreacha
 \end{table}""")
 
 
+def render_second_model(first, second):
+    seeds = len(second["seeds"])
+    print(r"""\begin{table}[t]
+\centering
+\caption{Second acquisition model, E016: Gemma 4 E4B on the 30 seeds
+and task pools of E015, one task per call. Retained counts the seeds
+whose evaluated memory still holds a key-detour example. Scores are
+correct answers out of 90 per family. The last column repeats the
+key-detour score of Qwen3 8B from Table~\ref{tab:confirmatory} on the
+same queries.}
+\label{tab:second-model}
+\setlength{\tabcolsep}{4.5pt}
+\begin{tabular}{lrrrrr}
+\toprule
+ & \multicolumn{4}{c}{Gemma 4 E4B} & Qwen3 8B \\
+\cmidrule(lr){2-5}\cmidrule(lr){6-6}
+Evaluated memory & Retained & Ungated & Key detour & Unreachable & Key detour \\
+\midrule""")
+    for key, label, _ in MEMORIES:
+        kept = second["seeds_retaining_a_key_detour_example"][key]
+        row = second["scores"][key]
+        cells = " & ".join(str(row[family]["correct"])
+                           for family in ("ungated", "key_detour", "unreachable"))
+        print(f"{label} & {kept}/{seeds} & {cells} & "
+              f"{first['scores'][key]['key_detour']['correct']} \\\\")
+    print(r"""\bottomrule
+\end{tabular}
+\end{table}""")
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--coverage", action="store_true")
     parser.add_argument("--confirmatory", action="store_true")
+    parser.add_argument("--second-model", action="store_true")
     args = parser.parse_args()
     audit = json.loads(E014.read_text())
-    if args.confirmatory:
+    if args.second_model:
+        render_second_model(json.loads(E015.read_text()), json.loads(E016.read_text()))
+    elif args.confirmatory:
         render_confirmatory(json.loads(E015.read_text()))
     elif args.coverage:
         render_coverage(audit)

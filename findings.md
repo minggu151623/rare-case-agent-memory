@@ -124,3 +124,17 @@ The E002 gap is therefore best described as retention of a reusable
 answer path on the original holdout. Retention as a general benefit, an
 adaptive advantage over a matched rare-only budget, and the E009 label
 interaction are not established.
+
+[E016](experiments/E016-second-model/analysis.md) repeats the E015
+comparison with Gemma 4 E4B as the acquisition model, on the same 30
+seeds, one task per call, protocol committed first. Retention is not
+confirmed for Gemma either: frozen 47/90 and reference mixture 55/90 on
+key detours (−8.9 points, interval −21.1 to +3.3, exact sign-flip
+0.24). Adaptive minus balanced rare accuracy is +1.7 points (0.38).
+Rare-enriched updating scored below mixture updating with Gemma and
+above it with Qwen3, and neither ordering is established. Gemma never
+declared an asked task unreachable. With the query's path stored it
+answered 25/36, against 21/36 for the empty memory on the same queries.
+Comparisons with Gemma's empty memory depend on a scoring rule fixed in
+the protocol. All 90 trajectories conform to the FIFO characterization,
+222 in total.

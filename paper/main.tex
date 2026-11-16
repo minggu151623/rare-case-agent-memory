@@ -30,14 +30,15 @@ frozen memory answered $55/90$ key-detour queries against $51/90$
 ($+4.4$ percentage points, 95\% bootstrap interval $-5.6$ to $+13.3$,
 exact sign-flip $p=0.51$). The reading was not confirmed, and the
 frozen memory was itself only two answers ahead of the empty memory
-($53/90$). Adaptive allocation did not beat the matched rare-only
-budget, and an earlier label interaction did not replicate.
+($53/90$). A second acquisition model, Gemma 4 E4B, on the same tasks
+did not confirm it either ($47/90$ against $55/90$, $p=0.24$). Adaptive
+allocation did not beat the matched rare-only budget with either model.
 Descriptively, accuracy was higher when a stored example contained the
 query's optimal path ($29/32$, against $20/32$ for the empty memory on
-the same queries). The model never declared a task unreachable, so that
-family stayed at $0/450$. A Lean~4 development proves the FIFO
-reference model, and the implemented update agrees with it on all 132
-audited trajectories.
+the same queries). Neither model ever declared an asked task
+unreachable, so that family stayed at $0/450$. A Lean~4 development
+proves the FIFO reference model, and the implemented update agrees with
+it on all 222 audited trajectories.
 \end{abstract}
 
 
@@ -93,6 +94,9 @@ confirm that retaining a rare example improves accuracy, finds no
 adaptive advantage over the matched budget, and does not replicate the
 earlier label interaction. Descriptively, accuracy was higher when a
 stored example's own answer path solved the query.
+\item \textbf{A second acquisition model.} The same locked comparison
+with Gemma 4 E4B on the same tasks does not confirm retention either
+and finds no adaptive advantage.
 \item \textbf{Controls on how the evaluation is built.} One fixed path
 solves all 18 original key-detour queries. Scores fall by more than
 half on queries with nine distinct optimal paths, and the policy gap
@@ -110,8 +114,8 @@ recomputed from stored model responses.
 The first part of the study is exploratory. It uses six seeds, two
 update rounds, and follow-ups that reuse those seeds. The confirmatory
 experiment uses 30 fresh seeds and one primary contrast fixed in
-advance. Both parts use one acquisition model and synthetic graphs.
-Neither shows that adaptive allocation outperforms a policy with the
+advance, and a second locked experiment repeats it with another
+acquisition model. All parts use synthetic graphs. None shows that adaptive allocation outperforms a policy with the
 same rare budget.
 
 \begin{figure}[t]
@@ -343,7 +347,8 @@ them, each time with no admission from that family, which is the
 no-replenishment case. The confirmatory experiment adds 90 trajectories
 and 270 checks, again without a disagreement. There a rare family
 ended absent in 130 checks, 121 of them with no admission from that
-family.
+family. The second-model experiment adds another 90 trajectories and
+270 checks without a disagreement.
 
 E002's task selection and answer quality can depend on memory, so the
 probability expression does not predict its empirical effect sizes.
@@ -483,6 +488,23 @@ itself before the first such call. An amendment committed beforehand
 records the change, and the two interface seeds gave identical
 responses under both versions. The run made 2,790 calls in 2.8 hours
 of request time on the same Apple M1 Pro.
+
+\paragraph{Second acquisition model.}
+E016 repeats the policy comparison of E015 with Gemma 4 E4B building
+and reading its own memory, on the same 30 seeds and task pools. No
+Gemma call had been made on these graphs. Three differences from E015
+were fixed in a protocol committed before the run. Each solve call
+holds one task, because Gemma answers only the first task of a batched
+prompt. A test confirms that with complete answers both call patterns
+admit the same examples. There is no label sub-study. And a response
+to a one-task call that holds exactly one answer under a key other than
+the requested ID is scored as the answer to that task. On two
+interface seeds the empty-memory calls often returned their answer
+under the placeholder key of the instruction's example, which the E015
+rule would score as wrong for a formatting reason. The primary and
+secondary contrasts and the decision rule are those of E015, with one
+secondary contrast tested at $0.05$. The run made 2,430 calls in 1.2
+hours.
 
 
 \section{Results}
@@ -735,6 +757,51 @@ $0.03$). This is one of seven uncorrected descriptive values, and we do
 not read it as an effect in the opposite direction. The direction
 observed in E009 did not replicate.
 
+\subsection{Second acquisition model}
+\label{sec:second-model}
+
+All 2,430 Gemma calls completed without a format failure, a rerun, or
+an amendment. Table~\ref{tab:second-model} gives the scores next to
+those of Qwen3 on the same 270 held-out queries.
+
+\input{second-model-table}
+
+\paragraph{Primary contrast.} The mixture policy again lost coverage,
+keeping a key-detour example in 6 of 30 seeds. The frozen memory
+answered $47/90$ key-detour queries and the mixture memory $55/90$.
+The paired difference was positive in five seeds, zero in 15, and
+negative in ten, with a mean of $-8.9$ percentage points, an interval
+from $-21.1$ to $+3.3$ points, and an exact sign-flip value of $0.24$.
+The retention reading is not confirmed for this model, and the point
+estimate has the opposite sign. The frozen memory was one answer behind
+the empty memory.
+
+\paragraph{Secondary contrast.} Adaptive minus balanced rare accuracy
+was $+1.7$ points (interval $-0.6$ to $+3.9$, sign-flip $0.38$), which
+is $+3.3$ points of key-detour accuracy against $-3.3$ with Qwen3.
+Neither is established. No unreachable attempt was admitted in 210
+attempts, and the adaptive rule again spent most of its budget, 86 of
+120 supplements, on that family.
+
+\paragraph{Descriptive results.} Both rare-enriched policies scored
+below the mixture policy with Gemma, $-6.7$ and $-3.3$ points, where
+they scored above it with Qwen3. Neither ordering is established.
+Memories holding a key-detour example answered $140/258$ key-detour
+queries and memories without one $111/192$. With the query's optimal
+path stored the count was $25/36$, against $21/36$ for the empty memory
+on the same queries, a smaller matched gain than with Qwen3. Gemma
+answered $86/90$ ungated queries with the empty memory, so for this
+reader a stored example added little on any family.
+
+The scoring rule matters only for the empty memory. Of 1,350 readout
+calls, 1,176 returned the requested ID, and 169 of the remaining 174
+are empty-memory calls with one answer under the placeholder key.
+Under the strict rule of E015 the empty memory would score $4/90$ on
+key detours. The primary and secondary contrasts are identical under
+both rules. In a reading added after the aggregate was archived, Gemma
+declared no asked task unreachable in 660 unreachable tasks. Its two
+unreachable declarations repeat a memory example inside an answer.
+
 \section{Discussion}
 
 \paragraph{A reusable answer may explain the original gap.} The
@@ -803,9 +870,14 @@ six-seed counts stand as reported. In E015 the frozen memory was
 itself only two answers ahead of the empty memory (interval $-10.0$ to
 $+14.4$ points), so the experiment cannot separate ``retention does
 not matter'' from ``the retained example was not useful on these
-tasks.'' The adaptive rule was also tested
+tasks.'' The second model gives the same picture with a different
+reader. Gemma did not confirm retention, and its frozen memory was not
+ahead of its empty memory. The two models disagree on whether
+rare-enriched updating scores above or below mixture updating, and
+neither difference is established, which is what one would expect if
+the policies do not differ in accuracy on these tasks. The adaptive rule was also tested
 in a case that is unfavorable to it by construction, a least-covered
-family that the model never solved. A rule that accounts for admission
+family that neither model ever solved. A rule that accounts for admission
 rates was not tested.
 
 \paragraph{Reporting suggestions.} For a memory audit in an exactly
@@ -829,7 +901,12 @@ calculations cannot give strong evidence in either direction, and we
 apply no correction for the number of contrasts. The follow-up
 experiments E003 through E013 reuse the same six seeds and are not
 independent replications. The confirmatory experiment used one model,
-one runtime, four update rounds, and one query per call. Its null
+one runtime, four update rounds, and one query per call. The
+second-model experiment adds one small model of similar size, with a
+different serving stack, one task per solve call, and a scoring rule
+that the empty-memory comparison depends on. Two models do not
+establish generality, and both sit at the same floor on unreachable
+tasks. Its null
 results bound effects only within the reported intervals, its
 descriptive splits are observational, and its power is limited for
 small gaps. In a simulation with independent binomial answers, the
@@ -873,8 +950,8 @@ The Gemma experiment changes the model, quantization, serving backend,
 and response grammar. Its single-query evidence measures only readout
 from Qwen-generated memories on a fixed subset. The findings concern
 fixed weights, controlled task construction, and short trajectories.
-Free-form generation, longer trajectories, and replication of the
-acquisition policies with a second model remain open. The Lean proofs
+Free-form generation, longer trajectories, larger models, and a rerun
+of the original generator on fresh seeds remain open. The Lean proofs
 verify the reference model and do not verify the experiments. The
 manuscript was reviewed by its author and by AI assistants and has not
 been peer reviewed.
@@ -888,10 +965,11 @@ reading, mostly the avoidance of that loss on a holdout that one stored path cou
 A confirmatory experiment on 30 fresh seeds with diversified routes did
 not confirm that retention improves accuracy, found no adaptive
 advantage over a matched rare budget, and did not replicate an earlier
-label interaction. The implemented update agreed with the
+label interaction. A second acquisition model on the same tasks agreed
+on the first two points. The implemented update agreed with the
 machine-checked FIFO model in
-all 132 audited trajectories. Descriptively, accuracy was higher
-where a stored answer could be reused. The model never produced the
+all 222 audited trajectories. Descriptively, accuracy was higher
+where a stored answer could be reused. Neither model produced the
 response that the unreachable family requires, with or without a
 retained example. We recommend that memory-policy
 comparisons report frozen and empty baselines, family-level admission
@@ -911,8 +989,8 @@ The traces and aggregates for this version are fixed at commit
 \texttt{7df0cbdbc499}. Later commits change text, checks, and licenses, and add analyses
 derived from the same traces.
 Every reported score can be recomputed from
-the traces without running a language model, and two scripts assert
-76 and 50 numeric statements of this manuscript against the archives. The Lean~4
+the traces without running a language model, and three scripts assert
+76, 50, and 24 numeric statements of this manuscript against the archives. The Lean~4
 proofs build with Lean and Mathlib 4.26.0 from a pinned dependency
 manifest under \texttt{formal/}. For every experiment that called a model, the
 protocol was committed before the results. The offline audits E007 and
@@ -1158,6 +1236,13 @@ Its remaining results were declared descriptive in that protocol. The
 count of unreachable declarations was added after the aggregate was
 archived. The path-availability split was specified in the protocol and
 is observational.
+
+E016 fixed its primary contrast, one secondary contrast, the decision
+rule, and its single-entry scoring rule in a protocol committed before
+any call on its 30 seeds. The scoring rule was chosen after reading the
+response keys of two interface seeds, without scoring them. The
+same-query control and the reading of its unreachable declarations were
+added after its aggregate was archived.
 
 \input{prompt-example}
 

@@ -41,6 +41,12 @@ gốc và được giữ nguyên để đối chiếu.
 - Giấy phép do tác giả chọn ngày 16/11/2026: MIT cho mã, CC BY 4.0 cho
   bài, dữ liệu và tài liệu ([LICENSE](LICENSE)). Chọn cùng giấy phép
   khi tạo bản ghi Zenodo.
+- **E016 (model thứ hai) đã chạy**, 16/11/2026: Gemma 4 E4B trên đúng 30
+  seed của E015, protocol khóa trước.
+  [Kết quả](experiments/E016-second-model/analysis.md): retention cũng
+  không được xác nhận (frozen 47/90, mixture 55/90, −8,9 điểm, sign-flip
+  0,24); adaptive so với balanced +1,7 điểm (0,38). Gemma cũng không lần
+  nào trả lời "unreachable" cho bài được hỏi. Script kiểm thêm 24 con số.
 - Việc còn mở: chạy lại bộ sinh gốc trên seed mới để tách ảnh hưởng của
   bộ sinh khỏi số vòng và định dạng readout; model thứ hai; quy tắc
   phân bổ có tính đến tỉ lệ admission.

@@ -300,3 +300,26 @@ tố cùng lúc và bộ nhớ đóng băng gần như không hơn bộ nhớ r�
 thuyết "chép lại đường đi" dựa trên 32 câu quan sát; family unreachable
 chạm sàn; hai cách gọi tên chính sách và các mã E còn trong bài; thời
 điểm khóa protocol dựa vào commit, không phải đăng ký bên thứ ba.
+
+## Thí nghiệm với model thứ hai, E016 (16/11/2026)
+
+Thêm sau vòng phản biện thứ ba để xử lý giới hạn "chỉ một model" mà cả
+ba vòng đều nêu. [Protocol](../../../experiments/E016-second-model/protocol.md)
+khóa và commit trước khi chạy; [kết quả](../../../experiments/E016-second-model/analysis.md).
+Gemma 4 E4B tự tạo và tự đọc bộ nhớ trên đúng 30 seed của E015, 2.430
+lượt gọi, 1,15 giờ, không sai lệch nào so với protocol.
+
+| Câu hỏi | Gemma 4 E4B | Qwen3 8B (E015) |
+| --- | --- | --- |
+| Chính: frozen − mixture, key-detour | 47/90 so với 55/90; −8,9 điểm; sign-flip 0,24. Không xác nhận | 55/90 so với 51/90; +4,4 điểm; 0,51. Không xác nhận |
+| Phụ: adaptive − balanced, rare | +1,7 điểm; 0,38. Không xác lập | −1,7 điểm; 0,51. Không xác lập |
+| Trả lời "unreachable" cho bài được hỏi | 0 lần trên 660 bài | 0 lần |
+
+Hai model đồng ý ở kết luận chính (không xác nhận retention, không có
+lợi thế adaptive) và ngược dấu ở thứ tự các chính sách, đúng như kỳ
+vọng nếu các chính sách không khác nhau về độ chính xác trên các bài
+này. Mọi so sánh với bộ nhớ rỗng của Gemma phụ thuộc quy tắc chấm đã
+chốt trong protocol (48/90 theo quy tắc đó, 4/90 theo quy tắc chặt).
+
+Phần này được đưa vào bản thảo sau bản mà reviewer vòng ba đã chấm, nên
+cần một vòng chấm riêng (xem mục tiếp theo).

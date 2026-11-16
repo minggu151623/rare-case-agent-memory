@@ -123,3 +123,23 @@ number of rounds, and the readout format together.
 
 All 50 E015 statements in the manuscript are asserted by
 `experiments/E015-confirmatory/check_manuscript.py`.
+
+## November 16 second acquisition model
+
+E016 was locked before its results. It adds one claim and bounds others.
+
+| Claim | Change | Reason |
+| --- | --- | --- |
+| The E015 null results may be specific to Qwen3. | Addressed with one further model. | E016, Gemma 4 E4B on the same tasks: frozen 47/90 against mixture 55/90 on key detours, −8.9 points, interval −21.1 to +3.3, exact sign-flip 0.24. Adaptive minus balanced +1.7 points, sign-flip 0.38. |
+| Rare-enriched updating scores above mixture updating. | Not established on either model, with opposite point estimates. | Qwen3 +8.9 and +5.6 points, Gemma −6.7 and −3.3 points. |
+| A stored example coincides with higher accuracy when it holds the query's path. | Same direction, weaker. | Gemma 25/36 against 21/36 for the empty memory on the same queries; Qwen3 29/32 against 20/32. |
+| The unreachable family is at a response floor. | Extended to both models. | Gemma declared no asked task unreachable in 660 tasks. |
+| The FIFO model describes the update trajectories. | 222 audited trajectories. | E016: 90 trajectories, 270 checks, no disagreement. |
+
+The manuscript does not claim generality from two small models, and it
+states that every comparison with Gemma's empty memory depends on the
+single-entry scoring rule fixed in the E016 protocol (48/90 under that
+rule, 4/90 under the strict rule).
+
+All 24 E016 statements are asserted by
+`experiments/E016-second-model/check_manuscript.py`.
