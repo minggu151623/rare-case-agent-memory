@@ -33,9 +33,9 @@ frozen memory was itself only two answers ahead of the empty memory
 ($53/90$). A second acquisition model, Gemma 4 E4B, on the same tasks
 did not confirm it either ($47/90$ against $55/90$, $p=0.24$). Adaptive
 allocation did not beat the matched rare-only budget with either model.
-Descriptively, accuracy was higher when a stored example contained the
-query's optimal path ($29/32$, against $20/32$ for the empty memory on
-the same queries). Neither model ever declared an asked task
+Descriptively, with Qwen3, accuracy was higher when a stored example
+contained the query's optimal path ($29/32$, against $20/32$ for the
+empty memory on the same queries). Neither model ever declared an asked task
 unreachable, so that family stayed at $0/450$. A Lean~4 development
 proves the FIFO reference model, and the implemented update agrees with
 it on all 222 audited trajectories.
@@ -390,7 +390,8 @@ preserving node roles and directed edge locks when computing graph
 equivalence. Initial-memory and empty-memory controls use the same
 holdout within the seed. Held-out answers are not used to update memory.
 
-The acquisition and Qwen transfer experiments used Qwen3 8B \cite{qwen3},
+The acquisition experiments E001 through E015 and the Qwen transfer
+experiments used Qwen3 8B \cite{qwen3},
 running locally in Ollama 0.40.12 with thinking disabled, temperature
 zero, a 4096-token context, and up to 384 output tokens per call.
 The protocols record the exact model digest and seeds. The confirmatory
@@ -503,8 +504,9 @@ interface seeds the empty-memory calls often returned their answer
 under the placeholder key of the instruction's example, which the E015
 rule would score as wrong for a formatting reason. The primary and
 secondary contrasts and the decision rule are those of E015, with one
-secondary contrast tested at $0.05$. The run made 2,430 calls in 1.2
-hours.
+secondary contrast tested at $0.05$. Gemma ran as an MLX 4-bit
+snapshot in LM Studio 0.4.25+1 with the limits of E015. The run made
+2,430 calls in 1.2 hours.
 
 
 \section{Results}
@@ -793,12 +795,20 @@ on the same queries, a smaller matched gain than with Qwen3. Gemma
 answered $86/90$ ungated queries with the empty memory, so for this
 reader a stored example added little on any family.
 
-The scoring rule matters only for the empty memory. Of 1,350 readout
+The scoring rule matters mainly for the empty memory. Of 1,350 readout
 calls, 1,176 returned the requested ID, and 169 of the remaining 174
 are empty-memory calls with one answer under the placeholder key.
 Under the strict rule of E015 the empty memory would score $4/90$ on
-key detours. The primary and secondary contrasts are identical under
-both rules. In a reading added after the aggregate was archived, Gemma
+key detours. The rule also scored two frozen-memory answers to ungated
+queries. Of 1,080 solve calls, 1,077 returned the requested ID. The
+other three are one ungated background task in round one of seed 7125,
+once per updating arm, and the rule admitted that example in all three
+arms. Rescoring the readout strictly leaves both contrasts unchanged,
+but those trajectories were acquired under the locked rule. After a
+reviewer pointed this out we reran seed 7125 with the strict rule in
+acquisition and readout, 81 further calls. Its primary difference
+stayed at $+2$ and its secondary difference at zero, so both contrasts
+are the same under either rule. In a reading added after the aggregate was archived, Gemma
 declared no asked task unreachable in 660 unreachable tasks. Its two
 unreachable declarations repeat a memory example inside an answer.
 
@@ -861,7 +871,8 @@ E015 combined a matched rare budget, varied paths during acquisition
 and evaluation, and matched renderings on fresh seeds. Under that
 combination no policy contrast was established: not retention, not
 adaptation, and not the label interaction. These are null results on
-one model, one graph domain, and one readout format. The primary
+one graph domain and one readout format, with two small models for the
+first two contrasts. The primary
 interval leaves room for a retention effect of up to about 13 points.
 E015 changed the generator, the number of rounds, and the readout
 format together, so it does not identify which change removed the gap,
@@ -874,8 +885,8 @@ tasks.'' The second model gives the same picture with a different
 reader. Gemma did not confirm retention, and its frozen memory was not
 ahead of its empty memory. The two models disagree on whether
 rare-enriched updating scores above or below mixture updating, and
-neither difference is established, which is what one would expect if
-the policies do not differ in accuracy on these tasks. The adaptive rule was also tested
+neither difference is established. Two nonsignificant estimates of
+opposite sign do not show that the policies are equivalent. The adaptive rule was also tested
 in a case that is unfavorable to it by construction, a least-covered
 family that neither model ever solved. A rule that accounts for admission
 rates was not tested.
@@ -904,12 +915,13 @@ independent replications. The confirmatory experiment used one model,
 one runtime, four update rounds, and one query per call. The
 second-model experiment adds one small model of similar size, with a
 different serving stack, one task per solve call, and a scoring rule
-that the empty-memory comparison depends on. Two models do not
+that the empty-memory comparison depends on and that admitted one
+example in one seed. Two models do not
 establish generality, and both sit at the same floor on unreachable
-tasks. Its null
-results bound effects only within the reported intervals, its
-descriptive splits are observational, and its power is limited for
-small gaps. In a simulation with independent binomial answers, the
+tasks. The null
+results of both experiments bound effects only within the reported
+intervals, the descriptive splits are observational, and power is
+limited for small gaps. In a simulation with independent binomial answers, the
 locked criterion detects a true gap of 25 points in 93\% of studies,
 20 points in 74\%, and 15 points in 46\%. Independence implies a
 paired-difference standard deviation near $1.2$ answers, above the
@@ -946,9 +958,10 @@ each arm. The calls were stateless. The design does not measure
 sensitivity to other mixtures or inference-order effects. The new-motif
 condition also changes
 the holdout draw, and its key-required tasks avoid revisiting a node.
-The Gemma experiment changes the model, quantization, serving backend,
-and response grammar. Its single-query evidence measures only readout
-from Qwen-generated memories on a fixed subset. The findings concern
+The Gemma readout experiments E006 and E010 change the model,
+quantization, serving backend, and response grammar. Their
+single-query evidence measures only readout from Qwen-generated
+memories on a fixed subset. The findings concern
 fixed weights, controlled task construction, and short trajectories.
 Free-form generation, longer trajectories, larger models, and a rerun
 of the original generator on fresh seeds remain open. The Lean proofs
@@ -985,12 +998,14 @@ source are in the project repository:
 \begin{center}
 \url{https://github.com/minggu151623/rare-case-agent-memory}
 \end{center}
-The traces and aggregates for this version are fixed at commit
-\texttt{7df0cbdbc499}. Later commits change text, checks, and licenses, and add analyses
-derived from the same traces.
+The E001--E015 traces and aggregates are fixed at commit
+\texttt{7df0cbdbc499} and the E016 traces and aggregate at commit
+\texttt{9c26ca535178}. Later commits change text, checks, and licenses,
+add analyses derived from these traces, and add the strict-rule rerun
+of one E016 seed.
 Every reported score can be recomputed from
 the traces without running a language model, and three scripts assert
-76, 50, and 24 numeric statements of this manuscript against the archives. The Lean~4
+76, 50, and 27 numeric statements of this manuscript against the archives. The Lean~4
 proofs build with Lean and Mathlib 4.26.0 from a pinned dependency
 manifest under \texttt{formal/}. For every experiment that called a model, the
 protocol was committed before the results. The offline audits E007 and
@@ -1240,9 +1255,12 @@ is observational.
 E016 fixed its primary contrast, one secondary contrast, the decision
 rule, and its single-entry scoring rule in a protocol committed before
 any call on its 30 seeds. The scoring rule was chosen after reading the
-response keys of two interface seeds, without scoring them. The
-same-query control and the reading of its unreachable declarations were
-added after its aggregate was archived.
+response keys of two interface seeds and four response bodies, without
+scoring them. Running the report code on those seeds to test it also
+showed that Gemma had declared no development task unreachable. The
+same-query control, the reading of its unreachable declarations, the
+list of answers that the scoring rule changed, and the strict-rule
+rerun of seed 7125 were added after its aggregate was archived.
 
 \input{prompt-example}
 

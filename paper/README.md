@@ -129,7 +129,7 @@ python3 paper/coverage_figure.py  # writes paper/coverage-accuracy.pdf, needs ma
 ## Replay the second-model experiment
 
 [E016](../experiments/E016-second-model/analysis.md) ran the same 30
-seeds with Gemma 4 E4B in LM Studio 0.4.25+1. A script asserts 24
+seeds with Gemma 4 E4B in LM Studio 0.4.25+1. A script asserts 27
 numeric statements of the manuscript.
 
 ```sh

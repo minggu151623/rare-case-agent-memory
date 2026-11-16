@@ -87,6 +87,21 @@ def statements():
                json.loads(d["response"])["answers"].get(d["arm"].split("/")[-1])
                == {"unreachable": True} for d in EXTRA["unreachable_declarations"]),
            len(EXTRA["unreachable_declarations"])), (660, 0, 2))
+    rule = json.loads((HERE / "strict_rule.json").read_text())
+    tally = {(r["phase"], r["memory"], r["family"]): r["answers"]
+             for r in rule["correct_answers_scored_only_by_the_single_entry_rule"]}
+    rerun = rule["strict_rerun_of_seed_7125"]
+    claim("solve calls returning the requested ID",
+          (said["acquisition_returned_requested_id"], said["acquisition_answers"]), (1077, 1080))
+    claim("answers the rule changed outside the empty memory",
+          (tally[("evaluation", "frozen", "ungated")],
+           sum(v for (phase, _, _), v in tally.items() if phase == "solve"),
+           rule["seeds_with_a_solve_rescue"],
+           {(r["task"], r["round"]) for r in rule["solve_rescues"]}),
+          (2, 3, [7125], {("b000", 1)}))
+    claim("strict rerun of seed 7125",
+          (rerun["calls"], rerun["primary_difference"], rerun["secondary_difference"]),
+          (81, {"locked": 2, "strict": 2}, {"locked": 0, "strict": 0}))
     claim("FIFO conformance", (fifo["trajectories"], fifo["checks"]), (90, 270))
     claim("trajectories audited in total",
           fifo["trajectories"] + E015["fifo_conformance"]["trajectories"]

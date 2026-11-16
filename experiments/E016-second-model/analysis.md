@@ -45,9 +45,10 @@ key-detour queries than the frozen memory, 55 against 47. The frozen
 memory was one answer behind the empty memory (47 against 48; interval
 −16.7 to +13.3 points).
 
-Under the strict E015 scoring rule the primary contrast is identical,
-because neither memory in it returned a lone answer under another key
-that changed a score.
+When the readout is rescored under the strict E015 rule the primary
+contrast is identical. That rescoring keeps the trajectories acquired
+under the locked rule. See "Where the scoring rule acted" below for the
+one seed in which the rule changed an admission.
 
 ## Secondary contrast: adaptive minus balanced, rare answers
 
@@ -112,6 +113,26 @@ Three sign-flip values in this block are uncorrected.
 - **Echoed memory IDs.** Three frozen-memory readout calls returned a
   single answer keyed by a memory example ID. The locked rule scores
   that answer for the asked task.
+
+## Where the scoring rule acted (added after the fourth-round review)
+
+[strict_rule.py](strict_rule.py) writes [strict_rule.json](strict_rule.json).
+An independent reviewer found that the rule had also acted in
+acquisition, which the first version of this analysis did not say.
+
+- Correct answers scored only because of the rule: 44 key-detour and 7
+  ungated answers of the empty memory, 2 ungated answers of the frozen
+  memory, and 3 solve answers.
+- The 3 solve answers are one task: ungated background task `b000` in
+  round 1 of seed 7125, once per updating arm. The rule admitted it in
+  all three arms. No other seed has a solve rescue.
+- **Strict rerun of seed 7125.** We reran this seed with the rule off
+  in acquisition and readout (81 new calls,
+  `sensitivity-strict-rule/7125`). Key-detour scores were unchanged for
+  the frozen and updated memories (3, 1, 2, 2), the primary difference
+  stayed at +2, and the secondary difference stayed at 0. The empty
+  memory went from 1 to 0. Both contrasts are therefore the same under
+  either rule.
 
 ## Deviations and observations
 

@@ -141,5 +141,5 @@ states that every comparison with Gemma's empty memory depends on the
 single-entry scoring rule fixed in the E016 protocol (48/90 under that
 rule, 4/90 under the strict rule).
 
-All 24 E016 statements are asserted by
+All 27 E016 statements are asserted by
 `experiments/E016-second-model/check_manuscript.py`.

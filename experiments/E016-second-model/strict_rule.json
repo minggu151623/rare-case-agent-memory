@@ -1,0 +1,158 @@
+{
+ "correct_answers_scored_only_by_the_single_entry_rule": [
+  {
+   "phase": "evaluation",
+   "memory": "empty",
+   "family": "key_detour",
+   "answers": 44
+  },
+  {
+   "phase": "evaluation",
+   "memory": "empty",
+   "family": "ungated",
+   "answers": 7
+  },
+  {
+   "phase": "evaluation",
+   "memory": "frozen",
+   "family": "ungated",
+   "answers": 2
+  },
+  {
+   "phase": "solve",
+   "memory": "random_model",
+   "family": "ungated",
+   "answers": 1
+  },
+  {
+   "phase": "solve",
+   "memory": "rare_only_model",
+   "family": "ungated",
+   "answers": 1
+  },
+  {
+   "phase": "solve",
+   "memory": "targeted_model",
+   "family": "ungated",
+   "answers": 1
+  }
+ ],
+ "solve_rescues": [
+  {
+   "seed": 7125,
+   "phase": "solve",
+   "memory": "targeted_model",
+   "round": 1,
+   "task": "b000",
+   "family": "ungated"
+  },
+  {
+   "seed": 7125,
+   "phase": "solve",
+   "memory": "random_model",
+   "round": 1,
+   "task": "b000",
+   "family": "ungated"
+  },
+  {
+   "seed": 7125,
+   "phase": "solve",
+   "memory": "rare_only_model",
+   "round": 1,
+   "task": "b000",
+   "family": "ungated"
+  }
+ ],
+ "seeds_with_a_solve_rescue": [
+  7125
+ ],
+ "strict_rerun_of_seed_7125": {
+  "calls": 81,
+  "final_memory": {
+   "targeted_model": {
+    "locked": [
+     "b001",
+     "b100",
+     "b101",
+     "b201",
+     "b300",
+     "b301"
+    ],
+    "strict": [
+     "b001",
+     "b100",
+     "b101",
+     "b201",
+     "b300",
+     "b301"
+    ]
+   },
+   "random_model": {
+    "locked": [
+     "s100",
+     "b201",
+     "s200",
+     "b300",
+     "b301",
+     "s302"
+    ],
+    "strict": [
+     "s100",
+     "b201",
+     "s200",
+     "b300",
+     "b301",
+     "s302"
+    ]
+   },
+   "rare_only_model": {
+    "locked": [
+     "b100",
+     "b101",
+     "s101",
+     "b201",
+     "b300",
+     "b301"
+    ],
+    "strict": [
+     "b001",
+     "b100",
+     "b101",
+     "b201",
+     "b300",
+     "b301"
+    ]
+   }
+  },
+  "key_detour_correct": {
+   "empty": {
+    "locked": 1,
+    "strict": 0
+   },
+   "frozen": {
+    "locked": 3,
+    "strict": 3
+   },
+   "random_model": {
+    "locked": 1,
+    "strict": 1
+   },
+   "rare_only_model": {
+    "locked": 2,
+    "strict": 2
+   },
+   "targeted_model": {
+    "locked": 2,
+    "strict": 2
+   }
+  },
+  "primary_difference": {
+   "locked": 2,
+   "strict": 2
+  },
+  "secondary_difference": {
+   "locked": 0,
+   "strict": 0
+  }
+ }
+}

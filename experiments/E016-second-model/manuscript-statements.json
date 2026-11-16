@@ -22,6 +22,9 @@
     "empty-memory placeholder responses among those without the requested ID",
     "empty memory under the strict rule",
     "unreachable tasks asked and declarations of an asked task",
+    "solve calls returning the requested ID",
+    "answers the rule changed outside the empty memory",
+    "strict rerun of seed 7125",
     "FIFO conformance",
     "trajectories audited in total"
   ]

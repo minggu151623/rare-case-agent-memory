@@ -323,3 +323,27 @@ chốt trong protocol (48/90 theo quy tắc đó, 4/90 theo quy tắc chặt).
 
 Phần này được đưa vào bản thảo sau bản mà reviewer vòng ba đã chấm, nên
 cần một vòng chấm riêng (xem mục tiếp theo).
+
+## Phản biện độc lập, vòng bốn: riêng cho E016 (16/11/2026)
+
+[INDEPENDENT_REVIEW_ROUND4.md](INDEPENDENT_REVIEW_ROUND4.md). Reviewer
+mới, chạy trên model khác với ba vòng trước, chấm bản ở commit
+`87937d4`. Nó tự viết bộ kiểm đường đi và quy tắc chấm riêng rồi tính
+lại từ trace thô: mọi con số của E016 khớp; protocol được commit trước
+kết quả; mã phân tích không đổi sau khi khóa. Điểm vẫn 3/6 cho hội nghị
+chính. **Zenodo: READY AFTER FIXES, ba điểm bắt buộc.**
+
+| Điểm vòng bốn | Loại | Xử lý |
+| --- | --- | --- |
+| Bài viết "quy tắc chấm chỉ ảnh hưởng bộ nhớ rỗng" và "hai contrast giống hệt dưới cả hai quy tắc" là sai: quy tắc còn chấm 3 lượt giải (một bài ungated ở vòng 1 của seed 7125, được nhận vào bộ nhớ ở cả ba nhánh) và 2 câu ungated của bộ nhớ đóng băng | Bắt buộc | Viết lại đúng sự thật trong bài và `analysis.md`; thêm `strict_rule.py`; **chạy lại seed 7125 với quy tắc chặt ở cả acquisition lẫn readout (81 lượt gọi mới)**: hiệu chính vẫn +2, hiệu phụ vẫn 0, nên hai contrast không đổi; script kiểm thêm 3 con số |
+| Commit cố định trace đã cũ, chưa gồm E016 | Bắt buộc | Ghi hai commit: `7df0cbdbc499` cho E001–E015, `9c26ca535178` cho E016 |
+| Câu Limitations về "thí nghiệm Gemma" mâu thuẫn với E016 | Bắt buộc | Đổi thành "các thí nghiệm đọc E006 và E010" |
+| Hai chỗ còn viết như chỉ có một model | Không bắt buộc | Đã sửa |
+| Một câu nghiêng về đọc hai null ngược dấu là "tương đương" | Không bắt buộc | Thay bằng câu nói rõ điều đó không chứng minh tương đương |
+| Abstract không nói path split là của Qwen3 | Không bắt buộc | Đã thêm |
+| Phụ lục thiếu: đã đọc bốn câu trả lời và đã chạy report trên seed thử | Không bắt buộc | Đã thêm |
+| Thiếu runtime và quantization của E016 trong thân bài | Không bắt buộc | Đã thêm |
+| Trace không có dấu thời gian thực; hai model nhỏ; unreachable chạm sàn | Không sửa được | Đã ghi trong Limitations |
+
+Sau các sửa này không còn điểm bắt buộc nào để ngỏ. Bản sau khi sửa
+chưa được chấm thêm một vòng nữa.
