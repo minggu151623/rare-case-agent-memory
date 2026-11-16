@@ -364,3 +364,24 @@ ungated), tức Gemma ở nhiệt độ 0 trong LM Studio không lặp lại tuy
 không bắt buộc mà reviewer đề nghị đã được thêm vào bài và `analysis.md`:
 ghi chú về tính lặp lại này, và việc lần chạy lại 81 lượt gọi được
 commit cùng kết quả của nó.
+
+## Rà soát cuối của người rà soát, sau vòng năm (16/11/2026)
+
+Đọc lại toàn bộ bản thảo một lần nữa theo yêu cầu của tác giả. Không
+tìm thấy lỗi số liệu hay kết luận nào. Sửa tám chỗ diễn đạt còn sót từ
+lúc bài chỉ có một model hoặc một thí nghiệm xác nhận:
+
+- Abstract: "0/450" ghi rõ là cho mỗi model.
+- Hình 1: caption ghi rõ cả hai panel là của Qwen3 8B.
+- Discussion: "neither experiment" thành "no experiment here"; tiêu đề
+  đoạn "combined experiment" thành số nhiều; "The model failed every
+  unreachable attempt" thành "Both models".
+- Section 5: "E001 through E015" thành "Every acquisition experiment
+  before E016", vì E006 và E010 dùng Gemma để đọc.
+- Assets: ghi thêm script vẽ Hình 1 cần Matplotlib.
+- Một dòng nguồn bị nối câu ở cuối Introduction.
+
+Đã build lại Lean 4.26.0: 1.708 job qua, không `sorry`, 16 mệnh đề chỉ
+dùng ba tiên đề chuẩn. README gốc có thêm một đoạn tóm tắt kết quả.
+
+**Chốt:** bản ở `artifacts/current/` là bản phát hành.

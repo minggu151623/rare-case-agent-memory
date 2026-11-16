@@ -35,8 +35,8 @@ did not confirm it either ($47/90$ against $55/90$, $p=0.24$). Adaptive
 allocation did not beat the matched rare-only budget with either model.
 Descriptively, with Qwen3, accuracy was higher when a stored example
 contained the query's optimal path ($29/32$, against $20/32$ for the
-empty memory on the same queries). Neither model ever declared an asked task
-unreachable, so that family stayed at $0/450$. A Lean~4 development
+empty memory on the same queries). Neither model ever declared an
+asked task unreachable, so that family stayed at $0/450$ for each. A Lean~4 development
 proves the FIFO reference model, and the implemented update agrees with
 it on all 222 audited trajectories.
 \end{abstract}
@@ -115,8 +115,8 @@ The first part of the study is exploratory. It uses six seeds, two
 update rounds, and follow-ups that reuse those seeds. The confirmatory
 experiment uses 30 fresh seeds and one primary contrast fixed in
 advance, and a second locked experiment repeats it with another
-acquisition model. All parts use synthetic graphs. None shows that adaptive allocation outperforms a policy with the
-same rare budget.
+acquisition model. All parts use synthetic graphs. None shows that
+adaptive allocation outperforms a policy with the same rare budget.
 
 \begin{figure}[t]
 \centering
@@ -124,7 +124,8 @@ same rare budget.
 \caption{Retained coverage and held-out accuracy on key-detour tasks,
 by evaluated memory. Blue bars give the percentage of seeds whose
 memory still holds a key-detour example, and hatched orange bars the
-percentage of held-out key-detour queries answered correctly. Left:
+percentage of held-out key-detour queries answered correctly, both
+with Qwen3 8B. Left:
 exploratory study, where one stored path answers every query; accuracy
 tracks retained coverage. Right: confirmatory experiment with nine
 answer paths; coverage differs across memories as much as before and
@@ -390,7 +391,7 @@ preserving node roles and directed edge locks when computing graph
 equivalence. Initial-memory and empty-memory controls use the same
 holdout within the seed. Held-out answers are not used to update memory.
 
-The acquisition experiments E001 through E015 and the Qwen transfer
+Every acquisition experiment before E016 and the Qwen transfer
 experiments used Qwen3 8B \cite{qwen3},
 running locally in Ollama 0.40.12 with thinking disabled, temperature
 zero, a 4096-token context, and up to 384 output tokens per call.
@@ -838,13 +839,13 @@ answered every held-out query. The path split of E015 fits that account
 descriptively. Our working hypothesis is that the E002 gap was
 retention of a reusable answer. That gap is not evidence that retaining a
 rare example improves accuracy on other tasks of its family, and
-neither experiment shows a benefit of adapting to current coverage
+no experiment here shows a benefit of adapting to current coverage
 beyond spending the budget on rare tasks.
 
 \paragraph{Coverage is not readout.} Targeting changes the tasks that
-reach the verifier. The model failed every recorded unreachable
-attempt, so it could not add an example from that family using its own
-answers. Supplying an exact answer changed which examples entered and
+reach the verifier. Both models failed every recorded unreachable
+attempt, so neither could add an example from that family using its
+own answers. Supplying an exact answer changed which examples entered and
 survived in memory, and held-out accuracy on unreachable tasks stayed
 at zero. For key detours, retained examples coincided with correct
 answers on the original holdout, where one path answers every query.
@@ -868,7 +869,7 @@ sign-flip calculation, and its direction did not recur on 30 fresh
 seeds. The experiments leave open which cross-graph correspondences
 matter.
 
-\paragraph{What the combined experiment does and does not establish.}
+\paragraph{What the combined experiments do and do not establish.}
 Each exploratory control changed one aspect of the original comparison.
 E015 combined a matched rare budget, varied paths during acquisition
 and evaluation, and matched renderings on fresh seeds. Under that
@@ -1017,7 +1018,8 @@ strict-rule rerun of one E016 seed was committed with its result. A commit recor
 the time of a design and is not a third-party preregistration.
 
 \paragraph{Assets and environment.} The code needs Python 3.10 or later
-and only its standard library. The code in the repository is released
+and only its standard library. The script that draws
+Figure~\ref{fig:coverage-accuracy} also needs Matplotlib. The code in the repository is released
 under the MIT License, and the manuscript, protocols, traces, and
 aggregates under CC BY 4.0. Qwen3 8B, Lean~4, and Mathlib are
 distributed under the Apache License 2.0. Gemma 4 E4B is used under the

@@ -5,6 +5,13 @@ tasks over successive updates, where losses occur, and whether targeted
 supplementation improves rare-case accuracy at the same budget as random
 supplementation. The agent's model weights are fixed.
 
+**Result.** Coverage of rare task families was lost through verified
+admission and FIFO eviction as the machine-checked reference model
+describes, and held-out accuracy did not follow coverage. Two locked
+experiments on 30 fresh seeds, with Qwen3 8B and with Gemma 4 E4B, did
+not confirm that retaining a rare example improves accuracy and found no
+advantage of adaptive allocation over a matched rare-only budget.
+
 - [Research state](research-state.yaml), [decision log](research-log.md), and
   [findings](findings.md)
 - [Related work and positioning](literature/survey.md)
