@@ -1,0 +1,743 @@
+{
+  "seed": 7124,
+  "initial_memory": {
+    "ungated": 4,
+    "key_detour": 1,
+    "unreachable": 1
+  },
+  "plan": {
+    "random_model": [
+      "key_detour",
+      "ungated",
+      "key_detour",
+      "ungated"
+    ],
+    "rare_only_model": [
+      "unreachable",
+      "key_detour",
+      "unreachable",
+      "key_detour"
+    ],
+    "tie_order": [
+      "key_detour",
+      "unreachable"
+    ],
+    "arm_order": [
+      "targeted_model",
+      "random_model",
+      "rare_only_model"
+    ],
+    "readout_order": [
+      "rare_only_model",
+      "empty",
+      "random_model",
+      "frozen",
+      "targeted_model"
+    ],
+    "label_order": [
+      [
+        "targeted_model",
+        "shared",
+        0
+      ],
+      [
+        "targeted_model",
+        "mixed",
+        1
+      ],
+      [
+        "random_model",
+        "mixed",
+        1
+      ],
+      [
+        "random_model",
+        "mixed",
+        0
+      ],
+      [
+        "random_model",
+        "shared",
+        0
+      ],
+      [
+        "random_model",
+        "shared",
+        1
+      ],
+      [
+        "targeted_model",
+        "shared",
+        1
+      ],
+      [
+        "targeted_model",
+        "mixed",
+        0
+      ],
+      [
+        "rare_only_model",
+        "shared",
+        1
+      ],
+      [
+        "rare_only_model",
+        "mixed",
+        1
+      ],
+      [
+        "rare_only_model",
+        "shared",
+        0
+      ],
+      [
+        "rare_only_model",
+        "mixed",
+        0
+      ]
+    ]
+  },
+  "arms": {
+    "targeted_model": {
+      "rounds": [
+        {
+          "round": 1,
+          "supplement": {
+            "id": "s000",
+            "family": "key_detour"
+          },
+          "attempted": {
+            "ungated": 2,
+            "key_detour": 1,
+            "unreachable": 0
+          },
+          "admitted": {
+            "ungated": 2,
+            "key_detour": 0,
+            "unreachable": 0
+          },
+          "admitted_ids": [
+            "b000",
+            "b001"
+          ],
+          "evicted": {
+            "ungated": 1,
+            "key_detour": 0,
+            "unreachable": 1
+          },
+          "retained": {
+            "ungated": 5,
+            "key_detour": 1,
+            "unreachable": 0
+          }
+        },
+        {
+          "round": 2,
+          "supplement": {
+            "id": "s100",
+            "family": "unreachable"
+          },
+          "attempted": {
+            "ungated": 2,
+            "key_detour": 0,
+            "unreachable": 1
+          },
+          "admitted": {
+            "ungated": 2,
+            "key_detour": 0,
+            "unreachable": 0
+          },
+          "admitted_ids": [
+            "b100",
+            "b101"
+          ],
+          "evicted": {
+            "ungated": 1,
+            "key_detour": 1,
+            "unreachable": 0
+          },
+          "retained": {
+            "ungated": 6,
+            "key_detour": 0,
+            "unreachable": 0
+          }
+        },
+        {
+          "round": 3,
+          "supplement": {
+            "id": "s201",
+            "family": "key_detour"
+          },
+          "attempted": {
+            "ungated": 2,
+            "key_detour": 1,
+            "unreachable": 0
+          },
+          "admitted": {
+            "ungated": 2,
+            "key_detour": 1,
+            "unreachable": 0
+          },
+          "admitted_ids": [
+            "b200",
+            "b201",
+            "s201"
+          ],
+          "evicted": {
+            "ungated": 3,
+            "key_detour": 0,
+            "unreachable": 0
+          },
+          "retained": {
+            "ungated": 5,
+            "key_detour": 1,
+            "unreachable": 0
+          }
+        },
+        {
+          "round": 4,
+          "supplement": {
+            "id": "s300",
+            "family": "unreachable"
+          },
+          "attempted": {
+            "ungated": 2,
+            "key_detour": 0,
+            "unreachable": 1
+          },
+          "admitted": {
+            "ungated": 2,
+            "key_detour": 0,
+            "unreachable": 0
+          },
+          "admitted_ids": [
+            "b300",
+            "b301"
+          ],
+          "evicted": {
+            "ungated": 2,
+            "key_detour": 0,
+            "unreachable": 0
+          },
+          "retained": {
+            "ungated": 5,
+            "key_detour": 1,
+            "unreachable": 0
+          }
+        }
+      ],
+      "final_memory": [
+        "b101",
+        "b200",
+        "b201",
+        "s201",
+        "b300",
+        "b301"
+      ]
+    },
+    "random_model": {
+      "rounds": [
+        {
+          "round": 1,
+          "supplement": {
+            "id": "s000",
+            "family": "key_detour"
+          },
+          "attempted": {
+            "ungated": 2,
+            "key_detour": 1,
+            "unreachable": 0
+          },
+          "admitted": {
+            "ungated": 2,
+            "key_detour": 0,
+            "unreachable": 0
+          },
+          "admitted_ids": [
+            "b000",
+            "b001"
+          ],
+          "evicted": {
+            "ungated": 1,
+            "key_detour": 0,
+            "unreachable": 1
+          },
+          "retained": {
+            "ungated": 5,
+            "key_detour": 1,
+            "unreachable": 0
+          }
+        },
+        {
+          "round": 2,
+          "supplement": {
+            "id": "s102",
+            "family": "ungated"
+          },
+          "attempted": {
+            "ungated": 3,
+            "key_detour": 0,
+            "unreachable": 0
+          },
+          "admitted": {
+            "ungated": 3,
+            "key_detour": 0,
+            "unreachable": 0
+          },
+          "admitted_ids": [
+            "b100",
+            "b101",
+            "s102"
+          ],
+          "evicted": {
+            "ungated": 2,
+            "key_detour": 1,
+            "unreachable": 0
+          },
+          "retained": {
+            "ungated": 6,
+            "key_detour": 0,
+            "unreachable": 0
+          }
+        },
+        {
+          "round": 3,
+          "supplement": {
+            "id": "s201",
+            "family": "key_detour"
+          },
+          "attempted": {
+            "ungated": 2,
+            "key_detour": 1,
+            "unreachable": 0
+          },
+          "admitted": {
+            "ungated": 2,
+            "key_detour": 1,
+            "unreachable": 0
+          },
+          "admitted_ids": [
+            "b200",
+            "b201",
+            "s201"
+          ],
+          "evicted": {
+            "ungated": 3,
+            "key_detour": 0,
+            "unreachable": 0
+          },
+          "retained": {
+            "ungated": 5,
+            "key_detour": 1,
+            "unreachable": 0
+          }
+        },
+        {
+          "round": 4,
+          "supplement": {
+            "id": "s302",
+            "family": "ungated"
+          },
+          "attempted": {
+            "ungated": 3,
+            "key_detour": 0,
+            "unreachable": 0
+          },
+          "admitted": {
+            "ungated": 3,
+            "key_detour": 0,
+            "unreachable": 0
+          },
+          "admitted_ids": [
+            "b300",
+            "b301",
+            "s302"
+          ],
+          "evicted": {
+            "ungated": 3,
+            "key_detour": 0,
+            "unreachable": 0
+          },
+          "retained": {
+            "ungated": 5,
+            "key_detour": 1,
+            "unreachable": 0
+          }
+        }
+      ],
+      "final_memory": [
+        "b200",
+        "b201",
+        "s201",
+        "b300",
+        "b301",
+        "s302"
+      ]
+    },
+    "rare_only_model": {
+      "rounds": [
+        {
+          "round": 1,
+          "supplement": {
+            "id": "s001",
+            "family": "unreachable"
+          },
+          "attempted": {
+            "ungated": 2,
+            "key_detour": 0,
+            "unreachable": 1
+          },
+          "admitted": {
+            "ungated": 2,
+            "key_detour": 0,
+            "unreachable": 0
+          },
+          "admitted_ids": [
+            "b000",
+            "b001"
+          ],
+          "evicted": {
+            "ungated": 1,
+            "key_detour": 0,
+            "unreachable": 1
+          },
+          "retained": {
+            "ungated": 5,
+            "key_detour": 1,
+            "unreachable": 0
+          }
+        },
+        {
+          "round": 2,
+          "supplement": {
+            "id": "s101",
+            "family": "key_detour"
+          },
+          "attempted": {
+            "ungated": 2,
+            "key_detour": 1,
+            "unreachable": 0
+          },
+          "admitted": {
+            "ungated": 2,
+            "key_detour": 1,
+            "unreachable": 0
+          },
+          "admitted_ids": [
+            "b100",
+            "b101",
+            "s101"
+          ],
+          "evicted": {
+            "ungated": 2,
+            "key_detour": 1,
+            "unreachable": 0
+          },
+          "retained": {
+            "ungated": 5,
+            "key_detour": 1,
+            "unreachable": 0
+          }
+        },
+        {
+          "round": 3,
+          "supplement": {
+            "id": "s202",
+            "family": "unreachable"
+          },
+          "attempted": {
+            "ungated": 2,
+            "key_detour": 0,
+            "unreachable": 1
+          },
+          "admitted": {
+            "ungated": 2,
+            "key_detour": 0,
+            "unreachable": 0
+          },
+          "admitted_ids": [
+            "b200",
+            "b201"
+          ],
+          "evicted": {
+            "ungated": 2,
+            "key_detour": 0,
+            "unreachable": 0
+          },
+          "retained": {
+            "ungated": 5,
+            "key_detour": 1,
+            "unreachable": 0
+          }
+        },
+        {
+          "round": 4,
+          "supplement": {
+            "id": "s301",
+            "family": "key_detour"
+          },
+          "attempted": {
+            "ungated": 2,
+            "key_detour": 1,
+            "unreachable": 0
+          },
+          "admitted": {
+            "ungated": 2,
+            "key_detour": 1,
+            "unreachable": 0
+          },
+          "admitted_ids": [
+            "b300",
+            "b301",
+            "s301"
+          ],
+          "evicted": {
+            "ungated": 3,
+            "key_detour": 0,
+            "unreachable": 0
+          },
+          "retained": {
+            "ungated": 4,
+            "key_detour": 2,
+            "unreachable": 0
+          }
+        }
+      ],
+      "final_memory": [
+        "s101",
+        "b200",
+        "b201",
+        "b300",
+        "b301",
+        "s301"
+      ]
+    }
+  },
+  "readout": {
+    "rare_only_model": {
+      "h00": {
+        "answered": true,
+        "correct": true
+      },
+      "h01": {
+        "answered": true,
+        "correct": true
+      },
+      "h02": {
+        "answered": true,
+        "correct": false
+      },
+      "h03": {
+        "answered": true,
+        "correct": true
+      },
+      "h04": {
+        "answered": true,
+        "correct": true
+      },
+      "h05": {
+        "answered": true,
+        "correct": false
+      },
+      "h06": {
+        "answered": true,
+        "correct": true
+      },
+      "h07": {
+        "answered": true,
+        "correct": false
+      },
+      "h08": {
+        "answered": true,
+        "correct": false
+      }
+    },
+    "empty": {
+      "h00": {
+        "answered": true,
+        "correct": true
+      },
+      "h01": {
+        "answered": true,
+        "correct": true
+      },
+      "h02": {
+        "answered": false,
+        "correct": false
+      },
+      "h03": {
+        "answered": true,
+        "correct": true
+      },
+      "h04": {
+        "answered": false,
+        "correct": true
+      },
+      "h05": {
+        "answered": false,
+        "correct": false
+      },
+      "h06": {
+        "answered": false,
+        "correct": true
+      },
+      "h07": {
+        "answered": false,
+        "correct": false
+      },
+      "h08": {
+        "answered": false,
+        "correct": true
+      }
+    },
+    "random_model": {
+      "h00": {
+        "answered": true,
+        "correct": true
+      },
+      "h01": {
+        "answered": true,
+        "correct": true
+      },
+      "h02": {
+        "answered": true,
+        "correct": false
+      },
+      "h03": {
+        "answered": true,
+        "correct": true
+      },
+      "h04": {
+        "answered": true,
+        "correct": true
+      },
+      "h05": {
+        "answered": true,
+        "correct": false
+      },
+      "h06": {
+        "answered": true,
+        "correct": true
+      },
+      "h07": {
+        "answered": true,
+        "correct": false
+      },
+      "h08": {
+        "answered": true,
+        "correct": false
+      }
+    },
+    "frozen": {
+      "h00": {
+        "answered": true,
+        "correct": true
+      },
+      "h01": {
+        "answered": true,
+        "correct": true
+      },
+      "h02": {
+        "answered": true,
+        "correct": false
+      },
+      "h03": {
+        "answered": true,
+        "correct": true
+      },
+      "h04": {
+        "answered": true,
+        "correct": true
+      },
+      "h05": {
+        "answered": true,
+        "correct": false
+      },
+      "h06": {
+        "answered": true,
+        "correct": true
+      },
+      "h07": {
+        "answered": true,
+        "correct": false
+      },
+      "h08": {
+        "answered": true,
+        "correct": false
+      }
+    },
+    "targeted_model": {
+      "h00": {
+        "answered": true,
+        "correct": true
+      },
+      "h01": {
+        "answered": true,
+        "correct": true
+      },
+      "h02": {
+        "answered": true,
+        "correct": false
+      },
+      "h03": {
+        "answered": true,
+        "correct": true
+      },
+      "h04": {
+        "answered": true,
+        "correct": true
+      },
+      "h05": {
+        "answered": true,
+        "correct": false
+      },
+      "h06": {
+        "answered": true,
+        "correct": true
+      },
+      "h07": {
+        "answered": true,
+        "correct": false
+      },
+      "h08": {
+        "answered": true,
+        "correct": false
+      }
+    }
+  },
+  "label": {
+    "random_model": {
+      "shared": {
+        "0": {},
+        "1": {}
+      },
+      "mixed": {
+        "0": {},
+        "1": {}
+      }
+    },
+    "rare_only_model": {
+      "shared": {
+        "0": {},
+        "1": {}
+      },
+      "mixed": {
+        "0": {},
+        "1": {}
+      }
+    },
+    "targeted_model": {
+      "shared": {
+        "0": {},
+        "1": {}
+      },
+      "mixed": {
+        "0": {},
+        "1": {}
+      }
+    }
+  },
+  "backend": "rare-case-gemma-e4b",
+  "digest": null,
+  "runtime_version": "LM Studio"
+}

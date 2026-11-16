@@ -1,0 +1,2402 @@
+{
+  "seeds": [
+    7101,
+    7102,
+    7103,
+    7104,
+    7105,
+    7106,
+    7107,
+    7108,
+    7109,
+    7110,
+    7111,
+    7112,
+    7113,
+    7114,
+    7115,
+    7116,
+    7117,
+    7118,
+    7119,
+    7120,
+    7121,
+    7122,
+    7123,
+    7124,
+    7125,
+    7126,
+    7127,
+    7128,
+    7129,
+    7130
+  ],
+  "calls": 2430,
+  "format_failures": 0,
+  "answers_returned": {
+    "answered": 1176,
+    "requested": 1350
+  },
+  "usage": {
+    "acquisition_calls": 1080,
+    "acquisition_output_tokens": 31392,
+    "acquisition_prompt_tokens": 1136075,
+    "acquisition_seconds": 2146.1,
+    "calls": 2430,
+    "format_failures": 0,
+    "readout_calls": 1350,
+    "readout_output_tokens": 37849,
+    "readout_prompt_tokens": 1202094,
+    "readout_seconds": 2006.3
+  },
+  "scores": {
+    "empty": {
+      "ungated": {
+        "correct": 86,
+        "total": 90
+      },
+      "key_detour": {
+        "correct": 48,
+        "total": 90
+      },
+      "unreachable": {
+        "correct": 0,
+        "total": 90
+      }
+    },
+    "frozen": {
+      "ungated": {
+        "correct": 87,
+        "total": 90
+      },
+      "key_detour": {
+        "correct": 47,
+        "total": 90
+      },
+      "unreachable": {
+        "correct": 0,
+        "total": 90
+      }
+    },
+    "random_model": {
+      "ungated": {
+        "correct": 87,
+        "total": 90
+      },
+      "key_detour": {
+        "correct": 55,
+        "total": 90
+      },
+      "unreachable": {
+        "correct": 0,
+        "total": 90
+      }
+    },
+    "rare_only_model": {
+      "ungated": {
+        "correct": 88,
+        "total": 90
+      },
+      "key_detour": {
+        "correct": 49,
+        "total": 90
+      },
+      "unreachable": {
+        "correct": 0,
+        "total": 90
+      }
+    },
+    "targeted_model": {
+      "ungated": {
+        "correct": 88,
+        "total": 90
+      },
+      "key_detour": {
+        "correct": 52,
+        "total": 90
+      },
+      "unreachable": {
+        "correct": 0,
+        "total": 90
+      }
+    }
+  },
+  "seeds_retaining_a_key_detour_example": {
+    "empty": 0,
+    "frozen": 30,
+    "random_model": 6,
+    "rare_only_model": 29,
+    "targeted_model": 21
+  },
+  "supplement_families": {
+    "random_model": {
+      "key_detour": 13,
+      "ungated": 94,
+      "unreachable": 13
+    },
+    "rare_only_model": {
+      "key_detour": 60,
+      "unreachable": 60
+    },
+    "targeted_model": {
+      "key_detour": 34,
+      "unreachable": 86
+    }
+  },
+  "stage_totals": {
+    "random_model": {
+      "attempted": {
+        "ungated": 297,
+        "key_detour": 33,
+        "unreachable": 30
+      },
+      "admitted": {
+        "ungated": 288,
+        "key_detour": 18,
+        "unreachable": 0
+      },
+      "evicted": {
+        "ungated": 238,
+        "key_detour": 38,
+        "unreachable": 30
+      }
+    },
+    "rare_only_model": {
+      "attempted": {
+        "ungated": 203,
+        "key_detour": 80,
+        "unreachable": 77
+      },
+      "admitted": {
+        "ungated": 194,
+        "key_detour": 51,
+        "unreachable": 0
+      },
+      "evicted": {
+        "ungated": 174,
+        "key_detour": 41,
+        "unreachable": 30
+      }
+    },
+    "targeted_model": {
+      "attempted": {
+        "ungated": 203,
+        "key_detour": 54,
+        "unreachable": 103
+      },
+      "admitted": {
+        "ungated": 195,
+        "key_detour": 34,
+        "unreachable": 0
+      },
+      "evicted": {
+        "ungated": 162,
+        "key_detour": 37,
+        "unreachable": 30
+      }
+    }
+  },
+  "primary_frozen_minus_mixture_key_detour": {
+    "per_seed": [
+      0,
+      -1,
+      1,
+      -1,
+      -3,
+      -3,
+      0,
+      0,
+      0,
+      0,
+      -1,
+      1,
+      0,
+      1,
+      1,
+      0,
+      -1,
+      -1,
+      -1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      2,
+      0,
+      -1,
+      0,
+      -1,
+      0
+    ],
+    "mean": -0.2667,
+    "sd": 1.0483,
+    "mean_percentage_points": -8.89,
+    "bootstrap_95_percentage_points": [
+      -21.11,
+      3.33
+    ],
+    "positive_zero_negative": [
+      5,
+      15,
+      10
+    ],
+    "exact_sign_flip_p_two_sided": 0.23980712890625
+  },
+  "secondary_adaptive_minus_balanced_rare": {
+    "per_seed": [
+      1,
+      0,
+      -1,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "mean": 0.1,
+    "sd": 0.4026,
+    "mean_percentage_points": 1.67,
+    "bootstrap_95_percentage_points": [
+      -0.56,
+      3.89
+    ],
+    "positive_zero_negative": [
+      4,
+      25,
+      1
+    ],
+    "exact_sign_flip_p_two_sided": 0.375
+  },
+  "descriptive": {
+    "frozen_minus_empty_key_detour": {
+      "per_seed": [
+        1,
+        -1,
+        -1,
+        1,
+        -3,
+        -3,
+        0,
+        0,
+        -1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        -2,
+        0,
+        1,
+        2,
+        -1,
+        1,
+        1,
+        -1,
+        2,
+        0,
+        -1,
+        1,
+        -1,
+        0
+      ],
+      "mean": -0.0333,
+      "sd": 1.2726,
+      "mean_percentage_points": -1.11,
+      "bootstrap_95_percentage_points": [
+        -16.67,
+        13.33
+      ],
+      "positive_zero_negative": [
+        12,
+        8,
+        10
+      ],
+      "exact_sign_flip_p_two_sided": 1.0
+    },
+    "balanced_minus_mixture_key_detour": {
+      "per_seed": [
+        -1,
+        0,
+        1,
+        -1,
+        -2,
+        -1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        -1,
+        -2,
+        0,
+        1,
+        -2,
+        0,
+        0,
+        1,
+        1,
+        -1,
+        0,
+        0,
+        -1
+      ],
+      "mean": -0.2,
+      "sd": 0.8867,
+      "mean_percentage_points": -6.67,
+      "bootstrap_95_percentage_points": [
+        -16.67,
+        3.33
+      ],
+      "positive_zero_negative": [
+        6,
+        15,
+        9
+      ],
+      "exact_sign_flip_p_two_sided": 0.3131103515625
+    },
+    "adaptive_minus_mixture_key_detour": {
+      "per_seed": [
+        0,
+        0,
+        0,
+        0,
+        -2,
+        -1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        -1,
+        -1,
+        0,
+        1,
+        -1,
+        0,
+        0,
+        1,
+        1,
+        -1,
+        0,
+        0,
+        -1
+      ],
+      "mean": -0.1,
+      "sd": 0.712,
+      "mean_percentage_points": -3.33,
+      "bootstrap_95_percentage_points": [
+        -12.22,
+        4.44
+      ],
+      "positive_zero_negative": [
+        5,
+        18,
+        7
+      ],
+      "exact_sign_flip_p_two_sided": 0.61328125
+    }
+  },
+  "primary_under_strict_id_rule": {
+    "per_seed": [
+      0,
+      -1,
+      1,
+      -1,
+      -3,
+      -3,
+      0,
+      0,
+      0,
+      0,
+      -1,
+      1,
+      0,
+      1,
+      1,
+      0,
+      -1,
+      -1,
+      -1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      2,
+      0,
+      -1,
+      0,
+      -1,
+      0
+    ],
+    "mean": -0.2667,
+    "sd": 1.0483,
+    "mean_percentage_points": -8.89,
+    "bootstrap_95_percentage_points": [
+      -21.11,
+      3.33
+    ],
+    "positive_zero_negative": [
+      5,
+      15,
+      10
+    ],
+    "exact_sign_flip_p_two_sided": 0.23980712890625
+  },
+  "key_detour_correct_under_strict_id_rule": {
+    "empty": 4,
+    "frozen": 47,
+    "random_model": 55,
+    "rare_only_model": 49,
+    "targeted_model": 52
+  },
+  "responses": {
+    "acquisition_answers": 1080,
+    "acquisition_returned_requested_id": 1077,
+    "acquisition_ungated_tasks": 703,
+    "acquisition_ungated_declared_unreachable": 0,
+    "acquisition_key_detour_tasks": 167,
+    "acquisition_key_detour_declared_unreachable": 0,
+    "acquisition_unreachable_tasks": 210,
+    "acquisition_unreachable_declared_unreachable": 0,
+    "readout_answers": 1350,
+    "readout_returned_requested_id": 1176,
+    "readout_unreachable_tasks": 450,
+    "readout_unreachable_declared_unreachable": 1,
+    "readout_key_detour_tasks": 450,
+    "readout_key_detour_declared_unreachable": 1,
+    "readout_ungated_tasks": 450,
+    "readout_ungated_declared_unreachable": 0
+  },
+  "retained_coverage_split_key_detour": {
+    "present": {
+      "memories": 86,
+      "correct": 140,
+      "total": 258
+    },
+    "absent": {
+      "memories": 64,
+      "correct": 111,
+      "total": 192
+    }
+  },
+  "key_detour_by_path_availability": {
+    "path_in_memory": {
+      "correct": 25,
+      "total": 36
+    },
+    "path_not_in_memory": {
+      "correct": 115,
+      "total": 222
+    },
+    "no_key_detour_example": {
+      "correct": 111,
+      "total": 192
+    }
+  },
+  "fifo_conformance": {
+    "trajectories": 90,
+    "checks": 270,
+    "rare_losses": 124,
+    "rare_losses_without_admission": 113
+  },
+  "per_seed": {
+    "7101": {
+      "empty": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 1,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 0,
+          "key_detour": 0,
+          "unreachable": 0
+        }
+      },
+      "frozen": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 2,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 4,
+          "key_detour": 1,
+          "unreachable": 1
+        }
+      },
+      "random_model": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 2,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 6,
+          "key_detour": 0,
+          "unreachable": 0
+        }
+      },
+      "rare_only_model": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 1,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 5,
+          "key_detour": 1,
+          "unreachable": 0
+        }
+      },
+      "targeted_model": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 2,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 6,
+          "key_detour": 0,
+          "unreachable": 0
+        }
+      }
+    },
+    "7102": {
+      "empty": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 2,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 0,
+          "key_detour": 0,
+          "unreachable": 0
+        }
+      },
+      "frozen": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 1,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 4,
+          "key_detour": 1,
+          "unreachable": 1
+        }
+      },
+      "random_model": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 2,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 6,
+          "key_detour": 0,
+          "unreachable": 0
+        }
+      },
+      "rare_only_model": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 2,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 5,
+          "key_detour": 1,
+          "unreachable": 0
+        }
+      },
+      "targeted_model": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 2,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 5,
+          "key_detour": 1,
+          "unreachable": 0
+        }
+      }
+    },
+    "7103": {
+      "empty": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 3,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 0,
+          "key_detour": 0,
+          "unreachable": 0
+        }
+      },
+      "frozen": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 2,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 4,
+          "key_detour": 1,
+          "unreachable": 1
+        }
+      },
+      "random_model": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 1,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 6,
+          "key_detour": 0,
+          "unreachable": 0
+        }
+      },
+      "rare_only_model": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 2,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 5,
+          "key_detour": 1,
+          "unreachable": 0
+        }
+      },
+      "targeted_model": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 1,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 6,
+          "key_detour": 0,
+          "unreachable": 0
+        }
+      }
+    },
+    "7104": {
+      "empty": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 1,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 0,
+          "key_detour": 0,
+          "unreachable": 0
+        }
+      },
+      "frozen": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 2,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 4,
+          "key_detour": 1,
+          "unreachable": 1
+        }
+      },
+      "random_model": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 3,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 6,
+          "key_detour": 0,
+          "unreachable": 0
+        }
+      },
+      "rare_only_model": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 2,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 5,
+          "key_detour": 1,
+          "unreachable": 0
+        }
+      },
+      "targeted_model": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 3,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 6,
+          "key_detour": 0,
+          "unreachable": 0
+        }
+      }
+    },
+    "7105": {
+      "empty": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 3,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 0,
+          "key_detour": 0,
+          "unreachable": 0
+        }
+      },
+      "frozen": {
+        "correct": {
+          "ungated": 2,
+          "key_detour": 0,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 4,
+          "key_detour": 1,
+          "unreachable": 1
+        }
+      },
+      "random_model": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 3,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 6,
+          "key_detour": 0,
+          "unreachable": 0
+        }
+      },
+      "rare_only_model": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 1,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 5,
+          "key_detour": 1,
+          "unreachable": 0
+        }
+      },
+      "targeted_model": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 1,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 5,
+          "key_detour": 1,
+          "unreachable": 0
+        }
+      }
+    },
+    "7106": {
+      "empty": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 3,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 0,
+          "key_detour": 0,
+          "unreachable": 0
+        }
+      },
+      "frozen": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 0,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 4,
+          "key_detour": 1,
+          "unreachable": 1
+        }
+      },
+      "random_model": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 3,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 6,
+          "key_detour": 0,
+          "unreachable": 0
+        }
+      },
+      "rare_only_model": {
+        "correct": {
+          "ungated": 2,
+          "key_detour": 2,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 5,
+          "key_detour": 1,
+          "unreachable": 0
+        }
+      },
+      "targeted_model": {
+        "correct": {
+          "ungated": 2,
+          "key_detour": 2,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 5,
+          "key_detour": 1,
+          "unreachable": 0
+        }
+      }
+    },
+    "7107": {
+      "empty": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 1,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 0,
+          "key_detour": 0,
+          "unreachable": 0
+        }
+      },
+      "frozen": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 1,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 4,
+          "key_detour": 1,
+          "unreachable": 1
+        }
+      },
+      "random_model": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 1,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 6,
+          "key_detour": 0,
+          "unreachable": 0
+        }
+      },
+      "rare_only_model": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 1,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 5,
+          "key_detour": 1,
+          "unreachable": 0
+        }
+      },
+      "targeted_model": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 1,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 6,
+          "key_detour": 0,
+          "unreachable": 0
+        }
+      }
+    },
+    "7108": {
+      "empty": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 2,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 0,
+          "key_detour": 0,
+          "unreachable": 0
+        }
+      },
+      "frozen": {
+        "correct": {
+          "ungated": 2,
+          "key_detour": 2,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 4,
+          "key_detour": 1,
+          "unreachable": 1
+        }
+      },
+      "random_model": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 2,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 6,
+          "key_detour": 0,
+          "unreachable": 0
+        }
+      },
+      "rare_only_model": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 2,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 5,
+          "key_detour": 1,
+          "unreachable": 0
+        }
+      },
+      "targeted_model": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 2,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 5,
+          "key_detour": 1,
+          "unreachable": 0
+        }
+      }
+    },
+    "7109": {
+      "empty": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 2,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 0,
+          "key_detour": 0,
+          "unreachable": 0
+        }
+      },
+      "frozen": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 1,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 4,
+          "key_detour": 1,
+          "unreachable": 1
+        }
+      },
+      "random_model": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 1,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 6,
+          "key_detour": 0,
+          "unreachable": 0
+        }
+      },
+      "rare_only_model": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 2,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 4,
+          "key_detour": 2,
+          "unreachable": 0
+        }
+      },
+      "targeted_model": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 2,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 6,
+          "key_detour": 0,
+          "unreachable": 0
+        }
+      }
+    },
+    "7110": {
+      "empty": {
+        "correct": {
+          "ungated": 2,
+          "key_detour": 2,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 0,
+          "key_detour": 0,
+          "unreachable": 0
+        }
+      },
+      "frozen": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 2,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 4,
+          "key_detour": 1,
+          "unreachable": 1
+        }
+      },
+      "random_model": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 2,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 6,
+          "key_detour": 0,
+          "unreachable": 0
+        }
+      },
+      "rare_only_model": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 2,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 5,
+          "key_detour": 1,
+          "unreachable": 0
+        }
+      },
+      "targeted_model": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 2,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 5,
+          "key_detour": 1,
+          "unreachable": 0
+        }
+      }
+    },
+    "7111": {
+      "empty": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 1,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 0,
+          "key_detour": 0,
+          "unreachable": 0
+        }
+      },
+      "frozen": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 2,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 4,
+          "key_detour": 1,
+          "unreachable": 1
+        }
+      },
+      "random_model": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 3,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 6,
+          "key_detour": 0,
+          "unreachable": 0
+        }
+      },
+      "rare_only_model": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 3,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 6,
+          "key_detour": 0,
+          "unreachable": 0
+        }
+      },
+      "targeted_model": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 3,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 6,
+          "key_detour": 0,
+          "unreachable": 0
+        }
+      }
+    },
+    "7112": {
+      "empty": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 1,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 0,
+          "key_detour": 0,
+          "unreachable": 0
+        }
+      },
+      "frozen": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 2,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 4,
+          "key_detour": 1,
+          "unreachable": 1
+        }
+      },
+      "random_model": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 1,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 6,
+          "key_detour": 0,
+          "unreachable": 0
+        }
+      },
+      "rare_only_model": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 1,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 5,
+          "key_detour": 1,
+          "unreachable": 0
+        }
+      },
+      "targeted_model": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 1,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 5,
+          "key_detour": 1,
+          "unreachable": 0
+        }
+      }
+    },
+    "7113": {
+      "empty": {
+        "correct": {
+          "ungated": 2,
+          "key_detour": 1,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 0,
+          "key_detour": 0,
+          "unreachable": 0
+        }
+      },
+      "frozen": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 1,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 4,
+          "key_detour": 1,
+          "unreachable": 1
+        }
+      },
+      "random_model": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 1,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 5,
+          "key_detour": 1,
+          "unreachable": 0
+        }
+      },
+      "rare_only_model": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 1,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 4,
+          "key_detour": 2,
+          "unreachable": 0
+        }
+      },
+      "targeted_model": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 1,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 4,
+          "key_detour": 2,
+          "unreachable": 0
+        }
+      }
+    },
+    "7114": {
+      "empty": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 1,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 0,
+          "key_detour": 0,
+          "unreachable": 0
+        }
+      },
+      "frozen": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 2,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 4,
+          "key_detour": 1,
+          "unreachable": 1
+        }
+      },
+      "random_model": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 1,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 6,
+          "key_detour": 0,
+          "unreachable": 0
+        }
+      },
+      "rare_only_model": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 1,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 4,
+          "key_detour": 2,
+          "unreachable": 0
+        }
+      },
+      "targeted_model": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 1,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 6,
+          "key_detour": 0,
+          "unreachable": 0
+        }
+      }
+    },
+    "7115": {
+      "empty": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 2,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 0,
+          "key_detour": 0,
+          "unreachable": 0
+        }
+      },
+      "frozen": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 3,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 4,
+          "key_detour": 1,
+          "unreachable": 1
+        }
+      },
+      "random_model": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 2,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 6,
+          "key_detour": 0,
+          "unreachable": 0
+        }
+      },
+      "rare_only_model": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 2,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 5,
+          "key_detour": 1,
+          "unreachable": 0
+        }
+      },
+      "targeted_model": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 2,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 5,
+          "key_detour": 1,
+          "unreachable": 0
+        }
+      }
+    },
+    "7116": {
+      "empty": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 1,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 0,
+          "key_detour": 0,
+          "unreachable": 0
+        }
+      },
+      "frozen": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 1,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 4,
+          "key_detour": 1,
+          "unreachable": 1
+        }
+      },
+      "random_model": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 1,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 6,
+          "key_detour": 0,
+          "unreachable": 0
+        }
+      },
+      "rare_only_model": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 2,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 5,
+          "key_detour": 1,
+          "unreachable": 0
+        }
+      },
+      "targeted_model": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 2,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 5,
+          "key_detour": 1,
+          "unreachable": 0
+        }
+      }
+    },
+    "7117": {
+      "empty": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 2,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 0,
+          "key_detour": 0,
+          "unreachable": 0
+        }
+      },
+      "frozen": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 0,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 4,
+          "key_detour": 1,
+          "unreachable": 1
+        }
+      },
+      "random_model": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 1,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 6,
+          "key_detour": 0,
+          "unreachable": 0
+        }
+      },
+      "rare_only_model": {
+        "correct": {
+          "ungated": 2,
+          "key_detour": 1,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 5,
+          "key_detour": 1,
+          "unreachable": 0
+        }
+      },
+      "targeted_model": {
+        "correct": {
+          "ungated": 2,
+          "key_detour": 1,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 5,
+          "key_detour": 1,
+          "unreachable": 0
+        }
+      }
+    },
+    "7118": {
+      "empty": {
+        "correct": {
+          "ungated": 2,
+          "key_detour": 1,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 0,
+          "key_detour": 0,
+          "unreachable": 0
+        }
+      },
+      "frozen": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 1,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 4,
+          "key_detour": 1,
+          "unreachable": 1
+        }
+      },
+      "random_model": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 2,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 6,
+          "key_detour": 0,
+          "unreachable": 0
+        }
+      },
+      "rare_only_model": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 1,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 5,
+          "key_detour": 1,
+          "unreachable": 0
+        }
+      },
+      "targeted_model": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 1,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 5,
+          "key_detour": 1,
+          "unreachable": 0
+        }
+      }
+    },
+    "7119": {
+      "empty": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 1,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 0,
+          "key_detour": 0,
+          "unreachable": 0
+        }
+      },
+      "frozen": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 2,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 4,
+          "key_detour": 1,
+          "unreachable": 1
+        }
+      },
+      "random_model": {
+        "correct": {
+          "ungated": 2,
+          "key_detour": 3,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 2,
+          "key_detour": 4,
+          "unreachable": 0
+        }
+      },
+      "rare_only_model": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 1,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 4,
+          "key_detour": 2,
+          "unreachable": 0
+        }
+      },
+      "targeted_model": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 2,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 4,
+          "key_detour": 2,
+          "unreachable": 0
+        }
+      }
+    },
+    "7120": {
+      "empty": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 0,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 0,
+          "key_detour": 0,
+          "unreachable": 0
+        }
+      },
+      "frozen": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 2,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 4,
+          "key_detour": 1,
+          "unreachable": 1
+        }
+      },
+      "random_model": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 2,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 6,
+          "key_detour": 0,
+          "unreachable": 0
+        }
+      },
+      "rare_only_model": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 2,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 5,
+          "key_detour": 1,
+          "unreachable": 0
+        }
+      },
+      "targeted_model": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 2,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 5,
+          "key_detour": 1,
+          "unreachable": 0
+        }
+      }
+    },
+    "7121": {
+      "empty": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 1,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 0,
+          "key_detour": 0,
+          "unreachable": 0
+        }
+      },
+      "frozen": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 0,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 4,
+          "key_detour": 1,
+          "unreachable": 1
+        }
+      },
+      "random_model": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 0,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 6,
+          "key_detour": 0,
+          "unreachable": 0
+        }
+      },
+      "rare_only_model": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 1,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 5,
+          "key_detour": 1,
+          "unreachable": 0
+        }
+      },
+      "targeted_model": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 1,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 5,
+          "key_detour": 1,
+          "unreachable": 0
+        }
+      }
+    },
+    "7122": {
+      "empty": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 2,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 0,
+          "key_detour": 0,
+          "unreachable": 0
+        }
+      },
+      "frozen": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 3,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 4,
+          "key_detour": 1,
+          "unreachable": 1
+        }
+      },
+      "random_model": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 3,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 6,
+          "key_detour": 0,
+          "unreachable": 0
+        }
+      },
+      "rare_only_model": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 1,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 5,
+          "key_detour": 1,
+          "unreachable": 0
+        }
+      },
+      "targeted_model": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 2,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 6,
+          "key_detour": 0,
+          "unreachable": 0
+        }
+      }
+    },
+    "7123": {
+      "empty": {
+        "correct": {
+          "ungated": 2,
+          "key_detour": 1,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 0,
+          "key_detour": 0,
+          "unreachable": 0
+        }
+      },
+      "frozen": {
+        "correct": {
+          "ungated": 2,
+          "key_detour": 2,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 4,
+          "key_detour": 1,
+          "unreachable": 1
+        }
+      },
+      "random_model": {
+        "correct": {
+          "ungated": 1,
+          "key_detour": 2,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 5,
+          "key_detour": 1,
+          "unreachable": 0
+        }
+      },
+      "rare_only_model": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 2,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 5,
+          "key_detour": 1,
+          "unreachable": 0
+        }
+      },
+      "targeted_model": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 2,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 5,
+          "key_detour": 1,
+          "unreachable": 0
+        }
+      }
+    },
+    "7124": {
+      "empty": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 3,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 0,
+          "key_detour": 0,
+          "unreachable": 0
+        }
+      },
+      "frozen": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 2,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 4,
+          "key_detour": 1,
+          "unreachable": 1
+        }
+      },
+      "random_model": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 2,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 5,
+          "key_detour": 1,
+          "unreachable": 0
+        }
+      },
+      "rare_only_model": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 2,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 4,
+          "key_detour": 2,
+          "unreachable": 0
+        }
+      },
+      "targeted_model": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 2,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 5,
+          "key_detour": 1,
+          "unreachable": 0
+        }
+      }
+    },
+    "7125": {
+      "empty": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 1,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 0,
+          "key_detour": 0,
+          "unreachable": 0
+        }
+      },
+      "frozen": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 3,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 4,
+          "key_detour": 1,
+          "unreachable": 1
+        }
+      },
+      "random_model": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 1,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 6,
+          "key_detour": 0,
+          "unreachable": 0
+        }
+      },
+      "rare_only_model": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 2,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 5,
+          "key_detour": 1,
+          "unreachable": 0
+        }
+      },
+      "targeted_model": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 2,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 6,
+          "key_detour": 0,
+          "unreachable": 0
+        }
+      }
+    },
+    "7126": {
+      "empty": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 2,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 0,
+          "key_detour": 0,
+          "unreachable": 0
+        }
+      },
+      "frozen": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 2,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 4,
+          "key_detour": 1,
+          "unreachable": 1
+        }
+      },
+      "random_model": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 2,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 5,
+          "key_detour": 1,
+          "unreachable": 0
+        }
+      },
+      "rare_only_model": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 3,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 4,
+          "key_detour": 2,
+          "unreachable": 0
+        }
+      },
+      "targeted_model": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 3,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 4,
+          "key_detour": 2,
+          "unreachable": 0
+        }
+      }
+    },
+    "7127": {
+      "empty": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 2,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 0,
+          "key_detour": 0,
+          "unreachable": 0
+        }
+      },
+      "frozen": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 1,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 4,
+          "key_detour": 1,
+          "unreachable": 1
+        }
+      },
+      "random_model": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 2,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 6,
+          "key_detour": 0,
+          "unreachable": 0
+        }
+      },
+      "rare_only_model": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 1,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 4,
+          "key_detour": 2,
+          "unreachable": 0
+        }
+      },
+      "targeted_model": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 1,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 4,
+          "key_detour": 2,
+          "unreachable": 0
+        }
+      }
+    },
+    "7128": {
+      "empty": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 1,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 0,
+          "key_detour": 0,
+          "unreachable": 0
+        }
+      },
+      "frozen": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 2,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 4,
+          "key_detour": 1,
+          "unreachable": 1
+        }
+      },
+      "random_model": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 2,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 4,
+          "key_detour": 2,
+          "unreachable": 0
+        }
+      },
+      "rare_only_model": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 2,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 4,
+          "key_detour": 2,
+          "unreachable": 0
+        }
+      },
+      "targeted_model": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 2,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 5,
+          "key_detour": 1,
+          "unreachable": 0
+        }
+      }
+    },
+    "7129": {
+      "empty": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 2,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 0,
+          "key_detour": 0,
+          "unreachable": 0
+        }
+      },
+      "frozen": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 1,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 4,
+          "key_detour": 1,
+          "unreachable": 1
+        }
+      },
+      "random_model": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 2,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 6,
+          "key_detour": 0,
+          "unreachable": 0
+        }
+      },
+      "rare_only_model": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 2,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 4,
+          "key_detour": 2,
+          "unreachable": 0
+        }
+      },
+      "targeted_model": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 2,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 4,
+          "key_detour": 2,
+          "unreachable": 0
+        }
+      }
+    },
+    "7130": {
+      "empty": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 2,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 0,
+          "key_detour": 0,
+          "unreachable": 0
+        }
+      },
+      "frozen": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 2,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 4,
+          "key_detour": 1,
+          "unreachable": 1
+        }
+      },
+      "random_model": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 2,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 6,
+          "key_detour": 0,
+          "unreachable": 0
+        }
+      },
+      "rare_only_model": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 1,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 3,
+          "key_detour": 3,
+          "unreachable": 0
+        }
+      },
+      "targeted_model": {
+        "correct": {
+          "ungated": 3,
+          "key_detour": 1,
+          "unreachable": 0
+        },
+        "retained": {
+          "ungated": 4,
+          "key_detour": 2,
+          "unreachable": 0
+        }
+      }
+    }
+  }
+}
