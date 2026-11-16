@@ -121,8 +121,18 @@ def rendered(case, memory, maps, condition, repetition):
     return rename_with_labels(case, maps[repetition]), examples
 
 
-def trajectory(seed, pools, ask):
-    """All calls of one seed. `ask` is a live backend call or a replay of a stored call."""
+def only_entry(answers, case):
+    """Key a lone answer by the requested ID when a one-task call returned another key."""
+    if case.id not in answers and len(answers) == 1:
+        return {case.id: next(iter(answers.values()))}
+    return answers
+
+
+def trajectory(seed, pools, ask, *, single_solve=False, labels=True, single_entry=False):
+    """All calls of one seed. `ask` is a live backend call or a replay of a stored call.
+
+    E015 uses the defaults. E016 solves one candidate per call and omits the label sub-study.
+    """
     initial, backgrounds, supplements, holdout = pools
     schedule = plan(seed)
     start = [(case, oracle_answer(case)) for case in initial]
@@ -138,7 +148,13 @@ def trajectory(seed, pools, ask):
                 family = schedule[arm][index]
             supplement = next(case for case in supplements[index] if case.family == family)
             candidates = [*backgrounds[index], supplement]
-            answers = ask("solve", arm, index + 1, candidates, memory)
+            if single_solve:
+                answers = {}
+                for case in candidates:
+                    reply = ask("solve", arm, index + 1, [case], memory)
+                    answers.update(only_entry(reply, case) if single_entry else reply)
+            else:
+                answers = ask("solve", arm, index + 1, candidates, memory)
             admitted = [(case, answers[case.id]) for case in candidates
                         if is_correct(case.task, answers.get(case.id))]
             combined = memory + admitted
@@ -161,13 +177,14 @@ def trajectory(seed, pools, ask):
         for case in holdout:
             answers = ask("evaluation", f"readout/{name}/{case.id}", ROUNDS, [case],
                           memories[name])
+            scored = only_entry(answers, case) if single_entry else answers
             readout[name][case.id] = {"answered": case.id in answers,
-                                      "correct": is_correct(case.task, answers.get(case.id))}
+                                      "correct": is_correct(case.task, scored.get(case.id))}
 
     maps = maps_for_seed(seed)
     label = {name: {condition: {"0": {}, "1": {}} for condition in CONDITIONS}
              for name in UPDATING}
-    for name, condition, repetition in schedule["label_order"]:
+    for name, condition, repetition in schedule["label_order"] if labels else ():
         for case in holdout:
             if case.family != DETOUR:
                 continue
@@ -199,7 +216,7 @@ def run_seed(seed, pools, port, directory):
     raw.unlink()
 
 
-def replay_seed(directory, seed, pools):
+def replay_seed(directory, seed, pools, **mode):
     """Recompute every prompt, admission and score from the stored responses."""
     rows = iter(read_calls(directory))
     usage = Counter()
@@ -228,7 +245,7 @@ def replay_seed(directory, seed, pools):
                       f"{stage}_seconds": row.get("seconds", 0)})
         return answers
 
-    replayed = trajectory(seed, pools, ask)
+    replayed = trajectory(seed, pools, ask, **mode)
     require(next(rows, None) is None, f"Unused calls in seed {seed}")
     stored = json.loads((directory / "summary.json").read_text())
     require({key: stored.get(key) for key in replayed} == replayed,
