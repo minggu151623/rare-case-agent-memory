@@ -808,7 +808,10 @@ but those trajectories were acquired under the locked rule. After a
 reviewer pointed this out we reran seed 7125 with the strict rule in
 acquisition and readout, 81 further calls. Its primary difference
 stayed at $+2$ and its secondary difference at zero, so both contrasts
-are the same under either rule. In a reading added after the aggregate was archived, Gemma
+are the same under either rule. The rerun also shows that Gemma's
+answers at temperature zero are not exactly repeatable: one of 57
+prompts shared with the locked run, an ungated query, received a
+different answer. In a reading added after the aggregate was archived, Gemma
 declared no asked task unreachable in 660 unreachable tasks. Its two
 unreachable declarations repeat a memory example inside an answer.
 
@@ -1009,7 +1012,8 @@ the traces without running a language model, and three scripts assert
 proofs build with Lean and Mathlib 4.26.0 from a pinned dependency
 manifest under \texttt{formal/}. For every experiment that called a model, the
 protocol was committed before the results. The offline audits E007 and
-E011 were not preceded by a separate protocol commit. A commit records
+E011 were not preceded by a separate protocol commit, and the 81-call
+strict-rule rerun of one E016 seed was committed with its result. A commit records
 the time of a design and is not a third-party preregistration.
 
 \paragraph{Assets and environment.} The code needs Python 3.10 or later

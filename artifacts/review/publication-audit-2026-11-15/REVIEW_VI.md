@@ -345,5 +345,22 @@ chính. **Zenodo: READY AFTER FIXES, ba điểm bắt buộc.**
 | Thiếu runtime và quantization của E016 trong thân bài | Không bắt buộc | Đã thêm |
 | Trace không có dấu thời gian thực; hai model nhỏ; unreachable chạm sàn | Không sửa được | Đã ghi trong Limitations |
 
-Sau các sửa này không còn điểm bắt buộc nào để ngỏ. Bản sau khi sửa
-chưa được chấm thêm một vòng nữa.
+Sau các sửa này không còn điểm bắt buộc nào để ngỏ.
+
+## Phản biện độc lập, vòng năm: chấm lại bản đã sửa (16/11/2026)
+
+[INDEPENDENT_REVIEW_ROUND5.md](INDEPENDENT_REVIEW_ROUND5.md). Cùng
+reviewer vòng bốn chấm bản ở commit `98c6d07`: ba điểm bắt buộc đã đóng;
+lần chạy lại seed 7125 được kiểm độc lập và đúng như bài mô tả; mọi
+replay khớp; không tìm thấy điểm nào khác cần sửa.
+
+**Kết luận về Zenodo: READY — no required fixes.** Điểm 3/6 cho hội
+nghị chính, không đổi.
+
+Reviewer phát hiện thêm một điều chưa khai báo: trong lần chạy lại, 1
+trong 57 prompt trùng với lần chạy chính nhận câu trả lời khác (một câu
+ungated), tức Gemma ở nhiệt độ 0 trong LM Studio không lặp lại tuyệt
+đối. Điều này không ảnh hưởng contrast nào. Sau báo cáo, hai ghi chú
+không bắt buộc mà reviewer đề nghị đã được thêm vào bài và `analysis.md`:
+ghi chú về tính lặp lại này, và việc lần chạy lại 81 lượt gọi được
+commit cùng kết quả của nó.

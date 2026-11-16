@@ -134,6 +134,14 @@ acquisition, which the first version of this analysis did not say.
   memory went from 1 to 0. Both contrasts are therefore the same under
   either rule.
 
+- **Repeatability.** A reviewer compared the rerun with the locked run:
+  57 of its prompts are byte-identical to prompts of the locked run, and
+  one of them, ungated query `h00` under the same memory, received a
+  different answer. Gemma's temperature-zero answers in LM Studio are
+  therefore not exactly repeatable, although the two development runs
+  returned identical responses. The rerun mixes the rule change with
+  this run-to-run variation. No contrast is affected.
+
 ## Deviations and observations
 
 - None from the locked protocol. No amendment was needed.
